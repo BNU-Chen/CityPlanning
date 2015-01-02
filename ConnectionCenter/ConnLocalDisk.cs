@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Data;
 using System.IO;
 
+
 namespace ConnectionCenter
 {
     public class ConnLocalDisk
@@ -60,7 +61,7 @@ namespace ConnectionCenter
                         dr["id"] = id;
                         dr["pid"] = pid;
                         dr["name"] = Path.GetFileNameWithoutExtension(file.FullName);  //文件名 
-                        dr["ext"] = file.Extension.ToLower();      //拓展名，包含“.”
+                        dr["ext"] = file.Extension.Substring(1,file.Extension.Length-1).ToLower();      //拓展名，包含“.”
                         dr["type"] = "File";
                         dr["path"] = file.FullName;         //全路径
                         dt.Rows.Add(dr);
@@ -74,14 +75,13 @@ namespace ConnectionCenter
                         dr["id"] = id;
                         dr["pid"] = pid;
                         dr["name"] = di.Name;
-                        dr["ext"] = "";
+                        dr["ext"] = "folder";
                         dr["type"] = "Folder";
                         dr["path"] = di.FullName;
                         dt.Rows.Add(dr);
 
                         ListFiles(files[i], ref dt,ref id);
-                    }
-                    
+                    }                    
                 }
             }
             catch

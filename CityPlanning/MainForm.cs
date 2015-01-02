@@ -21,6 +21,7 @@ using DevExpress.XtraSpreadsheet;
 using DevExpress.Spreadsheet;
 using DevExpress.XtraRichEdit;
 //using DevExpress.Docs;          //Worksheet专用
+using DevExpress.Utils;
 
 using ESRI.ArcGIS.Controls;
 
@@ -37,8 +38,11 @@ namespace CityPlanning
     {
         #region //变量声明
         private AxMapControl curAxMapControl = null;
+        private ImageCollection imageCollectionIcons = null;
+
         
         //自定义类声明
+        private int iconCount = 0;
 
         //模块定义
         public Modules.ucNavigationRDB ucNaviRDB = new Modules.ucNavigationRDB();
@@ -70,11 +74,21 @@ namespace CityPlanning
         //初始化控件
         private void InitComponent()
         {
+            //获取图标
+            imageCollectionIcons = ComponentOperator.GetImageCollection();
+            this.ucNaviFiles.TreeList.StateImageList = imageCollectionIcons;
+            this.ucNaviRDB.TreeList.StateImageList = imageCollectionIcons;
+            this.xtraTabControl_Main.Images = imageCollectionIcons;
+
             ucNaviFiles.Dock = DockStyle.Fill;
             ucNaviRDB.Dock = DockStyle.Fill;
 
+            //导航栏双击事件
             this.ucNaviRDB.TreeList.DoubleClick += ucNaviRDB_TreeList_DoubleClick;
             this.ucNaviFiles.TreeList.DoubleClick += ucNaviFiles_TreeList_DoubleClick;
+            //导航栏图标
+            this.ucNaviRDB.TreeList.GetStateImage +=ucNaviRDB_TreeList_GetStateImage;
+            this.ucNaviFiles.TreeList.GetStateImage += ucNaviFiles_TreeList_GetStateImage;
 
         }
         void InitSkinGallery()
@@ -126,6 +140,7 @@ namespace CityPlanning
             }
             this.ucNaviRDB.TreeList.KeyFieldName = "id";     //主要显示内容
             this.ucNaviRDB.TreeList.ParentFieldName = "TABLE_CATALOG";     //目录
+            //this.ucNaviRDB.TreeList.ImageIndexFieldName = "ext";
             this.ucNaviRDB.TreeList.DataSource = dt;    //数据库
             DevExpress.XtraTreeList.Columns.TreeListColumnCollection col = this.ucNaviRDB.TreeList.Columns;
             this.ucNaviRDB.TreeList.Columns["TABLE_NAME"].SortOrder = SortOrder.Ascending;      //排序
@@ -171,6 +186,10 @@ namespace CityPlanning
                     ucNaviFiles.TreeList.Columns[i].Visible = false;
                 }
             }
+            if(dt.Rows.Count < 100)
+            {
+                this.ucNaviFiles.TreeList.ExpandAll();
+            }
         }
         //三维地图
         private void bGallery3DMap_ItemClick(object sender, ItemClickEventArgs e)
@@ -212,10 +231,19 @@ namespace CityPlanning
                     worksheet.Name = nodeName;
                     worksheet.Import(dt,true, 0, 0);        //import方法需要添加DevExpress.Docs命名空间
                     workbook.EndUpdate();
+                    
+                    //icon
+                    int imgIndex = this.imageCollectionIcons.Images.Keys.IndexOf("table");
+                    
                     //TabPage
                     XtraTabPage xtp = new XtraTabPage();                    
                     xtp.Text = nodeName;
                     xtp.Controls.Add(ssc);
+                    if (imgIndex >= 0)
+                    {
+                        Image tableIcon = this.imageCollectionIcons.Images[imgIndex];
+                        xtp.Image = tableIcon;
+                    }
                     ssc.Dock = DockStyle.Fill;
                     this.xtraTabControl_Main.TabPages.Add(xtp);
                     this.xtraTabControl_Main.SelectedTabPage = xtp;
@@ -230,6 +258,7 @@ namespace CityPlanning
             {
             }
         }
+        
         //文件数据导航栏双击事件
         private void ucNaviFiles_TreeList_DoubleClick(object sender, EventArgs e)
         {
@@ -240,6 +269,9 @@ namespace CityPlanning
                 return;
             }
             string nodeName = (string)hi.Node["name"];
+            string extension = (string)hi.Node["ext"];
+            //icon
+            int iconIndex = this.imageCollectionIcons.Images.Keys.IndexOf(extension);
             Control openFileTool = null;
             try
             {
@@ -263,8 +295,7 @@ namespace CityPlanning
                     MessageBox.Show("文件已丢失，请刷新文件目录后再尝试打开。", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
-                //如果不包含该TabPage，则新建
-                string extension = (string)hi.Node["ext"];
+                //如果不包含该TabPage，则新建                
                 string fileType = ComponentOperator.GetFileTypeByExtension(extension);
                 switch (fileType)
                 {
@@ -294,6 +325,11 @@ namespace CityPlanning
                         XtraTabPage xtp = new XtraTabPage();
                         xtp.Text = nodeName;
                         xtp.Controls.Add(mapControl);
+                        if (iconIndex >= 0)
+                        {
+                            Image tableIcon = this.imageCollectionIcons.Images[iconIndex];
+                            xtp.Image = tableIcon;
+                        }
                         mapControl.Dock = DockStyle.Fill;
                         this.xtraTabControl_Main.TabPages.Add(xtp);
                         this.xtraTabControl_Main.SelectedTabPage = xtp;
@@ -321,6 +357,11 @@ namespace CityPlanning
                     //TabPage
                     XtraTabPage xtp = new XtraTabPage();
                     xtp.Text = nodeName;
+                    if (iconIndex >= 0)
+                    {
+                        Image tableIcon = this.imageCollectionIcons.Images[iconIndex];
+                        xtp.Image = tableIcon;
+                    }
                     xtp.Controls.Add(openFileTool);
                     openFileTool.Dock = DockStyle.Fill;
                     this.xtraTabControl_Main.TabPages.Add(xtp);
@@ -332,6 +373,36 @@ namespace CityPlanning
                     this.Refresh();
                 }
             }
+        }
+        //关系数据库导航栏图标
+        private void ucNaviRDB_TreeList_GetStateImage(object sender, DevExpress.XtraTreeList.GetStateImageEventArgs e)
+        {
+            int imgIndex = this.imageCollectionIcons.Images.Keys.IndexOf("table");
+            if (imgIndex >= 0)
+            {
+                e.NodeImageIndex = imgIndex;
+            }
+
+        }
+        //文件数据库导航栏图标
+        private void ucNaviFiles_TreeList_GetStateImage(object sender, DevExpress.XtraTreeList.GetStateImageEventArgs e)
+        {
+            string extension = (string)e.Node["ext"];
+            if(extension == "folder")
+            {
+                extension = "folderclose";
+            }
+            int imgIndex = this.imageCollectionIcons.Images.Keys.IndexOf(extension);
+            if (imgIndex >= 0)
+            {
+                e.NodeImageIndex = imgIndex;
+            }
+            else
+            {
+                imgIndex = this.imageCollectionIcons.Images.Keys.IndexOf("generic");
+                e.NodeImageIndex = imgIndex;
+            }
+
         }
         #endregion
 
@@ -473,6 +544,11 @@ namespace CityPlanning
 
         }
         #endregion
+
+        private void bDoc_InitDocument_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
+        }
         
     }
 }

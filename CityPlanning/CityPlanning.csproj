@@ -118,6 +118,7 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class1.cs" />
     <Compile Include="ComponentOperator.cs" />
     <Compile Include="frmStartConnectionConfig.cs">
       <SubType>Form</SubType>
@@ -273,10 +274,15 @@
     <ProjectReference Include="..\DocumentManager\DocumentManager.csproj">
       <Project>{e21c1c05-756b-4925-9496-d1ab6af865e8}</Project>
       <Name>DocumentManager</Name>
+      <Private>True</Private>
     </ProjectReference>
     <ProjectReference Include="..\GISMananer\GISManager.csproj">
       <Project>{a7d5b97e-1019-4c12-820c-8ed1d8ffc75f}</Project>
       <Name>GISManager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ICONs\ICONs.csproj">
+      <Project>{11471fbc-609f-48d5-ab1d-e0660c6417e3}</Project>
+      <Name>ICONs</Name>
     </ProjectReference>
     <ProjectReference Include="..\StatisticChart\StatisticChart.csproj">
       <Project>{3811f98c-b3f2-412c-b099-281808819015}</Project>

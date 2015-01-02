@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraBars.Ribbon.GalleryItemGroup galleryItemGroup13 = new DevExpress.XtraBars.Ribbon.GalleryItemGroup();
+            DevExpress.XtraBars.Ribbon.GalleryItemGroup galleryItemGroup1 = new DevExpress.XtraBars.Ribbon.GalleryItemGroup();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            DevExpress.XtraBars.Ribbon.ReduceOperation reduceOperation25 = new DevExpress.XtraBars.Ribbon.ReduceOperation();
-            DevExpress.XtraBars.Ribbon.ReduceOperation reduceOperation26 = new DevExpress.XtraBars.Ribbon.ReduceOperation();
+            DevExpress.XtraBars.Ribbon.ReduceOperation reduceOperation1 = new DevExpress.XtraBars.Ribbon.ReduceOperation();
+            DevExpress.XtraBars.Ribbon.ReduceOperation reduceOperation2 = new DevExpress.XtraBars.Ribbon.ReduceOperation();
             this.stylesRibbonPageGroup1 = new DevExpress.XtraRichEdit.UI.StylesRibbonPageGroup();
             this.galleryChangeStyleItem1 = new DevExpress.XtraRichEdit.UI.GalleryChangeStyleItem();
             this.stylesRibbonPageGroup2 = new DevExpress.XtraSpreadsheet.UI.StylesRibbonPageGroup();
@@ -288,6 +288,7 @@
             this.functionsCompatibilityItem1 = new DevExpress.XtraSpreadsheet.UI.FunctionsCompatibilityItem();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
+            this.bDoc_InitDocument = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonImageCollectionLarge = new DevExpress.Utils.ImageCollection(this.components);
             this.ribbonPageCategory_map = new DevExpress.XtraBars.Ribbon.RibbonPageCategory();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -296,6 +297,8 @@
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageCategory_doc = new DevExpress.XtraBars.Ribbon.RibbonPageCategory();
+            this.ribbonPage_DocAnalyst = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.ribbonPageGroup7 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.fileRibbonPage1 = new DevExpress.XtraRichEdit.UI.FileRibbonPage();
             this.commonRibbonPageGroup1 = new DevExpress.XtraRichEdit.UI.CommonRibbonPageGroup();
             this.homeRibbonPage1 = new DevExpress.XtraRichEdit.UI.HomeRibbonPage();
@@ -353,6 +356,7 @@
             this.panelControl_Navigation = new DevExpress.XtraEditors.PanelControl();
             this.xtraTabControl_Main = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPage_Home = new DevExpress.XtraTab.XtraTabPage();
+            this.axLicenseControl1 = new ESRI.ArcGIS.Controls.AxLicenseControl();
             this.spreadsheetBarController1 = new DevExpress.XtraSpreadsheet.UI.SpreadsheetBarController();
             this.spreadsheetCommandBarButtonItem75 = new DevExpress.XtraSpreadsheet.UI.SpreadsheetCommandBarButtonItem();
             this.spreadsheetCommandBarButtonItem76 = new DevExpress.XtraSpreadsheet.UI.SpreadsheetCommandBarButtonItem();
@@ -360,6 +364,10 @@
             this.spreadsheetCommandBarButtonItem78 = new DevExpress.XtraSpreadsheet.UI.SpreadsheetCommandBarButtonItem();
             this.spreadsheetCommandBarButtonItem79 = new DevExpress.XtraSpreadsheet.UI.SpreadsheetCommandBarButtonItem();
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
+            this.barDockControl1 = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControl2 = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControl3 = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControl4 = new DevExpress.XtraBars.BarDockControl();
             this.pdfFileOpenBarItem1 = new DevExpress.XtraPdfViewer.Bars.PdfFileOpenBarItem();
             this.pdfPreviousPageBarItem1 = new DevExpress.XtraPdfViewer.Bars.PdfPreviousPageBarItem();
             this.pdfNextPageBarItem1 = new DevExpress.XtraPdfViewer.Bars.PdfNextPageBarItem();
@@ -380,12 +388,7 @@
             this.pdfSetPageLevelZoomModeCheckItem1 = new DevExpress.XtraPdfViewer.Bars.PdfSetPageLevelZoomModeCheckItem();
             this.pdfSetFitWidthZoomModeCheckItem1 = new DevExpress.XtraPdfViewer.Bars.PdfSetFitWidthZoomModeCheckItem();
             this.pdfSetFitVisibleZoomModeCheckItem1 = new DevExpress.XtraPdfViewer.Bars.PdfSetFitVisibleZoomModeCheckItem();
-            this.barDockControl1 = new DevExpress.XtraBars.BarDockControl();
-            this.barDockControl2 = new DevExpress.XtraBars.BarDockControl();
-            this.barDockControl3 = new DevExpress.XtraBars.BarDockControl();
-            this.barDockControl4 = new DevExpress.XtraBars.BarDockControl();
             this.pdfBarController1 = new DevExpress.XtraPdfViewer.Bars.PdfBarController();
-            this.axLicenseControl1 = new ESRI.ArcGIS.Controls.AxLicenseControl();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.appMenu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonImageCollection)).BeginInit();
@@ -410,10 +413,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl_Main)).BeginInit();
             this.xtraTabControl_Main.SuspendLayout();
             this.xtraTabPage_Home.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.axLicenseControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spreadsheetBarController1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pdfBarController1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.axLicenseControl1)).BeginInit();
             this.SuspendLayout();
             // 
             // stylesRibbonPageGroup1
@@ -430,7 +433,7 @@
             // 
             this.galleryChangeStyleItem1.Gallery.ColumnCount = 10;
             this.galleryChangeStyleItem1.Gallery.Groups.AddRange(new DevExpress.XtraBars.Ribbon.GalleryItemGroup[] {
-            galleryItemGroup13});
+            galleryItemGroup1});
             this.galleryChangeStyleItem1.Gallery.ImageSize = new System.Drawing.Size(65, 46);
             this.galleryChangeStyleItem1.Id = 499;
             this.galleryChangeStyleItem1.Name = "galleryChangeStyleItem1";
@@ -708,10 +711,11 @@
             this.functionsInformationItem1,
             this.functionsCompatibilityItem1,
             this.barButtonItem1,
-            this.barButtonItem2});
+            this.barButtonItem2,
+            this.bDoc_InitDocument});
             this.ribbonControl.LargeImages = this.ribbonImageCollectionLarge;
             this.ribbonControl.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl.MaxItemId = 667;
+            this.ribbonControl.MaxItemId = 668;
             this.ribbonControl.Name = "ribbonControl";
             this.ribbonControl.PageCategories.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageCategory[] {
             this.ribbonPageCategory_map,
@@ -2844,6 +2848,16 @@
             this.barButtonItem2.Id = 666;
             this.barButtonItem2.Name = "barButtonItem2";
             // 
+            // bDoc_InitDocument
+            // 
+            this.bDoc_InitDocument.Caption = "初始化文档";
+            this.bDoc_InitDocument.Glyph = global::CityPlanning.Properties.Resources.Config_64;
+            this.bDoc_InitDocument.Id = 667;
+            this.bDoc_InitDocument.Name = "bDoc_InitDocument";
+            this.bDoc_InitDocument.RibbonStyle = ((DevExpress.XtraBars.Ribbon.RibbonItemStyles)(((DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large | DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithText) 
+            | DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithoutText)));
+            this.bDoc_InitDocument.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bDoc_InitDocument_ItemClick);
+            // 
             // ribbonImageCollectionLarge
             // 
             this.ribbonImageCollectionLarge.ImageSize = new System.Drawing.Size(32, 32);
@@ -2876,6 +2890,7 @@
             this.ribbonPageGroup4});
             this.ribbonPage1.Name = "ribbonPage1";
             this.ribbonPage1.Text = "地图工具";
+            this.ribbonPage1.Visible = false;
             // 
             // ribbonPageGroup1
             // 
@@ -2914,6 +2929,7 @@
             this.ribbonPageCategory_doc.Color = System.Drawing.Color.Empty;
             this.ribbonPageCategory_doc.Name = "ribbonPageCategory_doc";
             this.ribbonPageCategory_doc.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
+            this.ribbonPage_DocAnalyst,
             this.fileRibbonPage1,
             this.homeRibbonPage1,
             this.insertRibbonPage1,
@@ -2921,11 +2937,26 @@
             this.ribbonPageCategory_doc.Text = "文档";
             this.ribbonPageCategory_doc.Visible = false;
             // 
+            // ribbonPage_DocAnalyst
+            // 
+            this.ribbonPage_DocAnalyst.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.ribbonPageGroup7});
+            this.ribbonPage_DocAnalyst.Name = "ribbonPage_DocAnalyst";
+            this.ribbonPage_DocAnalyst.Text = "文档分析";
+            this.ribbonPage_DocAnalyst.Visible = false;
+            // 
+            // ribbonPageGroup7
+            // 
+            this.ribbonPageGroup7.ItemLinks.Add(this.bDoc_InitDocument);
+            this.ribbonPageGroup7.Name = "ribbonPageGroup7";
+            this.ribbonPageGroup7.Text = "文档工具";
+            // 
             // fileRibbonPage1
             // 
             this.fileRibbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.commonRibbonPageGroup1});
             this.fileRibbonPage1.Name = "fileRibbonPage1";
+            this.fileRibbonPage1.Visible = false;
             // 
             // commonRibbonPageGroup1
             // 
@@ -2949,12 +2980,12 @@
             this.stylesRibbonPageGroup1,
             this.editingRibbonPageGroup1});
             this.homeRibbonPage1.Name = "homeRibbonPage1";
-            reduceOperation25.Behavior = DevExpress.XtraBars.Ribbon.ReduceOperationBehavior.UntilAvailable;
-            reduceOperation25.Group = this.stylesRibbonPageGroup1;
-            reduceOperation25.ItemLinkIndex = 0;
-            reduceOperation25.ItemLinksCount = 0;
-            reduceOperation25.Operation = DevExpress.XtraBars.Ribbon.ReduceOperationType.Gallery;
-            this.homeRibbonPage1.ReduceOperations.Add(reduceOperation25);
+            reduceOperation1.Behavior = DevExpress.XtraBars.Ribbon.ReduceOperationBehavior.UntilAvailable;
+            reduceOperation1.Group = this.stylesRibbonPageGroup1;
+            reduceOperation1.ItemLinkIndex = 0;
+            reduceOperation1.ItemLinksCount = 0;
+            reduceOperation1.Operation = DevExpress.XtraBars.Ribbon.ReduceOperationType.Gallery;
+            this.homeRibbonPage1.ReduceOperations.Add(reduceOperation1);
             this.homeRibbonPage1.Visible = false;
             // 
             // clipboardRibbonPageGroup1
@@ -2999,6 +3030,7 @@
             this.textRibbonPageGroup1,
             this.symbolsRibbonPageGroup1});
             this.insertRibbonPage1.Name = "insertRibbonPage1";
+            this.insertRibbonPage1.Visible = false;
             // 
             // pagesRibbonPageGroup1
             // 
@@ -3046,6 +3078,7 @@
             this.pageSetupRibbonPageGroup1,
             this.pageBackgroundRibbonPageGroup1});
             this.pageLayoutRibbonPage1.Name = "pageLayoutRibbonPage1";
+            this.pageLayoutRibbonPage1.Visible = false;
             // 
             // pageSetupRibbonPageGroup1
             // 
@@ -3081,6 +3114,7 @@
             this.ribbonPageGroup5});
             this.ribbonPage2.Name = "ribbonPage2";
             this.ribbonPage2.Text = "统计图表";
+            this.ribbonPage2.Visible = false;
             // 
             // ribbonPageGroup5
             // 
@@ -3093,6 +3127,7 @@
             this.fileRibbonPage2.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.commonRibbonPageGroup2});
             this.fileRibbonPage2.Name = "fileRibbonPage2";
+            this.fileRibbonPage2.Visible = false;
             // 
             // commonRibbonPageGroup2
             // 
@@ -3118,12 +3153,12 @@
             this.cellsRibbonPageGroup1,
             this.editingRibbonPageGroup2});
             this.homeRibbonPage2.Name = "homeRibbonPage2";
-            reduceOperation26.Behavior = DevExpress.XtraBars.Ribbon.ReduceOperationBehavior.UntilAvailable;
-            reduceOperation26.Group = this.stylesRibbonPageGroup2;
-            reduceOperation26.ItemLinkIndex = 0;
-            reduceOperation26.ItemLinksCount = 0;
-            reduceOperation26.Operation = DevExpress.XtraBars.Ribbon.ReduceOperationType.Gallery;
-            this.homeRibbonPage2.ReduceOperations.Add(reduceOperation26);
+            reduceOperation2.Behavior = DevExpress.XtraBars.Ribbon.ReduceOperationBehavior.UntilAvailable;
+            reduceOperation2.Group = this.stylesRibbonPageGroup2;
+            reduceOperation2.ItemLinkIndex = 0;
+            reduceOperation2.ItemLinksCount = 0;
+            reduceOperation2.Operation = DevExpress.XtraBars.Ribbon.ReduceOperationType.Gallery;
+            this.homeRibbonPage2.ReduceOperations.Add(reduceOperation2);
             this.homeRibbonPage2.Visible = false;
             // 
             // clipboardRibbonPageGroup2
@@ -3177,6 +3212,7 @@
             this.illustrationsRibbonPageGroup2,
             this.linksRibbonPageGroup2});
             this.insertRibbonPage2.Name = "insertRibbonPage2";
+            this.insertRibbonPage2.Visible = false;
             // 
             // illustrationsRibbonPageGroup2
             // 
@@ -3193,6 +3229,7 @@
             this.formulasRibbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.functionLibraryRibbonPageGroup1});
             this.formulasRibbonPage1.Name = "formulasRibbonPage1";
+            this.formulasRibbonPage1.Visible = false;
             // 
             // functionLibraryRibbonPageGroup1
             // 
@@ -3478,6 +3515,15 @@
             this.xtraTabPage_Home.Size = new System.Drawing.Size(889, 480);
             this.xtraTabPage_Home.Text = "主页";
             // 
+            // axLicenseControl1
+            // 
+            this.axLicenseControl1.Enabled = true;
+            this.axLicenseControl1.Location = new System.Drawing.Point(42, 48);
+            this.axLicenseControl1.Name = "axLicenseControl1";
+            this.axLicenseControl1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axLicenseControl1.OcxState")));
+            this.axLicenseControl1.Size = new System.Drawing.Size(32, 32);
+            this.axLicenseControl1.TabIndex = 5;
+            // 
             // spreadsheetBarController1
             // 
             this.spreadsheetBarController1.BarItems.Add(this.spreadsheetCommandBarButtonItem1);
@@ -3670,6 +3716,34 @@
             this.pdfSetFitVisibleZoomModeCheckItem1});
             this.barManager1.MaxItemId = 20;
             // 
+            // barDockControl1
+            // 
+            this.barDockControl1.CausesValidation = false;
+            this.barDockControl1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.barDockControl1.Location = new System.Drawing.Point(0, 147);
+            this.barDockControl1.Size = new System.Drawing.Size(1100, 0);
+            // 
+            // barDockControl2
+            // 
+            this.barDockControl2.CausesValidation = false;
+            this.barDockControl2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.barDockControl2.Location = new System.Drawing.Point(0, 699);
+            this.barDockControl2.Size = new System.Drawing.Size(1100, 0);
+            // 
+            // barDockControl3
+            // 
+            this.barDockControl3.CausesValidation = false;
+            this.barDockControl3.Dock = System.Windows.Forms.DockStyle.Left;
+            this.barDockControl3.Location = new System.Drawing.Point(0, 147);
+            this.barDockControl3.Size = new System.Drawing.Size(0, 552);
+            // 
+            // barDockControl4
+            // 
+            this.barDockControl4.CausesValidation = false;
+            this.barDockControl4.Dock = System.Windows.Forms.DockStyle.Right;
+            this.barDockControl4.Location = new System.Drawing.Point(1100, 147);
+            this.barDockControl4.Size = new System.Drawing.Size(0, 552);
+            // 
             // pdfFileOpenBarItem1
             // 
             this.pdfFileOpenBarItem1.Enabled = false;
@@ -3808,34 +3882,6 @@
             this.pdfSetFitVisibleZoomModeCheckItem1.Id = 19;
             this.pdfSetFitVisibleZoomModeCheckItem1.Name = "pdfSetFitVisibleZoomModeCheckItem1";
             // 
-            // barDockControl1
-            // 
-            this.barDockControl1.CausesValidation = false;
-            this.barDockControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.barDockControl1.Location = new System.Drawing.Point(0, 147);
-            this.barDockControl1.Size = new System.Drawing.Size(1100, 0);
-            // 
-            // barDockControl2
-            // 
-            this.barDockControl2.CausesValidation = false;
-            this.barDockControl2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControl2.Location = new System.Drawing.Point(0, 699);
-            this.barDockControl2.Size = new System.Drawing.Size(1100, 0);
-            // 
-            // barDockControl3
-            // 
-            this.barDockControl3.CausesValidation = false;
-            this.barDockControl3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControl3.Location = new System.Drawing.Point(0, 147);
-            this.barDockControl3.Size = new System.Drawing.Size(0, 552);
-            // 
-            // barDockControl4
-            // 
-            this.barDockControl4.CausesValidation = false;
-            this.barDockControl4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControl4.Location = new System.Drawing.Point(1100, 147);
-            this.barDockControl4.Size = new System.Drawing.Size(0, 552);
-            // 
             // pdfBarController1
             // 
             this.pdfBarController1.BarItems.Add(this.pdfFileOpenBarItem1);
@@ -3858,15 +3904,6 @@
             this.pdfBarController1.BarItems.Add(this.pdfSetPageLevelZoomModeCheckItem1);
             this.pdfBarController1.BarItems.Add(this.pdfSetFitWidthZoomModeCheckItem1);
             this.pdfBarController1.BarItems.Add(this.pdfSetFitVisibleZoomModeCheckItem1);
-            // 
-            // axLicenseControl1
-            // 
-            this.axLicenseControl1.Enabled = true;
-            this.axLicenseControl1.Location = new System.Drawing.Point(42, 48);
-            this.axLicenseControl1.Name = "axLicenseControl1";
-            this.axLicenseControl1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axLicenseControl1.OcxState")));
-            this.axLicenseControl1.Size = new System.Drawing.Size(32, 32);
-            this.axLicenseControl1.TabIndex = 5;
             // 
             // MainForm
             // 
@@ -3912,10 +3949,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl_Main)).EndInit();
             this.xtraTabControl_Main.ResumeLayout(false);
             this.xtraTabPage_Home.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.axLicenseControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spreadsheetBarController1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pdfBarController1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.axLicenseControl1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -4275,6 +4312,9 @@
         private DevExpress.XtraBars.BarDockControl barDockControl3;
         private DevExpress.XtraBars.BarDockControl barDockControl4;
         private ESRI.ArcGIS.Controls.AxLicenseControl axLicenseControl1;
+        private DevExpress.XtraBars.BarButtonItem bDoc_InitDocument;
+        private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage_DocAnalyst;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup7;
 
     }
 }

@@ -1,0 +1,246 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{11471FBC-609F-48D5-AB1D-E0660C6417E3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ICONs</RootNamespace>
+    <AssemblyName>ICONs</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ICONClass.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="icons\3dd.png" />
+    <EmbeddedResource Include="icons\3dm.png" />
+    <EmbeddedResource Include="icons\3ds.png" />
+    <EmbeddedResource Include="icons\3g2.png" />
+    <EmbeddedResource Include="icons\3gp.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="icons\7z.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="icons\accdb.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="icons\adf.png" />
+    <EmbeddedResource Include="icons\ai.png" />
+    <EmbeddedResource Include="icons\aif.png" />
+    <EmbeddedResource Include="icons\app.png" />
+    <EmbeddedResource Include="icons\asf.png" />
+    <EmbeddedResource Include="icons\asp.png" />
+    <EmbeddedResource Include="icons\aspx.png" />
+    <EmbeddedResource Include="icons\asx.png" />
+    <EmbeddedResource Include="icons\avi.png" />
+    <EmbeddedResource Include="icons\bat.png" />
+    <EmbeddedResource Include="icons\bmp.png" />
+    <EmbeddedResource Include="icons\c.png" />
+    <EmbeddedResource Include="icons\cab.png" />
+    <EmbeddedResource Include="icons\cbr.png" />
+    <EmbeddedResource Include="icons\cer.png" />
+    <EmbeddedResource Include="icons\cfg.png" />
+    <EmbeddedResource Include="icons\cfm.png" />
+    <EmbeddedResource Include="icons\cgi.png" />
+    <EmbeddedResource Include="icons\class.png" />
+    <EmbeddedResource Include="icons\com.png" />
+    <EmbeddedResource Include="icons\cpl.png" />
+    <EmbeddedResource Include="icons\cpp.png" />
+    <EmbeddedResource Include="icons\cs.png" />
+    <EmbeddedResource Include="icons\css.png" />
+    <EmbeddedResource Include="icons\csv.png" />
+    <EmbeddedResource Include="icons\cue.png" />
+    <EmbeddedResource Include="icons\cur.png" />
+    <EmbeddedResource Include="icons\db.png" />
+    <EmbeddedResource Include="icons\dbf.png" />
+    <EmbeddedResource Include="icons\deb.png" />
+    <EmbeddedResource Include="icons\deskthemepack.png" />
+    <EmbeddedResource Include="icons\dll.png" />
+    <EmbeddedResource Include="icons\dmg.png" />
+    <EmbeddedResource Include="icons\dmp.png" />
+    <EmbeddedResource Include="icons\doc.png" />
+    <EmbeddedResource Include="icons\docx.png" />
+    <EmbeddedResource Include="icons\drv.png" />
+    <EmbeddedResource Include="icons\dtd.png" />
+    <EmbeddedResource Include="icons\dwg.png" />
+    <EmbeddedResource Include="icons\dxf.png" />
+    <EmbeddedResource Include="icons\eps.png" />
+    <EmbeddedResource Include="icons\exe.png" />
+    <EmbeddedResource Include="icons\fla.png" />
+    <EmbeddedResource Include="icons\flv.png" />
+    <EmbeddedResource Include="icons\fon.png" />
+    <EmbeddedResource Include="icons\gadget.png" />
+    <EmbeddedResource Include="icons\ged.png" />
+    <EmbeddedResource Include="icons\generic.png" />
+    <EmbeddedResource Include="icons\gif.png" />
+    <EmbeddedResource Include="icons\gpx.png" />
+    <EmbeddedResource Include="icons\gz.png" />
+    <EmbeddedResource Include="icons\h.png" />
+    <EmbeddedResource Include="icons\hdr.png" />
+    <EmbeddedResource Include="icons\hqx.png" />
+    <EmbeddedResource Include="icons\htm.png" />
+    <EmbeddedResource Include="icons\html.png" />
+    <EmbeddedResource Include="icons\icns.png" />
+    <EmbeddedResource Include="icons\ico.png" />
+    <EmbeddedResource Include="icons\ics.png" />
+    <EmbeddedResource Include="icons\iff.png" />
+    <EmbeddedResource Include="icons\img.png" />
+    <EmbeddedResource Include="icons\indd.png" />
+    <EmbeddedResource Include="icons\ini.png" />
+    <EmbeddedResource Include="icons\iso.png" />
+    <EmbeddedResource Include="icons\jar.png" />
+    <EmbeddedResource Include="icons\java.png" />
+    <EmbeddedResource Include="icons\jpg.png" />
+    <EmbeddedResource Include="icons\js.png" />
+    <EmbeddedResource Include="icons\jsp.png" />
+    <EmbeddedResource Include="icons\kml.png" />
+    <EmbeddedResource Include="icons\kmz.png" />
+    <EmbeddedResource Include="icons\lnk.png" />
+    <EmbeddedResource Include="icons\log.png" />
+    <EmbeddedResource Include="icons\lpk-6548.png" />
+    <EmbeddedResource Include="icons\lpk.png" />
+    <EmbeddedResource Include="icons\lua.png" />
+    <EmbeddedResource Include="icons\m.png" />
+    <EmbeddedResource Include="icons\m3u.png" />
+    <EmbeddedResource Include="icons\m4a.png" />
+    <EmbeddedResource Include="icons\m4v.png" />
+    <EmbeddedResource Include="icons\max.png" />
+    <EmbeddedResource Include="icons\mdb.png" />
+    <EmbeddedResource Include="icons\mdf.png" />
+    <EmbeddedResource Include="icons\mid.png" />
+    <EmbeddedResource Include="icons\mim.png" />
+    <EmbeddedResource Include="icons\mov.png" />
+    <EmbeddedResource Include="icons\mp3.png" />
+    <EmbeddedResource Include="icons\mp4.png" />
+    <EmbeddedResource Include="icons\mpa.png" />
+    <EmbeddedResource Include="icons\mpg.png" />
+    <EmbeddedResource Include="icons\mpk.png" />
+    <EmbeddedResource Include="icons\msg.png" />
+    <EmbeddedResource Include="icons\mxd.png" />
+    <EmbeddedResource Include="icons\mxt.png" />
+    <EmbeddedResource Include="icons\nes.png" />
+    <EmbeddedResource Include="icons\nmc.png" />
+    <EmbeddedResource Include="icons\nmf.png" />
+    <EmbeddedResource Include="icons\obj.png" />
+    <EmbeddedResource Include="icons\odt.png" />
+    <EmbeddedResource Include="icons\otf.png" />
+    <EmbeddedResource Include="icons\pages.png" />
+    <EmbeddedResource Include="icons\pct.png" />
+    <EmbeddedResource Include="icons\pdb.png" />
+    <EmbeddedResource Include="icons\pdf.png" />
+    <EmbeddedResource Include="icons\php.png" />
+    <EmbeddedResource Include="icons\pif.png" />
+    <EmbeddedResource Include="icons\pl.png" />
+    <EmbeddedResource Include="icons\plugin.png" />
+    <EmbeddedResource Include="icons\pmf.png" />
+    <EmbeddedResource Include="icons\png.png" />
+    <EmbeddedResource Include="icons\pps.png" />
+    <EmbeddedResource Include="icons\ppt.png" />
+    <EmbeddedResource Include="icons\pptx.png" />
+    <EmbeddedResource Include="icons\ps.png" />
+    <EmbeddedResource Include="icons\psd.png" />
+    <EmbeddedResource Include="icons\pspimage.png" />
+    <EmbeddedResource Include="icons\py.png" />
+    <EmbeddedResource Include="icons\ra.png" />
+    <EmbeddedResource Include="icons\rar.png" />
+    <EmbeddedResource Include="icons\rm.png" />
+    <EmbeddedResource Include="icons\rpm.png" />
+    <EmbeddedResource Include="icons\rss.png" />
+    <EmbeddedResource Include="icons\rtf.png" />
+    <EmbeddedResource Include="icons\sav.png" />
+    <EmbeddedResource Include="icons\sdf.png" />
+    <EmbeddedResource Include="icons\sh.png" />
+    <EmbeddedResource Include="icons\shp.png" />
+    <EmbeddedResource Include="icons\sitx.png" />
+    <EmbeddedResource Include="icons\sln.png" />
+    <EmbeddedResource Include="icons\sql.png" />
+    <EmbeddedResource Include="icons\srt.png" />
+    <EmbeddedResource Include="icons\style.png" />
+    <EmbeddedResource Include="icons\svg.png" />
+    <EmbeddedResource Include="icons\swf.png" />
+    <EmbeddedResource Include="icons\swift.png" />
+    <EmbeddedResource Include="icons\sxd.png" />
+    <EmbeddedResource Include="icons\sys.png" />
+    <EmbeddedResource Include="icons\tar.gz.png" />
+    <EmbeddedResource Include="icons\tar.png" />
+    <EmbeddedResource Include="icons\tax2012.png" />
+    <EmbeddedResource Include="icons\tax2014.png" />
+    <EmbeddedResource Include="icons\tex.png" />
+    <EmbeddedResource Include="icons\tga.png" />
+    <EmbeddedResource Include="icons\tiff.png" />
+    <EmbeddedResource Include="icons\toast.png" />
+    <EmbeddedResource Include="icons\torrent.png" />
+    <EmbeddedResource Include="icons\ttf.png" />
+    <EmbeddedResource Include="icons\txt.png" />
+    <EmbeddedResource Include="icons\uue.png" />
+    <EmbeddedResource Include="icons\vb.png" />
+    <EmbeddedResource Include="icons\vcd.png" />
+    <EmbeddedResource Include="icons\vcf.png" />
+    <EmbeddedResource Include="icons\vcxproj.png" />
+    <EmbeddedResource Include="icons\vob.png" />
+    <EmbeddedResource Include="icons\wav.png" />
+    <EmbeddedResource Include="icons\wma.png" />
+    <EmbeddedResource Include="icons\wmv.png" />
+    <EmbeddedResource Include="icons\wpd.png" />
+    <EmbeddedResource Include="icons\wps.png" />
+    <EmbeddedResource Include="icons\xcodeproj.png" />
+    <EmbeddedResource Include="icons\xhtml.png" />
+    <EmbeddedResource Include="icons\xlr.png" />
+    <EmbeddedResource Include="icons\xls.png" />
+    <EmbeddedResource Include="icons\xlsx.png" />
+    <EmbeddedResource Include="icons\xml.png" />
+    <EmbeddedResource Include="icons\yuv.png" />
+    <EmbeddedResource Include="icons\zip.png" />
+    <EmbeddedResource Include="icons\zipx.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="icons\epub.png" />
+    <EmbeddedResource Include="icons\folderclose.png" />
+    <EmbeddedResource Include="icons\folderopen.png" />
+    <EmbeddedResource Include="icons\xlsm.png" />
+    <EmbeddedResource Include="icons\jpeg.png" />
+    <EmbeddedResource Include="icons\mht.png" />
+    <EmbeddedResource Include="icons\table.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

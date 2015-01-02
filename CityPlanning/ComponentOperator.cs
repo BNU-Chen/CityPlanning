@@ -5,10 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 
 using System.Windows.Forms;
+using System.Drawing;
+
 using DevExpress.XtraTab;
 using DevExpress.Spreadsheet;
 using DevExpress.XtraSpreadsheet;
 using DevExpress.XtraRichEdit;
+using DevExpress.Utils;
 
 namespace CityPlanning
 {
@@ -42,38 +45,79 @@ namespace CityPlanning
         public static string GetFileTypeByExtension(string _extension)
         {
             string fileType = "";
-            switch(_extension.ToLower())
+            switch (_extension.ToLower())
             {
-                case ".doc":
-                case ".docx":
-                case ".txt":
-                case ".rtf":
-                case ".html":
-                case ".htm":
-                case ".mht":
-                case ".mhtml":
-                case ".xml":
-                case ".epub":
-                case ".odt":
+                case "doc":
+                case "docx":
+                case "txt":
+                case "rtf":
+                case "html":
+                case "htm":
+                case "mht":
+                case "mhtml":
+                case "xml":
+                case "epub":
+                case "odt":
                     fileType = "RichTextEdit";
                     break;
-                case ".xls":
-                case ".xlsx":
-                case ".xlsm":
-                case ".cvs":
+                case "xls":
+                case "xlsx":
+                case "xlsm":
+                case "cvs":
                     fileType = "SpreadSheet";
                     break;
-                case ".pdf":
+                case "pdf":
                     fileType = "PdfViewer";
                     break;
-                case ".mxd":
+                case "mxd":
                     fileType = "MapControl";
+                    break;
+                case "shp":
+                    fileType = "MapControlLayer";
+                    break;
+                case "jpg":
+                case "jpeg":
+                case "bmp":
+                case "gif":
+                case "ico":
+                case "png":
+                    fileType = "Image";
                     break;
                 default:
                     fileType = "";
                     break;
             }
             return fileType;
+        }
+
+        public static ImageCollection GetImageCollection()
+        {
+            ImageCollection imgCol = new ImageCollection();
+            string[] iconNames = {"generic","table","folderclose","folderopen",
+                                     "doc","docx","txt","rtf","html","htm","mht","mht","xml","epub","odt",
+                                     "xls","xlsx","xlsm","cvs","pdf",
+                                     "mxd","shp",
+                                     "jpg","jpeg","bmp","gif","ico","png"};
+            try
+            {
+                imgCol.BeginInit();
+                for (int i = 0; i < iconNames.Length; i++)
+                {
+                    string name = iconNames[i];
+                    Image img = ICONs.ICONClass.GetIconImage(name);
+                    if (img == null)
+                    {
+                        continue;
+                    }
+                    imgCol.AddImage(img, name);
+                }
+
+                imgCol.EndInit();
+            }
+            catch
+            { }
+
+            return imgCol;
         }
     }
 }
