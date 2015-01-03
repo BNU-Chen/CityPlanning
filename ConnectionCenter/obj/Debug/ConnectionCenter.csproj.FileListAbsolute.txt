@@ -1,9 +1,0 @@
-D:\Develop\GitHub\沈阳经济区\EconomicZone\ConnectionCenter\bin\Debug\ConnectionCenter.dll
-D:\Develop\GitHub\沈阳经济区\EconomicZone\ConnectionCenter\bin\Debug\ConnectionCenter.pdb
-D:\Develop\GitHub\沈阳经济区\EconomicZone\ConnectionCenter\obj\Debug\ConnectionCenter.dll
-D:\Develop\GitHub\沈阳经济区\EconomicZone\ConnectionCenter\obj\Debug\ConnectionCenter.pdb
-D:\Develop\GitHub\CityPlanning\ConnectionCenter\bin\Debug\ConnectionCenter.dll
-D:\Develop\GitHub\CityPlanning\ConnectionCenter\bin\Debug\ConnectionCenter.pdb
-D:\Develop\GitHub\CityPlanning\ConnectionCenter\obj\Debug\ConnectionCenter.csprojResolveAssemblyReference.cache
-D:\Develop\GitHub\CityPlanning\ConnectionCenter\obj\Debug\ConnectionCenter.dll
-D:\Develop\GitHub\CityPlanning\ConnectionCenter\obj\Debug\ConnectionCenter.pdb
