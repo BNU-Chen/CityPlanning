@@ -49,9 +49,11 @@
             this.TreeListTables.OptionsBehavior.EnableFiltering = true;
             this.TreeListTables.OptionsFilter.FilterMode = DevExpress.XtraTreeList.FilterMode.Smart;
             this.TreeListTables.OptionsView.ShowAutoFilterRow = true;
+            this.TreeListTables.OptionsView.ShowColumns = false;
             this.TreeListTables.OptionsView.ShowHorzLines = false;
             this.TreeListTables.OptionsView.ShowIndicator = false;
             this.TreeListTables.OptionsView.ShowVertLines = false;
+            this.TreeListTables.RowHeight = 25;
             this.TreeListTables.Size = new System.Drawing.Size(234, 406);
             this.TreeListTables.TabIndex = 7;
             this.TreeListTables.TreeLineStyle = DevExpress.XtraTreeList.LineStyle.None;

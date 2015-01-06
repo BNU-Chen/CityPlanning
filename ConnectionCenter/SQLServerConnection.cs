@@ -123,6 +123,49 @@ namespace ConnectionCenter
             return dtData;
         }
 
+        //用户列表
+        public static DataTable GetUserList()
+        {
+            DataTable dtUser = new DataTable();
+            //dtUser.Columns.Add("id", System.Type.GetType("System.Int32"));
+            //dtUser.Columns.Add("username", System.Type.GetType("System.String"));
+            //dtUser.Columns.Add("relname", System.Type.GetType("System.String"));
+            //dtUser.Columns.Add("sex", System.Type.GetType("System.String"));
+            //dtUser.Columns.Add("pid", System.Type.GetType("System.Int32"));
+            //dtUser.Columns.Add("tel", System.Type.GetType("System.String"));
+            //dtUser.Columns.Add("deptname", System.Type.GetType("System.String"));
+            //dtUser.Columns.Add("description", System.Type.GetType("System.String"));
+
+            SqlConnection conn = GetSQLConnection();
+            if (conn == null)
+            {
+                dtUser = null;
+                return dtUser;
+            }
+            try
+            {
+                conn.Open();
+                //schema = conn.GetSchema("Tables");
+
+                //SQL语句
+                string sqlStr = "select * from [user]";
+
+                SqlDataAdapter da = new SqlDataAdapter(sqlStr, conn);
+                DataSet ds = new DataSet();
+                da.Fill(ds, "用户列表");
+                dtUser = ds.Tables[0];
+            }
+            catch
+            {
+                dtUser = null;
+                MessageBox.Show("获取用户列表失败。", "错误", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return dtUser;
+        }
 
 
 

@@ -117,6 +117,59 @@ namespace CityPlanning
             frmStartConnectionConfig fscc = new frmStartConnectionConfig(null);
             fscc.ShowDialog();
         }
+        //用户管理
+        private void bUserManager_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            try
+            {
+                string tabName = "用户管理";
+                //如果已经有这个tabPage
+                XtraTabPage ifTabPage = ComponentOperator.IfHasTabPage(tabName, this.xtraTabControl_Main);
+                if (ifTabPage != null)
+                {
+                    this.xtraTabControl_Main.SelectedTabPage = ifTabPage;
+                    return;
+                }
+                //如果不包含该TabPage，则新建
+                DataTable dt = SQLServerConnection.GetUserList();
+                if (dt == null)
+                {
+                    MessageBox.Show("获取数据失败。", "错误", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+                //表格控件
+                TreeList userTree = new TreeList();
+                userTree.KeyFieldName ="id";
+                userTree.ParentFieldName = "pid";
+                userTree.BeginInit();
+                userTree.DataSource = dt;
+                userTree.EndInit();
+
+                //icon
+                int imgIndex = this.imageCollectionIcons.Images.Keys.IndexOf("user");
+                //TabPage
+                XtraTabPage xtp = new XtraTabPage();
+                xtp.Text = tabName;
+                xtp.Controls.Add(userTree);
+                if (imgIndex >= 0)
+                {
+                    Image tableIcon = this.imageCollectionIcons.Images[imgIndex];
+                    xtp.Image = tableIcon;
+                }
+                userTree.Dock = DockStyle.Fill;
+                this.xtraTabControl_Main.TabPages.Add(xtp);
+                this.xtraTabControl_Main.SelectedTabPage = xtp;
+
+                userTree.Refresh();
+                xtp.Refresh();
+                this.xtraTabControl_Main.Refresh();
+                this.Refresh();
+
+            }
+            catch
+            {
+            }
+        }
         
         //空间数据库
         private void bGalleryGeodatabase_ItemClick(object sender, ItemClickEventArgs e)
@@ -549,6 +602,8 @@ namespace CityPlanning
         {
 
         }
+
+       
         
     }
 }

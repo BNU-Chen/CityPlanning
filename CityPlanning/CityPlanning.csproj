@@ -150,6 +150,12 @@
     <Compile Include="Modules\ucNavigationRDB.Designer.cs">
       <DependentUpon>ucNavigationRDB.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modules\ucUserManagerPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\ucUserManagerPanel.Designer.cs">
+      <DependentUpon>ucUserManagerPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Person.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -167,6 +173,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\ucNavigationRDB.resx">
       <DependentUpon>ucNavigationRDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\ucUserManagerPanel.resx">
+      <DependentUpon>ucUserManagerPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">

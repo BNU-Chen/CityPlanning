@@ -97,7 +97,8 @@ namespace CityPlanning
                                      "doc","docx","txt","rtf","html","htm","mht","mht","xml","epub","odt",
                                      "xls","xlsx","xlsm","cvs","pdf",
                                      "mxd","shp",
-                                     "jpg","jpeg","bmp","gif","ico","png"};
+                                     "jpg","jpeg","bmp","gif","ico","png",
+                                 "user"};
             try
             {
                 imgCol.BeginInit();

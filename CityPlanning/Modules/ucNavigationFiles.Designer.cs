@@ -86,6 +86,7 @@
             this.TreeListFiles.OptionsView.ShowHorzLines = false;
             this.TreeListFiles.OptionsView.ShowIndicator = false;
             this.TreeListFiles.OptionsView.ShowVertLines = false;
+            this.TreeListFiles.RowHeight = 25;
             this.TreeListFiles.Size = new System.Drawing.Size(246, 482);
             this.TreeListFiles.TabIndex = 6;
             this.TreeListFiles.TreeLineStyle = DevExpress.XtraTreeList.LineStyle.None;
