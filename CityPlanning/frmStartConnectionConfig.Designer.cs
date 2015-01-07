@@ -187,7 +187,7 @@
             // 
             // txt_DBServerName
             // 
-            this.txt_DBServerName.EditValue = ".\\sqlexpress";
+            this.txt_DBServerName.EditValue = "KINGVEY-PC";
             this.txt_DBServerName.Location = new System.Drawing.Point(67, 22);
             this.txt_DBServerName.Name = "txt_DBServerName";
             this.txt_DBServerName.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(241)))), ((int)(((byte)(252)))));

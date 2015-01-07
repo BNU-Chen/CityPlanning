@@ -39,6 +39,9 @@ namespace CityPlanning
         #region //变量声明
         private AxMapControl curAxMapControl = null;
         private ImageCollection imageCollectionIcons = null;
+        public Modules.ucChartForm curChartForm = null;
+        private SpreadsheetControl curSpreadsheetControl = null;
+        private RichEditControl curRichEditControl = null;
 
         
         //自定义类声明
@@ -531,6 +534,44 @@ namespace CityPlanning
         {
             
         }
+        //ChartButton生成统计图表
+        //柱状图
+        private void BarChartButton_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Control control = this.xtraTabControl_Main.SelectedTabPage.Controls[0];
+            if (control is SpreadsheetControl)
+            {
+                SpreadsheetControl ssc = (SpreadsheetControl)control;
+                Worksheet worksheet = ssc.Document.Worksheets.ActiveWorksheet;
+                DataTable dt = StatisticChart.DataOperation.CreateTablefromWorkSheet(worksheet);
+
+                if (dt != null)
+                {
+                    Modules.ucChartForm ucc = new Modules.ucChartForm(this);
+                    ucc.Range = worksheet.Selection;
+                    ucc.SheetName = worksheet.Name;
+                    bool suc = StatisticChart.ShowOperation.CreatBarChart(ucc.ChartControl, dt);
+                    ucc.Activated += curChartForm_Activated;
+                    if (suc) ucc.Show();
+                }
+            }
+        }
+        //切换图表窗口，对应显示worksheet原数据
+        private void curChartForm_Activated(object sender, EventArgs e)
+        {
+            XtraTabPage ifTabPage = ComponentOperator.IfHasTabPage(curChartForm.SheetName, this.xtraTabControl_Main);
+            if (ifTabPage != null)
+            {
+                this.xtraTabControl_Main.SelectedTabPage = ifTabPage;
+                Control control = ifTabPage.Controls[0];
+                if (control is SpreadsheetControl)
+                {
+                    curSpreadsheetControl = (SpreadsheetControl)control;
+                    curSpreadsheetControl.Selection = curChartForm.Range;
+                    curSpreadsheetControl.Refresh();
+                }
+            }
+        }
         #endregion
         
         #region //地图工具按钮事件
@@ -602,6 +643,8 @@ namespace CityPlanning
         {
 
         }
+
+        
 
        
         
