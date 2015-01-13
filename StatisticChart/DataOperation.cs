@@ -27,6 +27,7 @@ namespace StatisticChart
             }
             else
             {
+                bool allNumber = true;
                 //创建表格，以worksheet中第一行数据为列名，根据第二行数据设置列数据类型
                 for (int i = 0; i < range.ColumnCount; i++)
                 {
@@ -36,7 +37,11 @@ namespace StatisticChart
                     if (isnumber)
                         outtable.Columns.Add(cells[0, colnum].Value.ToString(), typeof(decimal));
                     else
+                    { 
                         outtable.Columns.Add(cells[0, colnum].Value.ToString(), typeof(string));
+                        allNumber = false;
+                    }
+                        
                 }
 
                 //添加数据
@@ -59,8 +64,24 @@ namespace StatisticChart
                 {
                     outtable = null;
                 }
+                if (outtable != null && allNumber == true)
+                {
+                    outtable = AddAutoColumn(outtable);
+                }
                 return outtable;
             }
+        }
+        //对单列数据添加自定义列
+        public static DataTable AddAutoColumn(DataTable dt)
+        {
+            DataColumn autoColumn = new DataColumn("自定义", System.Type.GetType("System.Int32"));
+            dt.Columns.Add(autoColumn);
+            dt.Columns["自定义"].SetOrdinal(0);
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                dt.Rows[i][0] = i + 1;
+            }
+            return dt;
         }
     }
 }

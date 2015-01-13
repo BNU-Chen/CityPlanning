@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraBars.Ribbon.GalleryItemGroup galleryItemGroup1 = new DevExpress.XtraBars.Ribbon.GalleryItemGroup();
+            DevExpress.XtraBars.Ribbon.GalleryItemGroup galleryItemGroup4 = new DevExpress.XtraBars.Ribbon.GalleryItemGroup();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            DevExpress.XtraBars.Ribbon.ReduceOperation reduceOperation1 = new DevExpress.XtraBars.Ribbon.ReduceOperation();
-            DevExpress.XtraBars.Ribbon.ReduceOperation reduceOperation2 = new DevExpress.XtraBars.Ribbon.ReduceOperation();
+            DevExpress.XtraBars.Ribbon.ReduceOperation reduceOperation8 = new DevExpress.XtraBars.Ribbon.ReduceOperation();
+            DevExpress.XtraBars.Ribbon.ReduceOperation reduceOperation7 = new DevExpress.XtraBars.Ribbon.ReduceOperation();
             this.stylesRibbonPageGroup1 = new DevExpress.XtraRichEdit.UI.StylesRibbonPageGroup();
             this.galleryChangeStyleItem1 = new DevExpress.XtraRichEdit.UI.GalleryChangeStyleItem();
             this.stylesRibbonPageGroup2 = new DevExpress.XtraSpreadsheet.UI.StylesRibbonPageGroup();
@@ -290,6 +290,13 @@
             this.BarChartButton = new DevExpress.XtraBars.BarButtonItem();
             this.bDoc_InitDocument = new DevExpress.XtraBars.BarButtonItem();
             this.bUserManager = new DevExpress.XtraBars.BarButtonItem();
+            this.PieChartButton = new DevExpress.XtraBars.BarButtonItem();
+            this.LineChartButton = new DevExpress.XtraBars.BarButtonItem();
+            this.PointChartButton = new DevExpress.XtraBars.BarButtonItem();
+            this.AxisXCombobox = new DevExpress.XtraBars.BarEditItem();
+            this.repositoryItemComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
+            this.AxisYCombobox = new DevExpress.XtraBars.BarEditItem();
+            this.repositoryItemCheckedComboBoxEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit();
             this.ribbonImageCollectionLarge = new DevExpress.Utils.ImageCollection(this.components);
             this.ribbonPageCategory_map = new DevExpress.XtraBars.Ribbon.RibbonPageCategory();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -321,6 +328,8 @@
             this.ribbonPageCategory_xls = new DevExpress.XtraBars.Ribbon.RibbonPageCategory();
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.chartribbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.settingribbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.fileRibbonPage2 = new DevExpress.XtraSpreadsheet.UI.FileRibbonPage();
             this.commonRibbonPageGroup2 = new DevExpress.XtraSpreadsheet.UI.CommonRibbonPageGroup();
             this.homeRibbonPage2 = new DevExpress.XtraSpreadsheet.UI.HomeRibbonPage();
@@ -347,6 +356,7 @@
             this.repositoryItemFloatingObjectOutlineWeight1 = new DevExpress.XtraRichEdit.Forms.Design.RepositoryItemFloatingObjectOutlineWeight();
             this.repositoryItemFontEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemFontEdit();
             this.repositoryItemSpreadsheetFontSizeEdit1 = new DevExpress.XtraSpreadsheet.Design.RepositoryItemSpreadsheetFontSizeEdit();
+            this.repositoryItemComboBox2 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.navbarImageCollectionLarge = new DevExpress.Utils.ImageCollection(this.components);
             this.navbarImageCollection = new DevExpress.Utils.ImageCollection(this.components);
@@ -390,7 +400,12 @@
             this.pdfSetFitWidthZoomModeCheckItem1 = new DevExpress.XtraPdfViewer.Bars.PdfSetFitWidthZoomModeCheckItem();
             this.pdfSetFitVisibleZoomModeCheckItem1 = new DevExpress.XtraPdfViewer.Bars.PdfSetFitVisibleZoomModeCheckItem();
             this.pdfBarController1 = new DevExpress.XtraPdfViewer.Bars.PdfBarController();
-            this.chartribbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ChartTitlebarEditItem = new DevExpress.XtraBars.BarEditItem();
+            this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+            this.AxisXTitlebarEditItem = new DevExpress.XtraBars.BarEditItem();
+            this.repositoryItemTextEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+            this.AxisYTitlebarEditItem = new DevExpress.XtraBars.BarEditItem();
+            this.repositoryItemTextEdit3 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.appMenu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonImageCollection)).BeginInit();
@@ -398,6 +413,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemRichEditFontSizeEdit2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemFontEdit4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpreadsheetFontSizeEdit2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckedComboBoxEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonImageCollectionLarge)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemFontEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemRichEditFontSizeEdit1)).BeginInit();
@@ -406,6 +423,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemFloatingObjectOutlineWeight1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemFontEdit2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpreadsheetFontSizeEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.navbarImageCollectionLarge)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.navbarImageCollection)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.richEditBarController1)).BeginInit();
@@ -419,6 +437,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.spreadsheetBarController1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pdfBarController1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit3)).BeginInit();
             this.SuspendLayout();
             // 
             // stylesRibbonPageGroup1
@@ -435,7 +456,7 @@
             // 
             this.galleryChangeStyleItem1.Gallery.ColumnCount = 10;
             this.galleryChangeStyleItem1.Gallery.Groups.AddRange(new DevExpress.XtraBars.Ribbon.GalleryItemGroup[] {
-            galleryItemGroup1});
+            galleryItemGroup4});
             this.galleryChangeStyleItem1.Gallery.ImageSize = new System.Drawing.Size(65, 46);
             this.galleryChangeStyleItem1.Id = 499;
             this.galleryChangeStyleItem1.Name = "galleryChangeStyleItem1";
@@ -715,10 +736,18 @@
             this.barButtonItem1,
             this.BarChartButton,
             this.bDoc_InitDocument,
-            this.bUserManager});
+            this.bUserManager,
+            this.PieChartButton,
+            this.LineChartButton,
+            this.PointChartButton,
+            this.AxisXCombobox,
+            this.AxisYCombobox,
+            this.ChartTitlebarEditItem,
+            this.AxisXTitlebarEditItem,
+            this.AxisYTitlebarEditItem});
             this.ribbonControl.LargeImages = this.ribbonImageCollectionLarge;
             this.ribbonControl.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl.MaxItemId = 673;
+            this.ribbonControl.MaxItemId = 685;
             this.ribbonControl.Name = "ribbonControl";
             this.ribbonControl.PageCategories.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageCategory[] {
             this.ribbonPageCategory_map,
@@ -737,7 +766,13 @@
             this.repositoryItemFontEdit3,
             this.repositoryItemRichEditFontSizeEdit2,
             this.repositoryItemFontEdit4,
-            this.repositoryItemSpreadsheetFontSizeEdit2});
+            this.repositoryItemSpreadsheetFontSizeEdit2,
+            this.repositoryItemComboBox1,
+            this.repositoryItemComboBox2,
+            this.repositoryItemCheckedComboBoxEdit1,
+            this.repositoryItemTextEdit1,
+            this.repositoryItemTextEdit2,
+            this.repositoryItemTextEdit3});
             this.ribbonControl.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2010;
             this.ribbonControl.Size = new System.Drawing.Size(1100, 147);
             this.ribbonControl.StatusBar = this.ribbonStatusBar;
@@ -2848,8 +2883,11 @@
             // BarChartButton
             // 
             this.BarChartButton.Caption = "柱状图";
+            this.BarChartButton.Glyph = ((System.Drawing.Image)(resources.GetObject("BarChartButton.Glyph")));
             this.BarChartButton.Id = 666;
             this.BarChartButton.Name = "BarChartButton";
+            this.BarChartButton.RibbonStyle = ((DevExpress.XtraBars.Ribbon.RibbonItemStyles)(((DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large | DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithText) 
+            | DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithoutText)));
             this.BarChartButton.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarChartButton_ItemClick);
             // 
             // bDoc_InitDocument
@@ -2871,6 +2909,72 @@
             this.bUserManager.RibbonStyle = ((DevExpress.XtraBars.Ribbon.RibbonItemStyles)(((DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large | DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithText) 
             | DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithoutText)));
             this.bUserManager.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bUserManager_ItemClick);
+            // 
+            // PieChartButton
+            // 
+            this.PieChartButton.Caption = "饼状图";
+            this.PieChartButton.CategoryGuid = new System.Guid("6ffddb2b-9015-4d97-a4c1-91613e0ef537");
+            this.PieChartButton.Glyph = ((System.Drawing.Image)(resources.GetObject("PieChartButton.Glyph")));
+            this.PieChartButton.Id = 673;
+            this.PieChartButton.Name = "PieChartButton";
+            this.PieChartButton.RibbonStyle = ((DevExpress.XtraBars.Ribbon.RibbonItemStyles)(((DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large | DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithText) 
+            | DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithoutText)));
+            this.PieChartButton.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.PieChartButton_ItemClick);
+            // 
+            // LineChartButton
+            // 
+            this.LineChartButton.Caption = "折线图";
+            this.LineChartButton.CategoryGuid = new System.Guid("6ffddb2b-9015-4d97-a4c1-91613e0ef537");
+            this.LineChartButton.Glyph = ((System.Drawing.Image)(resources.GetObject("LineChartButton.Glyph")));
+            this.LineChartButton.Id = 674;
+            this.LineChartButton.Name = "LineChartButton";
+            this.LineChartButton.RibbonStyle = ((DevExpress.XtraBars.Ribbon.RibbonItemStyles)(((DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large | DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithText) 
+            | DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithoutText)));
+            this.LineChartButton.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.LineChartButton_ItemClick);
+            // 
+            // PointChartButton
+            // 
+            this.PointChartButton.Caption = "散点图";
+            this.PointChartButton.CategoryGuid = new System.Guid("6ffddb2b-9015-4d97-a4c1-91613e0ef537");
+            this.PointChartButton.Glyph = ((System.Drawing.Image)(resources.GetObject("PointChartButton.Glyph")));
+            this.PointChartButton.Id = 675;
+            this.PointChartButton.Name = "PointChartButton";
+            this.PointChartButton.RibbonStyle = ((DevExpress.XtraBars.Ribbon.RibbonItemStyles)(((DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large | DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithText) 
+            | DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithoutText)));
+            this.PointChartButton.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.PointChartButton_ItemClick);
+            // 
+            // AxisXCombobox
+            // 
+            this.AxisXCombobox.Caption = "变量字段：";
+            this.AxisXCombobox.CategoryGuid = new System.Guid("6ffddb2b-9015-4d97-a4c1-91613e0ef537");
+            this.AxisXCombobox.Edit = this.repositoryItemComboBox1;
+            this.AxisXCombobox.Id = 679;
+            this.AxisXCombobox.Name = "AxisXCombobox";
+            this.AxisXCombobox.EditValueChanged += new System.EventHandler(this.AxisXCombobox_EditValueChanged);
+            // 
+            // repositoryItemComboBox1
+            // 
+            this.repositoryItemComboBox1.AutoHeight = false;
+            this.repositoryItemComboBox1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemComboBox1.Name = "repositoryItemComboBox1";
+            this.repositoryItemComboBox1.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            // 
+            // AxisYCombobox
+            // 
+            this.AxisYCombobox.Caption = "数据字段：";
+            this.AxisYCombobox.CategoryGuid = new System.Guid("6ffddb2b-9015-4d97-a4c1-91613e0ef537");
+            this.AxisYCombobox.Edit = this.repositoryItemCheckedComboBoxEdit1;
+            this.AxisYCombobox.Id = 681;
+            this.AxisYCombobox.Name = "AxisYCombobox";
+            this.AxisYCombobox.EditValueChanged += new System.EventHandler(this.AxisYCombobox_EditValueChanged);
+            // 
+            // repositoryItemCheckedComboBoxEdit1
+            // 
+            this.repositoryItemCheckedComboBoxEdit1.AutoHeight = false;
+            this.repositoryItemCheckedComboBoxEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemCheckedComboBoxEdit1.Name = "repositoryItemCheckedComboBoxEdit1";
             // 
             // ribbonImageCollectionLarge
             // 
@@ -2994,12 +3098,12 @@
             this.stylesRibbonPageGroup1,
             this.editingRibbonPageGroup1});
             this.homeRibbonPage1.Name = "homeRibbonPage1";
-            reduceOperation1.Behavior = DevExpress.XtraBars.Ribbon.ReduceOperationBehavior.UntilAvailable;
-            reduceOperation1.Group = this.stylesRibbonPageGroup1;
-            reduceOperation1.ItemLinkIndex = 0;
-            reduceOperation1.ItemLinksCount = 0;
-            reduceOperation1.Operation = DevExpress.XtraBars.Ribbon.ReduceOperationType.Gallery;
-            this.homeRibbonPage1.ReduceOperations.Add(reduceOperation1);
+            reduceOperation8.Behavior = DevExpress.XtraBars.Ribbon.ReduceOperationBehavior.UntilAvailable;
+            reduceOperation8.Group = this.stylesRibbonPageGroup1;
+            reduceOperation8.ItemLinkIndex = 0;
+            reduceOperation8.ItemLinksCount = 0;
+            reduceOperation8.Operation = DevExpress.XtraBars.Ribbon.ReduceOperationType.Gallery;
+            this.homeRibbonPage1.ReduceOperations.Add(reduceOperation8);
             this.homeRibbonPage1.Visible = false;
             // 
             // clipboardRibbonPageGroup1
@@ -3126,7 +3230,8 @@
             // 
             this.ribbonPage2.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroup5,
-            this.chartribbonPageGroup});
+            this.chartribbonPageGroup,
+            this.settingribbonPageGroup});
             this.ribbonPage2.Name = "ribbonPage2";
             this.ribbonPage2.Text = "统计图表";
             this.ribbonPage2.Visible = false;
@@ -3136,6 +3241,25 @@
             this.ribbonPageGroup5.ItemLinks.Add(this.barButtonItem1);
             this.ribbonPageGroup5.Name = "ribbonPageGroup5";
             this.ribbonPageGroup5.Text = "输出";
+            // 
+            // chartribbonPageGroup
+            // 
+            this.chartribbonPageGroup.ItemLinks.Add(this.BarChartButton);
+            this.chartribbonPageGroup.ItemLinks.Add(this.LineChartButton);
+            this.chartribbonPageGroup.ItemLinks.Add(this.PointChartButton);
+            this.chartribbonPageGroup.ItemLinks.Add(this.PieChartButton);
+            this.chartribbonPageGroup.Name = "chartribbonPageGroup";
+            this.chartribbonPageGroup.Text = "图表";
+            // 
+            // settingribbonPageGroup
+            // 
+            this.settingribbonPageGroup.ItemLinks.Add(this.ChartTitlebarEditItem);
+            this.settingribbonPageGroup.ItemLinks.Add(this.AxisXTitlebarEditItem);
+            this.settingribbonPageGroup.ItemLinks.Add(this.AxisYTitlebarEditItem);
+            this.settingribbonPageGroup.ItemLinks.Add(this.AxisXCombobox);
+            this.settingribbonPageGroup.ItemLinks.Add(this.AxisYCombobox);
+            this.settingribbonPageGroup.Name = "settingribbonPageGroup";
+            this.settingribbonPageGroup.Text = "设置";
             // 
             // fileRibbonPage2
             // 
@@ -3168,12 +3292,12 @@
             this.cellsRibbonPageGroup1,
             this.editingRibbonPageGroup2});
             this.homeRibbonPage2.Name = "homeRibbonPage2";
-            reduceOperation2.Behavior = DevExpress.XtraBars.Ribbon.ReduceOperationBehavior.UntilAvailable;
-            reduceOperation2.Group = this.stylesRibbonPageGroup2;
-            reduceOperation2.ItemLinkIndex = 0;
-            reduceOperation2.ItemLinksCount = 0;
-            reduceOperation2.Operation = DevExpress.XtraBars.Ribbon.ReduceOperationType.Gallery;
-            this.homeRibbonPage2.ReduceOperations.Add(reduceOperation2);
+            reduceOperation7.Behavior = DevExpress.XtraBars.Ribbon.ReduceOperationBehavior.UntilAvailable;
+            reduceOperation7.Group = this.stylesRibbonPageGroup2;
+            reduceOperation7.ItemLinkIndex = 0;
+            reduceOperation7.ItemLinksCount = 0;
+            reduceOperation7.Operation = DevExpress.XtraBars.Ribbon.ReduceOperationType.Gallery;
+            this.homeRibbonPage2.ReduceOperations.Add(reduceOperation7);
             this.homeRibbonPage2.Visible = false;
             // 
             // clipboardRibbonPageGroup2
@@ -3347,6 +3471,13 @@
             // 
             this.repositoryItemSpreadsheetFontSizeEdit1.Control = null;
             this.repositoryItemSpreadsheetFontSizeEdit1.Name = "repositoryItemSpreadsheetFontSizeEdit1";
+            // 
+            // repositoryItemComboBox2
+            // 
+            this.repositoryItemComboBox2.AutoHeight = false;
+            this.repositoryItemComboBox2.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemComboBox2.Name = "repositoryItemComboBox2";
             // 
             // ribbonStatusBar
             // 
@@ -3736,7 +3867,7 @@
             // 
             this.barDockControl1.CausesValidation = false;
             this.barDockControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.barDockControl1.Location = new System.Drawing.Point(0, 147);
+            this.barDockControl1.Location = new System.Drawing.Point(0, 0);
             this.barDockControl1.Size = new System.Drawing.Size(1100, 0);
             // 
             // barDockControl2
@@ -3750,15 +3881,15 @@
             // 
             this.barDockControl3.CausesValidation = false;
             this.barDockControl3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControl3.Location = new System.Drawing.Point(0, 147);
-            this.barDockControl3.Size = new System.Drawing.Size(0, 552);
+            this.barDockControl3.Location = new System.Drawing.Point(0, 0);
+            this.barDockControl3.Size = new System.Drawing.Size(0, 699);
             // 
             // barDockControl4
             // 
             this.barDockControl4.CausesValidation = false;
             this.barDockControl4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControl4.Location = new System.Drawing.Point(1100, 147);
-            this.barDockControl4.Size = new System.Drawing.Size(0, 552);
+            this.barDockControl4.Location = new System.Drawing.Point(1100, 0);
+            this.barDockControl4.Size = new System.Drawing.Size(0, 699);
             // 
             // pdfFileOpenBarItem1
             // 
@@ -3921,11 +4052,50 @@
             this.pdfBarController1.BarItems.Add(this.pdfSetFitWidthZoomModeCheckItem1);
             this.pdfBarController1.BarItems.Add(this.pdfSetFitVisibleZoomModeCheckItem1);
             // 
-            // chartribbonPageGroup
+            // ChartTitlebarEditItem
             // 
-            this.chartribbonPageGroup.ItemLinks.Add(this.BarChartButton);
-            this.chartribbonPageGroup.Name = "chartribbonPageGroup";
-            this.chartribbonPageGroup.Text = "图表";
+            this.ChartTitlebarEditItem.Caption = "标      题:";
+            this.ChartTitlebarEditItem.CategoryGuid = new System.Guid("6ffddb2b-9015-4d97-a4c1-91613e0ef537");
+            this.ChartTitlebarEditItem.Edit = this.repositoryItemTextEdit1;
+            this.ChartTitlebarEditItem.Id = 682;
+            this.ChartTitlebarEditItem.Name = "ChartTitlebarEditItem";
+            this.ChartTitlebarEditItem.Width = 80;
+            this.ChartTitlebarEditItem.EditValueChanged += new System.EventHandler(this.ChartTitlebarEditItem_EditValueChanged);
+            // 
+            // repositoryItemTextEdit1
+            // 
+            this.repositoryItemTextEdit1.AutoHeight = false;
+            this.repositoryItemTextEdit1.Name = "repositoryItemTextEdit1";
+            // 
+            // AxisXTitlebarEditItem
+            // 
+            this.AxisXTitlebarEditItem.Caption = "横轴标题:";
+            this.AxisXTitlebarEditItem.CategoryGuid = new System.Guid("6ffddb2b-9015-4d97-a4c1-91613e0ef537");
+            this.AxisXTitlebarEditItem.Edit = this.repositoryItemTextEdit2;
+            this.AxisXTitlebarEditItem.Id = 683;
+            this.AxisXTitlebarEditItem.Name = "AxisXTitlebarEditItem";
+            this.AxisXTitlebarEditItem.Width = 80;
+            this.AxisXTitlebarEditItem.EditValueChanged += new System.EventHandler(this.AxisXTitlebarEditItem_EditValueChanged);
+            // 
+            // repositoryItemTextEdit2
+            // 
+            this.repositoryItemTextEdit2.AutoHeight = false;
+            this.repositoryItemTextEdit2.Name = "repositoryItemTextEdit2";
+            // 
+            // AxisYTitlebarEditItem
+            // 
+            this.AxisYTitlebarEditItem.Caption = "竖轴标题:";
+            this.AxisYTitlebarEditItem.CategoryGuid = new System.Guid("6ffddb2b-9015-4d97-a4c1-91613e0ef537");
+            this.AxisYTitlebarEditItem.Edit = this.repositoryItemTextEdit3;
+            this.AxisYTitlebarEditItem.Id = 684;
+            this.AxisYTitlebarEditItem.Name = "AxisYTitlebarEditItem";
+            this.AxisYTitlebarEditItem.Width = 80;
+            this.AxisYTitlebarEditItem.EditValueChanged += new System.EventHandler(this.AxisYTitlebarEditItem_EditValueChanged);
+            // 
+            // repositoryItemTextEdit3
+            // 
+            this.repositoryItemTextEdit3.AutoHeight = false;
+            this.repositoryItemTextEdit3.Name = "repositoryItemTextEdit3";
             // 
             // MainForm
             // 
@@ -3954,6 +4124,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemRichEditFontSizeEdit2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemFontEdit4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpreadsheetFontSizeEdit2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckedComboBoxEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonImageCollectionLarge)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemFontEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemRichEditFontSizeEdit1)).EndInit();
@@ -3962,6 +4134,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemFloatingObjectOutlineWeight1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemFontEdit2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpreadsheetFontSizeEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.navbarImageCollectionLarge)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.navbarImageCollection)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.richEditBarController1)).EndInit();
@@ -3975,6 +4148,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.spreadsheetBarController1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pdfBarController1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit3)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -4339,6 +4515,21 @@
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup7;
         private DevExpress.XtraBars.BarButtonItem bUserManager;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup chartribbonPageGroup;
+        private DevExpress.XtraBars.BarButtonItem PieChartButton;
+        private DevExpress.XtraBars.BarButtonItem LineChartButton;
+        private DevExpress.XtraBars.BarButtonItem PointChartButton;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup settingribbonPageGroup;
+        private DevExpress.XtraBars.BarEditItem AxisXCombobox;
+        private DevExpress.XtraBars.BarEditItem AxisYCombobox;
+        private DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit repositoryItemCheckedComboBoxEdit1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox2;
+        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox1;
+        private DevExpress.XtraBars.BarEditItem ChartTitlebarEditItem;
+        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit1;
+        private DevExpress.XtraBars.BarEditItem AxisXTitlebarEditItem;
+        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit2;
+        private DevExpress.XtraBars.BarEditItem AxisYTitlebarEditItem;
+        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit3;
 
     }
 }

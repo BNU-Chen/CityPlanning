@@ -42,18 +42,21 @@
             this.chartControl1.SeriesSerializable = new DevExpress.XtraCharts.Series[0];
             sideBySideBarSeriesLabel1.LineVisible = true;
             this.chartControl1.SeriesTemplate.Label = sideBySideBarSeriesLabel1;
-            this.chartControl1.Size = new System.Drawing.Size(284, 262);
+            this.chartControl1.Size = new System.Drawing.Size(287, 264);
             this.chartControl1.TabIndex = 0;
+            this.chartControl1.ObjectSelected += new DevExpress.XtraCharts.HotTrackEventHandler(this.chartControl1_ObjectSelected);
             // 
             // ucChartForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 262);
+            this.ClientSize = new System.Drawing.Size(287, 264);
             this.Controls.Add(this.chartControl1);
+            this.MinimizeBox = false;
             this.Name = "ucChartForm";
             this.Text = "ucChartForm";
             this.Activated += new System.EventHandler(this.ucChartForm_Activated);
+            this.Load += new System.EventHandler(this.ucChartForm_Load);
             ((System.ComponentModel.ISupportInitialize)(sideBySideBarSeriesLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartControl1)).EndInit();
             this.ResumeLayout(false);

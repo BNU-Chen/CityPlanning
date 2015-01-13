@@ -17,6 +17,34 @@ namespace CityPlanning.Modules
     {
         private MainForm mainFrm = null;
         private Range range = null;
+        private ViewType viewType;
+        private DataTable dataSource = null;
+        private List<string> variableField = new List<string>();
+        private List<string> valueField = new List<string>();
+
+        public List<string> VariableField
+        {
+            get { return variableField; }
+            set { variableField = value; }
+        }
+
+        public List<string> ValueField
+        {
+            get { return valueField; }
+            set { valueField = value; }
+        }
+
+        public DataTable DataSource
+        {
+            get { return dataSource; }
+            set { dataSource = value; }
+        }
+
+        public ViewType ViewType
+        {
+            get { return viewType; }
+            set { viewType = value; }
+        }
 
         public ChartControl ChartControl
         {
@@ -29,15 +57,6 @@ namespace CityPlanning.Modules
             get { return range; }
             set { range = value; }
         }
-        private string sheetName = null;
-
-        public string SheetName
-        {
-            get { return sheetName; }
-            set { sheetName = value; }
-        }
-
-        
         public ucChartForm(MainForm _mainFrm)
         {
             InitializeComponent();
@@ -46,6 +65,7 @@ namespace CityPlanning.Modules
             this.ShowInTaskbar = false;
             this.StartPosition = FormStartPosition.CenterScreen;
             this.TopMost = true;
+            this.MinimizeBox = false;
         }
 
         private void ucChartForm_Activated(object sender, EventArgs e)
@@ -53,5 +73,35 @@ namespace CityPlanning.Modules
             mainFrm.curChartForm = this;
         }
 
+        private void ucChartForm_Load(object sender, EventArgs e)
+        {
+
+            this.Text = "柱状图-" + dataSource.TableName;
+            foreach (DataColumn col in dataSource.Columns)
+            {
+                variableField.Add(col.ColumnName);
+                if (col.DataType.IsValueType)
+                    valueField.Add(col.ColumnName);
+            }
+        }
+
+        private void chartControl1_ObjectSelected(object sender, HotTrackEventArgs e)
+        {
+            if (viewType == ViewType.Pie)
+            {
+                Series series1 = chartControl1.Series[0];
+                SeriesPoint sp = e.HitInfo.SeriesPoint;
+
+                bool sp_exploded = false;
+                foreach (SeriesPoint spp in ((PieSeriesView)series1.View).ExplodedPoints)
+                {
+                    if (sp == spp) sp_exploded = true;
+                }
+
+                if (sp_exploded == true) ((PieSeriesView)series1.View).ExplodedPoints.Remove(sp);
+                else if (e.HitInfo.SeriesPoint != null)
+                    ((PieSeriesView)series1.View).ExplodedPoints.Add(e.HitInfo.SeriesPoint);
+            }
+        }
     }
 }
