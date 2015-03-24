@@ -50,6 +50,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DevComponents.DotNetBar2, Version=12.0.0.1, Culture=neutral, PublicKeyToken=c39c3242a43eee2b, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.BonusSkins.v13.1, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Charts.v13.1.Core, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Data.v13.1, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -149,6 +150,18 @@
     <Compile Include="Modules\ucChartForm.Designer.cs">
       <DependentUpon>ucChartForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modules\ucDocumentSearch.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\ucDocumentSearch.Designer.cs">
+      <DependentUpon>ucDocumentSearch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\ucDocumentSearchClip.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\ucDocumentSearchClip.Designer.cs">
+      <DependentUpon>ucDocumentSearchClip.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modules\ucNavigationFiles.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -182,6 +195,12 @@
     <EmbeddedResource Include="Modules\ucChartForm.resx">
       <DependentUpon>ucChartForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Modules\ucDocumentSearch.resx">
+      <DependentUpon>ucDocumentSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\ucDocumentSearchClip.resx">
+      <DependentUpon>ucDocumentSearchClip.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Modules\ucNavigationFiles.resx">
       <DependentUpon>ucNavigationFiles.cs</DependentUpon>
     </EmbeddedResource>
@@ -194,18 +213,18 @@
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -311,6 +330,15 @@
       <Project>{3811f98c-b3f2-412c-b099-281808819015}</Project>
       <Name>StatisticChart</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\check.png" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

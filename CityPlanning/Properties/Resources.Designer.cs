@@ -73,6 +73,16 @@ namespace CityPlanning.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap check {
+            get {
+                object obj = ResourceManager.GetObject("check", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap CityPlanningLogo {
             get {
                 object obj = ResourceManager.GetObject("CityPlanningLogo", resourceCulture);
@@ -236,6 +246,26 @@ namespace CityPlanning.Properties {
         internal static System.Drawing.Bitmap scaleOut_32 {
             get {
                 object obj = ResourceManager.GetObject("scaleOut_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap search_16 {
+            get {
+                object obj = ResourceManager.GetObject("search_16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap search_32 {
+            get {
+                object obj = ResourceManager.GetObject("search_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

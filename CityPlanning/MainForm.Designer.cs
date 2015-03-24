@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraBars.Ribbon.GalleryItemGroup galleryItemGroup4 = new DevExpress.XtraBars.Ribbon.GalleryItemGroup();
+            DevExpress.XtraBars.Ribbon.GalleryItemGroup galleryItemGroup1 = new DevExpress.XtraBars.Ribbon.GalleryItemGroup();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            DevExpress.XtraBars.Ribbon.ReduceOperation reduceOperation8 = new DevExpress.XtraBars.Ribbon.ReduceOperation();
-            DevExpress.XtraBars.Ribbon.ReduceOperation reduceOperation7 = new DevExpress.XtraBars.Ribbon.ReduceOperation();
+            DevExpress.XtraBars.Ribbon.ReduceOperation reduceOperation1 = new DevExpress.XtraBars.Ribbon.ReduceOperation();
+            DevExpress.XtraBars.Ribbon.ReduceOperation reduceOperation2 = new DevExpress.XtraBars.Ribbon.ReduceOperation();
             this.stylesRibbonPageGroup1 = new DevExpress.XtraRichEdit.UI.StylesRibbonPageGroup();
             this.galleryChangeStyleItem1 = new DevExpress.XtraRichEdit.UI.GalleryChangeStyleItem();
             this.stylesRibbonPageGroup2 = new DevExpress.XtraSpreadsheet.UI.StylesRibbonPageGroup();
@@ -297,6 +297,16 @@
             this.repositoryItemComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.AxisYCombobox = new DevExpress.XtraBars.BarEditItem();
             this.repositoryItemCheckedComboBoxEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit();
+            this.ChartTitlebarEditItem = new DevExpress.XtraBars.BarEditItem();
+            this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+            this.AxisXTitlebarEditItem = new DevExpress.XtraBars.BarEditItem();
+            this.repositoryItemTextEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+            this.AxisYTitlebarEditItem = new DevExpress.XtraBars.BarEditItem();
+            this.repositoryItemTextEdit3 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+            this.bDoc_Search = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
+            this.barStaticItem1 = new DevExpress.XtraBars.BarStaticItem();
+            this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonImageCollectionLarge = new DevExpress.Utils.ImageCollection(this.components);
             this.ribbonPageCategory_map = new DevExpress.XtraBars.Ribbon.RibbonPageCategory();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -307,6 +317,7 @@
             this.ribbonPageCategory_doc = new DevExpress.XtraBars.Ribbon.RibbonPageCategory();
             this.ribbonPage_DocAnalyst = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup7 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup8 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.fileRibbonPage1 = new DevExpress.XtraRichEdit.UI.FileRibbonPage();
             this.commonRibbonPageGroup1 = new DevExpress.XtraRichEdit.UI.CommonRibbonPageGroup();
             this.homeRibbonPage1 = new DevExpress.XtraRichEdit.UI.HomeRibbonPage();
@@ -357,6 +368,7 @@
             this.repositoryItemFontEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemFontEdit();
             this.repositoryItemSpreadsheetFontSizeEdit1 = new DevExpress.XtraSpreadsheet.Design.RepositoryItemSpreadsheetFontSizeEdit();
             this.repositoryItemComboBox2 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
+            this.repositoryItemTextEdit4 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.navbarImageCollectionLarge = new DevExpress.Utils.ImageCollection(this.components);
             this.navbarImageCollection = new DevExpress.Utils.ImageCollection(this.components);
@@ -400,12 +412,6 @@
             this.pdfSetFitWidthZoomModeCheckItem1 = new DevExpress.XtraPdfViewer.Bars.PdfSetFitWidthZoomModeCheckItem();
             this.pdfSetFitVisibleZoomModeCheckItem1 = new DevExpress.XtraPdfViewer.Bars.PdfSetFitVisibleZoomModeCheckItem();
             this.pdfBarController1 = new DevExpress.XtraPdfViewer.Bars.PdfBarController();
-            this.ChartTitlebarEditItem = new DevExpress.XtraBars.BarEditItem();
-            this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
-            this.AxisXTitlebarEditItem = new DevExpress.XtraBars.BarEditItem();
-            this.repositoryItemTextEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
-            this.AxisYTitlebarEditItem = new DevExpress.XtraBars.BarEditItem();
-            this.repositoryItemTextEdit3 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.appMenu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonImageCollection)).BeginInit();
@@ -415,6 +421,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpreadsheetFontSizeEdit2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckedComboBoxEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonImageCollectionLarge)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemFontEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemRichEditFontSizeEdit1)).BeginInit();
@@ -424,6 +433,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemFontEdit2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpreadsheetFontSizeEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.navbarImageCollectionLarge)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.navbarImageCollection)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.richEditBarController1)).BeginInit();
@@ -437,9 +447,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.spreadsheetBarController1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pdfBarController1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit3)).BeginInit();
             this.SuspendLayout();
             // 
             // stylesRibbonPageGroup1
@@ -456,7 +463,7 @@
             // 
             this.galleryChangeStyleItem1.Gallery.ColumnCount = 10;
             this.galleryChangeStyleItem1.Gallery.Groups.AddRange(new DevExpress.XtraBars.Ribbon.GalleryItemGroup[] {
-            galleryItemGroup4});
+            galleryItemGroup1});
             this.galleryChangeStyleItem1.Gallery.ImageSize = new System.Drawing.Size(65, 46);
             this.galleryChangeStyleItem1.Id = 499;
             this.galleryChangeStyleItem1.Name = "galleryChangeStyleItem1";
@@ -744,10 +751,14 @@
             this.AxisYCombobox,
             this.ChartTitlebarEditItem,
             this.AxisXTitlebarEditItem,
-            this.AxisYTitlebarEditItem});
+            this.AxisYTitlebarEditItem,
+            this.bDoc_Search,
+            this.barButtonItem3,
+            this.barStaticItem1,
+            this.barButtonItem2});
             this.ribbonControl.LargeImages = this.ribbonImageCollectionLarge;
             this.ribbonControl.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl.MaxItemId = 685;
+            this.ribbonControl.MaxItemId = 693;
             this.ribbonControl.Name = "ribbonControl";
             this.ribbonControl.PageCategories.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageCategory[] {
             this.ribbonPageCategory_map,
@@ -772,7 +783,8 @@
             this.repositoryItemCheckedComboBoxEdit1,
             this.repositoryItemTextEdit1,
             this.repositoryItemTextEdit2,
-            this.repositoryItemTextEdit3});
+            this.repositoryItemTextEdit3,
+            this.repositoryItemTextEdit4});
             this.ribbonControl.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2010;
             this.ribbonControl.Size = new System.Drawing.Size(1100, 147);
             this.ribbonControl.StatusBar = this.ribbonStatusBar;
@@ -2976,6 +2988,82 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.repositoryItemCheckedComboBoxEdit1.Name = "repositoryItemCheckedComboBoxEdit1";
             // 
+            // ChartTitlebarEditItem
+            // 
+            this.ChartTitlebarEditItem.Caption = "标      题:";
+            this.ChartTitlebarEditItem.CategoryGuid = new System.Guid("6ffddb2b-9015-4d97-a4c1-91613e0ef537");
+            this.ChartTitlebarEditItem.Edit = this.repositoryItemTextEdit1;
+            this.ChartTitlebarEditItem.Id = 682;
+            this.ChartTitlebarEditItem.Name = "ChartTitlebarEditItem";
+            this.ChartTitlebarEditItem.Width = 80;
+            this.ChartTitlebarEditItem.EditValueChanged += new System.EventHandler(this.ChartTitlebarEditItem_EditValueChanged);
+            // 
+            // repositoryItemTextEdit1
+            // 
+            this.repositoryItemTextEdit1.AutoHeight = false;
+            this.repositoryItemTextEdit1.Name = "repositoryItemTextEdit1";
+            // 
+            // AxisXTitlebarEditItem
+            // 
+            this.AxisXTitlebarEditItem.Caption = "横轴标题:";
+            this.AxisXTitlebarEditItem.CategoryGuid = new System.Guid("6ffddb2b-9015-4d97-a4c1-91613e0ef537");
+            this.AxisXTitlebarEditItem.Edit = this.repositoryItemTextEdit2;
+            this.AxisXTitlebarEditItem.Id = 683;
+            this.AxisXTitlebarEditItem.Name = "AxisXTitlebarEditItem";
+            this.AxisXTitlebarEditItem.Width = 80;
+            this.AxisXTitlebarEditItem.EditValueChanged += new System.EventHandler(this.AxisXTitlebarEditItem_EditValueChanged);
+            // 
+            // repositoryItemTextEdit2
+            // 
+            this.repositoryItemTextEdit2.AutoHeight = false;
+            this.repositoryItemTextEdit2.Name = "repositoryItemTextEdit2";
+            // 
+            // AxisYTitlebarEditItem
+            // 
+            this.AxisYTitlebarEditItem.Caption = "竖轴标题:";
+            this.AxisYTitlebarEditItem.CategoryGuid = new System.Guid("6ffddb2b-9015-4d97-a4c1-91613e0ef537");
+            this.AxisYTitlebarEditItem.Edit = this.repositoryItemTextEdit3;
+            this.AxisYTitlebarEditItem.Id = 684;
+            this.AxisYTitlebarEditItem.Name = "AxisYTitlebarEditItem";
+            this.AxisYTitlebarEditItem.Width = 80;
+            this.AxisYTitlebarEditItem.EditValueChanged += new System.EventHandler(this.AxisYTitlebarEditItem_EditValueChanged);
+            // 
+            // repositoryItemTextEdit3
+            // 
+            this.repositoryItemTextEdit3.AutoHeight = false;
+            this.repositoryItemTextEdit3.Name = "repositoryItemTextEdit3";
+            // 
+            // bDoc_Search
+            // 
+            this.bDoc_Search.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
+            this.bDoc_Search.Caption = "信息搜索";
+            this.bDoc_Search.Glyph = global::CityPlanning.Properties.Resources.search_32;
+            this.bDoc_Search.Id = 686;
+            this.bDoc_Search.Name = "bDoc_Search";
+            this.bDoc_Search.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.bDoc_Search.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bDoc_Search_ItemClick);
+            // 
+            // barButtonItem3
+            // 
+            this.barButtonItem3.Caption = "barButtonItem3";
+            this.barButtonItem3.Id = 688;
+            this.barButtonItem3.Name = "barButtonItem3";
+            // 
+            // barStaticItem1
+            // 
+            this.barStaticItem1.Caption = "barStaticItem1";
+            this.barStaticItem1.Id = 689;
+            this.barStaticItem1.Name = "barStaticItem1";
+            this.barStaticItem1.TextAlignment = System.Drawing.StringAlignment.Near;
+            // 
+            // barButtonItem2
+            // 
+            this.barButtonItem2.Caption = "图数一致";
+            this.barButtonItem2.Glyph = global::CityPlanning.Properties.Resources.check;
+            this.barButtonItem2.Id = 692;
+            this.barButtonItem2.Name = "barButtonItem2";
+            this.barButtonItem2.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            // 
             // ribbonImageCollectionLarge
             // 
             this.ribbonImageCollectionLarge.ImageSize = new System.Drawing.Size(32, 32);
@@ -3039,6 +3127,7 @@
             // 
             // ribbonPageGroup4
             // 
+            this.ribbonPageGroup4.ItemLinks.Add(this.barButtonItem2);
             this.ribbonPageGroup4.Name = "ribbonPageGroup4";
             this.ribbonPageGroup4.Text = "分析";
             // 
@@ -3058,7 +3147,8 @@
             // ribbonPage_DocAnalyst
             // 
             this.ribbonPage_DocAnalyst.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.ribbonPageGroup7});
+            this.ribbonPageGroup7,
+            this.ribbonPageGroup8});
             this.ribbonPage_DocAnalyst.Name = "ribbonPage_DocAnalyst";
             this.ribbonPage_DocAnalyst.Text = "文档分析";
             this.ribbonPage_DocAnalyst.Visible = false;
@@ -3069,11 +3159,19 @@
             this.ribbonPageGroup7.Name = "ribbonPageGroup7";
             this.ribbonPageGroup7.Text = "文档工具";
             // 
+            // ribbonPageGroup8
+            // 
+            this.ribbonPageGroup8.ItemLinks.Add(this.bDoc_Search);
+            this.ribbonPageGroup8.Name = "ribbonPageGroup8";
+            this.ribbonPageGroup8.Tag = "AlignRight";
+            this.ribbonPageGroup8.Text = "信息检索";
+            // 
             // fileRibbonPage1
             // 
             this.fileRibbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.commonRibbonPageGroup1});
             this.fileRibbonPage1.Name = "fileRibbonPage1";
+            this.fileRibbonPage1.Text = "文件";
             this.fileRibbonPage1.Visible = false;
             // 
             // commonRibbonPageGroup1
@@ -3098,12 +3196,13 @@
             this.stylesRibbonPageGroup1,
             this.editingRibbonPageGroup1});
             this.homeRibbonPage1.Name = "homeRibbonPage1";
-            reduceOperation8.Behavior = DevExpress.XtraBars.Ribbon.ReduceOperationBehavior.UntilAvailable;
-            reduceOperation8.Group = this.stylesRibbonPageGroup1;
-            reduceOperation8.ItemLinkIndex = 0;
-            reduceOperation8.ItemLinksCount = 0;
-            reduceOperation8.Operation = DevExpress.XtraBars.Ribbon.ReduceOperationType.Gallery;
-            this.homeRibbonPage1.ReduceOperations.Add(reduceOperation8);
+            reduceOperation1.Behavior = DevExpress.XtraBars.Ribbon.ReduceOperationBehavior.UntilAvailable;
+            reduceOperation1.Group = this.stylesRibbonPageGroup1;
+            reduceOperation1.ItemLinkIndex = 0;
+            reduceOperation1.ItemLinksCount = 0;
+            reduceOperation1.Operation = DevExpress.XtraBars.Ribbon.ReduceOperationType.Gallery;
+            this.homeRibbonPage1.ReduceOperations.Add(reduceOperation1);
+            this.homeRibbonPage1.Text = "开始";
             this.homeRibbonPage1.Visible = false;
             // 
             // clipboardRibbonPageGroup1
@@ -3148,6 +3247,7 @@
             this.textRibbonPageGroup1,
             this.symbolsRibbonPageGroup1});
             this.insertRibbonPage1.Name = "insertRibbonPage1";
+            this.insertRibbonPage1.Text = "插入";
             this.insertRibbonPage1.Visible = false;
             // 
             // pagesRibbonPageGroup1
@@ -3196,6 +3296,7 @@
             this.pageSetupRibbonPageGroup1,
             this.pageBackgroundRibbonPageGroup1});
             this.pageLayoutRibbonPage1.Name = "pageLayoutRibbonPage1";
+            this.pageLayoutRibbonPage1.Text = "页面布局";
             this.pageLayoutRibbonPage1.Visible = false;
             // 
             // pageSetupRibbonPageGroup1
@@ -3266,6 +3367,7 @@
             this.fileRibbonPage2.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.commonRibbonPageGroup2});
             this.fileRibbonPage2.Name = "fileRibbonPage2";
+            this.fileRibbonPage2.Text = "文件";
             this.fileRibbonPage2.Visible = false;
             // 
             // commonRibbonPageGroup2
@@ -3292,12 +3394,13 @@
             this.cellsRibbonPageGroup1,
             this.editingRibbonPageGroup2});
             this.homeRibbonPage2.Name = "homeRibbonPage2";
-            reduceOperation7.Behavior = DevExpress.XtraBars.Ribbon.ReduceOperationBehavior.UntilAvailable;
-            reduceOperation7.Group = this.stylesRibbonPageGroup2;
-            reduceOperation7.ItemLinkIndex = 0;
-            reduceOperation7.ItemLinksCount = 0;
-            reduceOperation7.Operation = DevExpress.XtraBars.Ribbon.ReduceOperationType.Gallery;
-            this.homeRibbonPage2.ReduceOperations.Add(reduceOperation7);
+            reduceOperation2.Behavior = DevExpress.XtraBars.Ribbon.ReduceOperationBehavior.UntilAvailable;
+            reduceOperation2.Group = this.stylesRibbonPageGroup2;
+            reduceOperation2.ItemLinkIndex = 0;
+            reduceOperation2.ItemLinksCount = 0;
+            reduceOperation2.Operation = DevExpress.XtraBars.Ribbon.ReduceOperationType.Gallery;
+            this.homeRibbonPage2.ReduceOperations.Add(reduceOperation2);
+            this.homeRibbonPage2.Text = "开始";
             this.homeRibbonPage2.Visible = false;
             // 
             // clipboardRibbonPageGroup2
@@ -3351,6 +3454,7 @@
             this.illustrationsRibbonPageGroup2,
             this.linksRibbonPageGroup2});
             this.insertRibbonPage2.Name = "insertRibbonPage2";
+            this.insertRibbonPage2.Text = "插入";
             this.insertRibbonPage2.Visible = false;
             // 
             // illustrationsRibbonPageGroup2
@@ -3368,6 +3472,7 @@
             this.formulasRibbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.functionLibraryRibbonPageGroup1});
             this.formulasRibbonPage1.Name = "formulasRibbonPage1";
+            this.formulasRibbonPage1.Text = "公式";
             this.formulasRibbonPage1.Visible = false;
             // 
             // functionLibraryRibbonPageGroup1
@@ -3478,6 +3583,11 @@
             this.repositoryItemComboBox2.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.repositoryItemComboBox2.Name = "repositoryItemComboBox2";
+            // 
+            // repositoryItemTextEdit4
+            // 
+            this.repositoryItemTextEdit4.AutoHeight = false;
+            this.repositoryItemTextEdit4.Name = "repositoryItemTextEdit4";
             // 
             // ribbonStatusBar
             // 
@@ -3867,7 +3977,7 @@
             // 
             this.barDockControl1.CausesValidation = false;
             this.barDockControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.barDockControl1.Location = new System.Drawing.Point(0, 0);
+            this.barDockControl1.Location = new System.Drawing.Point(0, 147);
             this.barDockControl1.Size = new System.Drawing.Size(1100, 0);
             // 
             // barDockControl2
@@ -3881,15 +3991,15 @@
             // 
             this.barDockControl3.CausesValidation = false;
             this.barDockControl3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControl3.Location = new System.Drawing.Point(0, 0);
-            this.barDockControl3.Size = new System.Drawing.Size(0, 699);
+            this.barDockControl3.Location = new System.Drawing.Point(0, 147);
+            this.barDockControl3.Size = new System.Drawing.Size(0, 552);
             // 
             // barDockControl4
             // 
             this.barDockControl4.CausesValidation = false;
             this.barDockControl4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControl4.Location = new System.Drawing.Point(1100, 0);
-            this.barDockControl4.Size = new System.Drawing.Size(0, 699);
+            this.barDockControl4.Location = new System.Drawing.Point(1100, 147);
+            this.barDockControl4.Size = new System.Drawing.Size(0, 552);
             // 
             // pdfFileOpenBarItem1
             // 
@@ -4052,51 +4162,6 @@
             this.pdfBarController1.BarItems.Add(this.pdfSetFitWidthZoomModeCheckItem1);
             this.pdfBarController1.BarItems.Add(this.pdfSetFitVisibleZoomModeCheckItem1);
             // 
-            // ChartTitlebarEditItem
-            // 
-            this.ChartTitlebarEditItem.Caption = "标      题:";
-            this.ChartTitlebarEditItem.CategoryGuid = new System.Guid("6ffddb2b-9015-4d97-a4c1-91613e0ef537");
-            this.ChartTitlebarEditItem.Edit = this.repositoryItemTextEdit1;
-            this.ChartTitlebarEditItem.Id = 682;
-            this.ChartTitlebarEditItem.Name = "ChartTitlebarEditItem";
-            this.ChartTitlebarEditItem.Width = 80;
-            this.ChartTitlebarEditItem.EditValueChanged += new System.EventHandler(this.ChartTitlebarEditItem_EditValueChanged);
-            // 
-            // repositoryItemTextEdit1
-            // 
-            this.repositoryItemTextEdit1.AutoHeight = false;
-            this.repositoryItemTextEdit1.Name = "repositoryItemTextEdit1";
-            // 
-            // AxisXTitlebarEditItem
-            // 
-            this.AxisXTitlebarEditItem.Caption = "横轴标题:";
-            this.AxisXTitlebarEditItem.CategoryGuid = new System.Guid("6ffddb2b-9015-4d97-a4c1-91613e0ef537");
-            this.AxisXTitlebarEditItem.Edit = this.repositoryItemTextEdit2;
-            this.AxisXTitlebarEditItem.Id = 683;
-            this.AxisXTitlebarEditItem.Name = "AxisXTitlebarEditItem";
-            this.AxisXTitlebarEditItem.Width = 80;
-            this.AxisXTitlebarEditItem.EditValueChanged += new System.EventHandler(this.AxisXTitlebarEditItem_EditValueChanged);
-            // 
-            // repositoryItemTextEdit2
-            // 
-            this.repositoryItemTextEdit2.AutoHeight = false;
-            this.repositoryItemTextEdit2.Name = "repositoryItemTextEdit2";
-            // 
-            // AxisYTitlebarEditItem
-            // 
-            this.AxisYTitlebarEditItem.Caption = "竖轴标题:";
-            this.AxisYTitlebarEditItem.CategoryGuid = new System.Guid("6ffddb2b-9015-4d97-a4c1-91613e0ef537");
-            this.AxisYTitlebarEditItem.Edit = this.repositoryItemTextEdit3;
-            this.AxisYTitlebarEditItem.Id = 684;
-            this.AxisYTitlebarEditItem.Name = "AxisYTitlebarEditItem";
-            this.AxisYTitlebarEditItem.Width = 80;
-            this.AxisYTitlebarEditItem.EditValueChanged += new System.EventHandler(this.AxisYTitlebarEditItem_EditValueChanged);
-            // 
-            // repositoryItemTextEdit3
-            // 
-            this.repositoryItemTextEdit3.AutoHeight = false;
-            this.repositoryItemTextEdit3.Name = "repositoryItemTextEdit3";
-            // 
             // MainForm
             // 
             this.AllowFormGlass = DevExpress.Utils.DefaultBoolean.False;
@@ -4126,6 +4191,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpreadsheetFontSizeEdit2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckedComboBoxEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonImageCollectionLarge)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemFontEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemRichEditFontSizeEdit1)).EndInit();
@@ -4135,6 +4203,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemFontEdit2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpreadsheetFontSizeEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.navbarImageCollectionLarge)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.navbarImageCollection)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.richEditBarController1)).EndInit();
@@ -4148,9 +4217,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.spreadsheetBarController1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pdfBarController1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit3)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -4530,6 +4596,12 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit2;
         private DevExpress.XtraBars.BarEditItem AxisYTitlebarEditItem;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit3;
+        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit4;
+        private DevExpress.XtraBars.BarButtonItem bDoc_Search;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup8;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem3;
+        private DevExpress.XtraBars.BarStaticItem barStaticItem1;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem2;
 
     }
 }

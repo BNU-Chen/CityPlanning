@@ -53,6 +53,7 @@ namespace CityPlanning
         //模块定义
         public Modules.ucNavigationRDB ucNaviRDB = new Modules.ucNavigationRDB();
         public Modules.ucNavigationFiles ucNaviFiles = new Modules.ucNavigationFiles();
+        public Modules.ucDocumentSearch ucDocSearch = new Modules.ucDocumentSearch();
 
         #endregion
 
@@ -88,6 +89,7 @@ namespace CityPlanning
 
             ucNaviFiles.Dock = DockStyle.Fill;
             ucNaviRDB.Dock = DockStyle.Fill;
+            ucDocSearch.Dock = DockStyle.Fill;
 
             //导航栏双击事件
             this.ucNaviRDB.TreeList.DoubleClick += ucNaviRDB_TreeList_DoubleClick;
@@ -211,6 +213,7 @@ namespace CityPlanning
                 }
             }
         }
+        
         //文档
         private void bGalleryDocument_ItemClick(object sender, ItemClickEventArgs e)
         {
@@ -249,6 +252,7 @@ namespace CityPlanning
                 this.ucNaviFiles.TreeList.ExpandAll();
             }
         }
+        
         //三维地图
         private void bGallery3DMap_ItemClick(object sender, ItemClickEventArgs e)
         {
@@ -377,7 +381,7 @@ namespace CityPlanning
                         AxMapControl mapControl = new AxMapControl();
                         mapControl.BeginInit();     //必须有begin和end
                         mapControl.Location = new System.Drawing.Point(0, 0);
-                        mapControl.Name = "mapControl";
+                        mapControl.Name = "mapControl1";
                         mapControl.Dock = DockStyle.Fill;
                         //MapControl不支持先声明，后设置，故而直接设置
                         XtraTabPage xtp = new XtraTabPage();
@@ -778,6 +782,13 @@ namespace CityPlanning
         private void bDoc_InitDocument_ItemClick(object sender, ItemClickEventArgs e)
         {
 
+        }
+
+        private void bDoc_Search_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            this.panelControl_Navigation.Controls.Clear();
+
+            this.panelControl_Navigation.Controls.Add(ucDocSearch);            
         }
 
     }
