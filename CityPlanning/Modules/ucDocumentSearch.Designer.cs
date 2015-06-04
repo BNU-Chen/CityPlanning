@@ -30,10 +30,10 @@
         {
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.btn_Search = new System.Windows.Forms.Button();
             this.TextEdit_Filter = new DevExpress.XtraEditors.TextEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.lblSearchResultInfo = new DevComponents.DotNetBar.LabelX();
-            this.btn_Search = new System.Windows.Forms.Button();
+            this.lblSearchResultInfo = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TextEdit_Filter.Properties)).BeginInit();
@@ -62,6 +62,17 @@
             this.panelControl1.Size = new System.Drawing.Size(234, 38);
             this.panelControl1.TabIndex = 9;
             // 
+            // btn_Search
+            // 
+            this.btn_Search.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_Search.Image = global::CityPlanning.Properties.Resources.search_16;
+            this.btn_Search.Location = new System.Drawing.Point(203, 9);
+            this.btn_Search.Name = "btn_Search";
+            this.btn_Search.Size = new System.Drawing.Size(23, 23);
+            this.btn_Search.TabIndex = 6;
+            this.btn_Search.UseVisualStyleBackColor = true;
+            this.btn_Search.Click += new System.EventHandler(this.btn_Search_Click);
+            // 
             // TextEdit_Filter
             // 
             this.TextEdit_Filter.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -86,27 +97,11 @@
             // 
             // lblSearchResultInfo
             // 
-            this.lblSearchResultInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            // 
-            // 
-            // 
-            this.lblSearchResultInfo.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lblSearchResultInfo.Location = new System.Drawing.Point(10, 42);
+            this.lblSearchResultInfo.Location = new System.Drawing.Point(5, 44);
             this.lblSearchResultInfo.Name = "lblSearchResultInfo";
-            this.lblSearchResultInfo.Size = new System.Drawing.Size(215, 18);
+            this.lblSearchResultInfo.Size = new System.Drawing.Size(70, 14);
             this.lblSearchResultInfo.TabIndex = 10;
-            // 
-            // btn_Search
-            // 
-            this.btn_Search.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_Search.Image = global::CityPlanning.Properties.Resources.search_16;
-            this.btn_Search.Location = new System.Drawing.Point(203, 9);
-            this.btn_Search.Name = "btn_Search";
-            this.btn_Search.Size = new System.Drawing.Size(23, 23);
-            this.btn_Search.TabIndex = 6;
-            this.btn_Search.UseVisualStyleBackColor = true;
-            this.btn_Search.Click += new System.EventHandler(this.btn_Search_Click);
+            this.lblSearchResultInfo.Text = "labelControl2";
             // 
             // ucDocumentSearch
             // 
@@ -122,6 +117,7 @@
             this.panelControl1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TextEdit_Filter.Properties)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -131,7 +127,7 @@
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraEditors.TextEdit TextEdit_Filter;
         private DevExpress.XtraEditors.LabelControl labelControl1;
-        private DevComponents.DotNetBar.LabelX lblSearchResultInfo;
         private System.Windows.Forms.Button btn_Search;
+        private DevExpress.XtraEditors.LabelControl lblSearchResultInfo;
     }
 }
