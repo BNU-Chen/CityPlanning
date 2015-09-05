@@ -1,0 +1,5 @@
+D:\Develop\Git\CityPlanning\ConnectionCenter\bin\Debug\ConnectionCenter.dll
+D:\Develop\Git\CityPlanning\ConnectionCenter\bin\Debug\ConnectionCenter.pdb
+D:\Develop\Git\CityPlanning\ConnectionCenter\obj\Debug\ConnectionCenter.csprojResolveAssemblyReference.cache
+D:\Develop\Git\CityPlanning\ConnectionCenter\obj\Debug\ConnectionCenter.dll
+D:\Develop\Git\CityPlanning\ConnectionCenter\obj\Debug\ConnectionCenter.pdb

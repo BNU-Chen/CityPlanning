@@ -1,0 +1,5 @@
+D:\Develop\Git\CityPlanning\DocumentManager\bin\Debug\DocumentManager.dll
+D:\Develop\Git\CityPlanning\DocumentManager\bin\Debug\DocumentManager.pdb
+D:\Develop\Git\CityPlanning\DocumentManager\obj\Debug\DocumentManager.dll
+D:\Develop\Git\CityPlanning\DocumentManager\obj\Debug\DocumentManager.pdb
+D:\Develop\Git\CityPlanning\DocumentManager\obj\Debug\DocumentManager.csprojResolveAssemblyReference.cache
