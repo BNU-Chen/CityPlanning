@@ -791,5 +791,7 @@ namespace CityPlanning
             this.panelControl_Navigation.Controls.Add(ucDocSearch);            
         }
 
+        //test add code
+
     }
 }
