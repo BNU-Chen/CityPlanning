@@ -30,6 +30,7 @@ namespace CityPlanning.Modules
         public ucDocumentInternalSearch()
         {
             InitializeComponent();
+            this.MouseWheel += new MouseEventHandler(flowLayoutPanel1_MouseWheel);
         }
 
         //构造函数
@@ -113,6 +114,7 @@ namespace CityPlanning.Modules
             {
                 ReadOnlyRichTextBox roRTB = new ReadOnlyRichTextBox();
                 roRTB.MouseDoubleClick += new MouseEventHandler(this.flowLayoutPanel_MouseDoubleClick);
+                roRTB.MouseWheel += new MouseEventHandler(flowLayoutPanel1_MouseWheel); 
                 roRTB.Width = flowLayoutPanel.Width - 25;
                 roRTB.Paragraph = paragraph;
                 string par_String = searchDocument.GetRtfText(paragraph.Range);
@@ -149,6 +151,16 @@ namespace CityPlanning.Modules
                 }
             }
             catch { }
+        }
+        //鼠标滚轮事件
+        private void flowLayoutPanel1_MouseWheel(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                this.flowLayoutPanel.Focus();
+            }
+            catch
+            { }
         }
 
         //文档显示位置滚动至指定段落
