@@ -149,6 +149,12 @@
     <Compile Include="Modules\ucChartForm.Designer.cs">
       <DependentUpon>ucChartForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modules\ucDocumentInternalSearch.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\ucDocumentInternalSearch.designer.cs">
+      <DependentUpon>ucDocumentInternalSearch.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modules\ucDocumentSearch.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -193,6 +199,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\ucChartForm.resx">
       <DependentUpon>ucChartForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\ucDocumentInternalSearch.resx">
+      <DependentUpon>ucDocumentInternalSearch.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\ucDocumentSearch.resx">
       <DependentUpon>ucDocumentSearch.cs</DependentUpon>
@@ -338,6 +347,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\delete_16.png" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

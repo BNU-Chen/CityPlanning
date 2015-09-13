@@ -54,6 +54,7 @@ namespace CityPlanning
         public Modules.ucNavigationRDB ucNaviRDB = new Modules.ucNavigationRDB();
         public Modules.ucNavigationFiles ucNaviFiles = new Modules.ucNavigationFiles();
         public Modules.ucDocumentSearch ucDocSearch = new Modules.ucDocumentSearch();
+        public Modules.ucDocumentInternalSearch ucDocIntSearch = new Modules.ucDocumentInternalSearch(); //郭海强 添加关键词搜索控件0913
 
         #endregion
 
@@ -90,6 +91,7 @@ namespace CityPlanning
             ucNaviFiles.Dock = DockStyle.Fill;
             ucNaviRDB.Dock = DockStyle.Fill;
             ucDocSearch.Dock = DockStyle.Fill;
+            ucDocIntSearch.Dock = DockStyle.Fill;//郭海强 添加关键词搜索控件0913
 
             //导航栏双击事件
             this.ucNaviRDB.TreeList.DoubleClick += ucNaviRDB_TreeList_DoubleClick;
@@ -789,6 +791,19 @@ namespace CityPlanning
             this.panelControl_Navigation.Controls.Clear();
 
             this.panelControl_Navigation.Controls.Add(ucDocSearch);            
+        }
+
+        //郭海强 添加关键词搜索控件0913
+        private void bDoc_InternalSearch_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Control control = this.xtraTabControl_Main.SelectedTabPage.Controls[0];
+            if (control is RichEditControl)
+            {
+                this.panelControl_Navigation.Controls.Clear();
+                this.panelControl_Navigation.Controls.Add(ucDocIntSearch);
+                RichEditControl richEditControl = (RichEditControl)control;
+                ucDocIntSearch.RichEditControl = richEditControl;
+            }
         }
 
         //test add code
