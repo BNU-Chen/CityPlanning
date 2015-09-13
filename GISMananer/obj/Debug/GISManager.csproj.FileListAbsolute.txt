@@ -1,5 +1,0 @@
-D:\Develop\Git\CityPlanning\GISMananer\bin\Debug\GISManager.dll
-D:\Develop\Git\CityPlanning\GISMananer\bin\Debug\GISManager.pdb
-D:\Develop\Git\CityPlanning\GISMananer\obj\Debug\GISManager.dll
-D:\Develop\Git\CityPlanning\GISMananer\obj\Debug\GISManager.pdb
-D:\Develop\Git\CityPlanning\GISMananer\obj\Debug\GISManager.csprojResolveAssemblyReference.cache
