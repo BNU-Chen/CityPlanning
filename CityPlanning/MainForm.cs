@@ -541,6 +541,7 @@ namespace CityPlanning
         {
             
         }
+        
         //ChartButton生成统计图表
         //柱状图
         private void BarChartButton_ItemClick(object sender, ItemClickEventArgs e)
@@ -775,7 +776,8 @@ namespace CityPlanning
 
         private void bMapQueryByPoint_ItemClick(object sender, ItemClickEventArgs e)
         {
-
+            GISTools.SelectFeature(curAxMapControl);
+            curAxMapControl.MousePointer = ESRI.ArcGIS.Controls.esriControlsMousePointer.esriPointerCrosshair;
         }
         #endregion
 

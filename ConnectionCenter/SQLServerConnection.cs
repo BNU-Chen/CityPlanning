@@ -47,7 +47,7 @@ namespace ConnectionCenter
                     }
                     conn.Close();
                 }
-            }          
+            }
 
             return conn;
         }
