@@ -1,5 +1,0 @@
-D:\Develop\Git\CityPlanning\StatisticChart\bin\Debug\StatisticChart.dll
-D:\Develop\Git\CityPlanning\StatisticChart\bin\Debug\StatisticChart.pdb
-D:\Develop\Git\CityPlanning\StatisticChart\obj\Debug\StatisticChart.dll
-D:\Develop\Git\CityPlanning\StatisticChart\obj\Debug\StatisticChart.pdb
-D:\Develop\Git\CityPlanning\StatisticChart\obj\Debug\StatisticChart.csprojResolveAssemblyReference.cache

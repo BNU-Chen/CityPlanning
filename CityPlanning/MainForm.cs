@@ -192,6 +192,7 @@ namespace CityPlanning
             DataTable dt = SQLServerConnection.GetDatabaseSchema();
             if (dt == null)
             {
+                MessageBox.Show("没有获取到数据。", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
             if (dt.Rows.Count == 0)

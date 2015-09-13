@@ -187,7 +187,7 @@
             // 
             // txt_DBServerName
             // 
-            this.txt_DBServerName.EditValue = ".\\sqlexpress";
+            this.txt_DBServerName.EditValue = "202.112.95.178\\sqlexpress";
             this.txt_DBServerName.Location = new System.Drawing.Point(67, 22);
             this.txt_DBServerName.Name = "txt_DBServerName";
             this.txt_DBServerName.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(241)))), ((int)(((byte)(252)))));
@@ -197,7 +197,7 @@
             // 
             // txt_DBPassword
             // 
-            this.txt_DBPassword.EditValue = "sa";
+            this.txt_DBPassword.EditValue = "bnu";
             this.txt_DBPassword.Location = new System.Drawing.Point(132, 70);
             this.txt_DBPassword.Name = "txt_DBPassword";
             this.txt_DBPassword.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(241)))), ((int)(((byte)(252)))));
@@ -217,7 +217,7 @@
             // 
             // txt_DBUserName
             // 
-            this.txt_DBUserName.EditValue = "sa";
+            this.txt_DBUserName.EditValue = "bnu";
             this.txt_DBUserName.Location = new System.Drawing.Point(67, 70);
             this.txt_DBUserName.Name = "txt_DBUserName";
             this.txt_DBUserName.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(241)))), ((int)(((byte)(252)))));
@@ -272,7 +272,7 @@
             // 
             // txt_ftpIP
             // 
-            this.txt_ftpIP.EditValue = "D:\\Develop\\Data\\CityPlanning";
+            this.txt_ftpIP.EditValue = "E:\\项目 - 2014 沈阳经济区\\data\\图集\\原始矢量数据\\图集\\矢量图";
             this.txt_ftpIP.Location = new System.Drawing.Point(67, 19);
             this.txt_ftpIP.Name = "txt_ftpIP";
             this.txt_ftpIP.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(241)))), ((int)(((byte)(252)))));
