@@ -54,6 +54,7 @@ namespace CityPlanning
         public Modules.ucNavigationRDB ucNaviRDB = new Modules.ucNavigationRDB();
         public Modules.ucNavigationFiles ucNaviFiles = new Modules.ucNavigationFiles();
         public Modules.ucDocumentSearch ucDocSearch = new Modules.ucDocumentSearch();
+        public Modules.ucDocumentInternalSearch ucDocIntSearch = new Modules.ucDocumentInternalSearch(); //郭海强 添加关键词搜索控件0913
 
         #endregion
 
@@ -90,6 +91,7 @@ namespace CityPlanning
             ucNaviFiles.Dock = DockStyle.Fill;
             ucNaviRDB.Dock = DockStyle.Fill;
             ucDocSearch.Dock = DockStyle.Fill;
+            ucDocIntSearch.Dock = DockStyle.Fill;//郭海强 添加关键词搜索控件0913
 
             //导航栏双击事件
             this.ucNaviRDB.TreeList.DoubleClick += ucNaviRDB_TreeList_DoubleClick;
@@ -192,6 +194,7 @@ namespace CityPlanning
             DataTable dt = SQLServerConnection.GetDatabaseSchema();
             if (dt == null)
             {
+                MessageBox.Show("没有获取到数据。", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
             if (dt.Rows.Count == 0)
@@ -217,42 +220,12 @@ namespace CityPlanning
         //文档
         private void bGalleryDocument_ItemClick(object sender, ItemClickEventArgs e)
         {
-            this.panelControl_Navigation.Controls.Clear();            
+            this.panelControl_Navigation.Controls.Clear();
             this.panelControl_Navigation.Controls.Add(ucNaviFiles);
-            string path = FTPConnection.FtpIP;
-            DataTable dt = ConnectionCenter.ConnLocalDisk.getDataTable(path);
-            if (dt == null)
-            {
-                return;
-            }
-            if (dt.Rows.Count == 0)
-            {
-                return;
-            }
-            ucNaviFiles.TreeList.KeyFieldName = "id";
-            ucNaviFiles.TreeList.ParentFieldName = "pid";
-            ucNaviFiles.TreeList.DataSource = dt;
-
-            //按名称排序
-            ucNaviFiles.TreeList.BeginSort();
-            ucNaviFiles.TreeList.Columns["type"].SortOrder = SortOrder.Descending;
-            ucNaviFiles.TreeList.Columns["name"].SortOrder = SortOrder.Ascending;
-            ucNaviFiles.TreeList.EndSort();
-
-            //隐藏除"name"的列
-            for (int i = 0; i < ucNaviFiles.TreeList.Columns.Count; i++)
-            {
-                if (ucNaviFiles.TreeList.Columns[i].FieldName != "name")
-                {
-                    ucNaviFiles.TreeList.Columns[i].Visible = false;
-                }
-            }
-            if(dt.Rows.Count < 100)
-            {
-                this.ucNaviFiles.TreeList.ExpandAll();
-            }
+            ucNaviFiles.SourceFolder = FTPConnection.FtpIP;
+            ucNaviFiles.FetchFiles();
         }
-        
+
         //三维地图
         private void bGallery3DMap_ItemClick(object sender, ItemClickEventArgs e)
         {
@@ -540,6 +513,7 @@ namespace CityPlanning
         {
             
         }
+        
         //ChartButton生成统计图表
         //柱状图
         private void BarChartButton_ItemClick(object sender, ItemClickEventArgs e)
@@ -774,7 +748,8 @@ namespace CityPlanning
 
         private void bMapQueryByPoint_ItemClick(object sender, ItemClickEventArgs e)
         {
-
+            GISTools.SelectFeature(curAxMapControl);
+            curAxMapControl.MousePointer = ESRI.ArcGIS.Controls.esriControlsMousePointer.esriPointerCrosshair;
         }
         #endregion
 
@@ -789,6 +764,19 @@ namespace CityPlanning
             this.panelControl_Navigation.Controls.Clear();
 
             this.panelControl_Navigation.Controls.Add(ucDocSearch);            
+        }
+
+        //郭海强 添加关键词搜索控件0913
+        private void bDoc_InternalSearch_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Control control = this.xtraTabControl_Main.SelectedTabPage.Controls[0];
+            if (control is RichEditControl)
+            {
+                this.panelControl_Navigation.Controls.Clear();
+                this.panelControl_Navigation.Controls.Add(ucDocIntSearch);
+                RichEditControl richEditControl = (RichEditControl)control;
+                ucDocIntSearch.RichEditControl = richEditControl;
+            }
         }
 
         //test add code

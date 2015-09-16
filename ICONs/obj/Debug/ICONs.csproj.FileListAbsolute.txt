@@ -1,8 +1,0 @@
-D:\Develop\Git\CityPlanning\ICONs\bin\Debug\icons\3gp.png
-D:\Develop\Git\CityPlanning\ICONs\bin\Debug\icons\7z.png
-D:\Develop\Git\CityPlanning\ICONs\bin\Debug\icons\accdb.png
-D:\Develop\Git\CityPlanning\ICONs\bin\Debug\ICONs.dll
-D:\Develop\Git\CityPlanning\ICONs\bin\Debug\ICONs.pdb
-D:\Develop\Git\CityPlanning\ICONs\obj\Debug\ICONs.dll
-D:\Develop\Git\CityPlanning\ICONs\obj\Debug\ICONs.pdb
-D:\Develop\Git\CityPlanning\ICONs\obj\Debug\ICONs.csprojResolveAssemblyReference.cache
