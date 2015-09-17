@@ -82,9 +82,7 @@ namespace CityPlanning.Modules
                 case "tsmi_deletefile":
 
                     break;
-                case "tsmi_defaultopenfile":
-                    string curpath = (string)curNode["path"];
-                    System.Diagnostics.Process.Start(curpath);
+                case "tsmi_renamefile":
                     break;
             }
         }

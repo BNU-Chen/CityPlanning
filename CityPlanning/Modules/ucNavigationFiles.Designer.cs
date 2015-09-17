@@ -36,7 +36,7 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmi_AddFiles = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_DeleteFile = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmi_DefaultOpenFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_RenameFile = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TextEdit_Filter.Properties)).BeginInit();
@@ -104,28 +104,28 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmi_AddFiles,
             this.tsmi_DeleteFile,
-            this.tsmi_DefaultOpenFile});
+            this.tsmi_RenameFile});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(185, 92);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 92);
             this.contextMenuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.contextMenuStrip1_ItemClicked);
             // 
             // tsmi_AddFiles
             // 
             this.tsmi_AddFiles.Name = "tsmi_AddFiles";
-            this.tsmi_AddFiles.Size = new System.Drawing.Size(184, 22);
+            this.tsmi_AddFiles.Size = new System.Drawing.Size(152, 22);
             this.tsmi_AddFiles.Text = "添加文件";
             // 
             // tsmi_DeleteFile
             // 
             this.tsmi_DeleteFile.Name = "tsmi_DeleteFile";
-            this.tsmi_DeleteFile.Size = new System.Drawing.Size(184, 22);
+            this.tsmi_DeleteFile.Size = new System.Drawing.Size(152, 22);
             this.tsmi_DeleteFile.Text = "删除";
             // 
-            // tsmi_DefaultOpenFile
+            // tsmi_RenameFile
             // 
-            this.tsmi_DefaultOpenFile.Name = "tsmi_DefaultOpenFile";
-            this.tsmi_DefaultOpenFile.Size = new System.Drawing.Size(184, 22);
-            this.tsmi_DefaultOpenFile.Text = "用系统默认程序打开";
+            this.tsmi_RenameFile.Name = "tsmi_RenameFile";
+            this.tsmi_RenameFile.Size = new System.Drawing.Size(152, 22);
+            this.tsmi_RenameFile.Text = "重命名";
             // 
             // ucNavigationFiles
             // 
@@ -154,6 +154,6 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem tsmi_AddFiles;
         private System.Windows.Forms.ToolStripMenuItem tsmi_DeleteFile;
-        private System.Windows.Forms.ToolStripMenuItem tsmi_DefaultOpenFile;
+        private System.Windows.Forms.ToolStripMenuItem tsmi_RenameFile;
     }
 }
