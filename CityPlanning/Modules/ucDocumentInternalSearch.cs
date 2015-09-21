@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 using DevExpress.XtraRichEdit;
 using DevExpress.XtraRichEdit.API.Native;
@@ -31,12 +32,16 @@ namespace CityPlanning.Modules
         {
             InitializeComponent();
             this.MouseWheel += new MouseEventHandler(flowLayoutPanel1_MouseWheel);
+            this.richEditControl = new RichEditControl();
+            this.searchDocument = this.richEditControl.Document;
+            this.imageFlag = true;
         }
 
         //构造函数
         public ucDocumentInternalSearch(RichEditControl richEditControl)
         {
             InitializeComponent();
+            this.MouseWheel += new MouseEventHandler(flowLayoutPanel1_MouseWheel);
             this.richEditControl = richEditControl;
             this.searchDocument = this.richEditControl.Document;
             this.imageFlag = true;
@@ -52,7 +57,7 @@ namespace CityPlanning.Modules
         }
 
         //关键词搜索
-        private void KeyWordSearch()
+        private bool KeyWordSearch()
         {
             keyWord = this.te_KeyWord.Text.Trim();
             if (keyWord != "" && searchDocument != null)
@@ -64,26 +69,31 @@ namespace CityPlanning.Modules
                 //开始搜索
                 ISearchResult _SearchResult = searchDocument.StartSearch(keyWord, sOptions, sDirection, sRange);
                 bool findNext = _SearchResult.FindNext();
-                if (_SearchResult.CurrentResult == null) return;
-                Paragraph par_temp = searchDocument.GetParagraph(_SearchResult.CurrentResult.Start);
-                Paragraph par_Cur = searchDocument.GetParagraph(_SearchResult.CurrentResult.Start);
-                while (findNext)
+                if (_SearchResult.CurrentResult == null) return false;
+                else
                 {
-                    CharacterProperties cp = searchDocument.BeginUpdateCharacters(_SearchResult.CurrentResult);
-                    cp.ForeColor = Color.Red;          //字体颜色
-                    cp.BackColor = Color.Yellow;       //背景色
-                    searchDocument.EndUpdateCharacters(cp);
-                    Paragraph par_Next = searchDocument.GetParagraph(_SearchResult.CurrentResult.Start);
-
-                    if (!par_Cur.Equals(par_Next))
+                    Paragraph par_temp = searchDocument.GetParagraph(_SearchResult.CurrentResult.Start);
+                    Paragraph par_Cur = searchDocument.GetParagraph(_SearchResult.CurrentResult.Start);
+                    while (findNext)
                     {
-                        AddRichTextBoxToFlowLayoutPanal(par_Cur);
-                        par_Cur = par_Next;
+                        CharacterProperties cp = searchDocument.BeginUpdateCharacters(_SearchResult.CurrentResult);
+                        cp.ForeColor = Color.Red;          //字体颜色
+                        cp.BackColor = Color.Yellow;       //背景色
+                        searchDocument.EndUpdateCharacters(cp);
+                        Paragraph par_Next = searchDocument.GetParagraph(_SearchResult.CurrentResult.Start);
+
+                        if (!par_Cur.Equals(par_Next))
+                        {
+                            AddRichTextBoxToFlowLayoutPanal(par_Cur);
+                            par_Cur = par_Next;
+                        }
+                        findNext = _SearchResult.FindNext();
                     }
-                    findNext = _SearchResult.FindNext();
+                    MoveToParagraph(par_temp);
+                    return true;
                 }
-                MoveToParagraph(par_temp);
             }
+            else return false;
         }
 
         //搜索栏Enter键事件
@@ -108,12 +118,12 @@ namespace CityPlanning.Modules
         }
 
         //添加ReadOnlyRichTextBox控件至flowLayoutPanel1
-        private bool AddRichTextBoxToFlowLayoutPanal( Paragraph paragraph )
+        private void AddRichTextBoxToFlowLayoutPanal( Paragraph paragraph )
         {
             try
             {
                 ReadOnlyRichTextBox roRTB = new ReadOnlyRichTextBox();
-                roRTB.MouseDoubleClick += new MouseEventHandler(this.flowLayoutPanel_MouseDoubleClick);
+                roRTB.MouseClick += new MouseEventHandler(this.flowLayoutPanel_MouseClick);
                 roRTB.MouseWheel += new MouseEventHandler(flowLayoutPanel1_MouseWheel); 
                 roRTB.Width = flowLayoutPanel.Width - 25;
                 roRTB.Paragraph = paragraph;
@@ -131,16 +141,12 @@ namespace CityPlanning.Modules
                     roRTB.SelectionColor = Color.Red;
                     startPosition = curPosition + keyWord.Length;
                 }
-                return true;
             }
-            catch
-            {
-                return false;
-            }
+            catch { }
         }
 
         //鼠标双击事件，文档位置响应
-        private void flowLayoutPanel_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void flowLayoutPanel_MouseClick(object sender, MouseEventArgs e)
         {
             try
             {
@@ -152,6 +158,7 @@ namespace CityPlanning.Modules
             }
             catch { }
         }
+
         //鼠标滚轮事件
         private void flowLayoutPanel1_MouseWheel(object sender, MouseEventArgs e)
         {
@@ -185,6 +192,80 @@ namespace CityPlanning.Modules
             {
                 btn_Search.BackgroundImage = global::CityPlanning.Properties.Resources.delete_16;
                 imageFlag = false;
+            }
+        }
+
+        //根据文件后缀按相应方式打开文件
+        private bool OpenDocumentFile(string documentPath)
+        {
+            if (!File.Exists(documentPath)) return false;
+            string extName = Path.GetExtension(documentPath); //记录文件扩展名
+            DocumentFormat documentFormat;  //打开方式
+
+            switch (extName)
+            {
+                case "doc":
+                    documentFormat = DocumentFormat.Doc;
+                    break;
+                case "docx":
+                    documentFormat = DocumentFormat.OpenXml;
+                    break;
+                case "epub":
+                    documentFormat = DocumentFormat.ePub;
+                    break;
+                case "html":
+                    documentFormat = DocumentFormat.Html;
+                    break;
+                case "mht":
+                    documentFormat = DocumentFormat.Mht;
+                    break;
+                case "odt":
+                    documentFormat = DocumentFormat.OpenDocument;
+                    break;
+                case "txt":
+                    documentFormat = DocumentFormat.PlainText;
+                    break;
+                case "rtf":
+                    documentFormat = DocumentFormat.Rtf;
+                    break;
+                case "xml":
+                    documentFormat = DocumentFormat.WordML;
+                    break;
+                default:
+                    documentFormat = DocumentFormat.Undefined;
+                    break;
+            }
+            try
+            {
+                this.RichEditControl.LoadDocument(documentPath, documentFormat);
+                this.searchDocument = this.richEditControl.Document;
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        //根据关键字及文档路径搜索，外部调用方法
+        public bool SearchFromDocument(string keyWord, string documentPath)
+        {
+            try
+            {
+                if (keyWord == "" || !OpenDocumentFile(documentPath)) return false;
+                this.te_KeyWord.Text = keyWord;
+
+                //控件状态恢复
+                flowLayoutPanel.Controls.Clear();
+                this.richEditControl = new DevExpress.XtraRichEdit.RichEditControl();
+                DocumentCharacterPropertiesReset();
+                KeyWordSearch();
+
+                return true;
+            }
+            catch
+            {
+                return false;
             }
         }
     }

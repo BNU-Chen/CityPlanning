@@ -149,6 +149,12 @@
     <Compile Include="Modules\ucChartForm.Designer.cs">
       <DependentUpon>ucChartForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modules\ucChartShow.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\ucChartShow.designer.cs">
+      <DependentUpon>ucChartShow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modules\ucDocumentInternalSearch.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -199,6 +205,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\ucChartForm.resx">
       <DependentUpon>ucChartForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\ucChartShow.resx">
+      <DependentUpon>ucChartShow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\ucDocumentInternalSearch.resx">
       <DependentUpon>ucDocumentInternalSearch.cs</DependentUpon>

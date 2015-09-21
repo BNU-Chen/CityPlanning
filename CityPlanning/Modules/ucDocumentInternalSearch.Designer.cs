@@ -103,7 +103,7 @@
             this.flowLayoutPanel.Name = "flowLayoutPanel";
             this.flowLayoutPanel.Size = new System.Drawing.Size(230, 378);
             this.flowLayoutPanel.TabIndex = 2;
-            this.flowLayoutPanel.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.flowLayoutPanel_MouseDoubleClick);
+            this.flowLayoutPanel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.flowLayoutPanel_MouseClick);
             // 
             // ucDocumentInternalSearch
             // 
