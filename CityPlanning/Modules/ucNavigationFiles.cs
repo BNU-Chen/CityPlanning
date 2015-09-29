@@ -74,15 +74,26 @@ namespace CityPlanning.Modules
 
         private void contextMenuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
+            string curpath = (string)curNode["path"];
             switch (e.ClickedItem.Name.ToLower())
             {
                 case "tsmi_addfiles":
                     AddFiles();
                     break;
                 case "tsmi_deletefile":
-
+                    DialogResult dr = MessageBox.Show("确定删除么？", "提示",MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                    if (dr == DialogResult.OK)
+                    {
+                        File.Delete(curpath);
+                        FetchFiles();
+                    }
+                    else
+                    {
+                        return;
+                    }
                     break;
-                case "tsmi_renamefile":
+                case "tsmi_defaultopenfile":
+                    System.Diagnostics.Process.Start(curpath);
                     break;
             }
         }
