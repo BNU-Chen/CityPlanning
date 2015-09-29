@@ -690,6 +690,7 @@ namespace CityPlanning
         #endregion
 
         #region //地图工具按钮事件
+        //打开地图
         private void bGalleryOpenMap_ItemClick(object sender, ItemClickEventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
@@ -705,6 +706,19 @@ namespace CityPlanning
                     curAxMapControl.LoadMxFile(fi.FullName);
                     curAxMapControl.ActiveView.Refresh();
                 }
+            }
+        }
+        //关联文本查询
+        private void bRelatedDocSearch_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Control control = this.xtraTabControl_Main.SelectedTabPage.Controls[0];
+            if (control is AxMapControl)
+            {
+                this.panelControl_Navigation.Controls.Clear();
+                this.panelControl_Navigation.Controls.Add(ucDocIntSearch);
+                ucDocIntSearch.SearchFromDocument("沈阳", @"D:\项目 - 沈阳经济区\文本\沈阳经济区国土规划文本（20150805稿）.doc");
+                //RichEditControl richEditControl = (RichEditControl)control;
+                //ucDocIntSearch.RichEditControl = richEditControl;
             }
         }
         //添加图层
@@ -755,7 +769,7 @@ namespace CityPlanning
         }
         #endregion
 
-
+        #region //文档搜索相关
         private void bDoc_InitDocument_ItemClick(object sender, ItemClickEventArgs e)
         {
 
@@ -806,8 +820,11 @@ namespace CityPlanning
                     this.xtraTabControl_Main.Refresh();
                     this.Refresh();
                 }
-            } 
+            }
         }
+
+        #endregion
+
 
         //test add code
 
