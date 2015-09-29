@@ -57,8 +57,6 @@
             this.bMapQueryByPoint = new DevExpress.XtraBars.BarButtonItem();
             this.bHelp = new DevExpress.XtraBars.BarButtonItem();
             this.bAboutUs = new DevExpress.XtraBars.BarButtonItem();
-            this.bMapQueryByEnvelop = new DevExpress.XtraBars.BarButtonItem();
-            this.bMapQuerytByBuffer = new DevExpress.XtraBars.BarButtonItem();
             this.fileNewItem1 = new DevExpress.XtraRichEdit.UI.FileNewItem();
             this.fileOpenItem1 = new DevExpress.XtraRichEdit.UI.FileOpenItem();
             this.fileSaveItem1 = new DevExpress.XtraRichEdit.UI.FileSaveItem();
@@ -305,19 +303,20 @@
             this.repositoryItemTextEdit3 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.bDoc_Search = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
-            this.barStaticItem1 = new DevExpress.XtraBars.BarStaticItem();
-            this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
+            this.bRelatedDocSearch = new DevExpress.XtraBars.BarButtonItem();
+            this.bGalleryImage = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonImageCollectionLarge = new DevExpress.Utils.ImageCollection(this.components);
             this.ribbonPageCategory_map = new DevExpress.XtraBars.Ribbon.RibbonPageCategory();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageCategory_doc = new DevExpress.XtraBars.Ribbon.RibbonPageCategory();
             this.ribbonPage_DocAnalyst = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup7 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup8 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup9 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.bDoc_InternalSearch = new DevExpress.XtraBars.BarButtonItem();
             this.fileRibbonPage1 = new DevExpress.XtraRichEdit.UI.FileRibbonPage();
             this.commonRibbonPageGroup1 = new DevExpress.XtraRichEdit.UI.CommonRibbonPageGroup();
             this.homeRibbonPage1 = new DevExpress.XtraRichEdit.UI.HomeRibbonPage();
@@ -513,8 +512,6 @@
             this.bMapQueryByPoint,
             this.bHelp,
             this.bAboutUs,
-            this.bMapQueryByEnvelop,
-            this.bMapQuerytByBuffer,
             this.fileNewItem1,
             this.fileOpenItem1,
             this.fileSaveItem1,
@@ -754,11 +751,11 @@
             this.AxisYTitlebarEditItem,
             this.bDoc_Search,
             this.barButtonItem3,
-            this.barStaticItem1,
-            this.barButtonItem2});
+            this.bRelatedDocSearch,
+            this.bGalleryImage});
             this.ribbonControl.LargeImages = this.ribbonImageCollectionLarge;
             this.ribbonControl.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl.MaxItemId = 693;
+            this.ribbonControl.MaxItemId = 696;
             this.ribbonControl.Name = "ribbonControl";
             this.ribbonControl.PageCategories.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageCategory[] {
             this.ribbonPageCategory_map,
@@ -984,18 +981,6 @@
             this.bAboutUs.Name = "bAboutUs";
             this.bAboutUs.RibbonStyle = ((DevExpress.XtraBars.Ribbon.RibbonItemStyles)(((DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large | DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithText) 
             | DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithoutText)));
-            // 
-            // bMapQueryByEnvelop
-            // 
-            this.bMapQueryByEnvelop.Caption = "框选查询";
-            this.bMapQueryByEnvelop.Id = 438;
-            this.bMapQueryByEnvelop.Name = "bMapQueryByEnvelop";
-            // 
-            // bMapQuerytByBuffer
-            // 
-            this.bMapQuerytByBuffer.Caption = "缓冲区查询";
-            this.bMapQuerytByBuffer.Id = 439;
-            this.bMapQuerytByBuffer.Name = "bMapQuerytByBuffer";
             // 
             // fileNewItem1
             // 
@@ -2891,6 +2876,7 @@
             this.barButtonItem1.CategoryGuid = new System.Guid("6ffddb2b-9015-4d97-a4c1-91613e0ef537");
             this.barButtonItem1.Id = 665;
             this.barButtonItem1.Name = "barButtonItem1";
+            this.barButtonItem1.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem1_ItemClick);
             // 
             // BarChartButton
             // 
@@ -3049,20 +3035,20 @@
             this.barButtonItem3.Id = 688;
             this.barButtonItem3.Name = "barButtonItem3";
             // 
-            // barStaticItem1
+            // bRelatedDocSearch
             // 
-            this.barStaticItem1.Caption = "barStaticItem1";
-            this.barStaticItem1.Id = 689;
-            this.barStaticItem1.Name = "barStaticItem1";
-            this.barStaticItem1.TextAlignment = System.Drawing.StringAlignment.Near;
+            this.bRelatedDocSearch.Caption = "关联文本";
+            this.bRelatedDocSearch.CategoryGuid = new System.Guid("6ffddb2b-9015-4d97-a4c1-91613e0ef537");
+            this.bRelatedDocSearch.Id = 694;
+            this.bRelatedDocSearch.Name = "bRelatedDocSearch";
+            this.bRelatedDocSearch.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bRelatedDocSearch_ItemClick);
             // 
-            // barButtonItem2
+            // bGalleryImage
             // 
-            this.barButtonItem2.Caption = "图数一致";
-            this.barButtonItem2.Glyph = global::CityPlanning.Properties.Resources.check;
-            this.barButtonItem2.Id = 692;
-            this.barButtonItem2.Name = "barButtonItem2";
-            this.barButtonItem2.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.bGalleryImage.Caption = "规划图件";
+            this.bGalleryImage.Id = 695;
+            this.bGalleryImage.Name = "bGalleryImage";
+            this.bGalleryImage.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bGalleryImage_ItemClick);
             // 
             // ribbonImageCollectionLarge
             // 
@@ -3092,8 +3078,7 @@
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroup1,
             this.ribbonPageGroup2,
-            this.ribbonPageGroup3,
-            this.ribbonPageGroup4});
+            this.ribbonPageGroup3});
             this.ribbonPage1.Name = "ribbonPage1";
             this.ribbonPage1.Text = "地图工具";
             this.ribbonPage1.Visible = false;
@@ -3120,16 +3105,9 @@
             // ribbonPageGroup3
             // 
             this.ribbonPageGroup3.ItemLinks.Add(this.bMapQueryByPoint);
-            this.ribbonPageGroup3.ItemLinks.Add(this.bMapQueryByEnvelop);
-            this.ribbonPageGroup3.ItemLinks.Add(this.bMapQuerytByBuffer);
+            this.ribbonPageGroup3.ItemLinks.Add(this.bRelatedDocSearch);
             this.ribbonPageGroup3.Name = "ribbonPageGroup3";
             this.ribbonPageGroup3.Text = "查询";
-            // 
-            // ribbonPageGroup4
-            // 
-            this.ribbonPageGroup4.ItemLinks.Add(this.barButtonItem2);
-            this.ribbonPageGroup4.Name = "ribbonPageGroup4";
-            this.ribbonPageGroup4.Text = "分析";
             // 
             // ribbonPageCategory_doc
             // 
@@ -3148,7 +3126,8 @@
             // 
             this.ribbonPage_DocAnalyst.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroup7,
-            this.ribbonPageGroup8});
+            this.ribbonPageGroup8,
+            this.ribbonPageGroup9});
             this.ribbonPage_DocAnalyst.Name = "ribbonPage_DocAnalyst";
             this.ribbonPage_DocAnalyst.Text = "文档分析";
             this.ribbonPage_DocAnalyst.Visible = false;
@@ -3165,6 +3144,22 @@
             this.ribbonPageGroup8.Name = "ribbonPageGroup8";
             this.ribbonPageGroup8.Tag = "AlignRight";
             this.ribbonPageGroup8.Text = "信息检索";
+            // 
+            // ribbonPageGroup9
+            // 
+            this.ribbonPageGroup9.ItemLinks.Add(this.bDoc_InternalSearch);
+            this.ribbonPageGroup9.Name = "ribbonPageGroup9";
+            this.ribbonPageGroup9.Text = "关键词搜索";
+            // 
+            // bDoc_InternalSearch
+            // 
+            this.bDoc_InternalSearch.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
+            this.bDoc_InternalSearch.Caption = "关键词搜索";
+            this.bDoc_InternalSearch.CategoryGuid = new System.Guid("6ffddb2b-9015-4d97-a4c1-91613e0ef537");
+            this.bDoc_InternalSearch.Glyph = global::CityPlanning.Properties.Resources.search_32;
+            this.bDoc_InternalSearch.Id = 693;
+            this.bDoc_InternalSearch.Name = "bDoc_InternalSearch";
+            this.bDoc_InternalSearch.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bDoc_InternalSearch_ItemClick);
             // 
             // fileRibbonPage1
             // 
@@ -3510,6 +3505,7 @@
             this.ribbonPageGroup_PlanData.ItemLinks.Add(this.bGalleryRelationalDatabase);
             this.ribbonPageGroup_PlanData.ItemLinks.Add(this.bGalleryDocument);
             this.ribbonPageGroup_PlanData.ItemLinks.Add(this.bGallery3DMap);
+            this.ribbonPageGroup_PlanData.ItemLinks.Add(this.bGalleryImage);
             this.ribbonPageGroup_PlanData.Name = "ribbonPageGroup_PlanData";
             this.ribbonPageGroup_PlanData.Text = "数据浏览";
             // 
@@ -4256,7 +4252,6 @@
         private DevExpress.XtraBars.BarButtonItem bMapOutput;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup2;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup3;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup4;
         private DevExpress.XtraBars.BarButtonItem bMapPan;
         private DevExpress.XtraBars.BarButtonItem bMapZoomIn;
         private DevExpress.XtraBars.BarButtonItem bMapZoomOut;
@@ -4266,8 +4261,6 @@
         private DevExpress.XtraBars.BarButtonItem bMapQueryByPoint;
         private DevExpress.XtraBars.BarButtonItem bHelp;
         private DevExpress.XtraBars.BarButtonItem bAboutUs;
-        private DevExpress.XtraBars.BarButtonItem bMapQueryByEnvelop;
-        private DevExpress.XtraBars.BarButtonItem bMapQuerytByBuffer;
         private DevExpress.XtraEditors.SplitContainerControl splitContainerControl;
         private DevExpress.XtraTab.XtraTabControl xtraTabControl_Main;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage_Home;
@@ -4600,8 +4593,10 @@
         private DevExpress.XtraBars.BarButtonItem bDoc_Search;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup8;
         private DevExpress.XtraBars.BarButtonItem barButtonItem3;
-        private DevExpress.XtraBars.BarStaticItem barStaticItem1;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem2;
+        private DevExpress.XtraBars.BarButtonItem bDoc_InternalSearch;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup9;
+        private DevExpress.XtraBars.BarButtonItem bRelatedDocSearch;
+        private DevExpress.XtraBars.BarButtonItem bGalleryImage;
 
     }
 }
