@@ -231,6 +231,13 @@ namespace CityPlanning
         {
 
         }
+
+        //规划文档效果图
+        private void bGalleryImage_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            //MessageBox.Show("abc");
+            //张雯待添加
+        }
         #endregion
 
         #region //左侧导航栏事件
@@ -824,6 +831,7 @@ namespace CityPlanning
         }
 
         #endregion
+
 
 
         //test add code
