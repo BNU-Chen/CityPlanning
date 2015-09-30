@@ -28,14 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.TextEdit_Filter = new DevExpress.XtraEditors.TextEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.TreeListFiles = new DevExpress.XtraTreeList.TreeList();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmi_AddFiles = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_DeleteFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_DefaultOpenFile = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TextEdit_Filter.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TreeListFiles)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelControl1
@@ -90,7 +96,36 @@
             this.TreeListFiles.Size = new System.Drawing.Size(246, 482);
             this.TreeListFiles.TabIndex = 6;
             this.TreeListFiles.TreeLineStyle = DevExpress.XtraTreeList.LineStyle.None;
-            this.TreeListFiles.ColumnFilterChanged += new System.EventHandler(this.treeList1_ColumnFilterChanged);
+            this.TreeListFiles.ColumnFilterChanged += new System.EventHandler(this.textEdit_Filter_EditValueChanged);
+            this.TreeListFiles.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TreeListFiles_MouseUp);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmi_AddFiles,
+            this.tsmi_DeleteFile,
+            this.tsmi_DefaultOpenFile});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(185, 92);
+            this.contextMenuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.contextMenuStrip1_ItemClicked);
+            // 
+            // tsmi_AddFiles
+            // 
+            this.tsmi_AddFiles.Name = "tsmi_AddFiles";
+            this.tsmi_AddFiles.Size = new System.Drawing.Size(184, 22);
+            this.tsmi_AddFiles.Text = "添加文件";
+            // 
+            // tsmi_DeleteFile
+            // 
+            this.tsmi_DeleteFile.Name = "tsmi_DeleteFile";
+            this.tsmi_DeleteFile.Size = new System.Drawing.Size(184, 22);
+            this.tsmi_DeleteFile.Text = "删除";
+            // 
+            // tsmi_DefaultOpenFile
+            // 
+            this.tsmi_DefaultOpenFile.Name = "tsmi_DefaultOpenFile";
+            this.tsmi_DefaultOpenFile.Size = new System.Drawing.Size(184, 22);
+            this.tsmi_DefaultOpenFile.Text = "用系统默认程序打开";
             // 
             // ucNavigationFiles
             // 
@@ -105,6 +140,7 @@
             this.panelControl1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TextEdit_Filter.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TreeListFiles)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -115,5 +151,9 @@
         private DevExpress.XtraEditors.TextEdit TextEdit_Filter;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraTreeList.TreeList TreeListFiles;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem tsmi_AddFiles;
+        private System.Windows.Forms.ToolStripMenuItem tsmi_DeleteFile;
+        private System.Windows.Forms.ToolStripMenuItem tsmi_DefaultOpenFile;
     }
 }

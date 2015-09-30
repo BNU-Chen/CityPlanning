@@ -25,15 +25,16 @@ namespace ConnectionCenter
         {
             string connString = "Data Source=" + DBServerName + ";Initial Catalog="
                 + DbCatalogName + ";User ID =" + DBUserName + ";Password="
-                + DBPassword + ";Integrated Security=True";
+                + DBPassword + ";Integrated Security=false";
             SqlConnection conn = null;
             conn = new SqlConnection(connString);
             try
             {
                 conn.Open();
             }
-            catch
+            catch(Exception ex)
             {
+                MessageBox.Show(ex.Message, "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 conn = null;
             }
             finally
@@ -46,7 +47,7 @@ namespace ConnectionCenter
                     }
                     conn.Close();
                 }
-            }          
+            }
 
             return conn;
         }
