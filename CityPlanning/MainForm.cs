@@ -231,6 +231,13 @@ namespace CityPlanning
         {
 
         }
+
+        //规划文档效果图
+        private void bGalleryImage_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            //MessageBox.Show("abc");
+            //张雯待添加
+        }
         #endregion
 
         #region //左侧导航栏事件
@@ -513,8 +520,8 @@ namespace CityPlanning
         {
             
         }
-        
-        //ChartButton生成统计图表
+
+        #region //ChartButton生成统计图表
         //柱状图
         private void BarChartButton_ItemClick(object sender, ItemClickEventArgs e)
         {
@@ -686,8 +693,11 @@ namespace CityPlanning
                 AxisYTitlebarEditItem.EditValue.ToString());
         }
         #endregion
-        
+
+        #endregion
+
         #region //地图工具按钮事件
+        //打开地图
         private void bGalleryOpenMap_ItemClick(object sender, ItemClickEventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
@@ -703,6 +713,19 @@ namespace CityPlanning
                     curAxMapControl.LoadMxFile(fi.FullName);
                     curAxMapControl.ActiveView.Refresh();
                 }
+            }
+        }
+        //关联文本查询
+        private void bRelatedDocSearch_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Control control = this.xtraTabControl_Main.SelectedTabPage.Controls[0];
+            if (control is AxMapControl)
+            {
+                this.panelControl_Navigation.Controls.Clear();
+                this.panelControl_Navigation.Controls.Add(ucDocIntSearch);
+                ucDocIntSearch.SearchFromDocument("沈阳", @"D:\项目 - 沈阳经济区\文本\沈阳经济区国土规划文本（20150805稿）.doc");
+                //RichEditControl richEditControl = (RichEditControl)control;
+                //ucDocIntSearch.RichEditControl = richEditControl;
             }
         }
         //添加图层
@@ -753,7 +776,7 @@ namespace CityPlanning
         }
         #endregion
 
-
+        #region //文档搜索相关
         private void bDoc_InitDocument_ItemClick(object sender, ItemClickEventArgs e)
         {
 
@@ -778,6 +801,38 @@ namespace CityPlanning
                 ucDocIntSearch.RichEditControl = richEditControl;
             }
         }
+
+        //郭海强 测试图表显示控件0922
+        private void barButtonItem1_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Control control = this.xtraTabControl_Main.SelectedTabPage.Controls[0];
+            if (control is SpreadsheetControl)
+            {
+                SpreadsheetControl ssc = (SpreadsheetControl)control;
+                Worksheet worksheet = ssc.Document.Worksheets.ActiveWorksheet;
+                DataTable dt = StatisticChart.DataOperation.CreateTablefromWorkSheet(worksheet);
+
+                if (dt != null)
+                {
+                    Modules.ucChartShow ucChSh = new Modules.ucChartShow();
+                    XtraTabPage xtp = new XtraTabPage();
+                    xtp.Text = dt.TableName;
+                    xtp.Controls.Add(ucChSh);
+                    ucChSh.Dock = DockStyle.Fill;
+                    this.xtraTabControl_Main.TabPages.Add(xtp);
+                    this.xtraTabControl_Main.SelectedTabPage = xtp;
+                    ucChSh.SetChartShow(dt, ViewType.Bar);
+                    ucChSh.Refresh();
+                    xtp.Refresh();
+                    this.xtraTabControl_Main.Refresh();
+                    this.Refresh();
+                }
+            }
+        }
+
+        #endregion
+
+
 
         //test add code
         //test add second code

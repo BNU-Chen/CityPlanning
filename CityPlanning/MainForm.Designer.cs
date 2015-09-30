@@ -303,7 +303,8 @@
             this.repositoryItemTextEdit3 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.bDoc_Search = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
-            this.barStaticItem1 = new DevExpress.XtraBars.BarStaticItem();
+            this.bRelatedDocSearch = new DevExpress.XtraBars.BarButtonItem();
+            this.bGalleryImage = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonImageCollectionLarge = new DevExpress.Utils.ImageCollection(this.components);
             this.ribbonPageCategory_map = new DevExpress.XtraBars.Ribbon.RibbonPageCategory();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -750,10 +751,11 @@
             this.AxisYTitlebarEditItem,
             this.bDoc_Search,
             this.barButtonItem3,
-            this.barStaticItem1});
+            this.bRelatedDocSearch,
+            this.bGalleryImage});
             this.ribbonControl.LargeImages = this.ribbonImageCollectionLarge;
             this.ribbonControl.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl.MaxItemId = 694;
+            this.ribbonControl.MaxItemId = 696;
             this.ribbonControl.Name = "ribbonControl";
             this.ribbonControl.PageCategories.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageCategory[] {
             this.ribbonPageCategory_map,
@@ -2874,6 +2876,7 @@
             this.barButtonItem1.CategoryGuid = new System.Guid("6ffddb2b-9015-4d97-a4c1-91613e0ef537");
             this.barButtonItem1.Id = 665;
             this.barButtonItem1.Name = "barButtonItem1";
+            this.barButtonItem1.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem1_ItemClick);
             // 
             // BarChartButton
             // 
@@ -3032,12 +3035,20 @@
             this.barButtonItem3.Id = 688;
             this.barButtonItem3.Name = "barButtonItem3";
             // 
-            // barStaticItem1
+            // bRelatedDocSearch
             // 
-            this.barStaticItem1.Caption = "barStaticItem1";
-            this.barStaticItem1.Id = 689;
-            this.barStaticItem1.Name = "barStaticItem1";
-            this.barStaticItem1.TextAlignment = System.Drawing.StringAlignment.Near;
+            this.bRelatedDocSearch.Caption = "关联文本";
+            this.bRelatedDocSearch.CategoryGuid = new System.Guid("6ffddb2b-9015-4d97-a4c1-91613e0ef537");
+            this.bRelatedDocSearch.Id = 694;
+            this.bRelatedDocSearch.Name = "bRelatedDocSearch";
+            this.bRelatedDocSearch.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bRelatedDocSearch_ItemClick);
+            // 
+            // bGalleryImage
+            // 
+            this.bGalleryImage.Caption = "规划图件";
+            this.bGalleryImage.Id = 695;
+            this.bGalleryImage.Name = "bGalleryImage";
+            this.bGalleryImage.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bGalleryImage_ItemClick);
             // 
             // ribbonImageCollectionLarge
             // 
@@ -3094,6 +3105,7 @@
             // ribbonPageGroup3
             // 
             this.ribbonPageGroup3.ItemLinks.Add(this.bMapQueryByPoint);
+            this.ribbonPageGroup3.ItemLinks.Add(this.bRelatedDocSearch);
             this.ribbonPageGroup3.Name = "ribbonPageGroup3";
             this.ribbonPageGroup3.Text = "查询";
             // 
@@ -3147,7 +3159,10 @@
             this.bDoc_InternalSearch.Glyph = global::CityPlanning.Properties.Resources.search_32;
             this.bDoc_InternalSearch.Id = 693;
             this.bDoc_InternalSearch.Name = "bDoc_InternalSearch";
+<<<<<<< HEAD
             this.bDoc_InternalSearch.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+=======
+>>>>>>> master
             this.bDoc_InternalSearch.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bDoc_InternalSearch_ItemClick);
             // 
             // fileRibbonPage1
@@ -3494,6 +3509,7 @@
             this.ribbonPageGroup_PlanData.ItemLinks.Add(this.bGalleryRelationalDatabase);
             this.ribbonPageGroup_PlanData.ItemLinks.Add(this.bGalleryDocument);
             this.ribbonPageGroup_PlanData.ItemLinks.Add(this.bGallery3DMap);
+            this.ribbonPageGroup_PlanData.ItemLinks.Add(this.bGalleryImage);
             this.ribbonPageGroup_PlanData.Name = "ribbonPageGroup_PlanData";
             this.ribbonPageGroup_PlanData.Text = "数据浏览";
             // 
@@ -4581,9 +4597,10 @@
         private DevExpress.XtraBars.BarButtonItem bDoc_Search;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup8;
         private DevExpress.XtraBars.BarButtonItem barButtonItem3;
-        private DevExpress.XtraBars.BarStaticItem barStaticItem1;
         private DevExpress.XtraBars.BarButtonItem bDoc_InternalSearch;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup9;
+        private DevExpress.XtraBars.BarButtonItem bRelatedDocSearch;
+        private DevExpress.XtraBars.BarButtonItem bGalleryImage;
 
     }
 }
