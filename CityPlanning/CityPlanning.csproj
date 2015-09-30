@@ -57,11 +57,13 @@
     <Reference Include="DevExpress.Images.v13.1, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Office.v13.1.Core, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Pdf.v13.1.Core, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.PivotGrid.v13.1.Core, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Printing.v13.1.Core, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.RichEdit.v13.1.Core, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Sparkline.v13.1.Core, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Spreadsheet.v13.1.Core, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Utils.v13.1, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v13.1.UI, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraBars.v13.1, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraCharts.v13.1, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraCharts.v13.1.UI, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -126,6 +128,18 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="ComponentOperator.cs" />
+    <Compile Include="Forms\frmMapFeatureAttr.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmMapFeatureAttr.Designer.cs">
+      <DependentUpon>frmMapFeatureAttr.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\xFrmMapFeatureAttr.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\xFrmMapFeatureAttr.Designer.cs">
+      <DependentUpon>xFrmMapFeatureAttr.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmStartConnectionConfig.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -195,6 +209,9 @@
     <Compile Include="Person.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\frmMapFeatureAttr.resx">
+      <DependentUpon>frmMapFeatureAttr.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmStartConnectionConfig.resx">
       <DependentUpon>frmStartConnectionConfig.cs</DependentUpon>
     </EmbeddedResource>
