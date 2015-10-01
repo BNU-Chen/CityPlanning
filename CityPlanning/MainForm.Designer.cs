@@ -305,12 +305,17 @@
             this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
             this.bRelatedDocSearch = new DevExpress.XtraBars.BarButtonItem();
             this.bGalleryImage = new DevExpress.XtraBars.BarButtonItem();
+            this.ribbonGallery_MapKeywords = new DevExpress.XtraBars.RibbonGalleryBarItem();
+            this.ribbonGallery_MapTables = new DevExpress.XtraBars.RibbonGalleryBarItem();
+            this.bCurMapAttrTable = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonImageCollectionLarge = new DevExpress.Utils.ImageCollection(this.components);
             this.ribbonPageCategory_map = new DevExpress.XtraBars.Ribbon.RibbonPageCategory();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.地图关键词 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageCategory_doc = new DevExpress.XtraBars.Ribbon.RibbonPageCategory();
             this.ribbonPage_DocAnalyst = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup7 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -411,11 +416,6 @@
             this.pdfSetFitWidthZoomModeCheckItem1 = new DevExpress.XtraPdfViewer.Bars.PdfSetFitWidthZoomModeCheckItem();
             this.pdfSetFitVisibleZoomModeCheckItem1 = new DevExpress.XtraPdfViewer.Bars.PdfSetFitVisibleZoomModeCheckItem();
             this.pdfBarController1 = new DevExpress.XtraPdfViewer.Bars.PdfBarController();
-            this.地图关键词 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonGallery_MapKeywords = new DevExpress.XtraBars.RibbonGalleryBarItem();
-            this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonGallery_MapTables = new DevExpress.XtraBars.RibbonGalleryBarItem();
-            this.bCurMapAttrTable = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.appMenu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonImageCollection)).BeginInit();
@@ -3058,6 +3058,24 @@
             this.bGalleryImage.Name = "bGalleryImage";
             this.bGalleryImage.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bGalleryImage_ItemClick);
             // 
+            // ribbonGallery_MapKeywords
+            // 
+            this.ribbonGallery_MapKeywords.Caption = "ribbonGalleryBarItem1";
+            this.ribbonGallery_MapKeywords.Id = 697;
+            this.ribbonGallery_MapKeywords.Name = "ribbonGallery_MapKeywords";
+            // 
+            // ribbonGallery_MapTables
+            // 
+            this.ribbonGallery_MapTables.Caption = "ribbonGalleryBarItem1";
+            this.ribbonGallery_MapTables.Id = 698;
+            this.ribbonGallery_MapTables.Name = "ribbonGallery_MapTables";
+            // 
+            // bCurMapAttrTable
+            // 
+            this.bCurMapAttrTable.Caption = "地图属性表";
+            this.bCurMapAttrTable.Id = 699;
+            this.bCurMapAttrTable.Name = "bCurMapAttrTable";
+            // 
             // ribbonImageCollectionLarge
             // 
             this.ribbonImageCollectionLarge.ImageSize = new System.Drawing.Size(32, 32);
@@ -3118,6 +3136,19 @@
             this.ribbonPageGroup3.ItemLinks.Add(this.bRelatedDocSearch);
             this.ribbonPageGroup3.Name = "ribbonPageGroup3";
             this.ribbonPageGroup3.Text = "查询";
+            // 
+            // 地图关键词
+            // 
+            this.地图关键词.ItemLinks.Add(this.ribbonGallery_MapKeywords);
+            this.地图关键词.Name = "地图关键词";
+            this.地图关键词.Text = "地图关键词";
+            // 
+            // ribbonPageGroup4
+            // 
+            this.ribbonPageGroup4.ItemLinks.Add(this.ribbonGallery_MapTables);
+            this.ribbonPageGroup4.ItemLinks.Add(this.bCurMapAttrTable);
+            this.ribbonPageGroup4.Name = "ribbonPageGroup4";
+            this.ribbonPageGroup4.Text = "地图关联表格";
             // 
             // ribbonPageCategory_doc
             // 
@@ -3983,7 +4014,7 @@
             // 
             this.barDockControl1.CausesValidation = false;
             this.barDockControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.barDockControl1.Location = new System.Drawing.Point(0, 0);
+            this.barDockControl1.Location = new System.Drawing.Point(0, 147);
             this.barDockControl1.Size = new System.Drawing.Size(1100, 0);
             // 
             // barDockControl2
@@ -3997,15 +4028,15 @@
             // 
             this.barDockControl3.CausesValidation = false;
             this.barDockControl3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControl3.Location = new System.Drawing.Point(0, 0);
-            this.barDockControl3.Size = new System.Drawing.Size(0, 699);
+            this.barDockControl3.Location = new System.Drawing.Point(0, 147);
+            this.barDockControl3.Size = new System.Drawing.Size(0, 552);
             // 
             // barDockControl4
             // 
             this.barDockControl4.CausesValidation = false;
             this.barDockControl4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControl4.Location = new System.Drawing.Point(1100, 0);
-            this.barDockControl4.Size = new System.Drawing.Size(0, 699);
+            this.barDockControl4.Location = new System.Drawing.Point(1100, 147);
+            this.barDockControl4.Size = new System.Drawing.Size(0, 552);
             // 
             // pdfFileOpenBarItem1
             // 
@@ -4167,37 +4198,6 @@
             this.pdfBarController1.BarItems.Add(this.pdfSetPageLevelZoomModeCheckItem1);
             this.pdfBarController1.BarItems.Add(this.pdfSetFitWidthZoomModeCheckItem1);
             this.pdfBarController1.BarItems.Add(this.pdfSetFitVisibleZoomModeCheckItem1);
-            // 
-            // 地图关键词
-            // 
-            this.地图关键词.ItemLinks.Add(this.ribbonGallery_MapKeywords);
-            this.地图关键词.Name = "地图关键词";
-            this.地图关键词.Text = "地图关键词";
-            // 
-            // ribbonGallery_MapKeywords
-            // 
-            this.ribbonGallery_MapKeywords.Caption = "ribbonGalleryBarItem1";
-            this.ribbonGallery_MapKeywords.Id = 697;
-            this.ribbonGallery_MapKeywords.Name = "ribbonGallery_MapKeywords";
-            // 
-            // ribbonPageGroup4
-            // 
-            this.ribbonPageGroup4.ItemLinks.Add(this.ribbonGallery_MapTables);
-            this.ribbonPageGroup4.ItemLinks.Add(this.bCurMapAttrTable);
-            this.ribbonPageGroup4.Name = "ribbonPageGroup4";
-            this.ribbonPageGroup4.Text = "地图关联表格";
-            // 
-            // ribbonGallery_MapTables
-            // 
-            this.ribbonGallery_MapTables.Caption = "ribbonGalleryBarItem1";
-            this.ribbonGallery_MapTables.Id = 698;
-            this.ribbonGallery_MapTables.Name = "ribbonGallery_MapTables";
-            // 
-            // bCurMapAttrTable
-            // 
-            this.bCurMapAttrTable.Caption = "barButtonItem2";
-            this.bCurMapAttrTable.Id = 699;
-            this.bCurMapAttrTable.Name = "bCurMapAttrTable";
             // 
             // MainForm
             // 

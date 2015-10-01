@@ -188,6 +188,12 @@
     <Compile Include="Modules\ucDocumentSearchClip.Designer.cs">
       <DependentUpon>ucDocumentSearchClip.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modules\ucFeatureAttrItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\ucFeatureAttrItem.Designer.cs">
+      <DependentUpon>ucFeatureAttrItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modules\ucNavigationFiles.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -235,6 +241,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\ucDocumentSearchClip.resx">
       <DependentUpon>ucDocumentSearchClip.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\ucFeatureAttrItem.resx">
+      <DependentUpon>ucFeatureAttrItem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\ucNavigationFiles.resx">
       <DependentUpon>ucNavigationFiles.cs</DependentUpon>
