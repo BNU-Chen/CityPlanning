@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using System.IO;
+using System.Data;
 
 using ESRI.ArcGIS.Geodatabase;
 using ESRI.ArcGIS.DataSourcesRaster;
@@ -105,8 +106,8 @@ namespace GISManager
         /// <summary>
         /// 获得选中的要素ICurse
         /// </summary>
-        /// <param name="_featureLayer"></param>
-        /// <returns></returns>
+        /// <param name="_featureLayer">IFeatureLayer</param>
+        /// <returns>ICursor</returns>
         public static ICursor GetSelectionFeature(IFeatureLayer _featureLayer)
         {
             IFeatureSelection featureSelection = _featureLayer as IFeatureSelection;
@@ -133,6 +134,41 @@ namespace GISManager
             }
             catch { }
             return cursor;
+
+        }
+
+        /// <summary>
+        /// 获得选中的要素DataTable
+        /// </summary>
+        /// <param name="_featureLayer">IFeatureLayer</param>
+        /// <returns>ICursor</returns>
+        public static DataTable GetSelectionFeature(IFeatureLayer _featureLayer)
+        {
+            DataTable dt = new DataTable();
+            IFeatureSelection featureSelection = _featureLayer as IFeatureSelection;
+            ISelectionSet selectionSet = featureSelection.SelectionSet;
+
+            ICursor cursor = null;
+            try
+            {
+                selectionSet.Search(null, false, out cursor);
+
+                //IRow row = cursor.NextRow();
+                //while (row != null)
+                //{
+                //    IFeature feature = (IFeature)row;
+                //    ITable table = row.Table;
+                //    int nameIndex = table.FindField("PAC");
+                //    if (nameIndex > 0)
+                //    {
+                //        string value = (string)feature.get_Value(nameIndex);
+                //        MessageBox.Show(value);
+                //        break;
+                //    }
+                //}
+            }
+            catch { }
+            return dt;
 
         }
     }

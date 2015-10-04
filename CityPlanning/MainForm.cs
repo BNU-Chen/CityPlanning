@@ -46,6 +46,10 @@ namespace CityPlanning
         private SpreadsheetControl curSpreadsheetControl = null;
         private RichEditControl curRichEditControl = null;
 
+
+        //地图相关
+        private bool isIdentifyMap = false;  //是否开始地图查询
+
         
         //自定义类声明
         private int iconCount = 0;
@@ -503,6 +507,7 @@ namespace CityPlanning
                     this.ribbonPageCategory_doc.Visible = false;
                     this.ribbonPageCategory_map.Visible = true;
                     this.ribbonControl.SelectedPage = this.ribbonPageCategory_map.Pages[0];
+                    curAxMapControl.OnMouseUp += curAxMapControl_OnMouseUp;
                     break;
                 }
                 else
@@ -515,11 +520,7 @@ namespace CityPlanning
                 }
             }
         }
-        //TabPage切换函数
-        private void ShowSpecificsRibbonPage(Control _control)
-        {
-            
-        }
+
 
         #region //ChartButton生成统计图表
         //柱状图
@@ -771,8 +772,9 @@ namespace CityPlanning
 
         private void bMapQueryByPoint_ItemClick(object sender, ItemClickEventArgs e)
         {
-            GISTools.SelectFeature(curAxMapControl);
+            //GISTools.SelectFeature(curAxMapControl);
             curAxMapControl.MousePointer = ESRI.ArcGIS.Controls.esriControlsMousePointer.esriPointerCrosshair;
+            isIdentifyMap = true;
         }
         #endregion
 
@@ -832,6 +834,30 @@ namespace CityPlanning
 
         #endregion
 
+        #region //MapControl 事件
+        void curAxMapControl_OnMouseUp(object sender, IMapControlEvents2_OnMouseUpEvent e)
+        {
+
+            if (e.button == 1)  //左键
+            {
+                MessageBox.Show("左键");
+                if (isIdentifyMap)
+                {
+                    GetStaInfoByMap();
+                }
+            }
+            else if (e.button == 2) //右键
+            {
+                MessageBox.Show("右键");
+            }
+            else if (e.button == 3) //中键
+            {
+                MessageBox.Show("中键");
+            }
+            //throw new NotImplementedException();
+        }
+
+        #endregion
 
 
         //test add code

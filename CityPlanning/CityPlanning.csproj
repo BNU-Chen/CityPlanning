@@ -126,7 +126,7 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="HandleCenter.cs" />
     <Compile Include="ComponentOperator.cs" />
     <Compile Include="Forms\frmMapFeatureAttr.cs">
       <SubType>Form</SubType>
@@ -194,6 +194,12 @@
     <Compile Include="Modules\ucFeatureAttrItem.Designer.cs">
       <DependentUpon>ucFeatureAttrItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modules\ucMapControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\ucMapControl.Designer.cs">
+      <DependentUpon>ucMapControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modules\ucNavigationFiles.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -244,6 +250,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\ucFeatureAttrItem.resx">
       <DependentUpon>ucFeatureAttrItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\ucMapControl.resx">
+      <DependentUpon>ucMapControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\ucNavigationFiles.resx">
       <DependentUpon>ucNavigationFiles.cs</DependentUpon>
