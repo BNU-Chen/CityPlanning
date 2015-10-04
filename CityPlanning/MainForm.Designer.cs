@@ -305,12 +305,17 @@
             this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
             this.bRelatedDocSearch = new DevExpress.XtraBars.BarButtonItem();
             this.bGalleryImage = new DevExpress.XtraBars.BarButtonItem();
+            this.ribbonGallery_MapKeywords = new DevExpress.XtraBars.RibbonGalleryBarItem();
+            this.ribbonGallery_MapTables = new DevExpress.XtraBars.RibbonGalleryBarItem();
+            this.bCurMapAttrTable = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonImageCollectionLarge = new DevExpress.Utils.ImageCollection(this.components);
             this.ribbonPageCategory_map = new DevExpress.XtraBars.Ribbon.RibbonPageCategory();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.地图关键词 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageCategory_doc = new DevExpress.XtraBars.Ribbon.RibbonPageCategory();
             this.ribbonPage_DocAnalyst = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup7 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -752,10 +757,13 @@
             this.bDoc_Search,
             this.barButtonItem3,
             this.bRelatedDocSearch,
-            this.bGalleryImage});
+            this.bGalleryImage,
+            this.ribbonGallery_MapKeywords,
+            this.ribbonGallery_MapTables,
+            this.bCurMapAttrTable});
             this.ribbonControl.LargeImages = this.ribbonImageCollectionLarge;
             this.ribbonControl.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl.MaxItemId = 696;
+            this.ribbonControl.MaxItemId = 700;
             this.ribbonControl.Name = "ribbonControl";
             this.ribbonControl.PageCategories.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageCategory[] {
             this.ribbonPageCategory_map,
@@ -3050,6 +3058,24 @@
             this.bGalleryImage.Name = "bGalleryImage";
             this.bGalleryImage.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bGalleryImage_ItemClick);
             // 
+            // ribbonGallery_MapKeywords
+            // 
+            this.ribbonGallery_MapKeywords.Caption = "ribbonGalleryBarItem1";
+            this.ribbonGallery_MapKeywords.Id = 697;
+            this.ribbonGallery_MapKeywords.Name = "ribbonGallery_MapKeywords";
+            // 
+            // ribbonGallery_MapTables
+            // 
+            this.ribbonGallery_MapTables.Caption = "ribbonGalleryBarItem1";
+            this.ribbonGallery_MapTables.Id = 698;
+            this.ribbonGallery_MapTables.Name = "ribbonGallery_MapTables";
+            // 
+            // bCurMapAttrTable
+            // 
+            this.bCurMapAttrTable.Caption = "地图属性表";
+            this.bCurMapAttrTable.Id = 699;
+            this.bCurMapAttrTable.Name = "bCurMapAttrTable";
+            // 
             // ribbonImageCollectionLarge
             // 
             this.ribbonImageCollectionLarge.ImageSize = new System.Drawing.Size(32, 32);
@@ -3078,7 +3104,9 @@
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroup1,
             this.ribbonPageGroup2,
-            this.ribbonPageGroup3});
+            this.ribbonPageGroup3,
+            this.地图关键词,
+            this.ribbonPageGroup4});
             this.ribbonPage1.Name = "ribbonPage1";
             this.ribbonPage1.Text = "地图工具";
             this.ribbonPage1.Visible = false;
@@ -3108,6 +3136,19 @@
             this.ribbonPageGroup3.ItemLinks.Add(this.bRelatedDocSearch);
             this.ribbonPageGroup3.Name = "ribbonPageGroup3";
             this.ribbonPageGroup3.Text = "查询";
+            // 
+            // 地图关键词
+            // 
+            this.地图关键词.ItemLinks.Add(this.ribbonGallery_MapKeywords);
+            this.地图关键词.Name = "地图关键词";
+            this.地图关键词.Text = "地图关键词";
+            // 
+            // ribbonPageGroup4
+            // 
+            this.ribbonPageGroup4.ItemLinks.Add(this.ribbonGallery_MapTables);
+            this.ribbonPageGroup4.ItemLinks.Add(this.bCurMapAttrTable);
+            this.ribbonPageGroup4.Name = "ribbonPageGroup4";
+            this.ribbonPageGroup4.Text = "地图关联表格";
             // 
             // ribbonPageCategory_doc
             // 
@@ -4597,6 +4638,11 @@
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup9;
         private DevExpress.XtraBars.BarButtonItem bRelatedDocSearch;
         private DevExpress.XtraBars.BarButtonItem bGalleryImage;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup 地图关键词;
+        private DevExpress.XtraBars.RibbonGalleryBarItem ribbonGallery_MapKeywords;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup4;
+        private DevExpress.XtraBars.RibbonGalleryBarItem ribbonGallery_MapTables;
+        private DevExpress.XtraBars.BarButtonItem bCurMapAttrTable;
 
     }
 }
