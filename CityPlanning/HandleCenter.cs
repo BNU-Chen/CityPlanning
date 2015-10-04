@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace CityPlanning
 {
-    public class Class1
+    public class HandleCenter
     {
+        public void QueryMapFeatureAttr()
+        {
+
+        }
     }
 }
