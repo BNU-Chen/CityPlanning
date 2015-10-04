@@ -142,7 +142,7 @@ namespace GISManager
         /// </summary>
         /// <param name="_featureLayer">IFeatureLayer</param>
         /// <returns>ICursor</returns>
-        public static DataTable GetSelectionFeature(IFeatureLayer _featureLayer)
+        public static DataTable GetFeatureAttr(IFeatureLayer _featureLayer)
         {
             DataTable dt = new DataTable();
             IFeatureSelection featureSelection = _featureLayer as IFeatureSelection;
