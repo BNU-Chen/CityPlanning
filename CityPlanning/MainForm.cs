@@ -843,7 +843,7 @@ namespace CityPlanning
                 MessageBox.Show("左键");
                 if (isIdentifyMap)
                 {
-                    GetStaInfoByMap();
+                    //GetStaInfoByMap();
                 }
             }
             else if (e.button == 2) //右键
