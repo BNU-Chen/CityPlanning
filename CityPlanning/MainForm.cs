@@ -243,8 +243,8 @@ namespace CityPlanning
             string path = @"E:\项目 - 2014 沈阳经济区\data\图集\经济区图册正面";
             this.panelControl_Navigation.Controls.Clear();
             this.panelControl_Navigation.Controls.Add(ucNavImage);
-            ucNavImage.ImageFolderPath = path;
             ucNavImage.XTabControl = this.xtraTabControl_Main;
+            ucNavImage.ImageFolderPath = path;
             ucNavImage.Dock = DockStyle.Fill;
         }
         #endregion
