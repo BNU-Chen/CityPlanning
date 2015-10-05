@@ -194,6 +194,18 @@
     <Compile Include="Modules\ucFeatureAttrItem.Designer.cs">
       <DependentUpon>ucFeatureAttrItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modules\ucImageThumb.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\ucImageThumb.Designer.cs">
+      <DependentUpon>ucImageThumb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\ucImageViewer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\ucImageViewer.Designer.cs">
+      <DependentUpon>ucImageViewer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modules\ucMapControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -205,6 +217,12 @@
     </Compile>
     <Compile Include="Modules\ucNavigationFiles.Designer.cs">
       <DependentUpon>ucNavigationFiles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\ucNavigationImage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\ucNavigationImage.Designer.cs">
+      <DependentUpon>ucNavigationImage.cs</DependentUpon>
     </Compile>
     <Compile Include="Modules\ucNavigationRDB.cs">
       <SubType>UserControl</SubType>
@@ -251,11 +269,20 @@
     <EmbeddedResource Include="Modules\ucFeatureAttrItem.resx">
       <DependentUpon>ucFeatureAttrItem.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Modules\ucImageThumb.resx">
+      <DependentUpon>ucImageThumb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\ucImageViewer.resx">
+      <DependentUpon>ucImageViewer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Modules\ucMapControl.resx">
       <DependentUpon>ucMapControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\ucNavigationFiles.resx">
       <DependentUpon>ucNavigationFiles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\ucNavigationImage.resx">
+      <DependentUpon>ucNavigationImage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\ucNavigationRDB.resx">
       <DependentUpon>ucNavigationRDB.cs</DependentUpon>
@@ -395,6 +422,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\delete_16.png" />
+    <None Include="Resources\PlanImageIcon.png" />
     <Content Include="Resources\saveAs_16.png" />
     <Content Include="Resources\saveAs_32.png" />
   </ItemGroup>

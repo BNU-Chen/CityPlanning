@@ -59,6 +59,7 @@ namespace CityPlanning
         public Modules.ucNavigationFiles ucNaviFiles = new Modules.ucNavigationFiles();
         public Modules.ucDocumentSearch ucDocSearch = new Modules.ucDocumentSearch();
         public Modules.ucDocumentInternalSearch ucDocIntSearch = new Modules.ucDocumentInternalSearch(); //郭海强 添加关键词搜索控件0913
+        public Modules.ucNavigationImage ucNavImage = new Modules.ucNavigationImage();  //规划效果图浏览
 
         #endregion
 
@@ -239,8 +240,12 @@ namespace CityPlanning
         //规划文档效果图
         private void bGalleryImage_ItemClick(object sender, ItemClickEventArgs e)
         {
-            //MessageBox.Show("abc");
-            //张雯待添加
+            string path = @"E:\项目 - 2014 沈阳经济区\data\图集\经济区图册正面";
+            this.panelControl_Navigation.Controls.Clear();
+            this.panelControl_Navigation.Controls.Add(ucNavImage);
+            ucNavImage.ImageFolderPath = path;
+            ucNavImage.XTabControl = this.xtraTabControl_Main;
+            ucNavImage.Dock = DockStyle.Fill;
         }
         #endregion
 
@@ -843,7 +848,7 @@ namespace CityPlanning
                 MessageBox.Show("左键");
                 if (isIdentifyMap)
                 {
-                    GetStaInfoByMap();
+                    //GetStaInfoByMap();
                 }
             }
             else if (e.button == 2) //右键

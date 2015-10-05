@@ -3054,8 +3054,10 @@
             // bGalleryImage
             // 
             this.bGalleryImage.Caption = "规划图件";
+            this.bGalleryImage.Glyph = global::CityPlanning.Properties.Resources.PlanImageIcon;
             this.bGalleryImage.Id = 695;
             this.bGalleryImage.Name = "bGalleryImage";
+            this.bGalleryImage.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.bGalleryImage.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bGalleryImage_ItemClick);
             // 
             // ribbonGallery_MapKeywords
@@ -3545,8 +3547,8 @@
             this.ribbonPageGroup_PlanData.ItemLinks.Add(this.bGalleryGeodatabase);
             this.ribbonPageGroup_PlanData.ItemLinks.Add(this.bGalleryRelationalDatabase);
             this.ribbonPageGroup_PlanData.ItemLinks.Add(this.bGalleryDocument);
-            this.ribbonPageGroup_PlanData.ItemLinks.Add(this.bGallery3DMap);
             this.ribbonPageGroup_PlanData.ItemLinks.Add(this.bGalleryImage);
+            this.ribbonPageGroup_PlanData.ItemLinks.Add(this.bGallery3DMap);
             this.ribbonPageGroup_PlanData.Name = "ribbonPageGroup_PlanData";
             this.ribbonPageGroup_PlanData.Text = "数据浏览";
             // 
