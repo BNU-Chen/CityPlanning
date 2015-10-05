@@ -272,7 +272,7 @@
             // 
             // txt_ftpIP
             // 
-            this.txt_ftpIP.EditValue = "D:\\项目 - 沈阳经济区\\图集\\原始矢量数据\\图集\\矢量图";
+            this.txt_ftpIP.EditValue = "E:\\项目 - 2014 沈阳经济区\\data\\图集\\原始矢量数据\\图集\\矢量图";
             this.txt_ftpIP.Location = new System.Drawing.Point(67, 19);
             this.txt_ftpIP.Name = "txt_ftpIP";
             this.txt_ftpIP.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(241)))), ((int)(((byte)(252)))));

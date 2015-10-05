@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraBars.Ribbon.GalleryItemGroup galleryItemGroup1 = new DevExpress.XtraBars.Ribbon.GalleryItemGroup();
+            DevExpress.XtraBars.Ribbon.GalleryItemGroup galleryItemGroup4 = new DevExpress.XtraBars.Ribbon.GalleryItemGroup();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            DevExpress.XtraBars.Ribbon.ReduceOperation reduceOperation1 = new DevExpress.XtraBars.Ribbon.ReduceOperation();
-            DevExpress.XtraBars.Ribbon.ReduceOperation reduceOperation2 = new DevExpress.XtraBars.Ribbon.ReduceOperation();
+            DevExpress.XtraBars.Ribbon.ReduceOperation reduceOperation7 = new DevExpress.XtraBars.Ribbon.ReduceOperation();
+            DevExpress.XtraBars.Ribbon.ReduceOperation reduceOperation8 = new DevExpress.XtraBars.Ribbon.ReduceOperation();
             this.stylesRibbonPageGroup1 = new DevExpress.XtraRichEdit.UI.StylesRibbonPageGroup();
             this.galleryChangeStyleItem1 = new DevExpress.XtraRichEdit.UI.GalleryChangeStyleItem();
             this.stylesRibbonPageGroup2 = new DevExpress.XtraSpreadsheet.UI.StylesRibbonPageGroup();
@@ -308,6 +308,7 @@
             this.ribbonGallery_MapKeywords = new DevExpress.XtraBars.RibbonGalleryBarItem();
             this.ribbonGallery_MapTables = new DevExpress.XtraBars.RibbonGalleryBarItem();
             this.bCurMapAttrTable = new DevExpress.XtraBars.BarButtonItem();
+            this.bMap_AddKeyword = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonImageCollectionLarge = new DevExpress.Utils.ImageCollection(this.components);
             this.ribbonPageCategory_map = new DevExpress.XtraBars.Ribbon.RibbonPageCategory();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -416,6 +417,8 @@
             this.pdfSetFitWidthZoomModeCheckItem1 = new DevExpress.XtraPdfViewer.Bars.PdfSetFitWidthZoomModeCheckItem();
             this.pdfSetFitVisibleZoomModeCheckItem1 = new DevExpress.XtraPdfViewer.Bars.PdfSetFitVisibleZoomModeCheckItem();
             this.pdfBarController1 = new DevExpress.XtraPdfViewer.Bars.PdfBarController();
+            this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem4 = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.appMenu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonImageCollection)).BeginInit();
@@ -467,7 +470,7 @@
             // 
             this.galleryChangeStyleItem1.Gallery.ColumnCount = 10;
             this.galleryChangeStyleItem1.Gallery.Groups.AddRange(new DevExpress.XtraBars.Ribbon.GalleryItemGroup[] {
-            galleryItemGroup1});
+            galleryItemGroup4});
             this.galleryChangeStyleItem1.Gallery.ImageSize = new System.Drawing.Size(65, 46);
             this.galleryChangeStyleItem1.Id = 499;
             this.galleryChangeStyleItem1.Name = "galleryChangeStyleItem1";
@@ -760,10 +763,13 @@
             this.bGalleryImage,
             this.ribbonGallery_MapKeywords,
             this.ribbonGallery_MapTables,
-            this.bCurMapAttrTable});
+            this.bCurMapAttrTable,
+            this.bMap_AddKeyword,
+            this.barButtonItem2,
+            this.barButtonItem4});
             this.ribbonControl.LargeImages = this.ribbonImageCollectionLarge;
             this.ribbonControl.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl.MaxItemId = 700;
+            this.ribbonControl.MaxItemId = 704;
             this.ribbonControl.Name = "ribbonControl";
             this.ribbonControl.PageCategories.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageCategory[] {
             this.ribbonPageCategory_map,
@@ -3063,6 +3069,12 @@
             // ribbonGallery_MapKeywords
             // 
             this.ribbonGallery_MapKeywords.Caption = "ribbonGalleryBarItem1";
+            // 
+            // 
+            // 
+            this.ribbonGallery_MapKeywords.Gallery.ColumnCount = 3;
+            this.ribbonGallery_MapKeywords.Gallery.ShowGroupCaption = true;
+            this.ribbonGallery_MapKeywords.Gallery.ShowItemText = true;
             this.ribbonGallery_MapKeywords.Id = 697;
             this.ribbonGallery_MapKeywords.Name = "ribbonGallery_MapKeywords";
             // 
@@ -3075,8 +3087,19 @@
             // bCurMapAttrTable
             // 
             this.bCurMapAttrTable.Caption = "地图属性表";
+            this.bCurMapAttrTable.Glyph = global::CityPlanning.Properties.Resources.AttrTable;
             this.bCurMapAttrTable.Id = 699;
             this.bCurMapAttrTable.Name = "bCurMapAttrTable";
+            this.bCurMapAttrTable.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            // 
+            // bMap_AddKeyword
+            // 
+            this.bMap_AddKeyword.Caption = "添加关键词";
+            this.bMap_AddKeyword.Glyph = global::CityPlanning.Properties.Resources.AddKey;
+            this.bMap_AddKeyword.Id = 700;
+            this.bMap_AddKeyword.Name = "bMap_AddKeyword";
+            this.bMap_AddKeyword.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.bMap_AddKeyword.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bMap_AddKeyword_ItemClick);
             // 
             // ribbonImageCollectionLarge
             // 
@@ -3142,6 +3165,7 @@
             // 地图关键词
             // 
             this.地图关键词.ItemLinks.Add(this.ribbonGallery_MapKeywords);
+            this.地图关键词.ItemLinks.Add(this.bMap_AddKeyword);
             this.地图关键词.Name = "地图关键词";
             this.地图关键词.Text = "地图关键词";
             // 
@@ -3234,12 +3258,12 @@
             this.stylesRibbonPageGroup1,
             this.editingRibbonPageGroup1});
             this.homeRibbonPage1.Name = "homeRibbonPage1";
-            reduceOperation1.Behavior = DevExpress.XtraBars.Ribbon.ReduceOperationBehavior.UntilAvailable;
-            reduceOperation1.Group = this.stylesRibbonPageGroup1;
-            reduceOperation1.ItemLinkIndex = 0;
-            reduceOperation1.ItemLinksCount = 0;
-            reduceOperation1.Operation = DevExpress.XtraBars.Ribbon.ReduceOperationType.Gallery;
-            this.homeRibbonPage1.ReduceOperations.Add(reduceOperation1);
+            reduceOperation7.Behavior = DevExpress.XtraBars.Ribbon.ReduceOperationBehavior.UntilAvailable;
+            reduceOperation7.Group = this.stylesRibbonPageGroup1;
+            reduceOperation7.ItemLinkIndex = 0;
+            reduceOperation7.ItemLinksCount = 0;
+            reduceOperation7.Operation = DevExpress.XtraBars.Ribbon.ReduceOperationType.Gallery;
+            this.homeRibbonPage1.ReduceOperations.Add(reduceOperation7);
             this.homeRibbonPage1.Text = "开始";
             this.homeRibbonPage1.Visible = false;
             // 
@@ -3432,12 +3456,12 @@
             this.cellsRibbonPageGroup1,
             this.editingRibbonPageGroup2});
             this.homeRibbonPage2.Name = "homeRibbonPage2";
-            reduceOperation2.Behavior = DevExpress.XtraBars.Ribbon.ReduceOperationBehavior.UntilAvailable;
-            reduceOperation2.Group = this.stylesRibbonPageGroup2;
-            reduceOperation2.ItemLinkIndex = 0;
-            reduceOperation2.ItemLinksCount = 0;
-            reduceOperation2.Operation = DevExpress.XtraBars.Ribbon.ReduceOperationType.Gallery;
-            this.homeRibbonPage2.ReduceOperations.Add(reduceOperation2);
+            reduceOperation8.Behavior = DevExpress.XtraBars.Ribbon.ReduceOperationBehavior.UntilAvailable;
+            reduceOperation8.Group = this.stylesRibbonPageGroup2;
+            reduceOperation8.ItemLinkIndex = 0;
+            reduceOperation8.ItemLinksCount = 0;
+            reduceOperation8.Operation = DevExpress.XtraBars.Ribbon.ReduceOperationType.Gallery;
+            this.homeRibbonPage2.ReduceOperations.Add(reduceOperation8);
             this.homeRibbonPage2.Text = "开始";
             this.homeRibbonPage2.Visible = false;
             // 
@@ -4201,6 +4225,18 @@
             this.pdfBarController1.BarItems.Add(this.pdfSetFitWidthZoomModeCheckItem1);
             this.pdfBarController1.BarItems.Add(this.pdfSetFitVisibleZoomModeCheckItem1);
             // 
+            // barButtonItem2
+            // 
+            this.barButtonItem2.Caption = "barButtonItem2";
+            this.barButtonItem2.Id = 702;
+            this.barButtonItem2.Name = "barButtonItem2";
+            // 
+            // barButtonItem4
+            // 
+            this.barButtonItem4.Caption = "barButtonItem4";
+            this.barButtonItem4.Id = 703;
+            this.barButtonItem4.Name = "barButtonItem4";
+            // 
             // MainForm
             // 
             this.AllowFormGlass = DevExpress.Utils.DefaultBoolean.False;
@@ -4645,6 +4681,9 @@
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup4;
         private DevExpress.XtraBars.RibbonGalleryBarItem ribbonGallery_MapTables;
         private DevExpress.XtraBars.BarButtonItem bCurMapAttrTable;
+        private DevExpress.XtraBars.BarButtonItem bMap_AddKeyword;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem2;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem4;
 
     }
 }
