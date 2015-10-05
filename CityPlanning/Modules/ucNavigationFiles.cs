@@ -51,7 +51,6 @@ namespace CityPlanning.Modules
                 TreeList.FilterConditions.Add(fc);
                 //BinaryOperator bo = new BinaryOperator("name", filterText, BinaryOperatorType.Like);
                 //this.treeList1.Columns["name"].MRUFilters.Add(new TreeListFilterInfo(bo));
-
         }
 
         private void TreeListFiles_MouseUp(object sender, MouseEventArgs e)
