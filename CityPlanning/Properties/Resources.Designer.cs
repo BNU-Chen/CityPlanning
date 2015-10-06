@@ -293,6 +293,16 @@ namespace CityPlanning.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap RemoveKey {
+            get {
+                object obj = ResourceManager.GetObject("RemoveKey", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap saveAs_16 {
             get {
                 object obj = ResourceManager.GetObject("saveAs_16", resourceCulture);
