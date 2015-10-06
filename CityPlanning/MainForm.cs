@@ -1277,8 +1277,9 @@ namespace CityPlanning
                     //添加叠置结果图
                     mapControl.AddShapeFile(DirPath, "Result.shp");
                     mapControl.Refresh();
+                    string dbfPath = "D:\\项目 - 沈阳经济区\\图集\\原始矢量数据\\图集\\矢量图\\shp\\GHJBNTJZQ（处理后）.dbf";
+                    CreatResultPie(dbfPath);
                 }
-                this.Close();
             }//ifdiag
 
         }
@@ -1344,6 +1345,123 @@ namespace CityPlanning
             curAxMapControl.DrawShape(pGeom, ref oFillsyl);
         }
 
+        //叠置结果生成饼图
+        private void CreatResultPie(string dbfPath)
+        {
+             string OpenFileName = dbfPath.Trim();
+            string dbfFilePath = System.IO.Path.GetDirectoryName(OpenFileName);
+            string dbfFileName = System.IO.Path.GetFileName(OpenFileName);
+
+            IWorkspaceFactory pWorkspaceFactory = new ShapefileWorkspaceFactoryClass();
+            IWorkspace pWorkspace = pWorkspaceFactory.OpenFromFile(dbfFilePath, 0);
+            IFeatureWorkspace pFeatureWorkspace = pWorkspace as IFeatureWorkspace;
+            if (pFeatureWorkspace != null)
+            {
+                IFeatureClass pFeatureClass = pFeatureWorkspace.OpenFeatureClass(dbfFileName);
+                if (pFeatureClass != null)
+                {
+                    //创建空DataTable
+                    DataTable dt = new DataTable();
+                    DataColumn dc = null;
+
+                    for (int i = 0; i < pFeatureClass.Fields.FieldCount; i++)
+                    {
+                        dc = new DataColumn(pFeatureClass.Fields.get_Field(i).Name);
+                        dt.Columns.Add(dc);
+                    }
+                    //读入数据至DataTable
+                    IFeatureCursor pFeatureCursor = pFeatureClass.Search(null, false);
+                    IFeature pFeature = pFeatureCursor.NextFeature();
+                    DataRow dr = null;
+                    while (pFeature != null)
+                    {
+                        dr = dt.NewRow();
+                        for (int j = 0; j < pFeatureClass.Fields.FieldCount; j++)
+                        {
+                            if (pFeatureClass.FindField(pFeatureClass.ShapeFieldName) == j)
+                            {
+                                dr[j] = pFeatureClass.ShapeType.ToString();
+                            }
+                            else
+                            {
+                                dr[j] = pFeature.get_Value(j).ToString();
+                            }
+                        }
+                        dt.Rows.Add(dr);
+                        pFeature = pFeatureCursor.NextFeature();
+                    }
+                    double JZQArea = ColumnSum(dt, "JZQMJ");
+                    double NYDArea = ColumnSum(dt, "NYDMJ");
+                    double GDArea = ColumnSum(dt, "GDMJ");
+                    double JBNTArea = ColumnSum(dt, "JBNTMJ");
+
+
+                    DataTable pDataTable = new DataTable("TestData");
+                    DataColumn pDataColumn = null;
+                    //pDataColumn = pDataTable.Columns.Add("ID", Type.GetType("System.Int32"));
+                    //pDataColumn.AutoIncrement = true;
+                    //pDataColumn.AutoIncrementSeed = 1;
+                    //pDataColumn.AutoIncrementStep = 1;
+                    //pDataColumn.AllowDBNull = false;
+
+                    //pDataColumn = pDataTable.Columns.Add("居住区面积", Type.GetType("System.Double"));
+                    //pDataColumn = pDataTable.Columns.Add("农用地面积", Type.GetType("System.Double"));
+                    //pDataColumn = pDataTable.Columns.Add("工地面积", Type.GetType("System.Double"));
+                    //pDataColumn = pDataTable.Columns.Add("基本农田面积", Type.GetType("System.Double"));
+                    pDataColumn = pDataTable.Columns.Add("用地类型", Type.GetType("System.String"));
+                    pDataColumn = pDataTable.Columns.Add("面积", Type.GetType("System.Double"));
+
+                    DataRow pDataRow = pDataTable.NewRow();
+                    pDataRow["用地类型"] = "居住地";
+                    pDataRow["面积"] = JZQArea;
+                    pDataTable.Rows.Add(pDataRow);
+
+                    DataRow pDataRow1 = pDataTable.NewRow();
+                    pDataRow1["用地类型"] = "农用地";
+                    pDataRow1["面积"] = NYDArea;
+                    pDataTable.Rows.Add(pDataRow1);
+
+                    DataRow pDataRow2 = pDataTable.NewRow();
+                    pDataRow2["用地类型"] = "工地";
+                    pDataRow2["面积"] = GDArea;
+                    pDataTable.Rows.Add(pDataRow2);
+
+                    DataRow pDataRow3 = pDataTable.NewRow();
+                    pDataRow3["用地类型"] = "基本农田";
+                    pDataRow3["面积"] = JBNTArea;
+                    pDataTable.Rows.Add(pDataRow3);
+
+                    if (pDataTable != null)
+                    {
+                        Modules.ucChartForm ucc = new Modules.ucChartForm(this);
+                        ucc.Icon = Icon.FromHandle(((Bitmap)PieChartButton.Glyph).GetHicon());
+                        ucc.DataSource = pDataTable.Copy();
+                        //ucc.Range = pDataTable;
+                        ucc.StartPosition = FormStartPosition.Manual;
+                        ucc.Left = Screen.PrimaryScreen.WorkingArea.Width - ucc.Width;
+                        //ucc.Top = Screen.PrimaryScreen.WorkingArea.Height;
+                        ucc.ViewType = ViewType.Pie;
+                        StatisticChart.ShowOperation.CreatPieChart(ucc.ChartControl, pDataTable);
+                        ucc.Activated += curChartForm_Activated;
+                        ucc.Show();
+                        ResetFieldComboBox(curChartForm.VariableField, curChartForm.ValueField);
+                    }
+                }
+            }
+        }
+
+        //字段求和
+        double ColumnSum(DataTable dt, string ColumnName)
+        {
+            double d = 0;
+            foreach (DataRow row in dt.Rows)
+            {
+                d += double.Parse(row[ColumnName].ToString());
+            }
+            return d;
+        }
+
+        #endregion
 
         //手动绘制事件
         private void bManualDrawButton_ItemClick(object sender, ItemClickEventArgs e)
@@ -1392,9 +1510,12 @@ namespace CityPlanning
                 }
                 mapControl.AddShapeFile(DirPath, "Result.shp");
                 mapControl.Refresh();
+                string dbfPath = "D:\\项目 - 沈阳经济区\\图集\\原始矢量数据\\图集\\矢量图\\shp\\GHJBNTJZQ（处理后）.dbf";
+                CreatResultPie(dbfPath);
             }
         }
-        #endregion
+        
+        
 
         //鼠标单击绘制事件
         private void mapControl_OnMouseDown(object sender, ESRI.ArcGIS.Controls.IMapControlEvents2_OnMouseDownEvent e)
