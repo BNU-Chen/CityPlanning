@@ -177,13 +177,32 @@ namespace CityPlanning
             }
         }
         
+        //全部文档
+        private void bGalleryDocument_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            this.panelControl_Navigation.Controls.Clear();
+            this.panelControl_Navigation.Controls.Add(ucNaviFiles);
+            ucNaviFiles.SourceFolder = ConnectionCenter.Config.FTPCatalog;
+            ucNaviFiles.FetchFiles();
+        }
+
         //空间数据库
         private void bGalleryGeodatabase_ItemClick(object sender, ItemClickEventArgs e)
         {
             this.panelControl_Navigation.Controls.Clear();
             this.panelControl_Navigation.Controls.Add(ucNaviFiles);
-            ucNaviFiles.SourceFolder = ConnectionCenter.Config.PlanMap;
+            ucNaviFiles.SourceFolder = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.PlanMap;
             ucNaviFiles.FetchFiles();
+        }
+
+        //规划文档效果图
+        private void bGalleryImage_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            this.panelControl_Navigation.Controls.Clear();
+            this.panelControl_Navigation.Controls.Add(ucNavImage);
+            ucNavImage.XTabControl = this.xtraTabControl_Main;
+            ucNavImage.ImageFolderPath = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.PlanImg;
+            ucNavImage.Dock = DockStyle.Fill;
         }
         //关系数据库
         private void bGalleryRelationalDatabase_ItemClick(object sender, ItemClickEventArgs e)
@@ -216,30 +235,11 @@ namespace CityPlanning
                 }
             }
         }
-        
-        //文档
-        private void bGalleryDocument_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            this.panelControl_Navigation.Controls.Clear();
-            this.panelControl_Navigation.Controls.Add(ucNaviFiles);
-            ucNaviFiles.SourceFolder = ConnectionCenter.Config.FTPCatalog;
-            ucNaviFiles.FetchFiles();
-        }
 
         //三维地图
         private void bGallery3DMap_ItemClick(object sender, ItemClickEventArgs e)
         {
 
-        }
-
-        //规划文档效果图
-        private void bGalleryImage_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            this.panelControl_Navigation.Controls.Clear();
-            this.panelControl_Navigation.Controls.Add(ucNavImage);
-            ucNavImage.XTabControl = this.xtraTabControl_Main;
-            ucNavImage.ImageFolderPath = ConnectionCenter.Config.PlanImg;
-            ucNavImage.Dock = DockStyle.Fill;
         }
         //关于我们
         private void bAboutUs_ItemClick(object sender, ItemClickEventArgs e)
@@ -725,19 +725,6 @@ namespace CityPlanning
                 }
             }
         }
-        //关联文本查询
-        private void bRelatedDocSearch_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            Control control = this.xtraTabControl_Main.SelectedTabPage.Controls[0];
-            if (control is AxMapControl)
-            {
-                this.panelControl_Navigation.Controls.Clear();
-                this.panelControl_Navigation.Controls.Add(ucDocIntSearch);
-                ucDocIntSearch.SearchFromDocument("沈阳",ConnectionCenter.Config.PlanDoc);
-                //RichEditControl richEditControl = (RichEditControl)control;
-                //ucDocIntSearch.RichEditControl = richEditControl;
-            }
-        }
 
         //添加地图关键词
         private void bMap_AddKeyword_ItemClick(object sender, ItemClickEventArgs e)
@@ -748,8 +735,8 @@ namespace CityPlanning
             {
                 curMapKeyName = curTabPage.Text;
                 Forms.frmAddMapKeyword frmAddKey = new Forms.frmAddMapKeyword(ConnectionCenter.Config.MapKeywordSection, curMapKeyName);
-                frmAddKey.ShowDialog();
                 frmAddKey.FormClosed += frmAddKey_FormClosed;
+                frmAddKey.ShowDialog();
             }
             //if()
         }
@@ -762,7 +749,7 @@ namespace CityPlanning
         private void SetMapKeywords()
         {
             this.ribbonGallery_MapKeywords.Gallery.Groups.Clear();
-
+            this.ribbonGallery_MapKeywords.Gallery.ItemCheckMode = DevExpress.XtraBars.Ribbon.Gallery.ItemCheckMode.SingleCheck;
             string mapKeywords = ConnectionCenter.INIFile.IniReadValue(ConnectionCenter.Config.MapKeywordSection, curMapKeyName);
             if(mapKeywords.Length == 0){
                 return;
@@ -779,7 +766,7 @@ namespace CityPlanning
                 GalleryItem item1 = new GalleryItem();
                 item1.Caption = key;
                 item1.Value = key;
-                item1.ItemClick += item1_ItemClick;
+                item1.ItemClick += item1_ItemClick;                
                 galleryItemList.Add(item1);
             }
             GalleryItem[] galleryItems = galleryItemList.ToArray();
@@ -790,7 +777,7 @@ namespace CityPlanning
         }
 
         void item1_ItemClick(object sender, GalleryItemClickEventArgs e)
-        {
+        {            
             GalleryItem item = (GalleryItem)sender;
             string keyword = item.Caption;
             if (keyword == "")
@@ -803,6 +790,32 @@ namespace CityPlanning
             //RichEditControl richEditControl = (RichEditControl)control;
             //ucDocIntSearch.RichEditControl = richEditControl;
 
+        }
+        //删除关键词
+        private void bMap_RemoveKeyword_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            int count = this.ribbonGallery_MapKeywords.Gallery.Groups.Count;
+            List<GalleryItem> items = this.ribbonGallery_MapKeywords.Gallery.GetCheckedItems();
+            if (items.Count == 0)
+            {
+                MessageBox.Show("选中关键词后再进行删除。", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            foreach (GalleryItem item in items)
+            {
+                this.ribbonGallery_MapKeywords.Gallery.Groups[0].Items.Remove(item);
+            }
+            GalleryItemCollection itemsCol = this.ribbonGallery_MapKeywords.Gallery.Groups[0].Items;
+            if (itemsCol.Count > 0)
+            {
+                List<string> keyList = new List<string>();
+                foreach (GalleryItem item in itemsCol)
+                {
+                    keyList.Add(item.Caption);
+                }
+                string keys = string.Join(",", keyList);
+                ConnectionCenter.INIFile.IniWriteValue(ConnectionCenter.Config.MapKeywordSection, curMapKeyName, keys);
+            }
         }
 
         #region //GIS Tools
@@ -936,6 +949,7 @@ namespace CityPlanning
         }
 
         #endregion
+
 
         
     }

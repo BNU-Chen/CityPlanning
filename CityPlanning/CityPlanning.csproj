@@ -454,6 +454,7 @@
     <None Include="Resources\cofniglist64.png" />
     <Content Include="Resources\delete_16.png" />
     <None Include="Resources\PlanImageIcon.png" />
+    <None Include="Resources\RemoveKey.png" />
     <Content Include="Resources\saveAs_16.png" />
     <Content Include="Resources\saveAs_32.png" />
   </ItemGroup>

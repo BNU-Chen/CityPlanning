@@ -42,8 +42,8 @@ namespace CityPlanning.Forms
                 keywords = curKeys +"," + this.textBox1.Text.Trim();
             }
             ConnectionCenter.INIFile.IniWriteValue(sectionName, keyName, keywords);
-            MessageBox.Show("添加成功。", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.Close();
+            MessageBox.Show("添加成功。", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }
