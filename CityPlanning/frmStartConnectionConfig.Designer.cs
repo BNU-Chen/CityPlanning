@@ -46,12 +46,11 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.txt_ftpPort = new DevExpress.XtraEditors.TextEdit();
+            this.txt_ftpCatalog = new DevExpress.XtraEditors.TextEdit();
             this.txt_ftpIP = new DevExpress.XtraEditors.TextEdit();
             this.txt_ftpPassword = new DevExpress.XtraEditors.TextEdit();
             this.txt_ftpUserName = new DevExpress.XtraEditors.TextEdit();
             this.label2 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
@@ -65,7 +64,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txt_DBPassword.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_DBUserName.Properties)).BeginInit();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txt_ftpPort.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_ftpCatalog.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_ftpIP.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_ftpPassword.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_ftpUserName.Properties)).BeginInit();
@@ -245,12 +244,11 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.txt_ftpPort);
+            this.groupBox1.Controls.Add(this.txt_ftpCatalog);
             this.groupBox1.Controls.Add(this.txt_ftpIP);
             this.groupBox1.Controls.Add(this.txt_ftpPassword);
             this.groupBox1.Controls.Add(this.txt_ftpUserName);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Left;
@@ -261,61 +259,55 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "文件数据库";
             // 
-            // txt_ftpPort
+            // txt_ftpCatalog
             // 
-            this.txt_ftpPort.Location = new System.Drawing.Point(157, 19);
-            this.txt_ftpPort.Name = "txt_ftpPort";
-            this.txt_ftpPort.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(241)))), ((int)(((byte)(252)))));
-            this.txt_ftpPort.Properties.Appearance.Options.UseBackColor = true;
-            this.txt_ftpPort.Size = new System.Drawing.Size(36, 20);
-            this.txt_ftpPort.TabIndex = 1;
+            this.txt_ftpCatalog.EditValue = "E:\\项目 - 2014 沈阳经济区\\data\\图集\\原始矢量数据\\图集\\矢量图";
+            this.txt_ftpCatalog.Location = new System.Drawing.Point(67, 72);
+            this.txt_ftpCatalog.Name = "txt_ftpCatalog";
+            this.txt_ftpCatalog.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(241)))), ((int)(((byte)(252)))));
+            this.txt_ftpCatalog.Properties.Appearance.Options.UseBackColor = true;
+            this.txt_ftpCatalog.Size = new System.Drawing.Size(126, 20);
+            this.txt_ftpCatalog.TabIndex = 1;
             // 
             // txt_ftpIP
             // 
-            this.txt_ftpIP.EditValue = "D:\\项目 - 沈阳经济区\\图集\\原始矢量数据\\图集\\矢量图";
-            this.txt_ftpIP.Location = new System.Drawing.Point(67, 19);
+            this.txt_ftpIP.EditValue = "127.0.0.1";
+            this.txt_ftpIP.Location = new System.Drawing.Point(67, 20);
             this.txt_ftpIP.Name = "txt_ftpIP";
             this.txt_ftpIP.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(241)))), ((int)(((byte)(252)))));
             this.txt_ftpIP.Properties.Appearance.Options.UseBackColor = true;
-            this.txt_ftpIP.Size = new System.Drawing.Size(84, 20);
+            this.txt_ftpIP.Size = new System.Drawing.Size(126, 20);
             this.txt_ftpIP.TabIndex = 1;
             // 
             // txt_ftpPassword
             // 
-            this.txt_ftpPassword.Location = new System.Drawing.Point(67, 70);
+            this.txt_ftpPassword.EditValue = "ftp";
+            this.txt_ftpPassword.Location = new System.Drawing.Point(142, 46);
             this.txt_ftpPassword.Name = "txt_ftpPassword";
             this.txt_ftpPassword.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(241)))), ((int)(((byte)(252)))));
             this.txt_ftpPassword.Properties.Appearance.Options.UseBackColor = true;
             this.txt_ftpPassword.Properties.PasswordChar = '*';
-            this.txt_ftpPassword.Size = new System.Drawing.Size(126, 20);
+            this.txt_ftpPassword.Size = new System.Drawing.Size(51, 20);
             this.txt_ftpPassword.TabIndex = 1;
             // 
             // txt_ftpUserName
             // 
+            this.txt_ftpUserName.EditValue = "ftp";
             this.txt_ftpUserName.Location = new System.Drawing.Point(67, 46);
             this.txt_ftpUserName.Name = "txt_ftpUserName";
             this.txt_ftpUserName.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(241)))), ((int)(((byte)(252)))));
             this.txt_ftpUserName.Properties.Appearance.Options.UseBackColor = true;
-            this.txt_ftpUserName.Size = new System.Drawing.Size(126, 20);
+            this.txt_ftpUserName.Size = new System.Drawing.Size(71, 20);
             this.txt_ftpUserName.TabIndex = 1;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 69);
+            this.label2.Location = new System.Drawing.Point(6, 75);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(55, 14);
+            this.label2.Size = new System.Drawing.Size(67, 14);
             this.label2.TabIndex = 0;
-            this.label2.Text = "密   码：";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(148, 22);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(19, 14);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "：";
+            this.label2.Text = "默认路径：";
             // 
             // label3
             // 
@@ -333,7 +325,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(55, 14);
             this.label1.TabIndex = 0;
-            this.label1.Text = "用户名：";
+            this.label1.Text = "用   户：";
             // 
             // timer1
             // 
@@ -375,7 +367,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txt_DBUserName.Properties)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txt_ftpPort.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_ftpCatalog.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_ftpIP.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_ftpPassword.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_ftpUserName.Properties)).EndInit();
@@ -407,9 +399,8 @@
         private DevExpress.XtraEditors.TextEdit txt_DBServerName;
         private DevExpress.XtraEditors.TextEdit txt_DBPassword;
         private DevExpress.XtraEditors.TextEdit txt_DBUserName;
-        private DevExpress.XtraEditors.TextEdit txt_ftpPort;
+        private DevExpress.XtraEditors.TextEdit txt_ftpCatalog;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.Label label4;
         private DevExpress.XtraEditors.TextEdit txt_DBCatalogName;
         private System.Windows.Forms.Label label7;
     }
