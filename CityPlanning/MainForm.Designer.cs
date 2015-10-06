@@ -29,10 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraBars.Ribbon.GalleryItemGroup galleryItemGroup1 = new DevExpress.XtraBars.Ribbon.GalleryItemGroup();
+            DevExpress.XtraBars.Ribbon.GalleryItemGroup galleryItemGroup2 = new DevExpress.XtraBars.Ribbon.GalleryItemGroup();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            DevExpress.XtraBars.Ribbon.ReduceOperation reduceOperation1 = new DevExpress.XtraBars.Ribbon.ReduceOperation();
-            DevExpress.XtraBars.Ribbon.ReduceOperation reduceOperation2 = new DevExpress.XtraBars.Ribbon.ReduceOperation();
+            DevExpress.XtraBars.Ribbon.ReduceOperation reduceOperation3 = new DevExpress.XtraBars.Ribbon.ReduceOperation();
+            DevExpress.XtraBars.Ribbon.ReduceOperation reduceOperation4 = new DevExpress.XtraBars.Ribbon.ReduceOperation();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
             this.stylesRibbonPageGroup1 = new DevExpress.XtraRichEdit.UI.StylesRibbonPageGroup();
             this.galleryChangeStyleItem1 = new DevExpress.XtraRichEdit.UI.GalleryChangeStyleItem();
             this.stylesRibbonPageGroup2 = new DevExpress.XtraSpreadsheet.UI.StylesRibbonPageGroup();
@@ -376,8 +377,15 @@
             this.insertPageBreakItem3 = new DevExpress.XtraRichEdit.UI.InsertPageBreakItem();
             this.splitContainerControl = new DevExpress.XtraEditors.SplitContainerControl();
             this.panelControl_Navigation = new DevExpress.XtraEditors.PanelControl();
+            this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
+            this.label1 = new System.Windows.Forms.Label();
             this.xtraTabControl_Main = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPage_Home = new DevExpress.XtraTab.XtraTabPage();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.Query_button = new DevExpress.XtraEditors.ButtonEdit();
             this.axLicenseControl1 = new ESRI.ArcGIS.Controls.AxLicenseControl();
             this.spreadsheetBarController1 = new DevExpress.XtraSpreadsheet.UI.SpreadsheetBarController();
             this.spreadsheetCommandBarButtonItem75 = new DevExpress.XtraSpreadsheet.UI.SpreadsheetCommandBarButtonItem();
@@ -411,6 +419,17 @@
             this.pdfSetFitWidthZoomModeCheckItem1 = new DevExpress.XtraPdfViewer.Bars.PdfSetFitWidthZoomModeCheckItem();
             this.pdfSetFitVisibleZoomModeCheckItem1 = new DevExpress.XtraPdfViewer.Bars.PdfSetFitVisibleZoomModeCheckItem();
             this.pdfBarController1 = new DevExpress.XtraPdfViewer.Bars.PdfBarController();
+            this.Statistics_panel = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.simpleButton5 = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButton8 = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButton6 = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButton7 = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.appMenu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonImageCollection)).BeginInit();
@@ -439,13 +458,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl)).BeginInit();
             this.splitContainerControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl_Navigation)).BeginInit();
+            this.panelControl_Navigation.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl_Main)).BeginInit();
             this.xtraTabControl_Main.SuspendLayout();
             this.xtraTabPage_Home.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Query_button.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axLicenseControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spreadsheetBarController1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pdfBarController1)).BeginInit();
+            this.Statistics_panel.SuspendLayout();
             this.SuspendLayout();
             // 
             // stylesRibbonPageGroup1
@@ -462,7 +485,7 @@
             // 
             this.galleryChangeStyleItem1.Gallery.ColumnCount = 10;
             this.galleryChangeStyleItem1.Gallery.Groups.AddRange(new DevExpress.XtraBars.Ribbon.GalleryItemGroup[] {
-            galleryItemGroup1});
+            galleryItemGroup2});
             this.galleryChangeStyleItem1.Gallery.ImageSize = new System.Drawing.Size(65, 46);
             this.galleryChangeStyleItem1.Id = 499;
             this.galleryChangeStyleItem1.Name = "galleryChangeStyleItem1";
@@ -3159,10 +3182,7 @@
             this.bDoc_InternalSearch.Glyph = global::CityPlanning.Properties.Resources.search_32;
             this.bDoc_InternalSearch.Id = 693;
             this.bDoc_InternalSearch.Name = "bDoc_InternalSearch";
-<<<<<<< HEAD
             this.bDoc_InternalSearch.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
-=======
->>>>>>> master
             this.bDoc_InternalSearch.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bDoc_InternalSearch_ItemClick);
             // 
             // fileRibbonPage1
@@ -3195,12 +3215,12 @@
             this.stylesRibbonPageGroup1,
             this.editingRibbonPageGroup1});
             this.homeRibbonPage1.Name = "homeRibbonPage1";
-            reduceOperation1.Behavior = DevExpress.XtraBars.Ribbon.ReduceOperationBehavior.UntilAvailable;
-            reduceOperation1.Group = this.stylesRibbonPageGroup1;
-            reduceOperation1.ItemLinkIndex = 0;
-            reduceOperation1.ItemLinksCount = 0;
-            reduceOperation1.Operation = DevExpress.XtraBars.Ribbon.ReduceOperationType.Gallery;
-            this.homeRibbonPage1.ReduceOperations.Add(reduceOperation1);
+            reduceOperation3.Behavior = DevExpress.XtraBars.Ribbon.ReduceOperationBehavior.UntilAvailable;
+            reduceOperation3.Group = this.stylesRibbonPageGroup1;
+            reduceOperation3.ItemLinkIndex = 0;
+            reduceOperation3.ItemLinksCount = 0;
+            reduceOperation3.Operation = DevExpress.XtraBars.Ribbon.ReduceOperationType.Gallery;
+            this.homeRibbonPage1.ReduceOperations.Add(reduceOperation3);
             this.homeRibbonPage1.Text = "开始";
             this.homeRibbonPage1.Visible = false;
             // 
@@ -3393,12 +3413,12 @@
             this.cellsRibbonPageGroup1,
             this.editingRibbonPageGroup2});
             this.homeRibbonPage2.Name = "homeRibbonPage2";
-            reduceOperation2.Behavior = DevExpress.XtraBars.Ribbon.ReduceOperationBehavior.UntilAvailable;
-            reduceOperation2.Group = this.stylesRibbonPageGroup2;
-            reduceOperation2.ItemLinkIndex = 0;
-            reduceOperation2.ItemLinksCount = 0;
-            reduceOperation2.Operation = DevExpress.XtraBars.Ribbon.ReduceOperationType.Gallery;
-            this.homeRibbonPage2.ReduceOperations.Add(reduceOperation2);
+            reduceOperation4.Behavior = DevExpress.XtraBars.Ribbon.ReduceOperationBehavior.UntilAvailable;
+            reduceOperation4.Group = this.stylesRibbonPageGroup2;
+            reduceOperation4.ItemLinkIndex = 0;
+            reduceOperation4.ItemLinksCount = 0;
+            reduceOperation4.Operation = DevExpress.XtraBars.Ribbon.ReduceOperationType.Gallery;
+            this.homeRibbonPage2.ReduceOperations.Add(reduceOperation4);
             this.homeRibbonPage2.Text = "开始";
             this.homeRibbonPage2.Visible = false;
             // 
@@ -3739,17 +3759,39 @@
             this.splitContainerControl.Panel2.Controls.Add(this.xtraTabControl_Main);
             this.splitContainerControl.Panel2.Text = "Panel2";
             this.splitContainerControl.Size = new System.Drawing.Size(1100, 521);
-            this.splitContainerControl.SplitterPosition = 188;
+            this.splitContainerControl.SplitterPosition = 231;
             this.splitContainerControl.TabIndex = 6;
             this.splitContainerControl.Text = "splitContainerControl1";
             // 
             // panelControl_Navigation
             // 
+            this.panelControl_Navigation.Controls.Add(this.textEdit1);
+            this.panelControl_Navigation.Controls.Add(this.label1);
             this.panelControl_Navigation.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl_Navigation.Location = new System.Drawing.Point(0, 0);
             this.panelControl_Navigation.Name = "panelControl_Navigation";
-            this.panelControl_Navigation.Size = new System.Drawing.Size(188, 509);
+            this.panelControl_Navigation.Size = new System.Drawing.Size(231, 509);
             this.panelControl_Navigation.TabIndex = 0;
+            // 
+            // textEdit1
+            // 
+            this.textEdit1.Location = new System.Drawing.Point(33, 5);
+            this.textEdit1.MenuManager = this.ribbonControl;
+            this.textEdit1.Name = "textEdit1";
+            this.textEdit1.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textEdit1.Properties.Appearance.Options.UseFont = true;
+            this.textEdit1.Size = new System.Drawing.Size(193, 24);
+            this.textEdit1.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(3, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(31, 14);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "搜索";
             // 
             // xtraTabControl_Main
             // 
@@ -3758,7 +3800,7 @@
             this.xtraTabControl_Main.Location = new System.Drawing.Point(0, 0);
             this.xtraTabControl_Main.Name = "xtraTabControl_Main";
             this.xtraTabControl_Main.SelectedTabPage = this.xtraTabPage_Home;
-            this.xtraTabControl_Main.Size = new System.Drawing.Size(895, 509);
+            this.xtraTabControl_Main.Size = new System.Drawing.Size(852, 509);
             this.xtraTabControl_Main.TabIndex = 0;
             this.xtraTabControl_Main.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPage_Home});
@@ -3767,10 +3809,75 @@
             // 
             // xtraTabPage_Home
             // 
+            this.xtraTabPage_Home.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.xtraTabPage_Home.Controls.Add(this.Statistics_panel);
+            this.xtraTabPage_Home.Controls.Add(this.label11);
+            this.xtraTabPage_Home.Controls.Add(this.label10);
+            this.xtraTabPage_Home.Controls.Add(this.label4);
+            this.xtraTabPage_Home.Controls.Add(this.label2);
+            this.xtraTabPage_Home.Controls.Add(this.Query_button);
             this.xtraTabPage_Home.Controls.Add(this.axLicenseControl1);
             this.xtraTabPage_Home.Name = "xtraTabPage_Home";
-            this.xtraTabPage_Home.Size = new System.Drawing.Size(889, 480);
+            this.xtraTabPage_Home.Size = new System.Drawing.Size(846, 480);
             this.xtraTabPage_Home.Text = "主页";
+            this.xtraTabPage_Home.SizeChanged += new System.EventHandler(this.xtraTabPage_Home_SizeChanged);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(305, 469);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(242, 14);
+            this.label11.TabIndex = 18;
+            this.label11.Text = "版权所有@辽宁省国土资源厅  北京师范大学";
+            // 
+            // label10
+            // 
+            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label10.AutoSize = true;
+            this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label10.Location = new System.Drawing.Point(-3, 452);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(1415, 14);
+            this.label10.TabIndex = 17;
+            this.label10.Text = resources.GetString("label10.Text");
+            this.label10.Click += new System.EventHandler(this.label10_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(234, 96);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(455, 18);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "“一核六带”的空间发展格局      一体化、开放式的区域城镇分工体系";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("华文新魏", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label2.Location = new System.Drawing.Point(100, 32);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(712, 48);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "沈阳经济区国土规划(2013-2020)";
+            // 
+            // Query_button
+            // 
+            this.Query_button.EditValue = "";
+            this.Query_button.Location = new System.Drawing.Point(132, 147);
+            this.Query_button.MenuManager = this.ribbonControl;
+            this.Query_button.Name = "Query_button";
+            this.Query_button.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Query_button.Properties.Appearance.Options.UseFont = true;
+            this.Query_button.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, global::CityPlanning.Properties.Resources.query_32, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
+            this.Query_button.Size = new System.Drawing.Size(591, 38);
+            this.Query_button.TabIndex = 7;
+            this.Query_button.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.buttonEdit1_ButtonClick);
             // 
             // axLicenseControl1
             // 
@@ -4162,6 +4269,163 @@
             this.pdfBarController1.BarItems.Add(this.pdfSetFitWidthZoomModeCheckItem1);
             this.pdfBarController1.BarItems.Add(this.pdfSetFitVisibleZoomModeCheckItem1);
             // 
+            // Statistics_panel
+            // 
+            this.Statistics_panel.Controls.Add(this.label3);
+            this.Statistics_panel.Controls.Add(this.simpleButton1);
+            this.Statistics_panel.Controls.Add(this.label9);
+            this.Statistics_panel.Controls.Add(this.label8);
+            this.Statistics_panel.Controls.Add(this.label7);
+            this.Statistics_panel.Controls.Add(this.label6);
+            this.Statistics_panel.Controls.Add(this.simpleButton5);
+            this.Statistics_panel.Controls.Add(this.simpleButton8);
+            this.Statistics_panel.Controls.Add(this.simpleButton6);
+            this.Statistics_panel.Controls.Add(this.simpleButton7);
+            this.Statistics_panel.Location = new System.Drawing.Point(120, 213);
+            this.Statistics_panel.Name = "Statistics_panel";
+            this.Statistics_panel.Size = new System.Drawing.Size(618, 138);
+            this.Statistics_panel.TabIndex = 24;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("楷体", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label3.Location = new System.Drawing.Point(138, 116);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(93, 20);
+            this.label3.TabIndex = 38;
+            this.label3.Text = "规划说明";
+            // 
+            // simpleButton1
+            // 
+            this.simpleButton1.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.simpleButton1.Appearance.BorderColor = System.Drawing.Color.Transparent;
+            this.simpleButton1.Appearance.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.simpleButton1.Appearance.ForeColor = System.Drawing.Color.White;
+            this.simpleButton1.Appearance.Options.UseBackColor = true;
+            this.simpleButton1.Appearance.Options.UseBorderColor = true;
+            this.simpleButton1.Appearance.Options.UseFont = true;
+            this.simpleButton1.Appearance.Options.UseForeColor = true;
+            this.simpleButton1.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
+            this.simpleButton1.Location = new System.Drawing.Point(506, 3);
+            this.simpleButton1.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat;
+            this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.Size = new System.Drawing.Size(110, 110);
+            this.simpleButton1.TabIndex = 37;
+            this.simpleButton1.Text = "41";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("楷体", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label9.Location = new System.Drawing.Point(515, 116);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(93, 20);
+            this.label9.TabIndex = 36;
+            this.label9.Text = "规划图集";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("楷体", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label8.Location = new System.Drawing.Point(387, 116);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(93, 20);
+            this.label8.TabIndex = 35;
+            this.label8.Text = "专题地图";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("楷体", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label7.Location = new System.Drawing.Point(261, 116);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(93, 20);
+            this.label7.TabIndex = 34;
+            this.label7.Text = "专题报告";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("楷体", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label6.Location = new System.Drawing.Point(5, 116);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(93, 20);
+            this.label6.TabIndex = 33;
+            this.label6.Text = "规划文本";
+            // 
+            // simpleButton5
+            // 
+            this.simpleButton5.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.simpleButton5.Appearance.BorderColor = System.Drawing.Color.Transparent;
+            this.simpleButton5.Appearance.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.simpleButton5.Appearance.ForeColor = System.Drawing.Color.White;
+            this.simpleButton5.Appearance.Options.UseBackColor = true;
+            this.simpleButton5.Appearance.Options.UseBorderColor = true;
+            this.simpleButton5.Appearance.Options.UseFont = true;
+            this.simpleButton5.Appearance.Options.UseForeColor = true;
+            this.simpleButton5.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
+            this.simpleButton5.Location = new System.Drawing.Point(3, 3);
+            this.simpleButton5.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat;
+            this.simpleButton5.Name = "simpleButton5";
+            this.simpleButton5.Size = new System.Drawing.Size(110, 110);
+            this.simpleButton5.TabIndex = 29;
+            this.simpleButton5.Text = "1";
+            // 
+            // simpleButton8
+            // 
+            this.simpleButton8.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(119)))), ((int)(((byte)(173)))));
+            this.simpleButton8.Appearance.BorderColor = System.Drawing.Color.Transparent;
+            this.simpleButton8.Appearance.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.simpleButton8.Appearance.ForeColor = System.Drawing.Color.White;
+            this.simpleButton8.Appearance.Options.UseBackColor = true;
+            this.simpleButton8.Appearance.Options.UseBorderColor = true;
+            this.simpleButton8.Appearance.Options.UseFont = true;
+            this.simpleButton8.Appearance.Options.UseForeColor = true;
+            this.simpleButton8.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
+            this.simpleButton8.Location = new System.Drawing.Point(380, 3);
+            this.simpleButton8.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat;
+            this.simpleButton8.Name = "simpleButton8";
+            this.simpleButton8.Size = new System.Drawing.Size(110, 110);
+            this.simpleButton8.TabIndex = 32;
+            this.simpleButton8.Text = "17";
+            // 
+            // simpleButton6
+            // 
+            this.simpleButton6.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(176)))), ((int)(((byte)(240)))));
+            this.simpleButton6.Appearance.BorderColor = System.Drawing.Color.Transparent;
+            this.simpleButton6.Appearance.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.simpleButton6.Appearance.ForeColor = System.Drawing.Color.White;
+            this.simpleButton6.Appearance.Options.UseBackColor = true;
+            this.simpleButton6.Appearance.Options.UseBorderColor = true;
+            this.simpleButton6.Appearance.Options.UseFont = true;
+            this.simpleButton6.Appearance.Options.UseForeColor = true;
+            this.simpleButton6.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
+            this.simpleButton6.Location = new System.Drawing.Point(128, 3);
+            this.simpleButton6.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat;
+            this.simpleButton6.Name = "simpleButton6";
+            this.simpleButton6.Size = new System.Drawing.Size(110, 110);
+            this.simpleButton6.TabIndex = 30;
+            this.simpleButton6.Text = "1";
+            // 
+            // simpleButton7
+            // 
+            this.simpleButton7.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(176)))), ((int)(((byte)(97)))));
+            this.simpleButton7.Appearance.BorderColor = System.Drawing.Color.Transparent;
+            this.simpleButton7.Appearance.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.simpleButton7.Appearance.ForeColor = System.Drawing.Color.White;
+            this.simpleButton7.Appearance.Options.UseBackColor = true;
+            this.simpleButton7.Appearance.Options.UseBorderColor = true;
+            this.simpleButton7.Appearance.Options.UseFont = true;
+            this.simpleButton7.Appearance.Options.UseForeColor = true;
+            this.simpleButton7.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
+            this.simpleButton7.Location = new System.Drawing.Point(254, 3);
+            this.simpleButton7.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat;
+            this.simpleButton7.Name = "simpleButton7";
+            this.simpleButton7.Size = new System.Drawing.Size(110, 110);
+            this.simpleButton7.TabIndex = 31;
+            this.simpleButton7.Text = "8";
+            // 
             // MainForm
             // 
             this.AllowFormGlass = DevExpress.Utils.DefaultBoolean.False;
@@ -4210,13 +4474,20 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl)).EndInit();
             this.splitContainerControl.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl_Navigation)).EndInit();
+            this.panelControl_Navigation.ResumeLayout(false);
+            this.panelControl_Navigation.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl_Main)).EndInit();
             this.xtraTabControl_Main.ResumeLayout(false);
             this.xtraTabPage_Home.ResumeLayout(false);
+            this.xtraTabPage_Home.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Query_button.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.axLicenseControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spreadsheetBarController1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pdfBarController1)).EndInit();
+            this.Statistics_panel.ResumeLayout(false);
+            this.Statistics_panel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -4601,6 +4872,24 @@
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup9;
         private DevExpress.XtraBars.BarButtonItem bRelatedDocSearch;
         private DevExpress.XtraBars.BarButtonItem bGalleryImage;
+        private DevExpress.XtraEditors.ButtonEdit Query_button;
+        private DevExpress.XtraEditors.TextEdit textEdit1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Panel Statistics_panel;
+        private System.Windows.Forms.Label label3;
+        private DevExpress.XtraEditors.SimpleButton simpleButton1;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private DevExpress.XtraEditors.SimpleButton simpleButton5;
+        private DevExpress.XtraEditors.SimpleButton simpleButton8;
+        private DevExpress.XtraEditors.SimpleButton simpleButton6;
+        private DevExpress.XtraEditors.SimpleButton simpleButton7;
 
     }
 }

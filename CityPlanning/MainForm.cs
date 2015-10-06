@@ -832,10 +832,32 @@ namespace CityPlanning
 
         #endregion
 
+        private void buttonEdit1_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+            string filterText = this.Query_button.Text.Trim();
+            MessageBox.Show(filterText);
+        }
+
+        private void label10_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void xtraTabPage_Home_SizeChanged(object sender, EventArgs e)
+        {
+            int homeWidth = xtraTabPage_Home.ClientSize.Width;
+            Query_button.Location = new System.Drawing.Point((homeWidth - Query_button.Size.Width) / 2, Query_button.Location.Y);
+            label2.Location = new System.Drawing.Point((homeWidth - label2.Size.Width) / 2, label2.Location.Y);
+            label4.Location = new System.Drawing.Point((homeWidth - label4.Size.Width) / 2, label4.Location.Y);
+            label11.Location = new System.Drawing.Point((homeWidth - label11.Size.Width) / 2, label11.Location.Y);
+            Statistics_panel.Location = new System.Drawing.Point((homeWidth - Statistics_panel.Size.Width) / 2, Statistics_panel.Location.Y);
+
+        }
+
 
 
         //test add code
         //test add second code
-
+        
     }
 }
