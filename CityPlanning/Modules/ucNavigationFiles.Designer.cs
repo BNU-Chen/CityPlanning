@@ -59,6 +59,7 @@
             this.TextEdit_Filter.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.TextEdit_Filter.EditValue = "";
             this.TextEdit_Filter.Location = new System.Drawing.Point(35, 9);
             this.TextEdit_Filter.Name = "TextEdit_Filter";
             this.TextEdit_Filter.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -86,8 +87,8 @@
             this.TreeListFiles.Name = "TreeListFiles";
             this.TreeListFiles.OptionsBehavior.Editable = false;
             this.TreeListFiles.OptionsBehavior.EnableFiltering = true;
+            this.TreeListFiles.OptionsFilter.AllowColumnMRUFilterList = false;
             this.TreeListFiles.OptionsFilter.FilterMode = DevExpress.XtraTreeList.FilterMode.Smart;
-            this.TreeListFiles.OptionsView.ShowAutoFilterRow = true;
             this.TreeListFiles.OptionsView.ShowColumns = false;
             this.TreeListFiles.OptionsView.ShowHorzLines = false;
             this.TreeListFiles.OptionsView.ShowIndicator = false;
@@ -96,6 +97,7 @@
             this.TreeListFiles.Size = new System.Drawing.Size(246, 482);
             this.TreeListFiles.TabIndex = 6;
             this.TreeListFiles.TreeLineStyle = DevExpress.XtraTreeList.LineStyle.None;
+            this.TreeListFiles.FilterNode += new DevExpress.XtraTreeList.FilterNodeEventHandler(this.TreeListFiles_FilterNode);
             this.TreeListFiles.ColumnFilterChanged += new System.EventHandler(this.textEdit_Filter_EditValueChanged);
             this.TreeListFiles.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TreeListFiles_MouseUp);
             // 
@@ -106,7 +108,7 @@
             this.tsmi_DeleteFile,
             this.tsmi_DefaultOpenFile});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(185, 92);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(185, 70);
             this.contextMenuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.contextMenuStrip1_ItemClicked);
             // 
             // tsmi_AddFiles
