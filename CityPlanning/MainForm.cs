@@ -232,7 +232,7 @@ namespace CityPlanning
         {
             this.panelControl_Navigation.Controls.Clear();
             this.panelControl_Navigation.Controls.Add(ucNaviFiles);
-            ucNaviFiles.SourceFolder = FTPConnection.FtpIP;
+            ucNaviFiles.SourceFolder = FTPConnection.FtpPort;
             ucNaviFiles.FetchFiles();
         }
 
@@ -738,7 +738,7 @@ namespace CityPlanning
             {
                 this.panelControl_Navigation.Controls.Clear();
                 this.panelControl_Navigation.Controls.Add(ucDocIntSearch);
-                ucDocIntSearch.SearchFromDocument("沈阳", @"D:\项目 - 沈阳经济区\文本\沈阳经济区国土规划文本（20150805稿）.doc");
+                ucDocIntSearch.SearchFromDocument("沈阳", @"E:\项目 - 2014 沈阳经济区\data\文本\沈阳经济区国土规划文本（20150805稿）.doc");
                 //RichEditControl richEditControl = (RichEditControl)control;
                 //ucDocIntSearch.RichEditControl = richEditControl;
             }
@@ -784,14 +784,25 @@ namespace CityPlanning
                 GalleryItem item1 = new GalleryItem();
                 item1.Caption = key;
                 item1.Value = key;
-                //item1.ImageIndex = item1.HoverImageIndex = 0;
-                //item1.ImageIndex = item1.HoverImageIndex = 0;
+                item1.ItemClick += item1_ItemClick;
                 galleryItemList.Add(item1);
             }
             GalleryItem[] galleryItems = galleryItemList.ToArray();
             itemGroup1.Items.AddRange(galleryItems);
             // Specify the number of items to display horizontally. 
             ribbonGallery_MapKeywords.Gallery.ColumnCount = 3;
+            //throw new NotImplementedException();
+        }
+
+        void item1_ItemClick(object sender, GalleryItemClickEventArgs e)
+        {
+            GalleryItem item = (GalleryItem)sender;
+            string keyword = item.Caption;
+            if (keyword == "")
+            {
+                return;
+            }
+
             //throw new NotImplementedException();
         }
 

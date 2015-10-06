@@ -132,6 +132,12 @@
     <Compile Include="Forms\frmAddMapKeyword.Designer.cs">
       <DependentUpon>frmAddMapKeyword.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\frmFilesConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmFilesConfig.Designer.cs">
+      <DependentUpon>frmFilesConfig.cs</DependentUpon>
+    </Compile>
     <Compile Include="HandleCenter.cs" />
     <Compile Include="ComponentOperator.cs" />
     <Compile Include="Forms\frmMapFeatureAttr.cs">
