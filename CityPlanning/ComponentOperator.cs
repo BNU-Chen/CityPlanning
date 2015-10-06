@@ -34,7 +34,7 @@ namespace CityPlanning
             for (int i = 0; i < tabCount; i++)
             {
                 string tabName = _xtraTabControl.TabPages[i].Text;
-                if (tabName == _tabName)
+                if (tabName.Contains(_tabName))
                 {
                     tabPage = _xtraTabControl.TabPages[i];
                     break;

@@ -57,11 +57,13 @@
     <Reference Include="DevExpress.Images.v13.1, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Office.v13.1.Core, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Pdf.v13.1.Core, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.PivotGrid.v13.1.Core, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Printing.v13.1.Core, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.RichEdit.v13.1.Core, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Sparkline.v13.1.Core, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Spreadsheet.v13.1.Core, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Utils.v13.1, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v13.1.UI, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraBars.v13.1, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraCharts.v13.1, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraCharts.v13.1.UI, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -124,8 +126,38 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Forms\frmAbout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmAbout.Designer.cs">
+      <DependentUpon>frmAbout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmAddMapKeyword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmAddMapKeyword.Designer.cs">
+      <DependentUpon>frmAddMapKeyword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmSysConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmSysConfig.Designer.cs">
+      <DependentUpon>frmSysConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HandleCenter.cs" />
     <Compile Include="ComponentOperator.cs" />
+    <Compile Include="Forms\frmMapFeatureAttr.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmMapFeatureAttr.Designer.cs">
+      <DependentUpon>frmMapFeatureAttr.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\xFrmMapFeatureAttr.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\xFrmMapFeatureAttr.Designer.cs">
+      <DependentUpon>xFrmMapFeatureAttr.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmStartConnectionConfig.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -174,11 +206,41 @@
     <Compile Include="Modules\ucDocumentSearchClip.Designer.cs">
       <DependentUpon>ucDocumentSearchClip.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modules\ucFeatureAttrItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\ucFeatureAttrItem.Designer.cs">
+      <DependentUpon>ucFeatureAttrItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\ucImageThumb.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\ucImageThumb.Designer.cs">
+      <DependentUpon>ucImageThumb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\ucImageViewer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\ucImageViewer.Designer.cs">
+      <DependentUpon>ucImageViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\ucMapControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\ucMapControl.Designer.cs">
+      <DependentUpon>ucMapControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modules\ucNavigationFiles.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Modules\ucNavigationFiles.Designer.cs">
       <DependentUpon>ucNavigationFiles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\ucNavigationImage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\ucNavigationImage.Designer.cs">
+      <DependentUpon>ucNavigationImage.cs</DependentUpon>
     </Compile>
     <Compile Include="Modules\ucNavigationRDB.cs">
       <SubType>UserControl</SubType>
@@ -195,6 +257,18 @@
     <Compile Include="Person.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\frmAbout.resx">
+      <DependentUpon>frmAbout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmAddMapKeyword.resx">
+      <DependentUpon>frmAddMapKeyword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmMapFeatureAttr.resx">
+      <DependentUpon>frmMapFeatureAttr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmSysConfig.resx">
+      <DependentUpon>frmSysConfig.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmStartConnectionConfig.resx">
       <DependentUpon>frmStartConnectionConfig.cs</DependentUpon>
     </EmbeddedResource>
@@ -219,8 +293,23 @@
     <EmbeddedResource Include="Modules\ucDocumentSearchClip.resx">
       <DependentUpon>ucDocumentSearchClip.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Modules\ucFeatureAttrItem.resx">
+      <DependentUpon>ucFeatureAttrItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\ucImageThumb.resx">
+      <DependentUpon>ucImageThumb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\ucImageViewer.resx">
+      <DependentUpon>ucImageViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\ucMapControl.resx">
+      <DependentUpon>ucMapControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Modules\ucNavigationFiles.resx">
       <DependentUpon>ucNavigationFiles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\ucNavigationImage.resx">
+      <DependentUpon>ucNavigationImage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\ucNavigationRDB.resx">
       <DependentUpon>ucNavigationRDB.cs</DependentUpon>
@@ -359,7 +448,13 @@
     <None Include="Resources\check.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\AddKey.png" />
+    <None Include="Resources\AttrTable.png" />
+    <None Include="Resources\CityPlanningAbout.jpg" />
+    <None Include="Resources\cofniglist64.png" />
     <Content Include="Resources\delete_16.png" />
+    <None Include="Resources\PlanImageIcon.png" />
+    <None Include="Resources\RemoveKey.png" />
     <Content Include="Resources\saveAs_16.png" />
     <Content Include="Resources\saveAs_32.png" />
   </ItemGroup>

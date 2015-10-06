@@ -41,8 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Config.cs" />
     <Compile Include="ConnLocalDisk.cs" />
     <Compile Include="FTPConnection.cs" />
+    <Compile Include="INIFile.cs" />
     <Compile Include="SQLServerConnection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegisterConfig.cs" />
