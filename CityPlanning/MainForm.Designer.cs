@@ -3250,10 +3250,7 @@
             this.bDoc_InternalSearch.Glyph = global::CityPlanning.Properties.Resources.search_32;
             this.bDoc_InternalSearch.Id = 693;
             this.bDoc_InternalSearch.Name = "bDoc_InternalSearch";
-<<<<<<< HEAD
             this.bDoc_InternalSearch.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
-=======
->>>>>>> master
             this.bDoc_InternalSearch.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bDoc_InternalSearch_ItemClick);
             // 
             // fileRibbonPage1
