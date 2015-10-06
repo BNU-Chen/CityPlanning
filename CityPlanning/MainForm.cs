@@ -908,7 +908,7 @@ namespace CityPlanning
 
             if (e.button == 1)  //左键
             {
-                MessageBox.Show("左键");
+                //MessageBox.Show("左键");
                 if (isIdentifyMap)
                 {
                     //GetStaInfoByMap();
@@ -916,11 +916,11 @@ namespace CityPlanning
             }
             else if (e.button == 2) //右键
             {
-                MessageBox.Show("右键");
+                //MessageBox.Show("右键");
             }
             else if (e.button == 3) //中键
             {
-                MessageBox.Show("中键");
+                //MessageBox.Show("中键");
             }
             //throw new NotImplementedException();
         }
