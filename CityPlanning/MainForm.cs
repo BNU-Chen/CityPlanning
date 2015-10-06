@@ -971,6 +971,11 @@ namespace CityPlanning
 
         #endregion
 
+        private void bCoorInputButton_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
+        }
+
         
     }
 }
