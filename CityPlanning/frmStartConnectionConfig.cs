@@ -20,7 +20,7 @@ namespace CityPlanning
         private string FTPIP = "ip";
         private string FTPUser = "user";
         private string FTPPsd = "pass";
-        private string FTPCatalog = "init";
+        private string FTPCatalog = "catalog";
 
         private string DBSection = "Database";
         private string DBIP = "ip";

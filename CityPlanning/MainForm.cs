@@ -136,6 +136,13 @@ namespace CityPlanning
             frmStartConnectionConfig fscc = new frmStartConnectionConfig(null);
             fscc.ShowDialog();
         }
+        //文件配置
+        private void bDocConfig_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Forms.frmSysConfig fSysConfig = new Forms.frmSysConfig();
+            fSysConfig.ShowDialog();
+        }
+
         //用户管理
         private void bUserManager_ItemClick(object sender, ItemClickEventArgs e)
         {
@@ -944,11 +951,6 @@ namespace CityPlanning
 
         #endregion
 
-
-
-
-        //test add code
-        //test add second code
-
+        
     }
 }
