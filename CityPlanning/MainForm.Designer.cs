@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraBars.Ribbon.GalleryItemGroup galleryItemGroup3 = new DevExpress.XtraBars.Ribbon.GalleryItemGroup();
+            DevExpress.XtraBars.Ribbon.GalleryItemGroup galleryItemGroup1 = new DevExpress.XtraBars.Ribbon.GalleryItemGroup();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            DevExpress.XtraBars.Ribbon.ReduceOperation reduceOperation5 = new DevExpress.XtraBars.Ribbon.ReduceOperation();
-            DevExpress.XtraBars.Ribbon.ReduceOperation reduceOperation6 = new DevExpress.XtraBars.Ribbon.ReduceOperation();
+            DevExpress.XtraBars.Ribbon.ReduceOperation reduceOperation1 = new DevExpress.XtraBars.Ribbon.ReduceOperation();
+            DevExpress.XtraBars.Ribbon.ReduceOperation reduceOperation2 = new DevExpress.XtraBars.Ribbon.ReduceOperation();
             this.stylesRibbonPageGroup1 = new DevExpress.XtraRichEdit.UI.StylesRibbonPageGroup();
             this.galleryChangeStyleItem1 = new DevExpress.XtraRichEdit.UI.GalleryChangeStyleItem();
             this.stylesRibbonPageGroup2 = new DevExpress.XtraSpreadsheet.UI.StylesRibbonPageGroup();
@@ -419,6 +419,20 @@
             this.pdfSetFitWidthZoomModeCheckItem1 = new DevExpress.XtraPdfViewer.Bars.PdfSetFitWidthZoomModeCheckItem();
             this.pdfSetFitVisibleZoomModeCheckItem1 = new DevExpress.XtraPdfViewer.Bars.PdfSetFitVisibleZoomModeCheckItem();
             this.pdfBarController1 = new DevExpress.XtraPdfViewer.Bars.PdfBarController();
+            this.AnalysisRibbonPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.RedLineRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ThemeRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.barButtonItem5 = new DevExpress.XtraBars.BarButtonItem();
+            this.bDataAnalysis = new DevExpress.XtraBars.BarButtonItem();
+            this.bCoorInputButton = new DevExpress.XtraBars.BarButtonItem();
+            this.bManualDrawButton = new DevExpress.XtraBars.BarButtonItem();
+            this.bTranspNetDensity = new DevExpress.XtraBars.BarButtonItem();
+            this.bElecNetDensity = new DevExpress.XtraBars.BarButtonItem();
+            this.bIntDisasterRisk = new DevExpress.XtraBars.BarButtonItem();
+            this.bEcoServiceValue = new DevExpress.XtraBars.BarButtonItem();
+            this.bHydroAnalysis = new DevExpress.XtraBars.BarButtonItem();
+            this.bFloodLoss = new DevExpress.XtraBars.BarButtonItem();
+            this.bGDPCenterTransfer = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.appMenu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonImageCollection)).BeginInit();
@@ -470,7 +484,7 @@
             // 
             this.galleryChangeStyleItem1.Gallery.ColumnCount = 10;
             this.galleryChangeStyleItem1.Gallery.Groups.AddRange(new DevExpress.XtraBars.Ribbon.GalleryItemGroup[] {
-            galleryItemGroup3});
+            galleryItemGroup1});
             this.galleryChangeStyleItem1.Gallery.ImageSize = new System.Drawing.Size(65, 46);
             this.galleryChangeStyleItem1.Id = 499;
             this.galleryChangeStyleItem1.Name = "galleryChangeStyleItem1";
@@ -767,17 +781,29 @@
             this.barButtonItem2,
             this.barButtonItem4,
             this.bDocConfig,
-            this.bMap_RemoveKeyword});
+            this.bMap_RemoveKeyword,
+            this.barButtonItem5,
+            this.bDataAnalysis,
+            this.bCoorInputButton,
+            this.bManualDrawButton,
+            this.bTranspNetDensity,
+            this.bElecNetDensity,
+            this.bIntDisasterRisk,
+            this.bEcoServiceValue,
+            this.bHydroAnalysis,
+            this.bFloodLoss,
+            this.bGDPCenterTransfer});
             this.ribbonControl.LargeImages = this.ribbonImageCollectionLarge;
             this.ribbonControl.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl.MaxItemId = 706;
+            this.ribbonControl.MaxItemId = 717;
             this.ribbonControl.Name = "ribbonControl";
             this.ribbonControl.PageCategories.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageCategory[] {
             this.ribbonPageCategory_map,
             this.ribbonPageCategory_doc,
             this.ribbonPageCategory_xls});
             this.ribbonControl.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
-            this.homeRibbonPage});
+            this.homeRibbonPage,
+            this.AnalysisRibbonPage});
             this.ribbonControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemFontEdit1,
             this.repositoryItemRichEditFontSizeEdit1,
@@ -3282,12 +3308,12 @@
             this.stylesRibbonPageGroup1,
             this.editingRibbonPageGroup1});
             this.homeRibbonPage1.Name = "homeRibbonPage1";
-            reduceOperation5.Behavior = DevExpress.XtraBars.Ribbon.ReduceOperationBehavior.UntilAvailable;
-            reduceOperation5.Group = this.stylesRibbonPageGroup1;
-            reduceOperation5.ItemLinkIndex = 0;
-            reduceOperation5.ItemLinksCount = 0;
-            reduceOperation5.Operation = DevExpress.XtraBars.Ribbon.ReduceOperationType.Gallery;
-            this.homeRibbonPage1.ReduceOperations.Add(reduceOperation5);
+            reduceOperation1.Behavior = DevExpress.XtraBars.Ribbon.ReduceOperationBehavior.UntilAvailable;
+            reduceOperation1.Group = this.stylesRibbonPageGroup1;
+            reduceOperation1.ItemLinkIndex = 0;
+            reduceOperation1.ItemLinksCount = 0;
+            reduceOperation1.Operation = DevExpress.XtraBars.Ribbon.ReduceOperationType.Gallery;
+            this.homeRibbonPage1.ReduceOperations.Add(reduceOperation1);
             this.homeRibbonPage1.Text = "开始";
             this.homeRibbonPage1.Visible = false;
             // 
@@ -3480,12 +3506,12 @@
             this.cellsRibbonPageGroup1,
             this.editingRibbonPageGroup2});
             this.homeRibbonPage2.Name = "homeRibbonPage2";
-            reduceOperation6.Behavior = DevExpress.XtraBars.Ribbon.ReduceOperationBehavior.UntilAvailable;
-            reduceOperation6.Group = this.stylesRibbonPageGroup2;
-            reduceOperation6.ItemLinkIndex = 0;
-            reduceOperation6.ItemLinksCount = 0;
-            reduceOperation6.Operation = DevExpress.XtraBars.Ribbon.ReduceOperationType.Gallery;
-            this.homeRibbonPage2.ReduceOperations.Add(reduceOperation6);
+            reduceOperation2.Behavior = DevExpress.XtraBars.Ribbon.ReduceOperationBehavior.UntilAvailable;
+            reduceOperation2.Group = this.stylesRibbonPageGroup2;
+            reduceOperation2.ItemLinkIndex = 0;
+            reduceOperation2.ItemLinksCount = 0;
+            reduceOperation2.Operation = DevExpress.XtraBars.Ribbon.ReduceOperationType.Gallery;
+            this.homeRibbonPage2.ReduceOperations.Add(reduceOperation2);
             this.homeRibbonPage2.Text = "开始";
             this.homeRibbonPage2.Visible = false;
             // 
@@ -4243,6 +4269,111 @@
             this.pdfBarController1.BarItems.Add(this.pdfSetFitWidthZoomModeCheckItem1);
             this.pdfBarController1.BarItems.Add(this.pdfSetFitVisibleZoomModeCheckItem1);
             // 
+            // AnalysisRibbonPage
+            // 
+            this.AnalysisRibbonPage.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.RedLineRibbonPageGroup,
+            this.ThemeRibbonPageGroup});
+            this.AnalysisRibbonPage.Name = "AnalysisRibbonPage";
+            this.AnalysisRibbonPage.Text = "地图分析";
+            // 
+            // RedLineRibbonPageGroup
+            // 
+            this.RedLineRibbonPageGroup.ItemLinks.Add(this.bDataAnalysis);
+            this.RedLineRibbonPageGroup.ItemLinks.Add(this.bCoorInputButton);
+            this.RedLineRibbonPageGroup.ItemLinks.Add(this.bManualDrawButton);
+            this.RedLineRibbonPageGroup.Name = "RedLineRibbonPageGroup";
+            this.RedLineRibbonPageGroup.Text = "基本红线分析";
+            // 
+            // ThemeRibbonPageGroup
+            // 
+            this.ThemeRibbonPageGroup.ItemLinks.Add(this.bTranspNetDensity);
+            this.ThemeRibbonPageGroup.ItemLinks.Add(this.bElecNetDensity);
+            this.ThemeRibbonPageGroup.ItemLinks.Add(this.bIntDisasterRisk);
+            this.ThemeRibbonPageGroup.ItemLinks.Add(this.bEcoServiceValue);
+            this.ThemeRibbonPageGroup.ItemLinks.Add(this.bHydroAnalysis);
+            this.ThemeRibbonPageGroup.ItemLinks.Add(this.bFloodLoss);
+            this.ThemeRibbonPageGroup.ItemLinks.Add(this.bGDPCenterTransfer);
+            this.ThemeRibbonPageGroup.Name = "ThemeRibbonPageGroup";
+            this.ThemeRibbonPageGroup.Text = "专题图分析";
+            // 
+            // barButtonItem5
+            // 
+            this.barButtonItem5.Caption = "barButtonItem5";
+            this.barButtonItem5.CategoryGuid = new System.Guid("6ffddb2b-9015-4d97-a4c1-91613e0ef537");
+            this.barButtonItem5.Id = 706;
+            this.barButtonItem5.Name = "barButtonItem5";
+            // 
+            // bDataAnalysis
+            // 
+            this.bDataAnalysis.Caption = "地图分析";
+            this.bDataAnalysis.Id = 707;
+            this.bDataAnalysis.Name = "bDataAnalysis";
+            this.bDataAnalysis.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            // 
+            // bCoorInputButton
+            // 
+            this.bCoorInputButton.Caption = "坐标录入";
+            this.bCoorInputButton.Id = 708;
+            this.bCoorInputButton.Name = "bCoorInputButton";
+            this.bCoorInputButton.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            // 
+            // bManualDrawButton
+            // 
+            this.bManualDrawButton.Caption = "手动绘制";
+            this.bManualDrawButton.Id = 709;
+            this.bManualDrawButton.Name = "bManualDrawButton";
+            this.bManualDrawButton.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            // 
+            // bTranspNetDensity
+            // 
+            this.bTranspNetDensity.Caption = "交通网络密度";
+            this.bTranspNetDensity.Id = 710;
+            this.bTranspNetDensity.Name = "bTranspNetDensity";
+            this.bTranspNetDensity.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            // 
+            // bElecNetDensity
+            // 
+            this.bElecNetDensity.Caption = "电力网络密度";
+            this.bElecNetDensity.Id = 711;
+            this.bElecNetDensity.Name = "bElecNetDensity";
+            this.bElecNetDensity.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            // 
+            // bIntDisasterRisk
+            // 
+            this.bIntDisasterRisk.Caption = "综合灾害风险";
+            this.bIntDisasterRisk.Id = 712;
+            this.bIntDisasterRisk.Name = "bIntDisasterRisk";
+            this.bIntDisasterRisk.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            // 
+            // bEcoServiceValue
+            // 
+            this.bEcoServiceValue.Caption = "生态服务价值";
+            this.bEcoServiceValue.Id = 713;
+            this.bEcoServiceValue.Name = "bEcoServiceValue";
+            this.bEcoServiceValue.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            // 
+            // bHydroAnalysis
+            // 
+            this.bHydroAnalysis.Caption = "水文分析";
+            this.bHydroAnalysis.Id = 714;
+            this.bHydroAnalysis.Name = "bHydroAnalysis";
+            this.bHydroAnalysis.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            // 
+            // bFloodLoss
+            // 
+            this.bFloodLoss.Caption = "洪涝损失分析";
+            this.bFloodLoss.Id = 715;
+            this.bFloodLoss.Name = "bFloodLoss";
+            this.bFloodLoss.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            // 
+            // bGDPCenterTransfer
+            // 
+            this.bGDPCenterTransfer.Caption = "GDP重心转移轨迹";
+            this.bGDPCenterTransfer.Id = 716;
+            this.bGDPCenterTransfer.Name = "bGDPCenterTransfer";
+            this.bGDPCenterTransfer.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            // 
             // MainForm
             // 
             this.AllowFormGlass = DevExpress.Utils.DefaultBoolean.False;
@@ -4690,6 +4821,20 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItem4;
         private DevExpress.XtraBars.BarButtonItem bDocConfig;
         private DevExpress.XtraBars.BarButtonItem bMap_RemoveKeyword;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem5;
+        private DevExpress.XtraBars.BarButtonItem bDataAnalysis;
+        private DevExpress.XtraBars.BarButtonItem bCoorInputButton;
+        private DevExpress.XtraBars.BarButtonItem bManualDrawButton;
+        private DevExpress.XtraBars.BarButtonItem bTranspNetDensity;
+        private DevExpress.XtraBars.BarButtonItem bElecNetDensity;
+        private DevExpress.XtraBars.BarButtonItem bIntDisasterRisk;
+        private DevExpress.XtraBars.BarButtonItem bEcoServiceValue;
+        private DevExpress.XtraBars.BarButtonItem bHydroAnalysis;
+        private DevExpress.XtraBars.BarButtonItem bFloodLoss;
+        private DevExpress.XtraBars.BarButtonItem bGDPCenterTransfer;
+        private DevExpress.XtraBars.Ribbon.RibbonPage AnalysisRibbonPage;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup RedLineRibbonPageGroup;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ThemeRibbonPageGroup;
 
     }
 }
