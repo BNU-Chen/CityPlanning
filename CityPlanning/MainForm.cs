@@ -83,6 +83,7 @@ namespace CityPlanning
         private string _Environment = string.Empty;
         private string strInputFeature = string.Empty;
         private string strOverLayFeature = string.Empty;
+        private bool DrawPolygon = false;
         
         
         #endregion
@@ -994,6 +995,7 @@ namespace CityPlanning
 
         #endregion
 
+        //坐标导入事件
         private void bCoorInputButton_ItemClick(object sender, ItemClickEventArgs e)
         {
             //读取坐标文件
@@ -1280,7 +1282,8 @@ namespace CityPlanning
             }//ifdiag
 
         }
-
+       
+        #region//叠置分析所需方法
         //坐标点赋坐标
         private IPoint GetGeo(double x, double y)
         {
@@ -1291,7 +1294,7 @@ namespace CityPlanning
             geo.Project(pFactory.CreateGeographicCoordinateSystem((int)esriSRGeoCS3Type.esriSRGeoCS_Xian1980));
             return pt;
         }
-
+        
         //叠置分析
         private void StartIntersect(string strInputFeature, string strOverLayFeature)
         {
@@ -1327,6 +1330,236 @@ namespace CityPlanning
             }
         }
 
-        
+        //绘制多边形
+        private void DrawMapShape(IGeometry pGeom)
+        {
+            IRgbColor pColor = new RgbColorClass();
+            pColor.Red = 220;
+            pColor.Green = 112;
+            pColor.Blue = 60;
+            //新建一个绘制图形的填充符号
+            ISimpleFillSymbol pFillsyl = new SimpleFillSymbolClass();
+            pFillsyl.Color = pColor;
+            object oFillsyl = pFillsyl;
+            curAxMapControl.DrawShape(pGeom, ref oFillsyl);
+        }
+
+
+        //手动绘制事件
+        private void bManualDrawButton_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            // MousePointer属性可以改变鼠标指针的样式
+            curAxMapControl.MousePointer =
+            esriControlsMousePointer.esriPointerCrosshair;
+            DrawPolygon = true;
+            //开始叠置分析
+            string DirPath = "F:\\";
+            AxMapControl mapControl = new AxMapControl();
+            mapControl = curAxMapControl;
+            mapControl.AddShapeFile(DirPath, "draw.shp");
+            mapControl.Refresh();
+            if (MessageBox.Show("开始分析?", "询问", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+            {
+                string strInputFeaturePath = "D:\\项目 - 沈阳经济区\\图集\\原始矢量数据\\图集\\矢量图\\shp\\GHJBNTJZQ（处理后）.shp";
+                string strInputFeatureName = "GHJBNTJZQ（处理后）.shp";
+                FileInfo fileInfo = new FileInfo(strInputFeaturePath);
+                DirectoryInfo direct = fileInfo.Directory;
+                FileInfo[] fileinfos = direct.GetFiles(string.Format("{0}.*", fileInfo.Name.Substring(0, fileInfo.Name.LastIndexOf("."))));
+                for (int i = 0; i < fileinfos.Count(); i++)
+                {
+                    File.Copy(fileinfos[i].FullName, _Environment + @"\" + fileinfos[i].Name, true);
+                }
+                this.strInputFeature = fileInfo.Name;
+
+                string strOverLayFeaturePath = "F:\\draw.shp";
+                string strOverLayFeatureName = "draw.shp";
+                FileInfo fileInfo1 = new FileInfo(strOverLayFeaturePath);
+                DirectoryInfo direct1 = fileInfo1.Directory;
+                FileInfo[] fileinfos1 = direct1.GetFiles(string.Format("{0}.*", fileInfo1.Name.Substring(0, fileInfo1.Name.LastIndexOf("."))));
+                for (int i = 0; i < fileinfos1.Count(); i++)
+                {
+                    File.Copy(fileinfos1[i].FullName, _Environment + @"\" + fileinfos1[i].Name, true);
+                }
+                this.strOverLayFeature = fileInfo1.Name;
+
+                this.StartIntersect(strInputFeature, strOverLayFeature);
+                ThreadForm thr = new ThreadForm(0, 100);
+                thr.Show(this);
+                for (int i = 0; i < 100; i++)
+                {
+                    thr.setPos(i);
+                    Thread.Sleep(20);
+                }
+                mapControl.AddShapeFile(DirPath, "Result.shp");
+                mapControl.Refresh();
+            }
+        }
+        #endregion
+
+        //鼠标单击绘制事件
+        private void mapControl_OnMouseDown(object sender, ESRI.ArcGIS.Controls.IMapControlEvents2_OnMouseDownEvent e)
+        {
+            if (e.button == 1) //== MouseButtons.Left)
+            {
+                if (DrawPolygon)
+                {
+                    IGeometry pPolygon = curAxMapControl.TrackPolygon();
+                    //刷新地图
+                    DrawMapShape(pPolygon);
+                    curAxMapControl.MousePointer = esriControlsMousePointer.esriPointerArrow;
+                    curAxMapControl.Refresh(esriViewDrawPhase.esriViewGeography, null, null);
+                    if (pPolygon != null && !pPolygon.IsEmpty)
+                    {
+                        #region//生成shp
+                        string inSHPpath = "F:\\draw.shp";
+                        string shpDirName = System.IO.Path.GetDirectoryName(inSHPpath);
+                        string shpName1 = System.IO.Path.GetFileNameWithoutExtension(inSHPpath);
+                        string shpFullName = shpName1 + ".shp";
+                        string prjName = shpName1 + ".prj";
+                        string dbfName = shpName1 + ".dbf";
+                        string shxName = shpName1 + ".shx";
+                        string sbnName = shpName1 + ".sbn";
+                        string xmlName = shpName1 + ".shp.xml";
+                        string sbxName = shpName1 + ".sbx";
+                        if (System.IO.File.Exists(shpDirName + "\\" + shpFullName))
+                            System.IO.File.Delete(shpDirName + "\\" + shpFullName);
+                        if (System.IO.File.Exists(shpDirName + "\\" + prjName))
+                            System.IO.File.Delete(shpDirName + "\\" + prjName);
+                        if (System.IO.File.Exists(shpDirName + "\\" + dbfName))
+                            System.IO.File.Delete(shpDirName + "\\" + dbfName);
+                        if (System.IO.File.Exists(shpDirName + "\\" + shxName))
+                            System.IO.File.Delete(shpDirName + shxName);
+                        if (System.IO.File.Exists(shpDirName + "\\" + sbnName))
+                            System.IO.File.Delete(shpDirName + "\\" + sbnName);
+                        if (System.IO.File.Exists(shpDirName + "\\" + xmlName))
+                            System.IO.File.Delete(shpDirName + "\\" + xmlName);
+                        if (System.IO.File.Exists(shpDirName + "\\" + sbxName))
+                            System.IO.File.Delete(shpDirName + "\\" + sbxName);
+
+                        string shpName = System.IO.Path.GetFileNameWithoutExtension(inSHPpath);   //获取生成的矢量
+
+                        //打开生成shapefile的工作空间；
+                        IFeatureWorkspace pFWS = null;
+                        IWorkspaceFactory pWSF = new ShapefileWorkspaceFactory();
+                        pFWS = pWSF.OpenFromFile(shpDirName, 0) as IFeatureWorkspace;
+
+                        //开始添加属性字段；
+                        IFields fields = new FieldsClass();
+                        IFieldsEdit fieldsEdit = (IFieldsEdit)fields;
+
+                        //添加字段“OID”；
+                        IField oidField = new FieldClass();
+                        IFieldEdit oidFieldEdit = (IFieldEdit)oidField;
+                        oidFieldEdit.Name_2 = "OID";
+                        oidFieldEdit.Type_2 = esriFieldType.esriFieldTypeOID;
+                        fieldsEdit.AddField(oidField);
+
+                        //设置生成图的空间坐标参考系统；
+                        IGeometryDef geometryDef = new GeometryDefClass();
+                        IGeometryDefEdit geometryDefEdit = (IGeometryDefEdit)geometryDef;
+                        geometryDefEdit.GeometryType_2 = esriGeometryType.esriGeometryPolygon;
+                        ISpatialReferenceFactory spatialReferenceFactory = new SpatialReferenceEnvironmentClass();
+                        //ISpatialReference spatialReference = new UnknownCoordinateSystemClass();
+                        IProjectedCoordinateSystem spatialReference = spatialReferenceFactory.CreateProjectedCoordinateSystem((int)esriSRProjCS4Type.esriSRProjCS_Xian1980_GK_Zone_21);
+
+                        ISpatialReferenceResolution spatialReferenceResolution = (ISpatialReferenceResolution)spatialReference;
+                        spatialReferenceResolution.ConstructFromHorizon();
+                        ISpatialReferenceTolerance spatialReferenceTolerance = (ISpatialReferenceTolerance)spatialReference;
+                        spatialReferenceTolerance.SetDefaultXYTolerance();
+                        geometryDefEdit.SpatialReference_2 = spatialReference;
+
+                        //添加字段“Shape”;
+                        IField geometryField = new FieldClass();
+                        IFieldEdit geometryFieldEdit = (IFieldEdit)geometryField;
+                        geometryFieldEdit.Name_2 = "Shape";
+                        geometryFieldEdit.Type_2 = esriFieldType.esriFieldTypeGeometry;
+                        geometryFieldEdit.GeometryDef_2 = geometryDef;
+                        fieldsEdit.AddField(geometryField);
+
+
+                        IField nameField = new FieldClass();
+                        IFieldEdit nameFieldEdit = (IFieldEdit)nameField;
+
+                        //添加字段“经度X”；
+                        nameField = new FieldClass();
+                        nameFieldEdit = (IFieldEdit)nameField;
+                        nameFieldEdit.Name_2 = "经度X";
+                        nameFieldEdit.Type_2 = esriFieldType.esriFieldTypeString;
+                        nameFieldEdit.Length_2 = 20;
+                        fieldsEdit.AddField(nameField);
+
+                        //添加字段“纬度Y”；
+                        nameField = new FieldClass();
+                        nameFieldEdit = (IFieldEdit)nameField;
+                        nameFieldEdit.Name_2 = "纬度Y";
+                        nameFieldEdit.Type_2 = esriFieldType.esriFieldTypeString;
+                        nameFieldEdit.Length_2 = 20;
+                        fieldsEdit.AddField(nameField);
+
+                        //添加面积（改动）
+                        nameField = new FieldClass();
+                        nameFieldEdit = (IFieldEdit)nameField;
+                        nameFieldEdit.Name_2 = "面积";
+                        nameFieldEdit.Type_2 = esriFieldType.esriFieldTypeDouble;
+                        fieldsEdit.AddField(nameField);
+
+
+                        IFieldChecker fieldChecker = new FieldCheckerClass();
+                        IEnumFieldError enumFieldError = null;
+                        IFields validatedFields = null;
+                        fieldChecker.ValidateWorkspace = (IWorkspace)pFWS;
+                        fieldChecker.Validate(fields, out enumFieldError, out validatedFields);
+
+                        //在工作空间中生成FeatureClass;
+                        IFeatureClass pNewFeaCls = pFWS.CreateFeatureClass(shpName, validatedFields, null, null, esriFeatureType.esriFTSimple, "Shape", "");
+                        IFeature feature = null;
+                        //feature = pNewFeaCls.CreateFeature();
+                        #endregion
+
+
+                        //object missing = Type.Missing;
+                        IPointCollection pPointColl = pPolygon as IPointCollection;
+
+                        for (int i = 0; i < pPointColl.PointCount; i++)
+                        {
+                            feature = pNewFeaCls.CreateFeature();
+                            IPoint pt = pPointColl.get_Point(i);
+                            //GetGeo(pt.X, pt.Y);
+                            //pts.Add(pt);
+                            // pPointColl.AddPoint(pt, ref missing, ref missing);
+                            feature.Shape = pPointColl as IGeometry;
+
+                            feature.Store();
+                            feature.set_Value(2, pt.X.ToString());
+                            feature.set_Value(3, pt.Y.ToString());
+                            feature.Store();
+
+                        }
+                        IMap pmap = curAxMapControl.Map;
+                        IActiveView pactive = pmap as IActiveView;
+
+                        IPolygonElement pmarke = new PolygonElementClass();
+                        IElement pele = pmarke as IElement;
+                        pele.Geometry = pPointColl as IGeometry;
+                        IGraphicsContainer pgra;
+                        pgra = pmap as IGraphicsContainer;
+                        pgra.AddElement(pmarke as IElement, 0);
+                        pactive.PartialRefresh(esriViewDrawPhase.esriViewGraphics, null, null);
+                        IPolygon pGon = pPolygon as IPolygon;
+                        IArea pArea = pGon as IArea;
+                        double s = pArea.Area * 10000;//
+                        MessageBox.Show("测量面积为：" + Convert.ToDouble(s).ToString("0.000") + "平方公里（km2）", "面积测量结果");
+                        // IPointArray pts = new PointArrayClass();
+                        if (MessageBox.Show("确定绘制？", "询问", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                        {
+                            pgra.DeleteAllElements();
+                            this.curAxMapControl.Refresh();
+                        }
+                    }
+                    DrawPolygon = false;
+                }
+            }
+        }
+
     }
 }
