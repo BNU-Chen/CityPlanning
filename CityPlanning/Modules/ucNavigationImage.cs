@@ -19,12 +19,14 @@ namespace CityPlanning.Modules
         private string thumbImagePath = "";     //缩略图文件夹
         private XtraTabControl xTabControl = null;
 
+        //这是TabControl
         public XtraTabControl XTabControl
         {
             get { return xTabControl; }
             set { xTabControl = value; }
         }
         
+        //设置图片文件夹路径
         public string ImageFolderPath
         {
             get { return imageFolderPath; }
@@ -44,14 +46,14 @@ namespace CityPlanning.Modules
                 GetImages(thumbImagePath);
             }
         }
-
-
+                
         public ucNavigationImage()
         {
             InitializeComponent();
             //this.MouseWheel += new MouseEventHandler(flowLayoutPanel1_MouseWheel);
         }
 
+        //鼠标滚轮事件FlowLayoutPanel获得焦点
         void flowLayoutPanel1_MouseWheel(object sender, MouseEventArgs e)
         {
             try
@@ -63,6 +65,7 @@ namespace CityPlanning.Modules
             //throw new NotImplementedException();
         }
 
+        //取得所有图片
         private void GetImages(string path)
         {
             string[] files = Directory.GetFiles(path, "*.jpg");
@@ -76,8 +79,18 @@ namespace CityPlanning.Modules
                 ucThumb.PicBox.MouseWheel += flowLayoutPanel1_MouseWheel;
                 this.flowLayoutPanel1.Controls.Add(ucThumb);
             }
+
+            //自动显示第一个
+            if(this.flowLayoutPanel1.Controls.Count == 0)
+            {
+                return;
+            }
+            ucImageThumb imgCtrl = this.flowLayoutPanel1.Controls[0] as ucImageThumb;
+            ucThumb_Click(imgCtrl.PicBox as object, null);
+
         }
 
+        //点击图片浏览大图
         void ucThumb_Click(object sender, EventArgs e)
         {
 

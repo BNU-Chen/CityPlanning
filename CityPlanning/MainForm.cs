@@ -61,6 +61,11 @@ namespace CityPlanning
         public Modules.ucDocumentInternalSearch ucDocIntSearch = new Modules.ucDocumentInternalSearch(); //郭海强 添加关键词搜索控件0913
         public Modules.ucNavigationImage ucNavImage = new Modules.ucNavigationImage();  //规划效果图浏览
 
+
+        //INI文件相关
+        private string MapKeywordSection = "MapKeyword";    //地图关键词
+        private string curMapKeyName = "";      //当前地图关键词的key
+        
         #endregion
 
         #region //初始化函数
@@ -243,8 +248,8 @@ namespace CityPlanning
             string path = @"E:\项目 - 2014 沈阳经济区\data\图集\经济区图册正面";
             this.panelControl_Navigation.Controls.Clear();
             this.panelControl_Navigation.Controls.Add(ucNavImage);
-            ucNavImage.ImageFolderPath = path;
             ucNavImage.XTabControl = this.xtraTabControl_Main;
+            ucNavImage.ImageFolderPath = path;
             ucNavImage.Dock = DockStyle.Fill;
         }
         #endregion
@@ -392,6 +397,10 @@ namespace CityPlanning
                         this.Refresh();
 
                         mapControl.LoadMxFile(path);
+
+                        //获取地图关键词
+                        curMapKeyName = nodeName;
+                        SetMapKeywords();
                         break;
                     default:
                         return;
@@ -734,6 +743,59 @@ namespace CityPlanning
                 //ucDocIntSearch.RichEditControl = richEditControl;
             }
         }
+
+        //添加地图关键词
+        private void bMap_AddKeyword_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            XtraTabPage curTabPage = this.xtraTabControl_Main.SelectedTabPage;
+            Control curFirstChildControl = curTabPage.Controls[0];
+            if(curFirstChildControl is AxMapControl)
+            {
+                curMapKeyName = curTabPage.Text;
+                Forms.frmAddMapKeyword frmAddKey = new Forms.frmAddMapKeyword(MapKeywordSection, curMapKeyName);
+                frmAddKey.ShowDialog();
+                frmAddKey.FormClosed += frmAddKey_FormClosed;
+            }
+            //if()
+        }
+
+        void frmAddKey_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            SetMapKeywords();
+        }
+
+        private void SetMapKeywords()
+        {
+            this.ribbonGallery_MapKeywords.Gallery.Groups.Clear();            
+
+            string mapKeywords = ConnectionCenter.INIFile.IniReadValue(MapKeywordSection, curMapKeyName);
+            if(mapKeywords.Length == 0){
+                return;
+            }
+            string[] keys = mapKeywords.Split(',');
+            //添加到Gallery
+            //this.ribbonGallery_MapKeywords.Gallery.Images = ribbonImageCollectionLarge;
+            GalleryItemGroup itemGroup1 = new GalleryItemGroup();
+            this.ribbonGallery_MapKeywords.Gallery.Groups.Add(itemGroup1);
+            // Create gallery items and add them to the group. 
+            List<GalleryItem> galleryItemList = new List<GalleryItem>();
+            foreach (string key in keys)
+            {
+                GalleryItem item1 = new GalleryItem();
+                item1.Caption = key;
+                item1.Value = key;
+                //item1.ImageIndex = item1.HoverImageIndex = 0;
+                //item1.ImageIndex = item1.HoverImageIndex = 0;
+                galleryItemList.Add(item1);
+            }
+            GalleryItem[] galleryItems = galleryItemList.ToArray();
+            itemGroup1.Items.AddRange(galleryItems);
+            // Specify the number of items to display horizontally. 
+            ribbonGallery_MapKeywords.Gallery.ColumnCount = 3;
+            //throw new NotImplementedException();
+        }
+
+        #region //GIS Tools
         //添加图层
         private void bMapAddLayer_ItemClick(object sender, ItemClickEventArgs e)
         {
@@ -781,6 +843,7 @@ namespace CityPlanning
             curAxMapControl.MousePointer = ESRI.ArcGIS.Controls.esriControlsMousePointer.esriPointerCrosshair;
             isIdentifyMap = true;
         }
+        #endregion
         #endregion
 
         #region //文档搜索相关
@@ -845,7 +908,7 @@ namespace CityPlanning
 
             if (e.button == 1)  //左键
             {
-                MessageBox.Show("左键");
+                //MessageBox.Show("左键");
                 if (isIdentifyMap)
                 {
                     //GetStaInfoByMap();
@@ -853,16 +916,17 @@ namespace CityPlanning
             }
             else if (e.button == 2) //右键
             {
-                MessageBox.Show("右键");
+                //MessageBox.Show("右键");
             }
             else if (e.button == 3) //中键
             {
-                MessageBox.Show("中键");
+                //MessageBox.Show("中键");
             }
             //throw new NotImplementedException();
         }
 
         #endregion
+
 
 
         //test add code
