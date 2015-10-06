@@ -1232,8 +1232,8 @@ namespace CityPlanning
 
                 IPolygon pGon = polygon as IPolygon;
                 IArea pArea = pGon as IArea;
-                double s = pArea.Area * 10000;//
-                MessageBox.Show("测量面积为：" + Convert.ToDouble(s).ToString("0.000") + "平方公里（km2）", "面积测量结果");
+                double s = pArea.Area ;//
+                MessageBox.Show("该区域面积为：" + Convert.ToDouble(s).ToString("0.000") + "平方公里（km2）", "项目区面积");
                 string DirPath = "F:\\";
                 AxMapControl mapControl = new AxMapControl();
                 mapControl = curAxMapControl;
@@ -1463,6 +1463,7 @@ namespace CityPlanning
 
         #endregion
 
+        #region//基本红线分析事件
         //手动绘制事件
         private void bManualDrawButton_ItemClick(object sender, ItemClickEventArgs e)
         {
@@ -1515,8 +1516,6 @@ namespace CityPlanning
             }
         }
         
-        
-
         //鼠标单击绘制事件
         private void mapControl_OnMouseDown(object sender, ESRI.ArcGIS.Controls.IMapControlEvents2_OnMouseDownEvent e)
         {
@@ -1711,8 +1710,9 @@ namespace CityPlanning
             mapControl.ActiveView.Refresh();
 
         }
+        #endregion
 
-        #region //其他7大分析
+        #region //专题图分析事件
         private void bTranspNetDensity_ItemClick(object sender, ItemClickEventArgs e)
         {
             //加载进度条
@@ -1724,6 +1724,10 @@ namespace CityPlanning
                 Thread.Sleep(40);
             }
             thr.Close();
+            //changepfl
+            //分析结果文字显示
+            ResultShowForm ResFrm = new ResultShowForm();
+            ResFrm.Show();
         }
 
         private void bElecNetDensity_ItemClick(object sender, ItemClickEventArgs e)
@@ -1737,6 +1741,10 @@ namespace CityPlanning
                 Thread.Sleep(40);
             }
             thr.Close();
+            //changepfl
+            //分析结果文字显示
+            ResultShowForm ResFrm = new ResultShowForm();
+            ResFrm.Show();
         }
 
         private void bIntDisasterRisk_ItemClick(object sender, ItemClickEventArgs e)
@@ -1750,6 +1758,10 @@ namespace CityPlanning
                 Thread.Sleep(40);
             }
             thr.Close();
+            //changepfl
+            //分析结果文字显示
+            ResultShowForm ResFrm = new ResultShowForm();
+            ResFrm.Show();
         }
 
         private void bEcoServiceValue_ItemClick(object sender, ItemClickEventArgs e)
@@ -1763,6 +1775,10 @@ namespace CityPlanning
                 Thread.Sleep(50);
             }
             thr.Close();
+            //changepfl
+            //分析结果文字显示
+            ResultShowForm ResFrm = new ResultShowForm();
+            ResFrm.Show();
         }
 
         private void bHydroAnalysis_ItemClick(object sender, ItemClickEventArgs e)
@@ -1776,6 +1792,10 @@ namespace CityPlanning
                 Thread.Sleep(40);
             }
             thr.Close();
+            //changepfl
+            //分析结果文字显示
+            ResultShowForm ResFrm = new ResultShowForm();
+            ResFrm.Show();
         }
 
         private void bFloodLoss_ItemClick(object sender, ItemClickEventArgs e)
@@ -1789,6 +1809,10 @@ namespace CityPlanning
                 Thread.Sleep(50);
             }
             thr.Close();
+            //changepfl
+            //分析结果文字显示
+            ResultShowForm ResFrm = new ResultShowForm();
+            ResFrm.Show();
         }
 
         private void bGDPCenterTransfer_ItemClick(object sender, ItemClickEventArgs e)
@@ -1802,6 +1826,10 @@ namespace CityPlanning
                 Thread.Sleep(60);
             }
             thr.Close();
+            //changepfl
+            //分析结果文字显示
+            ResultShowForm ResFrm = new ResultShowForm();
+            ResFrm.Show();
         }
         #endregion
 
