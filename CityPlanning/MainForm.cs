@@ -1682,5 +1682,128 @@ namespace CityPlanning
             }
         }
 
+        //地图分析事件
+        private void bDataAnalysis_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            AxMapControl mapControl = new AxMapControl();
+            mapControl.BeginInit();     //必须有begin和end
+            mapControl.Location = new System.Drawing.Point(0, 0);
+            mapControl.Name = "mapControl1";
+            mapControl.Dock = DockStyle.Fill;
+            mapControl.OnMouseDown += new IMapControlEvents2_Ax_OnMouseDownEventHandler(mapControl_OnMouseDown);
+            //MapControl不支持先声明，后设置，故而直接设置
+
+            XtraTabPage xtp = new XtraTabPage();
+            xtp.Text = "基本红线示意图";
+            Bitmap image = new Bitmap("F:\\GitHub\\CityPlanning\\CityPlanning\\Resources\\fullExtent_32.png");
+            xtp.Image = image;
+            xtp.Controls.Add(mapControl);
+            this.xtraTabControl_Main.TabPages.Add(xtp);
+            this.xtraTabControl_Main.SelectedTabPage = xtp;
+            mapControl.EndInit();       //必须有begin和end
+
+            mapControl.Refresh();
+            xtp.Refresh();
+            this.xtraTabControl_Main.Refresh();
+            this.Refresh();
+            string path = "D:\\项目 - 沈阳经济区\\图集\\原始矢量数据\\图集\\矢量图\\1.沈阳经济区基本农田保护红线图.mxd";
+            mapControl.LoadMxFile(path);
+            mapControl.ActiveView.Refresh();
+
+        }
+
+        #region //其他7大分析
+        private void bTranspNetDensity_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            //加载进度条
+            ThreadForm thr = new ThreadForm(0, 100);
+            thr.Show(this);
+            for (int i = 0; i < 100; i++)
+            {
+                thr.setPos(i);
+                Thread.Sleep(40);
+            }
+            thr.Close();
+        }
+
+        private void bElecNetDensity_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            //加载进度条
+            ThreadForm thr = new ThreadForm(0, 100);
+            thr.Show(this);
+            for (int i = 0; i < 100; i++)
+            {
+                thr.setPos(i);
+                Thread.Sleep(40);
+            }
+            thr.Close();
+        }
+
+        private void bIntDisasterRisk_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            //加载进度条
+            ThreadForm thr = new ThreadForm(0, 100);
+            thr.Show(this);
+            for (int i = 0; i < 100; i++)
+            {
+                thr.setPos(i);
+                Thread.Sleep(40);
+            }
+            thr.Close();
+        }
+
+        private void bEcoServiceValue_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            //加载进度条
+            ThreadForm thr = new ThreadForm(0, 100);
+            thr.Show(this);
+            for (int i = 0; i < 100; i++)
+            {
+                thr.setPos(i);
+                Thread.Sleep(50);
+            }
+            thr.Close();
+        }
+
+        private void bHydroAnalysis_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            //加载进度条
+            ThreadForm thr = new ThreadForm(0, 100);
+            thr.Show(this);
+            for (int i = 0; i < 100; i++)
+            {
+                thr.setPos(i);
+                Thread.Sleep(40);
+            }
+            thr.Close();
+        }
+
+        private void bFloodLoss_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            //加载进度条
+            ThreadForm thr = new ThreadForm(0, 100);
+            thr.Show(this);
+            for (int i = 0; i < 100; i++)
+            {
+                thr.setPos(i);
+                Thread.Sleep(50);
+            }
+            thr.Close();
+        }
+
+        private void bGDPCenterTransfer_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            //加载进度条
+            ThreadForm thr = new ThreadForm(0, 100);
+            thr.Show(this);
+            for (int i = 0; i < 100; i++)
+            {
+                thr.setPos(i);
+                Thread.Sleep(60);
+            }
+            thr.Close();
+        }
+        #endregion
+
     }
 }
