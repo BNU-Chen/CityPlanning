@@ -11,22 +11,11 @@ using System.Windows.Forms;
 using System.IO;
 
 namespace CityPlanning.Forms
-{    
+{
     public partial class frmSysConfig : Form
     {
-        //INI 
-        private string DocConfigSection = "DocConfig";
-        private string KeyPlanDoc = "PlanDoc";
-        private string KeyPlanDesc = "PlanDesc";
-        private string KeyThematicMap = "ThematicMap";
-        private string KeyPlanImg = "PlanImg";
-        private string KeyPlanMap = "PlanMap";
 
-        private string FTPSection = "FTP";
-        private string FTPCatalog = "catalog";
-
-        //
-        private string DataPath = "";
+        private string DataPath = "";       //当前数据路径
 
         public frmSysConfig()
         {
@@ -35,22 +24,22 @@ namespace CityPlanning.Forms
 
         private void frmSysConfig_Load(object sender, EventArgs e)
         {
-            DataPath = ConnectionCenter.INIFile.IniReadValue(FTPSection, FTPCatalog);
+            DataPath = ConnectionCenter.Config.FTPCatalog;
 
-            this.txt_PlanDoc.Text = ConnectionCenter.INIFile.IniReadValue(DocConfigSection, KeyPlanDoc);
-            this.txt_PlanDesc.Text = ConnectionCenter.INIFile.IniReadValue(DocConfigSection, KeyPlanDesc);
-            this.txt_ThematicMap.Text = ConnectionCenter.INIFile.IniReadValue(DocConfigSection, KeyThematicMap);
-            this.txt_PlanImg.Text = ConnectionCenter.INIFile.IniReadValue(DocConfigSection, KeyPlanImg);
-            this.txt_PlanMap.Text = ConnectionCenter.INIFile.IniReadValue(DocConfigSection, KeyPlanMap);
+            this.txt_PlanDoc.Text = ConnectionCenter.Config.PlanDoc;
+            this.txt_PlanDesc.Text = ConnectionCenter.Config.PlanDesc;
+            this.txt_ThematicMap.Text = ConnectionCenter.Config.ThematicMap;
+            this.txt_PlanImg.Text = ConnectionCenter.Config.PlanImg;
+            this.txt_PlanMap.Text = ConnectionCenter.Config.PlanMap;
         }
 
         private void btn_Submit_Click(object sender, EventArgs e)
         {
-            ConnectionCenter.INIFile.IniWriteValue(DocConfigSection, KeyPlanDoc, this.txt_PlanDoc.Text);
-            ConnectionCenter.INIFile.IniWriteValue(DocConfigSection, KeyPlanDesc, this.txt_PlanDesc.Text);
-            ConnectionCenter.INIFile.IniWriteValue(DocConfigSection, KeyThematicMap, this.txt_ThematicMap.Text);
-            ConnectionCenter.INIFile.IniWriteValue(DocConfigSection, KeyPlanImg, this.txt_PlanImg.Text);
-            ConnectionCenter.INIFile.IniWriteValue(DocConfigSection, KeyPlanMap, this.txt_PlanMap.Text);
+            ConnectionCenter.Config.PlanDoc = this.txt_PlanDoc.Text;
+            ConnectionCenter.Config.PlanDesc = this.txt_PlanDesc.Text;
+            ConnectionCenter.Config.ThematicMap = this.txt_ThematicMap.Text;
+            ConnectionCenter.Config.PlanImg = this.txt_PlanImg.Text;
+            ConnectionCenter.Config.PlanMap = this.txt_PlanMap.Text;
 
             this.Close();
         }
@@ -134,7 +123,7 @@ namespace CityPlanning.Forms
                     {
                         MessageBox.Show("您没有在指定文件夹内指定路径，请重新选择");
                         return;
-                    }                    
+                    }
                 }
                 else
                 {
@@ -151,7 +140,7 @@ namespace CityPlanning.Forms
                 if (Directory.Exists(DataPath))
                 {
                     fbd.SelectedPath = DataPath;
-                }                
+                }
             }
             fbd.Description = "设定路径";
             fbd.ShowNewFolderButton = false;

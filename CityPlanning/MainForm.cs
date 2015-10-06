@@ -45,12 +45,10 @@ namespace CityPlanning
         public Modules.ucChartForm curChartForm = null;
         private SpreadsheetControl curSpreadsheetControl = null;
         private RichEditControl curRichEditControl = null;
-
-
+        
         //地图相关
         private bool isIdentifyMap = false;  //是否开始地图查询
-
-        
+                
         //自定义类声明
         private int iconCount = 0;
 
@@ -63,8 +61,8 @@ namespace CityPlanning
 
 
         //INI文件相关
-        private string MapKeywordSection = "MapKeyword";    //地图关键词
         private string curMapKeyName = "";      //当前地图关键词的key
+        
         
         #endregion
 
@@ -81,12 +79,6 @@ namespace CityPlanning
             //启动界面
             frmStartConnectionConfig fscc = new frmStartConnectionConfig(this);
             fscc.ShowDialog();
-        }
-
-        //初始化连接,由初始化界面调用
-        public void InitConnection()
-        {
-            
         }
 
         //初始化控件
@@ -115,19 +107,7 @@ namespace CityPlanning
             //SkinHelper.InitSkinGallery(rgbiSkins, true);
         }
         #endregion
-
-        #region //关于
-        private void iAbout_ItemClick(object sender, ItemClickEventArgs e)
-        {
-
-        }
-
-        private void iHelp_ItemClick(object sender, ItemClickEventArgs e)
-        {
-
-        }
-        #endregion
-
+        
         #region //主页Ribbon按钮事件
         //连接配置
         private void bConnectConfig_ItemClick(object sender, ItemClickEventArgs e)
@@ -200,7 +180,10 @@ namespace CityPlanning
         //空间数据库
         private void bGalleryGeodatabase_ItemClick(object sender, ItemClickEventArgs e)
         {
-            
+            this.panelControl_Navigation.Controls.Clear();
+            this.panelControl_Navigation.Controls.Add(ucNaviFiles);
+            ucNaviFiles.SourceFolder = ConnectionCenter.Config.PlanMap;
+            ucNaviFiles.FetchFiles();
         }
         //关系数据库
         private void bGalleryRelationalDatabase_ItemClick(object sender, ItemClickEventArgs e)
@@ -239,7 +222,7 @@ namespace CityPlanning
         {
             this.panelControl_Navigation.Controls.Clear();
             this.panelControl_Navigation.Controls.Add(ucNaviFiles);
-            ucNaviFiles.SourceFolder = FTPConnection.FtpCatalog;
+            ucNaviFiles.SourceFolder = ConnectionCenter.Config.FTPCatalog;
             ucNaviFiles.FetchFiles();
         }
 
@@ -252,11 +235,10 @@ namespace CityPlanning
         //规划文档效果图
         private void bGalleryImage_ItemClick(object sender, ItemClickEventArgs e)
         {
-            string path = @"E:\项目 - 2014 沈阳经济区\data\图集\经济区图册正面";
             this.panelControl_Navigation.Controls.Clear();
             this.panelControl_Navigation.Controls.Add(ucNavImage);
             ucNavImage.XTabControl = this.xtraTabControl_Main;
-            ucNavImage.ImageFolderPath = path;
+            ucNavImage.ImageFolderPath = ConnectionCenter.Config.PlanImg;
             ucNavImage.Dock = DockStyle.Fill;
         }
         //关于我们
@@ -751,7 +733,7 @@ namespace CityPlanning
             {
                 this.panelControl_Navigation.Controls.Clear();
                 this.panelControl_Navigation.Controls.Add(ucDocIntSearch);
-                ucDocIntSearch.SearchFromDocument("沈阳", @"E:\项目 - 2014 沈阳经济区\data\文本\沈阳经济区国土规划文本（20150805稿）.doc");
+                ucDocIntSearch.SearchFromDocument("沈阳",ConnectionCenter.Config.PlanDoc);
                 //RichEditControl richEditControl = (RichEditControl)control;
                 //ucDocIntSearch.RichEditControl = richEditControl;
             }
@@ -765,7 +747,7 @@ namespace CityPlanning
             if(curFirstChildControl is AxMapControl)
             {
                 curMapKeyName = curTabPage.Text;
-                Forms.frmAddMapKeyword frmAddKey = new Forms.frmAddMapKeyword(MapKeywordSection, curMapKeyName);
+                Forms.frmAddMapKeyword frmAddKey = new Forms.frmAddMapKeyword(ConnectionCenter.Config.MapKeywordSection, curMapKeyName);
                 frmAddKey.ShowDialog();
                 frmAddKey.FormClosed += frmAddKey_FormClosed;
             }
@@ -779,9 +761,9 @@ namespace CityPlanning
 
         private void SetMapKeywords()
         {
-            this.ribbonGallery_MapKeywords.Gallery.Groups.Clear();            
+            this.ribbonGallery_MapKeywords.Gallery.Groups.Clear();
 
-            string mapKeywords = ConnectionCenter.INIFile.IniReadValue(MapKeywordSection, curMapKeyName);
+            string mapKeywords = ConnectionCenter.INIFile.IniReadValue(ConnectionCenter.Config.MapKeywordSection, curMapKeyName);
             if(mapKeywords.Length == 0){
                 return;
             }
@@ -815,8 +797,12 @@ namespace CityPlanning
             {
                 return;
             }
+            this.panelControl_Navigation.Controls.Clear();
+            this.panelControl_Navigation.Controls.Add(ucDocIntSearch);
+            ucDocIntSearch.SearchFromDocument(keyword, ConnectionCenter.Config.PlanDoc);
+            //RichEditControl richEditControl = (RichEditControl)control;
+            //ucDocIntSearch.RichEditControl = richEditControl;
 
-            //throw new NotImplementedException();
         }
 
         #region //GIS Tools

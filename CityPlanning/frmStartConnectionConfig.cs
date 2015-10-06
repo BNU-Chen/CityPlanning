@@ -16,21 +16,21 @@ namespace CityPlanning
     public partial class frmStartConnectionConfig : DevExpress.XtraEditors.XtraForm
     {
         //INI配置文件
-        private string FTPSection = "FTP";
-        private string FTPIP = "ip";
-        private string FTPUser = "user";
-        private string FTPPsd = "pass";
-        private string FTPCatalog = "catalog";
+        //private string FTPSection = ConnectionCenter.Config.FTPSection;
+        private string FTPIP = ConnectionCenter.Config.FTPIP;
+        private string FTPUser = ConnectionCenter.Config.FTPUser;
+        private string FTPPsd = ConnectionCenter.Config.FTPPsd;
+        private string FTPCatalog =ConnectionCenter.Config.FTPCatalog;
 
-        private string DBSection = "Database";
-        private string DBIP = "ip";
-        private string DBCatalog = "catalog";
-        private string DBUser = "user";
-        private string DBPsd = "pass";
+        //private string DBSection = ConnectionCenter.Config.DbSection;
+        private string DBIP = ConnectionCenter.Config.DbIP;
+        private string DBCatalog = ConnectionCenter.Config.DbCatalog;
+        private string DBUser = ConnectionCenter.Config.DbUser;
+        private string DBPsd = ConnectionCenter.Config.DbPsd;
 
-        private string UserSection = "User";
-        private string UserName = "name";
-        private string UserPsd = "pass";
+        private string UserSection = ConnectionCenter.Config.UserSection;
+        private string UserName = ConnectionCenter.Config.UserName;
+        private string UserPsd = ConnectionCenter.Config.UserPsd;
 
         //渐变步长
         private double OPACITY_STEP1 = 0.02;
@@ -64,17 +64,17 @@ namespace CityPlanning
         private void InitConfig()
         {
             //FTP
-            this.txt_ftpIP.Text = ConnectionCenter.INIFile.IniReadValue(FTPSection, FTPIP);
-            this.txt_ftpUserName.Text = ConnectionCenter.INIFile.IniReadValue(FTPSection, FTPUser);
-            this.txt_ftpPassword.Text = ConnectionCenter.INIFile.IniReadValue(FTPSection, FTPPsd);
-            this.txt_ftpCatalog.Text = ConnectionCenter.INIFile.IniReadValue(FTPSection, FTPCatalog);
+            this.txt_ftpIP.Text = ConnectionCenter.Config.FTPIP;
+            this.txt_ftpUserName.Text = ConnectionCenter.Config.FTPUser;
+            this.txt_ftpPassword.Text = ConnectionCenter.Config.FTPPsd;
+            this.txt_ftpCatalog.Text = ConnectionCenter.Config.FTPCatalog;
             //数据库            
-            this.txt_DBServerName.Text = ConnectionCenter.INIFile.IniReadValue(DBSection, DBIP);
-            this.txt_DBCatalogName.Text = ConnectionCenter.INIFile.IniReadValue(DBSection, DBCatalog);
-            this.txt_DBUserName.Text = ConnectionCenter.INIFile.IniReadValue(DBSection, DBUser);
-            this.txt_DBPassword.Text = ConnectionCenter.INIFile.IniReadValue(DBSection, DBPsd);
+            this.txt_DBServerName.Text = ConnectionCenter.Config.DbIP;
+            this.txt_DBCatalogName.Text = ConnectionCenter.Config.DbCatalog;
+            this.txt_DBUserName.Text = ConnectionCenter.Config.DbUser;
+            this.txt_DBPassword.Text = ConnectionCenter.Config.DbPsd;
             //用户
-            this.txt_SysUserName.Text = ConnectionCenter.INIFile.IniReadValue(UserSection, UserName);
+            this.txt_SysUserName.Text = ConnectionCenter.Config.UserName;
             this.txt_SysPassword.Text = ConnectionCenter.INIFile.IniReadValue(UserSection, this.txt_SysUserName.Text);
         }
 
@@ -101,37 +101,36 @@ namespace CityPlanning
             FTPConnection.FtpUserName = this.txt_ftpUserName.Text.Trim();
             FTPConnection.FtpPassword = this.txt_ftpPassword.Text.Trim();
             FTPConnection.FtpCatalog = this.txt_ftpCatalog.Text.Trim();
-            ConnectionCenter.INIFile.IniWriteValue(FTPSection, FTPIP, FTPConnection.FtpIP);
-            ConnectionCenter.INIFile.IniWriteValue(FTPSection, FTPUser, FTPConnection.FtpUserName);
-            ConnectionCenter.INIFile.IniWriteValue(FTPSection, FTPPsd, FTPConnection.FtpPassword);
-            ConnectionCenter.INIFile.IniWriteValue(FTPSection, FTPCatalog, FTPConnection.FtpCatalog);
+            ConnectionCenter.Config.FTPIP = FTPConnection.FtpIP;
+            ConnectionCenter.Config.FTPUser = FTPConnection.FtpUserName;
+            ConnectionCenter.Config.FTPPsd = FTPConnection.FtpPassword;
+            ConnectionCenter.Config.FTPCatalog = FTPConnection.FtpCatalog;
             //数据库            
             SQLServerConnection.DBServerName = this.txt_DBServerName.Text.Trim();
             SQLServerConnection.DbCatalogName = this.txt_DBCatalogName.Text.Trim();
             SQLServerConnection.DBUserName = this.txt_DBUserName.Text.Trim();
             SQLServerConnection.DBPassword = this.txt_DBPassword.Text.Trim();
-            ConnectionCenter.INIFile.IniWriteValue(DBSection, DBIP, SQLServerConnection.DBServerName);
-            ConnectionCenter.INIFile.IniWriteValue(DBSection, DBCatalog, SQLServerConnection.DbCatalogName);
-            ConnectionCenter.INIFile.IniWriteValue(DBSection, DBUser, SQLServerConnection.DBUserName);
-            ConnectionCenter.INIFile.IniWriteValue(DBSection, DBPsd, SQLServerConnection.DBPassword);
+            ConnectionCenter.Config.DbIP = SQLServerConnection.DBServerName;
+            ConnectionCenter.Config.DbCatalog = SQLServerConnection.DbCatalogName;
+            ConnectionCenter.Config.DbUser = SQLServerConnection.DBUserName;
+            ConnectionCenter.Config.DbPsd = SQLServerConnection.DBPassword;
             //用户
             UserManager.SysUserName = this.txt_SysUserName.Text.Trim();
             UserManager.SysPassword = this.txt_SysPassword.Text.Trim();
             ConnectionCenter.INIFile.IniWriteValue(UserSection, UserName, UserManager.SysUserName);
             
-
             //用户验证
             string userPass = ConnectionCenter.INIFile.IniReadValue(UserSection, UserManager.SysUserName);
-            if(userPass == UserManager.SysPassword)
+            if (userPass == UserManager.SysPassword)
             {
                 ConnectionCenter.INIFile.IniWriteValue(UserSection, UserManager.SysUserName, UserManager.SysPassword);
             }
             else
             {
-                MessageBox.Show("用户密码错误，请重新输入","提示",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                MessageBox.Show("用户密码错误，请重新输入", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-            
+
             if (mainFrm != null)
             {
                 //测试时，取消渐变
