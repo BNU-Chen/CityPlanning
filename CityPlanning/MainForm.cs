@@ -177,13 +177,32 @@ namespace CityPlanning
             }
         }
         
+        //全部文档
+        private void bGalleryDocument_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            this.panelControl_Navigation.Controls.Clear();
+            this.panelControl_Navigation.Controls.Add(ucNaviFiles);
+            ucNaviFiles.SourceFolder = ConnectionCenter.Config.FTPCatalog;
+            ucNaviFiles.FetchFiles();
+        }
+
         //空间数据库
         private void bGalleryGeodatabase_ItemClick(object sender, ItemClickEventArgs e)
         {
             this.panelControl_Navigation.Controls.Clear();
             this.panelControl_Navigation.Controls.Add(ucNaviFiles);
-            ucNaviFiles.SourceFolder = ConnectionCenter.Config.PlanMap;
+            ucNaviFiles.SourceFolder = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.PlanMap;
             ucNaviFiles.FetchFiles();
+        }
+
+        //规划文档效果图
+        private void bGalleryImage_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            this.panelControl_Navigation.Controls.Clear();
+            this.panelControl_Navigation.Controls.Add(ucNavImage);
+            ucNavImage.XTabControl = this.xtraTabControl_Main;
+            ucNavImage.ImageFolderPath = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.PlanImg;
+            ucNavImage.Dock = DockStyle.Fill;
         }
         //关系数据库
         private void bGalleryRelationalDatabase_ItemClick(object sender, ItemClickEventArgs e)
@@ -216,30 +235,11 @@ namespace CityPlanning
                 }
             }
         }
-        
-        //文档
-        private void bGalleryDocument_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            this.panelControl_Navigation.Controls.Clear();
-            this.panelControl_Navigation.Controls.Add(ucNaviFiles);
-            ucNaviFiles.SourceFolder = ConnectionCenter.Config.FTPCatalog;
-            ucNaviFiles.FetchFiles();
-        }
 
         //三维地图
         private void bGallery3DMap_ItemClick(object sender, ItemClickEventArgs e)
         {
 
-        }
-
-        //规划文档效果图
-        private void bGalleryImage_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            this.panelControl_Navigation.Controls.Clear();
-            this.panelControl_Navigation.Controls.Add(ucNavImage);
-            ucNavImage.XTabControl = this.xtraTabControl_Main;
-            ucNavImage.ImageFolderPath = ConnectionCenter.Config.PlanImg;
-            ucNavImage.Dock = DockStyle.Fill;
         }
         //关于我们
         private void bAboutUs_ItemClick(object sender, ItemClickEventArgs e)

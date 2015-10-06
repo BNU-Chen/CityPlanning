@@ -129,35 +129,35 @@ namespace ConnectionCenter
 
         public static string PlanDoc
         {
-            get { return FTPCatalog + INIFile.IniReadValue(sectionDocConfig, keyPlanDoc); }
+            get { return INIFile.IniReadValue(sectionDocConfig, keyPlanDoc); }
             set { INIFile.IniWriteValue(sectionDocConfig, keyPlanDoc, value); }
         }
         private static string keyPlanDesc = "PlanDesc";
 
         public static string PlanDesc
         {
-            get { return FTPCatalog + INIFile.IniReadValue(sectionDocConfig, keyPlanDesc); }
+            get { return INIFile.IniReadValue(sectionDocConfig, keyPlanDesc); }
             set { INIFile.IniWriteValue(sectionDocConfig, keyPlanDesc, value); }
         }
         private static string keyThematicMap = "ThematicMap";
 
         public static string ThematicMap
         {
-            get { return FTPCatalog + INIFile.IniReadValue(sectionDocConfig, keyThematicMap); }
+            get { return INIFile.IniReadValue(sectionDocConfig, keyThematicMap); }
             set { INIFile.IniWriteValue(sectionDocConfig, keyThematicMap, value); }
         }
         private static string keyPlanImg = "PlanImg";
 
         public static string PlanImg
         {
-            get { return FTPCatalog + INIFile.IniReadValue(sectionDocConfig, keyPlanImg); }
+            get { return INIFile.IniReadValue(sectionDocConfig, keyPlanImg); }
             set { INIFile.IniWriteValue(sectionDocConfig, keyPlanImg, value); }
         }
         private static string keyPlanMap = "PlanMap";
 
         public static string PlanMap
         {
-            get { return FTPCatalog + INIFile.IniReadValue(sectionDocConfig, keyPlanMap); }
+            get { return INIFile.IniReadValue(sectionDocConfig, keyPlanMap); }
             set { INIFile.IniWriteValue(sectionDocConfig, keyPlanMap, value); }
         }
     }
