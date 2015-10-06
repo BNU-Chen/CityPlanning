@@ -24,15 +24,15 @@ namespace CityPlanning.Modules
         public ucNavigationFiles()
         {
             InitializeComponent();
-            Init();
+            //Init();
         }
 
-        private void Init()
-        {            
-            this.TreeList.OptionsBehavior.EnableFiltering = true;
-            TreeList.OptionsFilter.FilterMode = FilterMode.Smart;
+        //private void Init()
+        //{            
+        //    //this.TreeList.OptionsBehavior.EnableFiltering = true;
+        //    //TreeList.OptionsFilter.FilterMode = FilterMode.Smart;
 
-        }
+        //}
 
         public DevExpress.XtraTreeList.TreeList TreeList
         {
@@ -43,14 +43,7 @@ namespace CityPlanning.Modules
         //创建过滤器
         private void textEdit_Filter_EditValueChanged(object sender, EventArgs e)
         {
-            //DevExpress.XtraTreeList.Nodes.TreeListNode fNode = treeList1.FocusedNode;
-            //DevExpress.XtraTreeList.Columns.TreeListColumn fColumn = treeList1.FocusedColumn;
-            
-                string filterText = this.TextEdit_Filter.Text.Trim();
-                FilterCondition fc = new FilterCondition(FilterConditionEnum.Equals, this.TreeList.Columns["name"], filterText);
-                TreeList.FilterConditions.Add(fc);
-                //BinaryOperator bo = new BinaryOperator("name", filterText, BinaryOperatorType.Like);
-                //this.treeList1.Columns["name"].MRUFilters.Add(new TreeListFilterInfo(bo));
+            TreeListFiles.FilterNodes();
         }
 
         private void TreeListFiles_MouseUp(object sender, MouseEventArgs e)
@@ -185,6 +178,34 @@ namespace CityPlanning.Modules
             {
                 this.TreeListFiles.ExpandAll();
             }
+        }
+
+        private void TreeListFiles_FilterNode(object sender, FilterNodeEventArgs e)
+        {
+            string filterText = this.TextEdit_Filter.Text.Trim();
+            if (filterText == "")
+            {
+                return;
+            }
+            string NodeText = e.Node.GetDisplayText(TreeListFiles.Nodes[0].Id);
+            bool IsVisible = NodeText.ToUpper().IndexOf(filterText.ToUpper()) >= 0;
+            if (IsVisible)
+            {
+                DevExpress.XtraTreeList.Nodes.TreeListNode Node = e.Node.ParentNode;
+                while (Node != null)
+                {
+                    if (!Node.Visible)
+                    {
+                        Node.Visible = true;
+                        Node = Node.ParentNode;
+                    }
+                    else
+                        break;
+                }
+
+            }
+            e.Node.Visible = IsVisible;
+            e.Handled = true;            
         }
     }
 }
