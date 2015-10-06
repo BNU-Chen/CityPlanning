@@ -3276,6 +3276,7 @@
             this.bDoc_InternalSearch.Glyph = global::CityPlanning.Properties.Resources.search_32;
             this.bDoc_InternalSearch.Id = 693;
             this.bDoc_InternalSearch.Name = "bDoc_InternalSearch";
+            this.bDoc_InternalSearch.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.bDoc_InternalSearch.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bDoc_InternalSearch_ItemClick);
             // 
             // fileRibbonPage1
@@ -4084,7 +4085,7 @@
             // 
             this.barDockControl1.CausesValidation = false;
             this.barDockControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.barDockControl1.Location = new System.Drawing.Point(0, 147);
+            this.barDockControl1.Location = new System.Drawing.Point(0, 0);
             this.barDockControl1.Size = new System.Drawing.Size(1100, 0);
             // 
             // barDockControl2
@@ -4098,15 +4099,15 @@
             // 
             this.barDockControl3.CausesValidation = false;
             this.barDockControl3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControl3.Location = new System.Drawing.Point(0, 147);
-            this.barDockControl3.Size = new System.Drawing.Size(0, 552);
+            this.barDockControl3.Location = new System.Drawing.Point(0, 0);
+            this.barDockControl3.Size = new System.Drawing.Size(0, 699);
             // 
             // barDockControl4
             // 
             this.barDockControl4.CausesValidation = false;
             this.barDockControl4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControl4.Location = new System.Drawing.Point(1100, 147);
-            this.barDockControl4.Size = new System.Drawing.Size(0, 552);
+            this.barDockControl4.Location = new System.Drawing.Point(1100, 0);
+            this.barDockControl4.Size = new System.Drawing.Size(0, 699);
             // 
             // pdfFileOpenBarItem1
             // 
