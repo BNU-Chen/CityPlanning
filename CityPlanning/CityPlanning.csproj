@@ -126,17 +126,23 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\frmAbout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmAbout.Designer.cs">
+      <DependentUpon>frmAbout.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\frmAddMapKeyword.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\frmAddMapKeyword.Designer.cs">
       <DependentUpon>frmAddMapKeyword.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\frmFilesConfig.cs">
+    <Compile Include="Forms\frmSysConfig.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\frmFilesConfig.Designer.cs">
-      <DependentUpon>frmFilesConfig.cs</DependentUpon>
+    <Compile Include="Forms\frmSysConfig.Designer.cs">
+      <DependentUpon>frmSysConfig.cs</DependentUpon>
     </Compile>
     <Compile Include="HandleCenter.cs" />
     <Compile Include="ComponentOperator.cs" />
@@ -251,11 +257,17 @@
     <Compile Include="Person.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\frmAbout.resx">
+      <DependentUpon>frmAbout.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmAddMapKeyword.resx">
       <DependentUpon>frmAddMapKeyword.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmMapFeatureAttr.resx">
       <DependentUpon>frmMapFeatureAttr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmSysConfig.resx">
+      <DependentUpon>frmSysConfig.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmStartConnectionConfig.resx">
       <DependentUpon>frmStartConnectionConfig.cs</DependentUpon>
@@ -438,6 +450,7 @@
   <ItemGroup>
     <None Include="Resources\AddKey.png" />
     <None Include="Resources\AttrTable.png" />
+    <None Include="Resources\CityPlanningAbout.jpg" />
     <Content Include="Resources\delete_16.png" />
     <None Include="Resources\PlanImageIcon.png" />
     <Content Include="Resources\saveAs_16.png" />

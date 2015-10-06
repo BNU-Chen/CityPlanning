@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace CityPlanning.Forms
 {
-    public partial class frmFilesConfig : Form
+    public partial class frmSysConfig : Form
     {
-        public frmFilesConfig()
+        public frmSysConfig()
         {
             InitializeComponent();
         }

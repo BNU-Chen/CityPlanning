@@ -232,7 +232,7 @@ namespace CityPlanning
         {
             this.panelControl_Navigation.Controls.Clear();
             this.panelControl_Navigation.Controls.Add(ucNaviFiles);
-            ucNaviFiles.SourceFolder = FTPConnection.FtpPort;
+            ucNaviFiles.SourceFolder = FTPConnection.FtpCatalog;
             ucNaviFiles.FetchFiles();
         }
 
@@ -251,6 +251,12 @@ namespace CityPlanning
             ucNavImage.XTabControl = this.xtraTabControl_Main;
             ucNavImage.ImageFolderPath = path;
             ucNavImage.Dock = DockStyle.Fill;
+        }
+        //关于我们
+        private void bAboutUs_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Forms.frmAbout fAbout = new Forms.frmAbout();
+            fAbout.ShowDialog();
         }
         #endregion
 
@@ -937,6 +943,7 @@ namespace CityPlanning
         }
 
         #endregion
+
 
 
 
