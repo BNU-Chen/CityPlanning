@@ -1160,7 +1160,20 @@ namespace CityPlanning
             geo.Project(pFactory.CreateGeographicCoordinateSystem((int)esriSRGeoCS3Type.esriSRGeoCS_Xian1980));
             return pt;
         }
-        
+        //提取mxd中shp?
+        private void extractShp(string MxFilePath)
+        {
+            IMapDocument pMapDoc = new MapDocumentClass();
+            IFeatureLayer pFeatureLayer;
+            pMapDoc.Open(MxFilePath,"");
+            for(int i=0; i<=pMapDoc.MapCount-1; i++)
+            {
+                pFeatureLayer=pMapDoc.get_Layer(i,i) as IFeatureLayer;
+                File.Copy(pFeatureLayer.ToString(), tempPath, true);
+            }
+        }
+
+
         //叠置分析
         private void StartIntersect(string strInputFeature, string strOverLayFeature)
         {
@@ -1330,12 +1343,14 @@ namespace CityPlanning
             return d;
         }
 
-        //加载红线地图
+        //加载红线地图?
         private void LoadRedLine()
         {
             string path = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.PlanMap + @"\18.沈阳经济区红线融合图.mxd";
+            curAxMapControl.LoadMxFile(path);
+            curAxMapControl.ActiveView.Refresh();
         }
-        //读取叠置结果属性
+        //读取叠置结果属性?
         private void ReadResultDbf()
         {
 
@@ -1596,7 +1611,7 @@ namespace CityPlanning
                 //mapControl.Refresh();
               #endregion
 
-                #region//Read Excel
+                     #region//Read Excel
                     //代码有问题，无法连接至excel
                 if (extension==".xls")
                     {
@@ -1671,6 +1686,7 @@ namespace CityPlanning
                         mapControl1 = curAxMapControl;
                         mapControl1.AddShapeFile(DirPath, "test.shp");
                         #endregion
+
                     }
 
                 if (MessageBox.Show("开始分析?", "询问", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
