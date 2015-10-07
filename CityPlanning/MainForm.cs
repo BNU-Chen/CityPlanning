@@ -1315,6 +1315,17 @@ namespace CityPlanning
             return d;
         }
 
+        //加载红线地图
+        private void LoadRedLine()
+        {
+            string path = "D:\\项目 - 沈阳经济区\\图集\\原始矢量数据\\图集\\矢量图\\1.沈阳经济区基本农田保护红线图.mxd";
+            //mapControl.LoadMxFile(path);
+        }
+        //读取叠置结果属性
+        private void ReadResultDbf()
+        {
+
+        }
         #endregion
 
         #region//基本红线分析事件
@@ -1323,6 +1334,7 @@ namespace CityPlanning
         private void bCoorInputButton_ItemClick(object sender, ItemClickEventArgs e)
         {
             //读取坐标文件
+            DrawPolygon = false;
             OpenFileDialog op = new OpenFileDialog();
             op.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
 
@@ -1558,23 +1570,25 @@ namespace CityPlanning
                 }
                 #endregion
 
-                IPolygon pGon = polygon as IPolygon;
-                IArea pArea = pGon as IArea;
-                double s = pArea.Area;//
-                MessageBox.Show("该区域面积为：" + Convert.ToDouble(s).ToString("0.000") + "平方公里（km2）", "项目区面积");
+                IPolygon pGontxt = polygon as IPolygon;
+                IArea pAreatxt = pGontxt as IArea;
+                double stxt = pAreatxt.Area/1000000;//
+                double Stxt = Math.Abs(stxt);
+                MessageBox.Show("该区域面积为：" + Convert.ToDouble(Stxt).ToString("0.000") + "平方公里（km2）", "项目区面积");
                 string DirPath = "F:\\";
                 AxMapControl mapControl = new AxMapControl();
                 mapControl = curAxMapControl;
                 mapControl.AddShapeFile(DirPath, "test.shp");
-                mapControl.Refresh();
+                //mapControl.Refresh();
               #endregion
 
                 #region//Read Excel
+                    //代码有问题，无法连接至excel
                 if (extension==".xls")
                     {
                         //添加feature;
                         //F:\坐标转shp\坐标序列文件\土地样例.xls
-                        string strcon = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + op.FileName+ ";Extended Properties='Excel 8.0;HDR=YES;IMEX=1;'";
+                        string strcon = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source="+op.FileName+";Extended Properties='Excel 8.0;HDR=YES;IMEX=1;'";
                         OleDbConnection con = new OleDbConnection(strcon);
                         con.Open();
                         string sheetname = "";
@@ -1634,6 +1648,14 @@ namespace CityPlanning
                             feature.set_Value(3, pt.Y.ToString());
                             feature.Store();
                         }
+                        IPolygon pGonxls = pPolygon as IPolygon;
+                        IArea pAreaxls = pGonxls as IArea;
+                        double sxls = pAreaxls.Area / 1000000;//
+                        double Sxls = Math.Abs(sxls);
+                        MessageBox.Show("该区域面积为：" + Convert.ToDouble(Sxls).ToString("0.000") + "平方公里（km2）", "项目区面积");
+                        AxMapControl mapControl1 = new AxMapControl();
+                        mapControl1 = curAxMapControl;
+                        mapControl1.AddShapeFile(DirPath, "test.shp");
                         #endregion
                     }
 
@@ -1900,7 +1922,7 @@ namespace CityPlanning
                         pactive.PartialRefresh(esriViewDrawPhase.esriViewGraphics, null, null);
                         IPolygon pGon = pPolygon as IPolygon;
                         IArea pArea = pGon as IArea;
-                        double s = pArea.Area ;//
+                        double s = pArea.Area/1000000 ;//
                         double ss= Math.Abs(s);
                         MessageBox.Show("该区域面积为：" + Convert.ToDouble(ss).ToString("0.000") + "平方公里（km2）", "项目区面积");
                         // IPointArray pts = new PointArrayClass();
@@ -1916,7 +1938,7 @@ namespace CityPlanning
             }
         }
 
-        //地图分析事件
+        //地图打开事件
         private void bOpenRedLine_ItemClick(object sender, ItemClickEventArgs e)
         {
             AxMapControl mapControl = new AxMapControl();
@@ -1942,7 +1964,7 @@ namespace CityPlanning
             this.Refresh();
             string path = "D:\\项目 - 沈阳经济区\\图集\\原始矢量数据\\图集\\矢量图\\1.沈阳经济区基本农田保护红线图.mxd";
             mapControl.LoadMxFile(path);
-            mapControl.ActiveView.Refresh();
+            //mapControl.ActiveView.Refresh();
 
         }
 
