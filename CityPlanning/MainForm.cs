@@ -1917,7 +1917,7 @@ namespace CityPlanning
         }
 
         //地图分析事件
-        private void bDataAnalysis_ItemClick(object sender, ItemClickEventArgs e)
+        private void bOpenRedLine_ItemClick(object sender, ItemClickEventArgs e)
         {
             AxMapControl mapControl = new AxMapControl();
             mapControl.BeginInit();     //必须有begin和end
@@ -1945,6 +1945,18 @@ namespace CityPlanning
             mapControl.ActiveView.Refresh();
 
         }
+
+        //清除分析事件
+        private void bClearAnalysis_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            AxMapControl mapControl = new AxMapControl();
+            mapControl = curAxMapControl;
+            mapControl.ClearLayers();
+            string path = "D:\\项目 - 沈阳经济区\\图集\\原始矢量数据\\图集\\矢量图\\1.沈阳经济区基本农田保护红线图.mxd";
+            mapControl.LoadMxFile(path);
+            mapControl.Refresh();
+        }
+
         #endregion
 
         #region //专题图分析事件
@@ -2067,6 +2079,8 @@ namespace CityPlanning
             ResFrm.Show();
         }
         #endregion
+
+        
 
     }
 }

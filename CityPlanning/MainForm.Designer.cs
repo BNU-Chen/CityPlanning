@@ -313,9 +313,8 @@
             this.barButtonItem4 = new DevExpress.XtraBars.BarButtonItem();
             this.bDocConfig = new DevExpress.XtraBars.BarButtonItem();
             this.bMap_RemoveKeyword = new DevExpress.XtraBars.BarButtonItem();
-
             this.barButtonItem5 = new DevExpress.XtraBars.BarButtonItem();
-            this.bDataAnalysis = new DevExpress.XtraBars.BarButtonItem();
+            this.bOpenRedLine = new DevExpress.XtraBars.BarButtonItem();
             this.bCoorInputButton = new DevExpress.XtraBars.BarButtonItem();
             this.bManualDrawButton = new DevExpress.XtraBars.BarButtonItem();
             this.bTranspNetDensity = new DevExpress.XtraBars.BarButtonItem();
@@ -325,11 +324,10 @@
             this.bHydroAnalysis = new DevExpress.XtraBars.BarButtonItem();
             this.bFloodLoss = new DevExpress.XtraBars.BarButtonItem();
             this.bGDPCenterTransfer = new DevExpress.XtraBars.BarButtonItem();
-
             this.bGalleryPlanDoc = new DevExpress.XtraBars.BarButtonItem();
             this.bGalleryPlanDesc = new DevExpress.XtraBars.BarButtonItem();
             this.bGalleryThematicDoc = new DevExpress.XtraBars.BarButtonItem();
-
+            this.bClearAnalysis = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonImageCollectionLarge = new DevExpress.Utils.ImageCollection(this.components);
             this.ribbonPageCategory_map = new DevExpress.XtraBars.Ribbon.RibbonPageCategory();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -386,7 +384,7 @@
             this.ribbonPageGroup_PlanData = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.helpRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.AnalysisRibbonPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.RedLineRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.OverLayRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ThemeRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.repositoryItemFontEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemFontEdit();
             this.repositoryItemRichEditFontSizeEdit1 = new DevExpress.XtraRichEdit.Design.RepositoryItemRichEditFontSizeEdit();
@@ -811,9 +809,8 @@
             this.barButtonItem4,
             this.bDocConfig,
             this.bMap_RemoveKeyword,
-
             this.barButtonItem5,
-            this.bDataAnalysis,
+            this.bOpenRedLine,
             this.bCoorInputButton,
             this.bManualDrawButton,
             this.bTranspNetDensity,
@@ -823,14 +820,13 @@
             this.bHydroAnalysis,
             this.bFloodLoss,
             this.bGDPCenterTransfer,
-
             this.bGalleryPlanDoc,
             this.bGalleryPlanDesc,
-            this.bGalleryThematicDoc});
+            this.bGalleryThematicDoc,
+            this.bClearAnalysis});
             this.ribbonControl.LargeImages = this.ribbonImageCollectionLarge;
             this.ribbonControl.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl.MaxItemId = 709;
-
+            this.ribbonControl.MaxItemId = 710;
             this.ribbonControl.Name = "ribbonControl";
             this.ribbonControl.PageCategories.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageCategory[] {
             this.ribbonPageCategory_map,
@@ -3186,7 +3182,6 @@
             this.bMap_RemoveKeyword.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.bMap_RemoveKeyword.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bMap_RemoveKeyword_ItemClick);
             // 
-
             // barButtonItem5
             // 
             this.barButtonItem5.Caption = "barButtonItem5";
@@ -3194,13 +3189,13 @@
             this.barButtonItem5.Id = 706;
             this.barButtonItem5.Name = "barButtonItem5";
             // 
-            // bDataAnalysis
+            // bOpenRedLine
             // 
-            this.bDataAnalysis.Caption = "地图分析";
-            this.bDataAnalysis.Id = 707;
-            this.bDataAnalysis.Name = "bDataAnalysis";
-            this.bDataAnalysis.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
-            this.bDataAnalysis.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bDataAnalysis_ItemClick);
+            this.bOpenRedLine.Caption = "打开地图";
+            this.bOpenRedLine.Id = 707;
+            this.bOpenRedLine.Name = "bOpenRedLine";
+            this.bOpenRedLine.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.bOpenRedLine.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bOpenRedLine_ItemClick);
             // 
             // bCoorInputButton
             // 
@@ -3266,7 +3261,7 @@
             this.bGDPCenterTransfer.Id = 716;
             this.bGDPCenterTransfer.Name = "bGDPCenterTransfer";
             this.bGDPCenterTransfer.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
-
+            // 
             // bGalleryPlanDoc
             // 
             this.bGalleryPlanDoc.Caption = "规划文本";
@@ -3293,7 +3288,14 @@
             this.bGalleryThematicDoc.Name = "bGalleryThematicDoc";
             this.bGalleryThematicDoc.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.bGalleryThematicDoc.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bGalleryThematicDoc_ItemClick);
-
+            // 
+            // bClearAnalysis
+            // 
+            this.bClearAnalysis.Caption = "清除分析";
+            this.bClearAnalysis.Id = 709;
+            this.bClearAnalysis.Name = "bClearAnalysis";
+            this.bClearAnalysis.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.bClearAnalysis.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bClearAnalysis_ItemClick);
             // 
             // ribbonImageCollectionLarge
             // 
@@ -3784,18 +3786,19 @@
             // AnalysisRibbonPage
             // 
             this.AnalysisRibbonPage.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.RedLineRibbonPageGroup,
+            this.OverLayRibbonPageGroup,
             this.ThemeRibbonPageGroup});
             this.AnalysisRibbonPage.Name = "AnalysisRibbonPage";
             this.AnalysisRibbonPage.Text = "地图分析";
             // 
-            // RedLineRibbonPageGroup
+            // OverLayRibbonPageGroup
             // 
-            this.RedLineRibbonPageGroup.ItemLinks.Add(this.bDataAnalysis);
-            this.RedLineRibbonPageGroup.ItemLinks.Add(this.bCoorInputButton);
-            this.RedLineRibbonPageGroup.ItemLinks.Add(this.bManualDrawButton);
-            this.RedLineRibbonPageGroup.Name = "RedLineRibbonPageGroup";
-            this.RedLineRibbonPageGroup.Text = "基本红线分析";
+            this.OverLayRibbonPageGroup.ItemLinks.Add(this.bOpenRedLine);
+            this.OverLayRibbonPageGroup.ItemLinks.Add(this.bCoorInputButton);
+            this.OverLayRibbonPageGroup.ItemLinks.Add(this.bManualDrawButton);
+            this.OverLayRibbonPageGroup.ItemLinks.Add(this.bClearAnalysis);
+            this.OverLayRibbonPageGroup.Name = "OverLayRibbonPageGroup";
+            this.OverLayRibbonPageGroup.Text = "叠置分析";
             // 
             // ThemeRibbonPageGroup
             // 
@@ -4543,14 +4546,14 @@
             // 
             this.pdfPreviousPageBarItem1.Enabled = false;
             this.pdfPreviousPageBarItem1.Id = 1;
-            this.pdfPreviousPageBarItem1.ItemShortcut = new DevExpress.XtraBars.BarShortcut(System.Windows.Forms.Keys.PageUp);
+            this.pdfPreviousPageBarItem1.ItemShortcut = new DevExpress.XtraBars.BarShortcut(System.Windows.Forms.Keys.Prior);
             this.pdfPreviousPageBarItem1.Name = "pdfPreviousPageBarItem1";
             // 
             // pdfNextPageBarItem1
             // 
             this.pdfNextPageBarItem1.Enabled = false;
             this.pdfNextPageBarItem1.Id = 2;
-            this.pdfNextPageBarItem1.ItemShortcut = new DevExpress.XtraBars.BarShortcut(System.Windows.Forms.Keys.PageDown);
+            this.pdfNextPageBarItem1.ItemShortcut = new DevExpress.XtraBars.BarShortcut(System.Windows.Forms.Keys.Next);
             this.pdfNextPageBarItem1.Name = "pdfNextPageBarItem1";
             // 
             // pdfZoomOutBarItem1
@@ -5168,7 +5171,7 @@
         private DevExpress.XtraBars.BarButtonItem bMap_RemoveKeyword;
 
         private DevExpress.XtraBars.BarButtonItem barButtonItem5;
-        private DevExpress.XtraBars.BarButtonItem bDataAnalysis;
+        private DevExpress.XtraBars.BarButtonItem bOpenRedLine;
         private DevExpress.XtraBars.BarButtonItem bCoorInputButton;
         private DevExpress.XtraBars.BarButtonItem bManualDrawButton;
         private DevExpress.XtraBars.BarButtonItem bTranspNetDensity;
@@ -5179,12 +5182,13 @@
         private DevExpress.XtraBars.BarButtonItem bFloodLoss;
         private DevExpress.XtraBars.BarButtonItem bGDPCenterTransfer;
         private DevExpress.XtraBars.Ribbon.RibbonPage AnalysisRibbonPage;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup RedLineRibbonPageGroup;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup OverLayRibbonPageGroup;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ThemeRibbonPageGroup;
 
         private DevExpress.XtraBars.BarButtonItem bGalleryPlanDoc;
         private DevExpress.XtraBars.BarButtonItem bGalleryPlanDesc;
         private DevExpress.XtraBars.BarButtonItem bGalleryThematicDoc;
+        private DevExpress.XtraBars.BarButtonItem bClearAnalysis;
 
 
     }
