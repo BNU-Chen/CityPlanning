@@ -54,6 +54,7 @@
             this.Name = "ResultShowForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "分析结果";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ResultShowForm_FormClosed);
             this.Load += new System.EventHandler(this.ResultShowForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

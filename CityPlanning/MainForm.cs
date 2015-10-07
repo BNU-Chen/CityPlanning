@@ -1995,7 +1995,7 @@ namespace CityPlanning
         }
 
         #endregion
-
+        public static ResultShowForm ResFrm;
         #region //专题图分析事件
         private void bTranspNetDensity_ItemClick(object sender, ItemClickEventArgs e)
         {
@@ -2010,11 +2010,24 @@ namespace CityPlanning
             thr.Close();
             //changepfl
             //分析结果文字显示
-            string Text = "交通网络密度分析结果如下：";
-            ResultShowForm ResFrm = new ResultShowForm(Text);
-            ResFrm.Left = 250;
-            ResFrm.Top = 200;
-            ResFrm.Show();
+            if (ResFrm == null)
+            {
+                string Text = "交通网络密度分析结果如下：";
+                ResFrm = new ResultShowForm(Text);
+                ResFrm.Left = 250;
+                ResFrm.Top = 200;
+                ResFrm.Show();
+            }
+            else
+            {
+                ResFrm.Close();
+                string Text = "交通网络密度分析结果如下：";
+                ResFrm = new ResultShowForm(Text);
+                ResFrm.Left = 250;
+                ResFrm.Top = 200;
+                ResFrm.Show();
+                ResFrm.Activate();
+            }
         }
 
         private void bElecNetDensity_ItemClick(object sender, ItemClickEventArgs e)
@@ -2030,11 +2043,24 @@ namespace CityPlanning
             thr.Close();
             //changepfl
             //分析结果文字显示
-            string Text = "电力网络密度分析结果如下：";
-            ResultShowForm ResFrm = new ResultShowForm(Text);
-            ResFrm.Left = 250;
-            ResFrm.Top = 200;
-            ResFrm.Show();
+            if (ResFrm == null)
+            {
+                string Text = "电力网络密度分析结果如下：";
+                ResFrm = new ResultShowForm(Text);
+                ResFrm.Left = 250;
+                ResFrm.Top = 200;
+                ResFrm.Show();
+            }
+            else
+            {
+                ResFrm.Close();
+                string Text = "电力网络密度分析结果如下：";
+                ResFrm = new ResultShowForm(Text);
+                ResFrm.Left = 250;
+                ResFrm.Top = 200;
+                ResFrm.Show();
+                ResFrm.Activate();
+            }
         }
 
         private void bIntDisasterRisk_ItemClick(object sender, ItemClickEventArgs e)
@@ -2050,11 +2076,24 @@ namespace CityPlanning
             thr.Close();
             //changepfl
             //分析结果文字显示
-            string Text = "综合灾害风险分析结果如下：";
-            ResultShowForm ResFrm = new ResultShowForm(Text);
-            ResFrm.Left = 250;
-            ResFrm.Top = 200;
-            ResFrm.Show();
+            if (ResFrm == null)
+            {
+                string Text = "综合灾害风险分析结果如下：";
+                ResFrm = new ResultShowForm(Text);
+                ResFrm.Left = 250;
+                ResFrm.Top = 200;
+                ResFrm.Show();
+            }
+            else
+            {
+                ResFrm.Close();
+                string Text = "综合灾害风险分析结果如下：";
+                ResFrm = new ResultShowForm(Text);
+                ResFrm.Left = 250;
+                ResFrm.Top = 200;
+                ResFrm.Show();
+                ResFrm.Activate();
+            }
         }
 
         private void bEcoServiceValue_ItemClick(object sender, ItemClickEventArgs e)
@@ -2070,11 +2109,24 @@ namespace CityPlanning
             thr.Close();
             //changepfl
             //分析结果文字显示
-            string Text = "生态服务价值分析结果如下：";
-            ResultShowForm ResFrm = new ResultShowForm(Text);
-            ResFrm.Left = 250;
-            ResFrm.Top = 200;
-            ResFrm.Show();
+            if (ResFrm == null)
+            {
+                string Text = "生态服务价值分析结果如下：";
+                ResFrm = new ResultShowForm(Text);
+                ResFrm.Left = 250;
+                ResFrm.Top = 200;
+                ResFrm.Show();
+            }
+            else
+            {
+                ResFrm.Close();
+                string Text = "生态服务价值分析结果如下：";
+                ResFrm = new ResultShowForm(Text);
+                ResFrm.Left = 250;
+                ResFrm.Top = 200;
+                ResFrm.Show();
+                ResFrm.Activate();
+            }
         }
 
         private void bHydroAnalysis_ItemClick(object sender, ItemClickEventArgs e)
@@ -2090,11 +2142,24 @@ namespace CityPlanning
             thr.Close();
             //changepfl
             //分析结果文字显示
-            string Text = "水文分析结果如下：";
-            ResultShowForm ResFrm = new ResultShowForm(Text);
-            ResFrm.Left = 250;
-            ResFrm.Top = 200;
-            ResFrm.Show();
+            if (ResFrm == null)
+            {
+                string Text = "水文分析结果如下：";
+                ResFrm = new ResultShowForm(Text);
+                ResFrm.Left = 250;
+                ResFrm.Top = 200;
+                ResFrm.Show();
+            }
+            else
+            {
+                ResFrm.Close();
+                string Text = "水文分析结果如下：";
+                ResFrm = new ResultShowForm(Text);
+                ResFrm.Left = 250;
+                ResFrm.Top = 200;
+                ResFrm.Show();
+                ResFrm.Activate();
+            }
         }
 
         private void bFloodLoss_ItemClick(object sender, ItemClickEventArgs e)
@@ -2110,11 +2175,24 @@ namespace CityPlanning
             thr.Close();
             //changepfl
             //分析结果文字显示
-            string Text = "洪涝损失分析结果如下：";
-            ResultShowForm ResFrm = new ResultShowForm(Text);
-            ResFrm.Left = 250;
-            ResFrm.Top = 200;
-            ResFrm.Show();
+            if (ResFrm == null)
+            {
+                string Text = "洪涝损失分析结果如下：";
+                ResFrm = new ResultShowForm(Text);
+                ResFrm.Left = 250;
+                ResFrm.Top = 200;
+                ResFrm.Show();
+            }
+            else
+            {
+                ResFrm.Close();
+                string Text = "洪涝损失分析结果如下：";
+                ResFrm = new ResultShowForm(Text);
+                ResFrm.Left = 250;
+                ResFrm.Top = 200;
+                ResFrm.Show();
+                ResFrm.Activate();
+            }
         }
 
         private void bGDPCenterTransfer_ItemClick(object sender, ItemClickEventArgs e)
@@ -2130,11 +2208,24 @@ namespace CityPlanning
             thr.Close();
             //changepfl
             //分析结果文字显示
-            string Text = "GDP重心转移分析结果如下：";
-            ResultShowForm ResFrm = new ResultShowForm(Text);
-            ResFrm.Left = 250;
-            ResFrm.Top = 200;
-            ResFrm.Show();
+            if (ResFrm == null)
+            {
+                string Text = "GDP重心转移分析结果如下：";
+                ResFrm = new ResultShowForm(Text);
+                ResFrm.Left = 250;
+                ResFrm.Top = 200;
+                ResFrm.Show();
+            }
+            else
+            {
+                ResFrm.Close();
+                string Text = "GDP重心转移分析结果如下：";
+                ResFrm = new ResultShowForm(Text);
+                ResFrm.Left = 250;
+                ResFrm.Top = 200;
+                ResFrm.Show();
+                ResFrm.Activate();
+            }
         }
         #endregion
 

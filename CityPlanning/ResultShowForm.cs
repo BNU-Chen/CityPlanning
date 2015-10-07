@@ -20,7 +20,12 @@ namespace CityPlanning
 
         private void ResultShowForm_Load(object sender, EventArgs e)
         {
+            
+        }
 
+        private void ResultShowForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            MainForm.ResFrm = null;
         }
     }
 }
