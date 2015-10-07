@@ -10,8 +10,10 @@ using System.Windows.Forms;
 
 namespace CityPlanning.Modules
 {
+    public delegate void delegateClickEvent(string evtName);
     public partial class ucFeatureAttrItem : UserControl
     {
+        public delegateClickEvent ClickEvent;
         public ucFeatureAttrItem()
         {
             InitializeComponent();
@@ -31,25 +33,29 @@ namespace CityPlanning.Modules
             set { this.lbl_AttrContent.Text = value; }
         }
 
-        //设置控件宽度
-        public int ControlWidth
+        private void lbl_AttrTitle_Click(object sender, EventArgs e)
         {
-            get
-            {
-                return this.Width;
-            }
-            set
-            {
-                this.Width = ControlWidth;
-            }
+            ExeSearchDoc();
         }
 
-        private void SetControlWidth(string text1, string text2)
+        private void lbl_AttrContent_Click(object sender, EventArgs e)
         {
-            //int len1 = text1.Length;
-            //int len2 = text2.Length;
-            //int maxLen = len1 > len2 ? len1 : len2;
-            //if()
+            ExeSearchDoc();
+        }
+
+        private void panel1_Click(object sender, EventArgs e)
+        {
+            ExeSearchDoc();
+        }
+
+        private void ucFeatureAttrItem_Click(object sender, EventArgs e)
+        {
+            ExeSearchDoc();
+        }
+
+        private void ExeSearchDoc()
+        {
+            ClickEvent(this.lbl_AttrTitle.Text.Trim());
         }
     }
 }

@@ -18,7 +18,7 @@ namespace CityPlanning.Forms
         public DataTable AttrDataTable
         {
             get { return attrDataTable; }
-            set 
+            set
             {
                 attrDataTable = value;
                 this.flowLayoutPanel1.Controls.Clear();
@@ -28,8 +28,19 @@ namespace CityPlanning.Forms
                     ucItem.AttrTitle = (string)dr["name"];
                     ucItem.AttrContent = (string)dr["value"];
                     ucItem.BackColor = GetRamdonColor();
+                    ucItem.ClickEvent += new Modules.delegateClickEvent(DoDocSearch);
                     this.flowLayoutPanel1.Controls.Add(ucItem);
                 }
+                int rowCount = (int)Math.Ceiling(attrDataTable.Rows.Count * 1.0 / 2);
+                this.Height = 25 + 58 * rowCount;
+            }
+        }
+
+        void DoDocSearch(string keyword)
+        {
+            if (keyword == "")
+            {
+                return;
             }
         }
 

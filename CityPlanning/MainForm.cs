@@ -781,21 +781,12 @@ namespace CityPlanning
             ribbonGallery_MapKeywords.Gallery.ColumnCount = 3;
             //throw new NotImplementedException();
         }
-
+        //地图关键词搜索文档
         void item1_ItemClick(object sender, GalleryItemClickEventArgs e)
         {            
             GalleryItem item = (GalleryItem)sender;
             string keyword = item.Caption;
-            if (keyword == "")
-            {
-                return;
-            }
-            this.panelControl_Navigation.Controls.Clear();
-            this.panelControl_Navigation.Controls.Add(ucDocIntSearch);
-            ucDocIntSearch.SearchFromDocument(keyword, ConnectionCenter.Config.PlanDoc);
-            //RichEditControl richEditControl = (RichEditControl)control;
-            //ucDocIntSearch.RichEditControl = richEditControl;
-
+            SearchInPlanDoc(keyword);
         }
         //删除关键词
         private void bMap_RemoveKeyword_ItemClick(object sender, ItemClickEventArgs e)
@@ -886,7 +877,7 @@ namespace CityPlanning
         #endregion
         #endregion
 
-        #region //文档搜索相关
+        #region //文档搜索按钮
         private void bDoc_InitDocument_ItemClick(object sender, ItemClickEventArgs e)
         {
 
@@ -1006,7 +997,8 @@ namespace CityPlanning
         private void buttonEdit1_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
             string keyword = this.Query_button.Text.Trim();
-            SearchInDoc(keyword, ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.PlanDoc);
+            //SearchInDoc(keyword, ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.PlanDoc);
+            SearchInPlanDoc(keyword);
         }
         //enter键搜索
         private void Query_button_KeyDown(object sender, KeyEventArgs e)
@@ -1014,7 +1006,8 @@ namespace CityPlanning
             if (e.KeyCode == Keys.Enter)
             {
                 string keyword = this.Query_button.Text.Trim();
-                SearchInDoc(keyword, ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.PlanDoc);
+                SearchInPlanDoc(keyword);
+                //SearchInDoc(keyword, ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.PlanDoc);
             }
         }
         
@@ -1057,8 +1050,27 @@ namespace CityPlanning
         #endregion
 
         #region //通用函数
+        #region//搜索文本
         //搜索文本
-        private void SearchInDoc(string keyword,string path)
+        public void SearchInPlanDoc(string keyword)
+        {
+            SearchInDoc(keyword, ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.PlanDoc);
+        }
+
+        //搜索说明
+        public void SearchInPlanDesc(string keyword)
+        {
+            SearchInDoc(keyword, ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.PlanDesc);
+        }
+
+        //搜索专题报告
+        public void SearchInPlanDesc(string keyword)
+        {
+            SearchInDoc(keyword, ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.ThematicMap);
+        }
+
+        //搜索函数
+        public void SearchInDoc(string keyword, string path)
         {
             if (keyword == "")
             {
@@ -1072,6 +1084,9 @@ namespace CityPlanning
             this.panelControl_Navigation.Controls.Add(ucDocIntSearch);
             ucDocIntSearch.SearchFromDocument(keyword, path);
         }
+        #endregion
+
+        #region //打开规划文件目录
         //全部规划文档
         private void OpenAllPlanDocs()
         {
@@ -1160,7 +1175,8 @@ namespace CityPlanning
             }
         }
         #endregion 
+        #endregion
 
-        
+
     }
 }

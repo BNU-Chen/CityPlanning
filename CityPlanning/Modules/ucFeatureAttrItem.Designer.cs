@@ -41,8 +41,9 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(120, 50);
+            this.panel1.Size = new System.Drawing.Size(130, 50);
             this.panel1.TabIndex = 0;
+            this.panel1.Click += new System.EventHandler(this.panel1_Click);
             // 
             // lbl_AttrContent
             // 
@@ -58,6 +59,7 @@
             this.lbl_AttrContent.TabIndex = 2;
             this.lbl_AttrContent.Text = "context";
             this.lbl_AttrContent.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbl_AttrContent.Click += new System.EventHandler(this.lbl_AttrContent_Click);
             // 
             // lbl_AttrTitle
             // 
@@ -68,6 +70,7 @@
             this.lbl_AttrTitle.Size = new System.Drawing.Size(25, 14);
             this.lbl_AttrTitle.TabIndex = 0;
             this.lbl_AttrTitle.Text = "title";
+            this.lbl_AttrTitle.Click += new System.EventHandler(this.lbl_AttrTitle_Click);
             // 
             // ucFeatureAttrItem
             // 
@@ -75,7 +78,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel1);
             this.Name = "ucFeatureAttrItem";
-            this.Size = new System.Drawing.Size(120, 50);
+            this.Size = new System.Drawing.Size(130, 50);
+            this.Click += new System.EventHandler(this.ucFeatureAttrItem_Click);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
