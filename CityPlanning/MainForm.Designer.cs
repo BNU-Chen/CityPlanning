@@ -3192,6 +3192,7 @@
             // bOpenRedLine
             // 
             this.bOpenRedLine.Caption = "打开地图";
+            this.bOpenRedLine.Glyph = ((System.Drawing.Image)(resources.GetObject("bOpenRedLine.Glyph")));
             this.bOpenRedLine.Id = 707;
             this.bOpenRedLine.Name = "bOpenRedLine";
             this.bOpenRedLine.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
@@ -3200,6 +3201,7 @@
             // bCoorInputButton
             // 
             this.bCoorInputButton.Caption = "坐标录入";
+            this.bCoorInputButton.Glyph = global::CityPlanning.Properties.Resources.Coordinate;
             this.bCoorInputButton.Id = 708;
             this.bCoorInputButton.Name = "bCoorInputButton";
             this.bCoorInputButton.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
@@ -3208,6 +3210,7 @@
             // bManualDrawButton
             // 
             this.bManualDrawButton.Caption = "手动绘制";
+            this.bManualDrawButton.Glyph = ((System.Drawing.Image)(resources.GetObject("bManualDrawButton.Glyph")));
             this.bManualDrawButton.Id = 709;
             this.bManualDrawButton.Name = "bManualDrawButton";
             this.bManualDrawButton.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
@@ -3216,6 +3219,7 @@
             // bTranspNetDensity
             // 
             this.bTranspNetDensity.Caption = "交通网络密度";
+            this.bTranspNetDensity.Glyph = global::CityPlanning.Properties.Resources.TransIdensity_32;
             this.bTranspNetDensity.Id = 710;
             this.bTranspNetDensity.Name = "bTranspNetDensity";
             this.bTranspNetDensity.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
@@ -3223,6 +3227,7 @@
             // bElecNetDensity
             // 
             this.bElecNetDensity.Caption = "电力网络密度";
+            this.bElecNetDensity.Glyph = global::CityPlanning.Properties.Resources.ElecIdensity_32;
             this.bElecNetDensity.Id = 711;
             this.bElecNetDensity.Name = "bElecNetDensity";
             this.bElecNetDensity.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
@@ -3230,6 +3235,7 @@
             // bIntDisasterRisk
             // 
             this.bIntDisasterRisk.Caption = "综合灾害风险";
+            this.bIntDisasterRisk.Glyph = global::CityPlanning.Properties.Resources.disaster_32;
             this.bIntDisasterRisk.Id = 712;
             this.bIntDisasterRisk.Name = "bIntDisasterRisk";
             this.bIntDisasterRisk.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
@@ -3237,6 +3243,7 @@
             // bEcoServiceValue
             // 
             this.bEcoServiceValue.Caption = "生态服务价值";
+            this.bEcoServiceValue.Glyph = global::CityPlanning.Properties.Resources.eco_32;
             this.bEcoServiceValue.Id = 713;
             this.bEcoServiceValue.Name = "bEcoServiceValue";
             this.bEcoServiceValue.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
@@ -3244,6 +3251,7 @@
             // bHydroAnalysis
             // 
             this.bHydroAnalysis.Caption = "水文分析";
+            this.bHydroAnalysis.Glyph = global::CityPlanning.Properties.Resources.Hydro_32;
             this.bHydroAnalysis.Id = 714;
             this.bHydroAnalysis.Name = "bHydroAnalysis";
             this.bHydroAnalysis.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
@@ -3251,6 +3259,7 @@
             // bFloodLoss
             // 
             this.bFloodLoss.Caption = "洪涝损失分析";
+            this.bFloodLoss.Glyph = global::CityPlanning.Properties.Resources.flood1_32;
             this.bFloodLoss.Id = 715;
             this.bFloodLoss.Name = "bFloodLoss";
             this.bFloodLoss.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
@@ -3258,6 +3267,7 @@
             // bGDPCenterTransfer
             // 
             this.bGDPCenterTransfer.Caption = "GDP重心转移轨迹";
+            this.bGDPCenterTransfer.Glyph = global::CityPlanning.Properties.Resources.polyline_32;
             this.bGDPCenterTransfer.Id = 716;
             this.bGDPCenterTransfer.Name = "bGDPCenterTransfer";
             this.bGDPCenterTransfer.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
@@ -3292,6 +3302,7 @@
             // bClearAnalysis
             // 
             this.bClearAnalysis.Caption = "清除分析";
+            this.bClearAnalysis.Glyph = ((System.Drawing.Image)(resources.GetObject("bClearAnalysis.Glyph")));
             this.bClearAnalysis.Id = 709;
             this.bClearAnalysis.Name = "bClearAnalysis";
             this.bClearAnalysis.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
@@ -4546,14 +4557,14 @@
             // 
             this.pdfPreviousPageBarItem1.Enabled = false;
             this.pdfPreviousPageBarItem1.Id = 1;
-            this.pdfPreviousPageBarItem1.ItemShortcut = new DevExpress.XtraBars.BarShortcut(System.Windows.Forms.Keys.Prior);
+            this.pdfPreviousPageBarItem1.ItemShortcut = new DevExpress.XtraBars.BarShortcut(System.Windows.Forms.Keys.PageUp);
             this.pdfPreviousPageBarItem1.Name = "pdfPreviousPageBarItem1";
             // 
             // pdfNextPageBarItem1
             // 
             this.pdfNextPageBarItem1.Enabled = false;
             this.pdfNextPageBarItem1.Id = 2;
-            this.pdfNextPageBarItem1.ItemShortcut = new DevExpress.XtraBars.BarShortcut(System.Windows.Forms.Keys.Next);
+            this.pdfNextPageBarItem1.ItemShortcut = new DevExpress.XtraBars.BarShortcut(System.Windows.Forms.Keys.PageDown);
             this.pdfNextPageBarItem1.Name = "pdfNextPageBarItem1";
             // 
             // pdfZoomOutBarItem1

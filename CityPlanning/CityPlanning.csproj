@@ -483,16 +483,23 @@
     <None Include="Resources\check.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\TransIdensity_32.jpg" />
     <None Include="Resources\thematic-icon.png" />
     <None Include="Resources\AddKey.png" />
     <None Include="Resources\AttrTable.png" />
     <None Include="Resources\CityPlanningAbout.jpg" />
     <None Include="Resources\cofniglist64.png" />
+    <None Include="Resources\Coordinate.jpg" />
     <Content Include="Resources\delete_16.png" />
     <None Include="Resources\PlanImageIcon.png" />
     <None Include="Resources\RemoveKey.png" />
     <None Include="Resources\icon_doc.png" />
     <None Include="Resources\desc-icon.png" />
+    <None Include="Resources\Hydro_32.jpg" />
+    <None Include="Resources\disaster_32.jpg" />
+    <None Include="Resources\flood1_32.jpg" />
+    <None Include="Resources\eco_32.jpg" />
+    <None Include="Resources\polyline_32.jpg" />
     <Content Include="Resources\saveAs_16.png" />
     <Content Include="Resources\saveAs_32.png" />
   </ItemGroup>
