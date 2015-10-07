@@ -86,6 +86,11 @@ namespace CityPlanning
         private bool startIntersect = false;
         private string tempPath = string.Empty;
         
+        //专题分析相关
+        public static ResultShowForm ResFrm;
+        private bool AlreadyAddMap = false;
+        private XtraTabPage curXtraTabPage = null;
+
         #endregion
 
         #region //初始化函数
@@ -1672,7 +1677,7 @@ namespace CityPlanning
                 {
                     //read shp of mxd
                     string strInputFeaturePath = ConnectionCenter.Config.FTPCatalog+ConnectionCenter.Config.PlanMap+@"\shp\GHJBNTJZQ（处理后）.shp";
-                    string strInputFeatureName = "GHJBNTJZQ（处理后）.shp";
+                    string strInputFeatureName = System.IO.Path.GetFileNameWithoutExtension(strInputFeaturePath);// "GHJBNTJZQ（处理后）.shp";
                     FileInfo fileInfo = new FileInfo(strInputFeaturePath);
                     DirectoryInfo direct = fileInfo.Directory;
                     FileInfo[] fileinfos = direct.GetFiles(string.Format("{0}.*", fileInfo.Name.Substring(0, fileInfo.Name.LastIndexOf("."))));
@@ -1684,6 +1689,7 @@ namespace CityPlanning
 
                     string strOverLayFeaturePath = tempPath + @"\test.shp";
                     string strOverLayFeatureName = "test.shp";
+                    //string strOverLayFeatureName = System.IO.Path.GetFileNameWithoutExtension(strOverLayFeaturePath);
                     FileInfo fileInfo1 = new FileInfo(strOverLayFeaturePath);
                     DirectoryInfo direct1 = fileInfo1.Directory;
                     FileInfo[] fileinfos1 = direct1.GetFiles(string.Format("{0}.*", fileInfo1.Name.Substring(0, fileInfo1.Name.LastIndexOf("."))));
@@ -1898,7 +1904,7 @@ namespace CityPlanning
                     {
                         //read shp of mxd
                         string strInputFeaturePath = ConnectionCenter.Config.FTPCatalog+ConnectionCenter.Config.PlanMap+@"\shp\GHJBNTJZQ（处理后）.shp";
-                        string strInputFeatureName = "GHJBNTJZQ（处理后）.shp";
+                        string strInputFeatureName = System.IO.Path.GetFileNameWithoutExtension(strInputFeaturePath); //"GHJBNTJZQ（处理后）.shp";
                         FileInfo fileInfo = new FileInfo(strInputFeaturePath);
                         DirectoryInfo direct = fileInfo.Directory;
                         FileInfo[] fileinfos = direct.GetFiles(string.Format("{0}.*", fileInfo.Name.Substring(0, fileInfo.Name.LastIndexOf("."))));
@@ -1910,6 +1916,7 @@ namespace CityPlanning
 
                         string strOverLayFeaturePath = tempPath+@"\draw.shp";
                         string strOverLayFeatureName = "draw.shp";
+                        //string strOverLayFeatureName = System.IO.Path.GetFileNameWithoutExtension(strOverLayFeaturePath);
                         FileInfo fileInfo1 = new FileInfo(strOverLayFeaturePath);
                         DirectoryInfo direct1 = fileInfo1.Directory;
                         FileInfo[] fileinfos1 = direct1.GetFiles(string.Format("{0}.*", fileInfo1.Name.Substring(0, fileInfo1.Name.LastIndexOf("."))));
@@ -1980,7 +1987,7 @@ namespace CityPlanning
             string path = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.PlanMap + @"\18.沈阳经济区红线融合图.mxd";
             mapControl.LoadMxFile(path);
             mapControl.ActiveView.Refresh();
-
+            AlreadyAddMap = true;
         }
 
         //清除分析事件
@@ -1995,7 +2002,7 @@ namespace CityPlanning
         }
 
         #endregion
-        public static ResultShowForm ResFrm;
+        
         #region //专题图分析事件
         private void bTranspNetDensity_ItemClick(object sender, ItemClickEventArgs e)
         {
@@ -2008,8 +2015,45 @@ namespace CityPlanning
                 Thread.Sleep(40);
             }
             thr.Close();
-            //changepfl
+            //加载结果图
+            string path = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.PlanMap + @"\交通网络密度图.mxd";
+            if(AlreadyAddMap)
+            {
+                curXtraTabPage.Text = "交通网络密度图";
+                curAxMapControl.ClearLayers();
+                curAxMapControl.LoadMxFile(path);
+                curAxMapControl.ActiveView.Refresh();
+            }
+            else
+            {
+                AxMapControl mapControl = new AxMapControl();
+                mapControl.BeginInit();     //必须有begin和end
+                mapControl.Location = new System.Drawing.Point(0, 0);
+                mapControl.Name = "mapControl1";
+                mapControl.Dock = DockStyle.Fill;
+                mapControl.OnMouseDown += new IMapControlEvents2_Ax_OnMouseDownEventHandler(mapControl_OnMouseDown);
+                //MapControl不支持先声明，后设置，故而直接设置
+
+                XtraTabPage xtp = new XtraTabPage();
+                xtp.Text = "交通网络密度图";
+                //resourses路径获取
+                Bitmap image = new Bitmap(System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.Windows.Forms.Application.StartupPath).ToString()) + @"\Resources\Globe-16.jpg");
+                xtp.Image = image;
+                xtp.Controls.Add(mapControl);
+                this.xtraTabControl_Main.TabPages.Add(xtp);
+                this.xtraTabControl_Main.SelectedTabPage = xtp;
+                mapControl.EndInit();       //必须有begin和end
+
+                mapControl.Refresh();
+                xtp.Refresh();
+                this.xtraTabControl_Main.Refresh();
+                this.Refresh();
+                mapControl.LoadMxFile(path);
+                mapControl.ActiveView.Refresh();
+                AlreadyAddMap = true;
+            }
             //分析结果文字显示
+            //窗体显示唯一
             if (ResFrm == null)
             {
                 string Text = "交通网络密度分析结果如下：";
@@ -2041,7 +2085,43 @@ namespace CityPlanning
                 Thread.Sleep(40);
             }
             thr.Close();
-            //changepfl
+            //加载结果图
+            string path = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.PlanMap + @"\电力网络密度图.mxd";
+            if (AlreadyAddMap)
+            {
+                curXtraTabPage.Text = "电力网络密度图";
+                curAxMapControl.ClearLayers();
+                curAxMapControl.LoadMxFile(path);
+                curAxMapControl.ActiveView.Refresh();
+            }
+            else
+            {
+                AxMapControl mapControl = new AxMapControl();
+                mapControl.BeginInit();     //必须有begin和end
+                mapControl.Location = new System.Drawing.Point(0, 0);
+                mapControl.Name = "mapControl1";
+                mapControl.Dock = DockStyle.Fill;
+                mapControl.OnMouseDown += new IMapControlEvents2_Ax_OnMouseDownEventHandler(mapControl_OnMouseDown);
+                //MapControl不支持先声明，后设置，故而直接设置
+
+                XtraTabPage xtp = new XtraTabPage();
+                xtp.Text = "电力网络密度图";
+                //resourses路径获取
+                Bitmap image = new Bitmap(System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.Windows.Forms.Application.StartupPath).ToString()) + @"\Resources\Globe-16.jpg");
+                xtp.Image = image;
+                xtp.Controls.Add(mapControl);
+                this.xtraTabControl_Main.TabPages.Add(xtp);
+                this.xtraTabControl_Main.SelectedTabPage = xtp;
+                mapControl.EndInit();       //必须有begin和end
+
+                mapControl.Refresh();
+                xtp.Refresh();
+                this.xtraTabControl_Main.Refresh();
+                this.Refresh();
+                mapControl.LoadMxFile(path);
+                mapControl.ActiveView.Refresh();
+                AlreadyAddMap = true;
+            }
             //分析结果文字显示
             if (ResFrm == null)
             {
@@ -2074,7 +2154,43 @@ namespace CityPlanning
                 Thread.Sleep(40);
             }
             thr.Close();
-            //changepfl
+            //加载结果图
+            string path = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.PlanMap + @"\综合灾害风险图.mxd";
+            if (AlreadyAddMap)
+            {
+                curXtraTabPage.Text = "综合灾害风险图";
+                curAxMapControl.ClearLayers();
+                curAxMapControl.LoadMxFile(path);
+                curAxMapControl.ActiveView.Refresh();
+            }
+            else
+            {
+                AxMapControl mapControl = new AxMapControl();
+                mapControl.BeginInit();     //必须有begin和end
+                mapControl.Location = new System.Drawing.Point(0, 0);
+                mapControl.Name = "mapControl1";
+                mapControl.Dock = DockStyle.Fill;
+                mapControl.OnMouseDown += new IMapControlEvents2_Ax_OnMouseDownEventHandler(mapControl_OnMouseDown);
+                //MapControl不支持先声明，后设置，故而直接设置
+
+                XtraTabPage xtp = new XtraTabPage();
+                xtp.Text = "综合灾害风险图";
+                //resourses路径获取
+                Bitmap image = new Bitmap(System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.Windows.Forms.Application.StartupPath).ToString()) + @"\Resources\Globe-16.jpg");
+                xtp.Image = image;
+                xtp.Controls.Add(mapControl);
+                this.xtraTabControl_Main.TabPages.Add(xtp);
+                this.xtraTabControl_Main.SelectedTabPage = xtp;
+                mapControl.EndInit();       //必须有begin和end
+
+                mapControl.Refresh();
+                xtp.Refresh();
+                this.xtraTabControl_Main.Refresh();
+                this.Refresh();
+                mapControl.LoadMxFile(path);
+                mapControl.ActiveView.Refresh();
+                AlreadyAddMap = true;
+            }
             //分析结果文字显示
             if (ResFrm == null)
             {
@@ -2107,7 +2223,43 @@ namespace CityPlanning
                 Thread.Sleep(50);
             }
             thr.Close();
-            //changepfl
+            //加载结果图
+            string path = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.PlanMap + @"\生态服务价值图.mxd";
+            if (AlreadyAddMap)
+            {
+                curXtraTabPage.Text = "生态服务价值图";
+                curAxMapControl.ClearLayers();
+                curAxMapControl.LoadMxFile(path);
+                curAxMapControl.ActiveView.Refresh();
+            }
+            else
+            {
+                AxMapControl mapControl = new AxMapControl();
+                mapControl.BeginInit();     //必须有begin和end
+                mapControl.Location = new System.Drawing.Point(0, 0);
+                mapControl.Name = "mapControl1";
+                mapControl.Dock = DockStyle.Fill;
+                mapControl.OnMouseDown += new IMapControlEvents2_Ax_OnMouseDownEventHandler(mapControl_OnMouseDown);
+                //MapControl不支持先声明，后设置，故而直接设置
+
+                XtraTabPage xtp = new XtraTabPage();
+                xtp.Text = "生态服务价值图";
+                //resourses路径获取
+                Bitmap image = new Bitmap(System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.Windows.Forms.Application.StartupPath).ToString()) + @"\Resources\Globe-16.jpg");
+                xtp.Image = image;
+                xtp.Controls.Add(mapControl);
+                this.xtraTabControl_Main.TabPages.Add(xtp);
+                this.xtraTabControl_Main.SelectedTabPage = xtp;
+                mapControl.EndInit();       //必须有begin和end
+
+                mapControl.Refresh();
+                xtp.Refresh();
+                this.xtraTabControl_Main.Refresh();
+                this.Refresh();
+                mapControl.LoadMxFile(path);
+                mapControl.ActiveView.Refresh();
+                AlreadyAddMap = true;
+            }
             //分析结果文字显示
             if (ResFrm == null)
             {
@@ -2140,7 +2292,43 @@ namespace CityPlanning
                 Thread.Sleep(40);
             }
             thr.Close();
-            //changepfl
+            //加载结果图
+            string path = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.PlanMap + @"\水文分析图.mxd";
+            if (AlreadyAddMap)
+            {
+                curXtraTabPage.Text = "水文分析图";
+                curAxMapControl.ClearLayers();
+                curAxMapControl.LoadMxFile(path);
+                curAxMapControl.ActiveView.Refresh();
+            }
+            else
+            {
+                AxMapControl mapControl = new AxMapControl();
+                mapControl.BeginInit();     //必须有begin和end
+                mapControl.Location = new System.Drawing.Point(0, 0);
+                mapControl.Name = "mapControl1";
+                mapControl.Dock = DockStyle.Fill;
+                mapControl.OnMouseDown += new IMapControlEvents2_Ax_OnMouseDownEventHandler(mapControl_OnMouseDown);
+                //MapControl不支持先声明，后设置，故而直接设置
+
+                XtraTabPage xtp = new XtraTabPage();
+                xtp.Text = "水文分析图";
+                //resourses路径获取
+                Bitmap image = new Bitmap(System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.Windows.Forms.Application.StartupPath).ToString()) + @"\Resources\Globe-16.jpg");
+                xtp.Image = image;
+                xtp.Controls.Add(mapControl);
+                this.xtraTabControl_Main.TabPages.Add(xtp);
+                this.xtraTabControl_Main.SelectedTabPage = xtp;
+                mapControl.EndInit();       //必须有begin和end
+
+                mapControl.Refresh();
+                xtp.Refresh();
+                this.xtraTabControl_Main.Refresh();
+                this.Refresh();
+                mapControl.LoadMxFile(path);
+                mapControl.ActiveView.Refresh();
+                AlreadyAddMap = true;
+            }
             //分析结果文字显示
             if (ResFrm == null)
             {
@@ -2173,7 +2361,43 @@ namespace CityPlanning
                 Thread.Sleep(50);
             }
             thr.Close();
-            //changepfl
+            //加载结果图
+            string path = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.PlanMap + @"\洪涝损失分析图.mxd";
+            if (AlreadyAddMap)
+            {
+                curXtraTabPage.Text = "洪涝损失分析图";
+                curAxMapControl.ClearLayers();
+                curAxMapControl.LoadMxFile(path);
+                curAxMapControl.ActiveView.Refresh();
+            }
+            else
+            {
+                AxMapControl mapControl = new AxMapControl();
+                mapControl.BeginInit();     //必须有begin和end
+                mapControl.Location = new System.Drawing.Point(0, 0);
+                mapControl.Name = "mapControl1";
+                mapControl.Dock = DockStyle.Fill;
+                mapControl.OnMouseDown += new IMapControlEvents2_Ax_OnMouseDownEventHandler(mapControl_OnMouseDown);
+                //MapControl不支持先声明，后设置，故而直接设置
+
+                XtraTabPage xtp = new XtraTabPage();
+                xtp.Text = "洪涝损失分析图";
+                //resourses路径获取
+                Bitmap image = new Bitmap(System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.Windows.Forms.Application.StartupPath).ToString()) + @"\Resources\Globe-16.jpg");
+                xtp.Image = image;
+                xtp.Controls.Add(mapControl);
+                this.xtraTabControl_Main.TabPages.Add(xtp);
+                this.xtraTabControl_Main.SelectedTabPage = xtp;
+                mapControl.EndInit();       //必须有begin和end
+
+                mapControl.Refresh();
+                xtp.Refresh();
+                this.xtraTabControl_Main.Refresh();
+                this.Refresh();
+                mapControl.LoadMxFile(path);
+                mapControl.ActiveView.Refresh();
+                AlreadyAddMap = true;
+            }
             //分析结果文字显示
             if (ResFrm == null)
             {
@@ -2206,7 +2430,43 @@ namespace CityPlanning
                 Thread.Sleep(60);
             }
             thr.Close();
-            //changepfl
+            //加载结果图
+            string path = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.PlanMap + @"\GDP重心转移图.mxd";
+            if (AlreadyAddMap)
+            {
+                curXtraTabPage.Text = "GDP重心转移图";
+                curAxMapControl.ClearLayers();
+                curAxMapControl.LoadMxFile(path);
+                curAxMapControl.ActiveView.Refresh();
+            }
+            else
+            {
+                AxMapControl mapControl = new AxMapControl();
+                mapControl.BeginInit();     //必须有begin和end
+                mapControl.Location = new System.Drawing.Point(0, 0);
+                mapControl.Name = "mapControl1";
+                mapControl.Dock = DockStyle.Fill;
+                mapControl.OnMouseDown += new IMapControlEvents2_Ax_OnMouseDownEventHandler(mapControl_OnMouseDown);
+                //MapControl不支持先声明，后设置，故而直接设置
+
+                XtraTabPage xtp = new XtraTabPage();
+                xtp.Text = "GDP重心转移图";
+                //resourses路径获取
+                Bitmap image = new Bitmap(System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.Windows.Forms.Application.StartupPath).ToString()) + @"\Resources\Globe-16.jpg");
+                xtp.Image = image;
+                xtp.Controls.Add(mapControl);
+                this.xtraTabControl_Main.TabPages.Add(xtp);
+                this.xtraTabControl_Main.SelectedTabPage = xtp;
+                mapControl.EndInit();       //必须有begin和end
+
+                mapControl.Refresh();
+                xtp.Refresh();
+                this.xtraTabControl_Main.Refresh();
+                this.Refresh();
+                mapControl.LoadMxFile(path);
+                mapControl.ActiveView.Refresh();
+                AlreadyAddMap = true;
+            }
             //分析结果文字显示
             if (ResFrm == null)
             {
