@@ -84,7 +84,7 @@ namespace CityPlanning
         private string strOverLayFeature = string.Empty;
         private bool DrawPolygon = false;
         private bool startIntersect = false;
-        
+        private string tempPath = string.Empty;
         
         #endregion
 
@@ -100,6 +100,12 @@ namespace CityPlanning
             {
                 System.IO.Directory.CreateDirectory(_Environment);
             }
+            tempPath = Environment.SpecialFolder.MyDocuments.ToString()+@"\CityTemp";
+            if (!Directory.Exists(tempPath))
+            {
+                System.IO.Directory.CreateDirectory(tempPath);
+            }
+
         }
         //窗体初始化函数 
         private void MainForm_Load(object sender, EventArgs e)
@@ -1153,7 +1159,7 @@ namespace CityPlanning
         //叠置分析
         private void StartIntersect(string strInputFeature, string strOverLayFeature)
         {
-            string outputPath = "F:\\Result.shp";
+            string outputPath = tempPath+@"\Result.shp";
             string in_features = string.Format("{0};{1}", strInputFeature, strOverLayFeature);
             Geoprocessor gp = new Geoprocessor();
             gp.OverwriteOutput = true;
@@ -1318,8 +1324,7 @@ namespace CityPlanning
         //加载红线地图
         private void LoadRedLine()
         {
-            string path = "D:\\项目 - 沈阳经济区\\图集\\原始矢量数据\\图集\\矢量图\\1.沈阳经济区基本农田保护红线图.mxd";
-            //mapControl.LoadMxFile(path);
+            string path = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.PlanMap + @"\18.沈阳经济区红线融合图.mxd";
         }
         //读取叠置结果属性
         private void ReadResultDbf()
@@ -1346,7 +1351,7 @@ namespace CityPlanning
                      string extension = System.IO.Path.GetExtension(fullPath);
 
                      #region  //判断shp是否已经存在，如果存在则删除
-                     string inSHPpath = "F:\\test.shp";
+                     string inSHPpath =tempPath+@"\test.shp";
                      string shpDirName = System.IO.Path.GetDirectoryName(inSHPpath);
                      string shpName1 = System.IO.Path.GetFileNameWithoutExtension(inSHPpath);
                      string shpFullName = shpName1 + ".shp";
@@ -1363,7 +1368,7 @@ namespace CityPlanning
                      if (System.IO.File.Exists(shpDirName + "\\" + dbfName))
                          System.IO.File.Delete(shpDirName + "\\" + dbfName);
                      if (System.IO.File.Exists(shpDirName + "\\" + shxName))
-                         System.IO.File.Delete(shpDirName + shxName);
+                         System.IO.File.Delete(shpDirName + "\\" + shxName);
                      if (System.IO.File.Exists(shpDirName + "\\" + sbnName))
                          System.IO.File.Delete(shpDirName + "\\" + sbnName);
                      if (System.IO.File.Exists(shpDirName + "\\" + xmlName))
@@ -1575,7 +1580,7 @@ namespace CityPlanning
                 double stxt = pAreatxt.Area/1000000;//
                 double Stxt = Math.Abs(stxt);
                 MessageBox.Show("该区域面积为：" + Convert.ToDouble(Stxt).ToString("0.000") + "平方公里（km2）", "项目区面积");
-                string DirPath = "F:\\";
+                string DirPath = tempPath;
                 AxMapControl mapControl = new AxMapControl();
                 mapControl = curAxMapControl;
                 mapControl.AddShapeFile(DirPath, "test.shp");
@@ -1661,7 +1666,8 @@ namespace CityPlanning
 
                 if (MessageBox.Show("开始分析?", "询问", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
                 {
-                    string strInputFeaturePath = "D:\\项目 - 沈阳经济区\\图集\\原始矢量数据\\图集\\矢量图\\shp\\GHJBNTJZQ（处理后）.shp";
+                    //read shp of mxd
+                    string strInputFeaturePath = ConnectionCenter.Config.FTPCatalog+ConnectionCenter.Config.PlanMap+@"\shp\GHJBNTJZQ（处理后）.shp";
                     string strInputFeatureName = "GHJBNTJZQ（处理后）.shp";
                     FileInfo fileInfo = new FileInfo(strInputFeaturePath);
                     DirectoryInfo direct = fileInfo.Directory;
@@ -1672,7 +1678,7 @@ namespace CityPlanning
                     }
                     this.strInputFeature = fileInfo.Name;
 
-                    string strOverLayFeaturePath = "F:\\test.shp";
+                    string strOverLayFeaturePath = tempPath + @"\test.shp";
                     string strOverLayFeatureName = "test.shp";
                     FileInfo fileInfo1 = new FileInfo(strOverLayFeaturePath);
                     DirectoryInfo direct1 = fileInfo1.Directory;
@@ -1694,9 +1700,11 @@ namespace CityPlanning
                     }
                     thr.Close();
                     //添加叠置结果图
+                    mapControl.ClearLayers();
+                    mapControl.LoadMxFile(ConnectionCenter.Config.FTPCatalog+ConnectionCenter.Config.PlanMap+@"\18.沈阳经济区红线融合图.mxd");
                     mapControl.AddShapeFile(DirPath, "Result.shp");
                     mapControl.Refresh();
-                    string dbfPath = "D:\\项目 - 沈阳经济区\\图集\\原始矢量数据\\图集\\矢量图\\shp\\GHJBNTJZQ（处理后）.dbf";
+                    string dbfPath = tempPath + @"\Result.dbf";
                     CreatResultPie(dbfPath);
                 }
               }
@@ -1731,7 +1739,7 @@ namespace CityPlanning
                     if (pPolygon != null && !pPolygon.IsEmpty)
                     {
                         #region//生成shp
-                        string inSHPpath = "F:\\draw.shp";
+                        string inSHPpath = tempPath + @"\draw.shp";
                         string shpDirName = System.IO.Path.GetDirectoryName(inSHPpath);
                         string shpName1 = System.IO.Path.GetFileNameWithoutExtension(inSHPpath);
                         string shpFullName = shpName1 + ".shp";
@@ -1748,7 +1756,7 @@ namespace CityPlanning
                         if (System.IO.File.Exists(shpDirName + "\\" + dbfName))
                             System.IO.File.Delete(shpDirName + "\\" + dbfName);
                         if (System.IO.File.Exists(shpDirName + "\\" + shxName))
-                            System.IO.File.Delete(shpDirName + shxName);
+                            System.IO.File.Delete(shpDirName +"\\"+ shxName);
                         if (System.IO.File.Exists(shpDirName + "\\" + sbnName))
                             System.IO.File.Delete(shpDirName + "\\" + sbnName);
                         if (System.IO.File.Exists(shpDirName + "\\" + xmlName))
@@ -1877,14 +1885,15 @@ namespace CityPlanning
                             this.curAxMapControl.Refresh();
                         //}
                     }
-                    string DirPath = "F:\\";
+                    string DirPath = tempPath;
                     AxMapControl mapControl = new AxMapControl();
                     mapControl = curAxMapControl;
                     mapControl.AddShapeFile(DirPath, "draw.shp");
                     mapControl.Refresh();
                     if (MessageBox.Show("开始分析?", "询问", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
                     {
-                        string strInputFeaturePath = "D:\\项目 - 沈阳经济区\\图集\\原始矢量数据\\图集\\矢量图\\shp\\GHJBNTJZQ（处理后）.shp";
+                        //read shp of mxd
+                        string strInputFeaturePath = ConnectionCenter.Config.FTPCatalog+ConnectionCenter.Config.PlanMap+@"\shp\GHJBNTJZQ（处理后）.shp";
                         string strInputFeatureName = "GHJBNTJZQ（处理后）.shp";
                         FileInfo fileInfo = new FileInfo(strInputFeaturePath);
                         DirectoryInfo direct = fileInfo.Directory;
@@ -1895,7 +1904,7 @@ namespace CityPlanning
                         }
                         this.strInputFeature = fileInfo.Name;
 
-                        string strOverLayFeaturePath = "F:\\draw.shp";
+                        string strOverLayFeaturePath = tempPath+@"\draw.shp";
                         string strOverLayFeatureName = "draw.shp";
                         FileInfo fileInfo1 = new FileInfo(strOverLayFeaturePath);
                         DirectoryInfo direct1 = fileInfo1.Directory;
@@ -1920,11 +1929,11 @@ namespace CityPlanning
                         }
                         thr.Close();
                         mapControl.ClearLayers();
-                        string path = "D:\\项目 - 沈阳经济区\\图集\\原始矢量数据\\图集\\矢量图\\1.沈阳经济区基本农田保护红线图.mxd";
+                        string path = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.PlanMap + @"\18.沈阳经济区红线融合图.mxd";
                         mapControl.LoadMxFile(path);
                         mapControl.AddShapeFile(DirPath, "Result.shp");
                         mapControl.Refresh();
-                        string dbfPath = "D:\\项目 - 沈阳经济区\\图集\\原始矢量数据\\图集\\矢量图\\shp\\GHJBNTJZQ（处理后）.dbf";
+                        string dbfPath =ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.PlanMap + @"\shp\GHJBNTJZQ（处理后）.dbf";
                         CreatResultPie(dbfPath);
                         RichEditControl rec = new RichEditControl();
                         rec.Refresh();
@@ -1952,7 +1961,8 @@ namespace CityPlanning
 
             XtraTabPage xtp = new XtraTabPage();
             xtp.Text = "基本红线示意图";
-            Bitmap image = new Bitmap("F:\\GitHub\\CityPlanning\\CityPlanning\\Resources\\Globe-16.jpg");
+            //resourses路径获取
+            Bitmap image = new Bitmap(System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.Windows.Forms.Application.StartupPath).ToString()) + @"\Resources\Globe-16.jpg");
             xtp.Image = image;
             xtp.Controls.Add(mapControl);
             this.xtraTabControl_Main.TabPages.Add(xtp);
@@ -1963,9 +1973,9 @@ namespace CityPlanning
             xtp.Refresh();
             this.xtraTabControl_Main.Refresh();
             this.Refresh();
-            string path = "D:\\项目 - 沈阳经济区\\图集\\原始矢量数据\\图集\\矢量图\\1.沈阳经济区基本农田保护红线图.mxd";
+            string path = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.PlanMap + @"\18.沈阳经济区红线融合图.mxd";
             mapControl.LoadMxFile(path);
-            //mapControl.ActiveView.Refresh();
+            mapControl.ActiveView.Refresh();
 
         }
 
@@ -1975,7 +1985,7 @@ namespace CityPlanning
             AxMapControl mapControl = new AxMapControl();
             mapControl = curAxMapControl;
             mapControl.ClearLayers();
-            string path = "D:\\项目 - 沈阳经济区\\图集\\原始矢量数据\\图集\\矢量图\\1.沈阳经济区基本农田保护红线图.mxd";
+            string path = ConnectionCenter.Config.FTPCatalog+ConnectionCenter.Config.PlanMap+@"\18.沈阳经济区红线融合图.mxd";
             mapControl.LoadMxFile(path);
             mapControl.Refresh();
         }

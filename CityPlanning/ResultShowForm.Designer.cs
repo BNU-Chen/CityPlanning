@@ -39,7 +39,7 @@
             this.textBox1.Location = new System.Drawing.Point(-3, -1);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(288, 264);
+            this.textBox1.Size = new System.Drawing.Size(199, 225);
             this.textBox1.TabIndex = 0;
             this.textBox1.Text = "分析结果如下：";
             // 
@@ -47,7 +47,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 262);
+            this.ClientSize = new System.Drawing.Size(195, 223);
             this.ControlBox = false;
             this.Controls.Add(this.textBox1);
             this.Name = "ResultShowForm";
