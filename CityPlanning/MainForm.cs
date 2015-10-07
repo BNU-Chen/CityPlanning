@@ -1913,11 +1913,12 @@ namespace CityPlanning
                         {
                             thr.setPos(i);
                             Thread.Sleep(20);
-                            if(i==90)
-                            {
-                                break;
-                            }
+                            //if(i==95)
+                            //{
+                            //    break;
+                            //}
                         }
+                        thr.Close();
                         mapControl.ClearLayers();
                         string path = "D:\\项目 - 沈阳经济区\\图集\\原始矢量数据\\图集\\矢量图\\1.沈阳经济区基本农田保护红线图.mxd";
                         mapControl.LoadMxFile(path);

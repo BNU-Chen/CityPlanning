@@ -68,6 +68,7 @@
             this.Controls.Add(this.progressBar1);
             this.Name = "ThreadForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ThreadForm_FormClosed);
             this.Load += new System.EventHandler(this.ThreadForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
