@@ -83,6 +83,7 @@ namespace CityPlanning
         private string strInputFeature = string.Empty;
         private string strOverLayFeature = string.Empty;
         private bool DrawPolygon = false;
+        private bool startIntersect = false;
         
         
         #endregion
@@ -1690,48 +1691,53 @@ namespace CityPlanning
             esriControlsMousePointer.esriPointerCrosshair;
             DrawPolygon = true;
             //开始叠置分析
-            string DirPath = "F:\\";
-            AxMapControl mapControl = new AxMapControl();
-            mapControl = curAxMapControl;
-            mapControl.AddShapeFile(DirPath, "draw.shp");
-            mapControl.Refresh();
-            if (MessageBox.Show("开始分析?", "询问", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+            if (startIntersect)
             {
-                string strInputFeaturePath = "D:\\项目 - 沈阳经济区\\图集\\原始矢量数据\\图集\\矢量图\\shp\\GHJBNTJZQ（处理后）.shp";
-                string strInputFeatureName = "GHJBNTJZQ（处理后）.shp";
-                FileInfo fileInfo = new FileInfo(strInputFeaturePath);
-                DirectoryInfo direct = fileInfo.Directory;
-                FileInfo[] fileinfos = direct.GetFiles(string.Format("{0}.*", fileInfo.Name.Substring(0, fileInfo.Name.LastIndexOf("."))));
-                for (int i = 0; i < fileinfos.Count(); i++)
-                {
-                    File.Copy(fileinfos[i].FullName, _Environment + @"\" + fileinfos[i].Name, true);
-                }
-                this.strInputFeature = fileInfo.Name;
-
-                string strOverLayFeaturePath = "F:\\draw.shp";
-                string strOverLayFeatureName = "draw.shp";
-                FileInfo fileInfo1 = new FileInfo(strOverLayFeaturePath);
-                DirectoryInfo direct1 = fileInfo1.Directory;
-                FileInfo[] fileinfos1 = direct1.GetFiles(string.Format("{0}.*", fileInfo1.Name.Substring(0, fileInfo1.Name.LastIndexOf("."))));
-                for (int i = 0; i < fileinfos1.Count(); i++)
-                {
-                    File.Copy(fileinfos1[i].FullName, _Environment + @"\" + fileinfos1[i].Name, true);
-                }
-                this.strOverLayFeature = fileInfo1.Name;
-
-                this.StartIntersect(strInputFeature, strOverLayFeature);
-                ThreadForm thr = new ThreadForm(0, 100);
-                thr.Show(this);
-                for (int i = 0; i < 100; i++)
-                {
-                    thr.setPos(i);
-                    Thread.Sleep(20);
-                }
-                mapControl.AddShapeFile(DirPath, "Result.shp");
+                string DirPath = "F:\\";
+                AxMapControl mapControl = new AxMapControl();
+                mapControl = curAxMapControl;
+                mapControl.AddShapeFile(DirPath, "draw.shp");
                 mapControl.Refresh();
-                string dbfPath = "D:\\项目 - 沈阳经济区\\图集\\原始矢量数据\\图集\\矢量图\\shp\\GHJBNTJZQ（处理后）.dbf";
-                CreatResultPie(dbfPath);
-                RichEditControl rec = new RichEditControl();
+                if (MessageBox.Show("开始分析?", "询问", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                {
+                    string strInputFeaturePath = "D:\\项目 - 沈阳经济区\\图集\\原始矢量数据\\图集\\矢量图\\shp\\GHJBNTJZQ（处理后）.shp";
+                    string strInputFeatureName = "GHJBNTJZQ（处理后）.shp";
+                    FileInfo fileInfo = new FileInfo(strInputFeaturePath);
+                    DirectoryInfo direct = fileInfo.Directory;
+                    FileInfo[] fileinfos = direct.GetFiles(string.Format("{0}.*", fileInfo.Name.Substring(0, fileInfo.Name.LastIndexOf("."))));
+                    for (int i = 0; i < fileinfos.Count(); i++)
+                    {
+                        File.Copy(fileinfos[i].FullName, _Environment + @"\" + fileinfos[i].Name, true);
+                    }
+                    this.strInputFeature = fileInfo.Name;
+
+                    string strOverLayFeaturePath = "F:\\draw.shp";
+                    string strOverLayFeatureName = "draw.shp";
+                    FileInfo fileInfo1 = new FileInfo(strOverLayFeaturePath);
+                    DirectoryInfo direct1 = fileInfo1.Directory;
+                    FileInfo[] fileinfos1 = direct1.GetFiles(string.Format("{0}.*", fileInfo1.Name.Substring(0, fileInfo1.Name.LastIndexOf("."))));
+                    for (int i = 0; i < fileinfos1.Count(); i++)
+                    {
+                        File.Copy(fileinfos1[i].FullName, _Environment + @"\" + fileinfos1[i].Name, true);
+                    }
+                    this.strOverLayFeature = fileInfo1.Name;
+
+                    this.StartIntersect(strInputFeature, strOverLayFeature);
+                    ThreadForm thr = new ThreadForm(0, 100);
+                    thr.Show(this);
+                    for (int i = 0; i < 100; i++)
+                    {
+                        thr.setPos(i);
+                        Thread.Sleep(20);
+                    }
+                    mapControl.ClearLayers();
+                    string path = "D:\\项目 - 沈阳经济区\\图集\\原始矢量数据\\图集\\矢量图\\1.沈阳经济区基本农田保护红线图.mxd";
+                    mapControl.LoadMxFile(path);
+                    mapControl.AddShapeFile(DirPath, "Result.shp");
+                    mapControl.Refresh();
+                    string dbfPath = "D:\\项目 - 沈阳经济区\\图集\\原始矢量数据\\图集\\矢量图\\shp\\GHJBNTJZQ（处理后）.dbf";
+                    CreatResultPie(dbfPath);
+                    RichEditControl rec = new RichEditControl();
                     rec.Refresh();
                     XtraTabPage xtp = new XtraTabPage();
                     xtp.Refresh();
@@ -1739,7 +1745,7 @@ namespace CityPlanning
                     this.Refresh();
                 }
             }
-        
+        }
         #endregion 
 
         
@@ -1754,7 +1760,7 @@ namespace CityPlanning
                     //刷新地图
                     DrawMapShape(pPolygon);
                     curAxMapControl.MousePointer = esriControlsMousePointer.esriPointerArrow;
-                    curAxMapControl.Refresh(esriViewDrawPhase.esriViewGeography, null, null);
+                    //curAxMapControl.Refresh(esriViewDrawPhase.esriViewGeography, null, null);
                     if (pPolygon != null && !pPolygon.IsEmpty)
                     {
                         #region//生成shp
@@ -1898,13 +1904,14 @@ namespace CityPlanning
                         double ss= Math.Abs(s);
                         MessageBox.Show("该区域面积为：" + Convert.ToDouble(ss).ToString("0.000") + "平方公里（km2）", "项目区面积");
                         // IPointArray pts = new PointArrayClass();
-                        if (MessageBox.Show("确定绘制？", "询问", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
-                        {
+                        //if (MessageBox.Show("确定绘制？", "询问", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                        //{
                             pgra.DeleteAllElements();
                             this.curAxMapControl.Refresh();
-                        }
+                        //}
                     }
                     DrawPolygon = false;
+                    startIntersect = true;
                 }
             }
         }
@@ -1922,7 +1929,7 @@ namespace CityPlanning
 
             XtraTabPage xtp = new XtraTabPage();
             xtp.Text = "基本红线示意图";
-            Bitmap image = new Bitmap("F:\\GitHub\\CityPlanning\\CityPlanning\\Resources\\fullExtent_32.png");
+            Bitmap image = new Bitmap("F:\\GitHub\\CityPlanning\\CityPlanning\\Resources\\Globe-16.jpg");
             xtp.Image = image;
             xtp.Controls.Add(mapControl);
             this.xtraTabControl_Main.TabPages.Add(xtp);
