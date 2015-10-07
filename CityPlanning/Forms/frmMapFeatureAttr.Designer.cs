@@ -52,6 +52,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "属性信息";
+            this.TopMost = true;
             this.ResumeLayout(false);
 
         }

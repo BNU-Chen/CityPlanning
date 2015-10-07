@@ -47,6 +47,7 @@ namespace CityPlanning
         
         //地图相关
         private bool isIdentifyMap = false;  //是否开始地图查询
+        private Forms.frmMapFeatureAttr pFrmMapFeatureAttr = null;  //地图查询属性框
                 
         //自定义类声明
         private int iconCount = 0;
@@ -971,11 +972,23 @@ namespace CityPlanning
                         Control control = (Control)sender;
                         Point pt = control.PointToScreen(new Point(e.x, e.y));
 
-                        Forms.frmMapFeatureAttr pFrmMapFeatureAttr = new Forms.frmMapFeatureAttr();
-                        pFrmMapFeatureAttr.AttrDataTable = dt;
-                        pFrmMapFeatureAttr.Location = pt;
-                        pFrmMapFeatureAttr.delegateSearch += new Forms.delegateSearchDoc(SearchInPlanDoc);
-                        pFrmMapFeatureAttr.Show();
+                        if (pFrmMapFeatureAttr == null || pFrmMapFeatureAttr.IsDisposed)
+                        {
+                            pFrmMapFeatureAttr = new Forms.frmMapFeatureAttr();
+                            pFrmMapFeatureAttr.AttrDataTable = dt;
+                            pFrmMapFeatureAttr.Location = pt;
+                            pFrmMapFeatureAttr.delegateSearch += new Forms.delegateSearchDoc(SearchInPlanDoc);
+                            pFrmMapFeatureAttr.Show();
+                        }
+                        else
+                        {
+                            pFrmMapFeatureAttr.Visible = false;
+                            pFrmMapFeatureAttr.AttrDataTable = dt;
+                            pFrmMapFeatureAttr.Location = pt;
+                            pFrmMapFeatureAttr.delegateSearch += new Forms.delegateSearchDoc(SearchInPlanDoc);
+                            pFrmMapFeatureAttr.BringToFront();
+                            pFrmMapFeatureAttr.Visible = true;
+                        }
 
 
                     }
