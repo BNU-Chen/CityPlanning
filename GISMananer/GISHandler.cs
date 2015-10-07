@@ -195,6 +195,10 @@ namespace GISManager
                     IField field = fields.get_Field(i);
                     string aliasName = field.AliasName;
                     string name = GISConfig.ConvertFieldName(aliasName);
+                    if (name == "")
+                    {
+                        continue;
+                    }
                     string value = Convert.ToString(pFeature.get_Value(i));
                     //写入数据
                     DataRow dr = dt.NewRow();

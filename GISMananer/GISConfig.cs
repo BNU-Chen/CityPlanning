@@ -17,9 +17,10 @@ namespace GISManager
         {
             get 
             {
-                fieldToHide.Add("OBJECT", "");
-                fieldToHide.Add("Shape", "");
-                fieldToHide.Add("Shape_Length", "");
+                fieldToHide.Clear();
+                fieldToHide.Add("object", "");
+                fieldToHide.Add("shape", "");
+                fieldToHide.Add("shape_length", "");
                 return GISConfig.fieldToHide; 
             }
         }
@@ -28,13 +29,11 @@ namespace GISManager
         {
             get
             {
-                fieldToConvert.Add("BSM", "标识码");
-                fieldToConvert.Add("YSDM", "要素代码");
-                fieldToConvert.Add("KZMJ", "kzmj");
-                fieldToConvert.Add("Shape_Area", "");
-                fieldToConvert.Add("Shape_Area", "");
-                fieldToConvert.Add("Shape_Area", "");
-                fieldToConvert.Add("Shape_Area", "");
+                fieldToConvert.Clear();
+                fieldToConvert.Add("bsm", "标识码");
+                fieldToConvert.Add("ysdm", "要素代码");
+                fieldToConvert.Add("kzmj", "控制面积");
+                fieldToConvert.Add("shape_area", "");
                 return GISConfig.fieldToConvert; 
             }
         }
@@ -52,13 +51,17 @@ namespace GISManager
             {
                 name = originName;
             }
-            else if(FieldToHide.ContainsKey(originName))
+            else if (FieldToConvert.ContainsKey(originName.ToLower()))
+            {
+                name = FieldToConvert[originName.ToLower()];
+            }
+            else if(FieldToHide.ContainsKey(originName.ToLower()))
             {
                 name = "";
             }
-            else if (FieldToConvert.ContainsKey(originName))
+            else
             {
-                name = FieldToConvert[originName];
+                name = originName;
             }
 
             return name;

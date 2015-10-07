@@ -973,6 +973,17 @@ namespace CityPlanning
                     if (featureCount > 0)
                     {
                         DataTable dt = GISManager.GISHandler.GetFirstSelectionFeatureAttr(curAxMapControl);
+                        if (dt.Rows.Count == 0)
+                        {
+                            return;
+                        }
+                        Control control = (Control)sender;
+                        Point pt = control.PointToScreen(new Point(e.x, e.y));
+
+                        Forms.frmMapFeatureAttr pFrmMapFeatureAttr = new Forms.frmMapFeatureAttr();
+                        pFrmMapFeatureAttr.AttrDataTable = dt;
+                        pFrmMapFeatureAttr.Location = pt;
+                        pFrmMapFeatureAttr.Show();
                     }
                 }
             }
