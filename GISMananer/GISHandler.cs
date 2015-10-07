@@ -171,5 +171,82 @@ namespace GISManager
             return dt;
 
         }
+        /// <summary>
+        /// 获取选中要素的DataTable
+        /// </summary>
+        /// <param name="pSelection">IFeature</param>
+        /// <returns>DataTable</returns>
+        public static DataTable GetFeatureAttr(IFeature pFeature)
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("name", System.Type.GetType("System.String"));  //名称
+            dt.Columns.Add("value", System.Type.GetType("System.String"));  //值
+            try
+            {
+                if (pFeature == null)
+                {
+                    return dt;
+                }
+                ITable table = pFeature.Table;
+                IFields fields = table.Fields;
+                for (int i = 0; i < fields.FieldCount;i++)
+                {
+                    //获取数据
+                    IField field = fields.get_Field(i);
+                    string aliasName = field.AliasName;
+                    string name = GISConfig.ConvertFieldName(aliasName);
+                    string value = Convert.ToString(pFeature.get_Value(i));
+                    //写入数据
+                    DataRow dr = dt.NewRow();
+                    dr["name"] = name;
+                    dr["value"] = value;
+                    dt.Rows.Add(dr);
+                }
+            }
+            catch { }
+            return dt;
+        }
+
+        /// <summary>
+        /// 获取第一个选中的要素
+        /// </summary>
+        /// <param name="pSelection">ISelection</param>
+        /// <returns>IFeature</returns>
+        public static IFeature GetFirstSelectionFeature(AxMapControl _axMapControl)
+        {
+            IFeature pFeature = null;
+            try
+            {
+                ISelection pSelection = _axMapControl.Map.FeatureSelection;
+                
+                // 打开属性标签
+                IEnumFeatureSetup pEnumFeatureSetup = pSelection as IEnumFeatureSetup;                
+                pEnumFeatureSetup.AllFields = true;
+                // 读取属性           
+                IEnumFeature pEnumFeature = pSelection as IEnumFeature;
+               
+                pFeature = pEnumFeature.Next();
+            }
+            catch { }
+            return pFeature;
+        }
+
+        /// <summary>
+        /// 获取第一个选中的要素的属性表
+        /// </summary>
+        /// <param name="pSelection">ISelection</param>
+        /// <returns>IFeature</returns> 
+        public static DataTable GetFirstSelectionFeatureAttr(AxMapControl _axMapControl)
+        {
+            DataTable dt = new DataTable();
+            IFeature pFeature = GetFirstSelectionFeature(_axMapControl);
+            if (pFeature != null)
+            {
+                dt = GetFeatureAttr(pFeature);
+            }            
+            return dt;
+        }
+        
+
     }
 }

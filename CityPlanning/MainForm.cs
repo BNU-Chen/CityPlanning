@@ -521,6 +521,8 @@ namespace CityPlanning
                     this.ribbonPageCategory_map.Visible = true;
                     this.ribbonControl.SelectedPage = this.ribbonPageCategory_map.Pages[0];
                     curAxMapControl.OnMouseUp += curAxMapControl_OnMouseUp;
+                    curAxMapControl.OnMouseDown += curAxMapControl_OnMouseDown;
+                    curAxMapControl.OnMouseMove += curAxMapControl_OnMouseMove;
                     break;
                 }
                 else
@@ -533,7 +535,7 @@ namespace CityPlanning
                 }
             }
         }
-
+        
 
         #region //ChartButton生成统计图表
         //柱状图
@@ -865,10 +867,21 @@ namespace CityPlanning
         }
 
         private void bMapQueryByPoint_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            //GISTools.SelectFeature(curAxMapControl);
-            curAxMapControl.MousePointer = ESRI.ArcGIS.Controls.esriControlsMousePointer.esriPointerCrosshair;
-            isIdentifyMap = true;
+        {            
+            GISManager.GISTools.setNull(curAxMapControl);
+
+            isIdentifyMap = this.bMapQueryByPoint.Down;
+            if (isIdentifyMap)
+            {
+                //curAxMapControl.MousePointer = ESRI.ArcGIS.Controls.esriControlsMousePointer.esriPointerCrosshair;
+                GISTools.SelectFeature(curAxMapControl);
+            }
+            else
+            {
+                //curAxMapControl.MousePointer = ESRI.ArcGIS.Controls.esriControlsMousePointer.esriPointerArrow;
+                curAxMapControl.Map.ClearSelection();
+                curAxMapControl.Refresh();
+            }
         }
         #endregion
         #endregion
@@ -930,25 +943,49 @@ namespace CityPlanning
         #endregion
         
         #region //MapControl 事件
+        //鼠标点击
+        void curAxMapControl_OnMouseDown(object sender, IMapControlEvents2_OnMouseDownEvent e)
+        {
+            if (e.button == 4)
+            {
+                curAxMapControl.ActiveView.ScreenDisplay.PanStart(curAxMapControl.ActiveView.ScreenDisplay.DisplayTransformation.ToMapPoint(e.x, e.y));
+                curAxMapControl.MousePointer = esriControlsMousePointer.esriPointerPan;
+            }
+        }
+        //鼠标移动
+        void curAxMapControl_OnMouseMove(object sender, IMapControlEvents2_OnMouseMoveEvent e)
+        {
+            if (e.button == 4 && curAxMapControl.ActiveView != null)
+            {
+                curAxMapControl.ActiveView.ScreenDisplay.PanMoveTo(curAxMapControl.ActiveView.ScreenDisplay.DisplayTransformation.ToMapPoint(e.x, e.y));
+            }
+        }
+        //鼠标抬起
         void curAxMapControl_OnMouseUp(object sender, IMapControlEvents2_OnMouseUpEvent e)
         {
             if (e.button == 1)  //左键
-            {
-                //MessageBox.Show("左键");
+            {       
+                //属性查询
                 if (isIdentifyMap)
                 {
-                    //GetStaInfoByMap();
+                   // IFeat GISManager.GISHandler.GetFirstSelectionFeature(curAxMapControl);
+                    int featureCount = curAxMapControl.Map.SelectionCount;
+                    if (featureCount > 0)
+                    {
+                        DataTable dt = GISManager.GISHandler.GetFirstSelectionFeatureAttr(curAxMapControl);
+                    }
                 }
             }
             else if (e.button == 2) //右键
             {
-                //MessageBox.Show("右键");
+               
             }
-            else if (e.button == 3) //中键
+            else if (e.button == 4 && curAxMapControl.ActiveView != null)   //中键
             {
-                //MessageBox.Show("中键");
+                curAxMapControl.MousePointer = esriControlsMousePointer.esriPointerArrow;
+                curAxMapControl.ActiveView.ScreenDisplay.PanStop();
+                curAxMapControl.ActiveView.Refresh();
             }
-            //throw new NotImplementedException();
         }
 
         #endregion
@@ -1112,6 +1149,7 @@ namespace CityPlanning
             }
         }
         #endregion 
+
         
     }
 }

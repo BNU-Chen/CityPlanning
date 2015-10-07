@@ -1000,6 +1000,7 @@
             // 
             // bMapQueryByPoint
             // 
+            this.bMapQueryByPoint.ButtonStyle = DevExpress.XtraBars.BarButtonStyle.Check;
             this.bMapQueryByPoint.Caption = "点选查询";
             this.bMapQueryByPoint.Glyph = global::CityPlanning.Properties.Resources.query_32;
             this.bMapQueryByPoint.Id = 435;
@@ -4401,14 +4402,14 @@
             // 
             this.pdfPreviousPageBarItem1.Enabled = false;
             this.pdfPreviousPageBarItem1.Id = 1;
-            this.pdfPreviousPageBarItem1.ItemShortcut = new DevExpress.XtraBars.BarShortcut(System.Windows.Forms.Keys.PageUp);
+            this.pdfPreviousPageBarItem1.ItemShortcut = new DevExpress.XtraBars.BarShortcut(System.Windows.Forms.Keys.Prior);
             this.pdfPreviousPageBarItem1.Name = "pdfPreviousPageBarItem1";
             // 
             // pdfNextPageBarItem1
             // 
             this.pdfNextPageBarItem1.Enabled = false;
             this.pdfNextPageBarItem1.Id = 2;
-            this.pdfNextPageBarItem1.ItemShortcut = new DevExpress.XtraBars.BarShortcut(System.Windows.Forms.Keys.PageDown);
+            this.pdfNextPageBarItem1.ItemShortcut = new DevExpress.XtraBars.BarShortcut(System.Windows.Forms.Keys.Next);
             this.pdfNextPageBarItem1.Name = "pdfNextPageBarItem1";
             // 
             // pdfZoomOutBarItem1
