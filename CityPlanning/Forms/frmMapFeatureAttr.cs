@@ -10,8 +10,12 @@ using System.Windows.Forms;
 
 namespace CityPlanning.Forms
 {
+    public delegate void delegateSearchDoc(string evtName);
     public partial class frmMapFeatureAttr : Form
     {
+        //使用委托，实现调用主窗体函数
+        public delegateSearchDoc delegateSearch;
+
         private DataTable attrDataTable = new DataTable();
         private static int ColorIndex = 0;  //颜色索引
 
@@ -42,6 +46,7 @@ namespace CityPlanning.Forms
             {
                 return;
             }
+            delegateSearch(keyword);
         }
 
         public frmMapFeatureAttr()

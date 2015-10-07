@@ -974,7 +974,10 @@ namespace CityPlanning
                         Forms.frmMapFeatureAttr pFrmMapFeatureAttr = new Forms.frmMapFeatureAttr();
                         pFrmMapFeatureAttr.AttrDataTable = dt;
                         pFrmMapFeatureAttr.Location = pt;
+                        pFrmMapFeatureAttr.delegateSearch += new Forms.delegateSearchDoc(SearchInPlanDoc);
                         pFrmMapFeatureAttr.Show();
+
+
                     }
                 }
             }
@@ -1064,7 +1067,7 @@ namespace CityPlanning
         }
 
         //搜索专题报告
-        public void SearchInPlanDesc(string keyword)
+        public void SearchInThematicDoc(string keyword)
         {
             SearchInDoc(keyword, ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.ThematicMap);
         }
