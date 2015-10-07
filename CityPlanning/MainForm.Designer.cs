@@ -3223,6 +3223,7 @@
             this.bTranspNetDensity.Id = 710;
             this.bTranspNetDensity.Name = "bTranspNetDensity";
             this.bTranspNetDensity.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.bTranspNetDensity.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bTranspNetDensity_ItemClick);
             // 
             // bElecNetDensity
             // 
@@ -3231,6 +3232,7 @@
             this.bElecNetDensity.Id = 711;
             this.bElecNetDensity.Name = "bElecNetDensity";
             this.bElecNetDensity.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.bElecNetDensity.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bElecNetDensity_ItemClick);
             // 
             // bIntDisasterRisk
             // 
@@ -3239,6 +3241,7 @@
             this.bIntDisasterRisk.Id = 712;
             this.bIntDisasterRisk.Name = "bIntDisasterRisk";
             this.bIntDisasterRisk.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.bIntDisasterRisk.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bIntDisasterRisk_ItemClick);
             // 
             // bEcoServiceValue
             // 
@@ -3247,6 +3250,7 @@
             this.bEcoServiceValue.Id = 713;
             this.bEcoServiceValue.Name = "bEcoServiceValue";
             this.bEcoServiceValue.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.bEcoServiceValue.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bEcoServiceValue_ItemClick);
             // 
             // bHydroAnalysis
             // 
@@ -3255,6 +3259,7 @@
             this.bHydroAnalysis.Id = 714;
             this.bHydroAnalysis.Name = "bHydroAnalysis";
             this.bHydroAnalysis.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.bHydroAnalysis.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bHydroAnalysis_ItemClick);
             // 
             // bFloodLoss
             // 
@@ -3263,6 +3268,7 @@
             this.bFloodLoss.Id = 715;
             this.bFloodLoss.Name = "bFloodLoss";
             this.bFloodLoss.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.bFloodLoss.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bFloodLoss_ItemClick);
             // 
             // bGDPCenterTransfer
             // 
@@ -3271,6 +3277,7 @@
             this.bGDPCenterTransfer.Id = 716;
             this.bGDPCenterTransfer.Name = "bGDPCenterTransfer";
             this.bGDPCenterTransfer.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.bGDPCenterTransfer.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bGDPCenterTransfer_ItemClick);
             // 
             // bGalleryPlanDoc
             // 
