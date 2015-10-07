@@ -153,6 +153,16 @@ namespace CityPlanning.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap desc_icon {
+            get {
+                object obj = ResourceManager.GetObject("desc-icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap document_64 {
             get {
                 object obj = ResourceManager.GetObject("document-64", resourceCulture);
@@ -216,6 +226,16 @@ namespace CityPlanning.Properties {
         internal static System.Drawing.Bitmap Help_64 {
             get {
                 object obj = ResourceManager.GetObject("Help-64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_doc {
+            get {
+                object obj = ResourceManager.GetObject("icon_doc", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -356,6 +376,16 @@ namespace CityPlanning.Properties {
         internal static System.Drawing.Bitmap search_32 {
             get {
                 object obj = ResourceManager.GetObject("search_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap thematic_icon {
+            get {
+                object obj = ResourceManager.GetObject("thematic-icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

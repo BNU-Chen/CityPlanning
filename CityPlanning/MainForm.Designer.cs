@@ -313,13 +313,16 @@
             this.barButtonItem4 = new DevExpress.XtraBars.BarButtonItem();
             this.bDocConfig = new DevExpress.XtraBars.BarButtonItem();
             this.bMap_RemoveKeyword = new DevExpress.XtraBars.BarButtonItem();
+            this.bGalleryPlanDoc = new DevExpress.XtraBars.BarButtonItem();
+            this.bGalleryPlanDesc = new DevExpress.XtraBars.BarButtonItem();
+            this.bGalleryThematicDoc = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonImageCollectionLarge = new DevExpress.Utils.ImageCollection(this.components);
             this.ribbonPageCategory_map = new DevExpress.XtraBars.Ribbon.RibbonPageCategory();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.地图关键词 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup_MapKeyword = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageCategory_doc = new DevExpress.XtraBars.Ribbon.RibbonPageCategory();
             this.ribbonPage_DocAnalyst = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -391,15 +394,15 @@
             this.xtraTabPage_Home = new DevExpress.XtraTab.XtraTabPage();
             this.Statistics_panel = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
-            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
+            this.sb_HomePlanImg = new DevExpress.XtraEditors.SimpleButton();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.simpleButton5 = new DevExpress.XtraEditors.SimpleButton();
-            this.simpleButton8 = new DevExpress.XtraEditors.SimpleButton();
-            this.simpleButton6 = new DevExpress.XtraEditors.SimpleButton();
-            this.simpleButton7 = new DevExpress.XtraEditors.SimpleButton();
+            this.sb_HomePlanDoc = new DevExpress.XtraEditors.SimpleButton();
+            this.sb_HomePlanMap = new DevExpress.XtraEditors.SimpleButton();
+            this.sb_HomePlanDesc = new DevExpress.XtraEditors.SimpleButton();
+            this.sb_HomePlanThematic = new DevExpress.XtraEditors.SimpleButton();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -790,10 +793,13 @@
             this.barButtonItem2,
             this.barButtonItem4,
             this.bDocConfig,
-            this.bMap_RemoveKeyword});
+            this.bMap_RemoveKeyword,
+            this.bGalleryPlanDoc,
+            this.bGalleryPlanDesc,
+            this.bGalleryThematicDoc});
             this.ribbonControl.LargeImages = this.ribbonImageCollectionLarge;
             this.ribbonControl.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl.MaxItemId = 706;
+            this.ribbonControl.MaxItemId = 709;
             this.ribbonControl.Name = "ribbonControl";
             this.ribbonControl.PageCategories.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageCategory[] {
             this.ribbonPageCategory_map,
@@ -3148,6 +3154,33 @@
             this.bMap_RemoveKeyword.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.bMap_RemoveKeyword.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bMap_RemoveKeyword_ItemClick);
             // 
+            // bGalleryPlanDoc
+            // 
+            this.bGalleryPlanDoc.Caption = "规划文本";
+            this.bGalleryPlanDoc.Glyph = global::CityPlanning.Properties.Resources.icon_doc;
+            this.bGalleryPlanDoc.Id = 706;
+            this.bGalleryPlanDoc.Name = "bGalleryPlanDoc";
+            this.bGalleryPlanDoc.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.bGalleryPlanDoc.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bGalleryPlanDoc_ItemClick);
+            // 
+            // bGalleryPlanDesc
+            // 
+            this.bGalleryPlanDesc.Caption = "规划说明";
+            this.bGalleryPlanDesc.Glyph = global::CityPlanning.Properties.Resources.desc_icon;
+            this.bGalleryPlanDesc.Id = 707;
+            this.bGalleryPlanDesc.Name = "bGalleryPlanDesc";
+            this.bGalleryPlanDesc.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.bGalleryPlanDesc.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bGalleryPlanDesc_ItemClick);
+            // 
+            // bGalleryThematicDoc
+            // 
+            this.bGalleryThematicDoc.Caption = "专题报告";
+            this.bGalleryThematicDoc.Glyph = global::CityPlanning.Properties.Resources.thematic_icon;
+            this.bGalleryThematicDoc.Id = 708;
+            this.bGalleryThematicDoc.Name = "bGalleryThematicDoc";
+            this.bGalleryThematicDoc.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.bGalleryThematicDoc.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bGalleryThematicDoc_ItemClick);
+            // 
             // ribbonImageCollectionLarge
             // 
             this.ribbonImageCollectionLarge.ImageSize = new System.Drawing.Size(32, 32);
@@ -3177,7 +3210,7 @@
             this.ribbonPageGroup1,
             this.ribbonPageGroup2,
             this.ribbonPageGroup3,
-            this.地图关键词,
+            this.ribbonPageGroup_MapKeyword,
             this.ribbonPageGroup4});
             this.ribbonPage1.Name = "ribbonPage1";
             this.ribbonPage1.Text = "地图工具";
@@ -3208,13 +3241,13 @@
             this.ribbonPageGroup3.Name = "ribbonPageGroup3";
             this.ribbonPageGroup3.Text = "查询";
             // 
-            // 地图关键词
+            // ribbonPageGroup_MapKeyword
             // 
-            this.地图关键词.ItemLinks.Add(this.ribbonGallery_MapKeywords);
-            this.地图关键词.ItemLinks.Add(this.bMap_AddKeyword);
-            this.地图关键词.ItemLinks.Add(this.bMap_RemoveKeyword);
-            this.地图关键词.Name = "地图关键词";
-            this.地图关键词.Text = "地图关键词";
+            this.ribbonPageGroup_MapKeyword.ItemLinks.Add(this.ribbonGallery_MapKeywords);
+            this.ribbonPageGroup_MapKeyword.ItemLinks.Add(this.bMap_AddKeyword);
+            this.ribbonPageGroup_MapKeyword.ItemLinks.Add(this.bMap_RemoveKeyword);
+            this.ribbonPageGroup_MapKeyword.Name = "ribbonPageGroup_MapKeyword";
+            this.ribbonPageGroup_MapKeyword.Text = "地图关键词";
             // 
             // ribbonPageGroup4
             // 
@@ -3617,8 +3650,11 @@
             // ribbonPageGroup_PlanData
             // 
             this.ribbonPageGroup_PlanData.ItemLinks.Add(this.bGalleryDocument);
-            this.ribbonPageGroup_PlanData.ItemLinks.Add(this.bGalleryImage);
+            this.ribbonPageGroup_PlanData.ItemLinks.Add(this.bGalleryPlanDoc);
+            this.ribbonPageGroup_PlanData.ItemLinks.Add(this.bGalleryPlanDesc);
+            this.ribbonPageGroup_PlanData.ItemLinks.Add(this.bGalleryThematicDoc);
             this.ribbonPageGroup_PlanData.ItemLinks.Add(this.bGalleryGeodatabase);
+            this.ribbonPageGroup_PlanData.ItemLinks.Add(this.bGalleryImage);
             this.ribbonPageGroup_PlanData.ItemLinks.Add(this.bGalleryRelationalDatabase);
             this.ribbonPageGroup_PlanData.ItemLinks.Add(this.bGallery3DMap);
             this.ribbonPageGroup_PlanData.Name = "ribbonPageGroup_PlanData";
@@ -3910,15 +3946,15 @@
             // Statistics_panel
             // 
             this.Statistics_panel.Controls.Add(this.label3);
-            this.Statistics_panel.Controls.Add(this.simpleButton1);
+            this.Statistics_panel.Controls.Add(this.sb_HomePlanImg);
             this.Statistics_panel.Controls.Add(this.label9);
             this.Statistics_panel.Controls.Add(this.label8);
             this.Statistics_panel.Controls.Add(this.label7);
             this.Statistics_panel.Controls.Add(this.label6);
-            this.Statistics_panel.Controls.Add(this.simpleButton5);
-            this.Statistics_panel.Controls.Add(this.simpleButton8);
-            this.Statistics_panel.Controls.Add(this.simpleButton6);
-            this.Statistics_panel.Controls.Add(this.simpleButton7);
+            this.Statistics_panel.Controls.Add(this.sb_HomePlanDoc);
+            this.Statistics_panel.Controls.Add(this.sb_HomePlanMap);
+            this.Statistics_panel.Controls.Add(this.sb_HomePlanDesc);
+            this.Statistics_panel.Controls.Add(this.sb_HomePlanThematic);
             this.Statistics_panel.Location = new System.Drawing.Point(120, 213);
             this.Statistics_panel.Name = "Statistics_panel";
             this.Statistics_panel.Size = new System.Drawing.Size(618, 138);
@@ -3934,23 +3970,24 @@
             this.label3.TabIndex = 38;
             this.label3.Text = "规划说明";
             // 
-            // simpleButton1
+            // sb_HomePlanImg
             // 
-            this.simpleButton1.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.simpleButton1.Appearance.BorderColor = System.Drawing.Color.Transparent;
-            this.simpleButton1.Appearance.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.simpleButton1.Appearance.ForeColor = System.Drawing.Color.White;
-            this.simpleButton1.Appearance.Options.UseBackColor = true;
-            this.simpleButton1.Appearance.Options.UseBorderColor = true;
-            this.simpleButton1.Appearance.Options.UseFont = true;
-            this.simpleButton1.Appearance.Options.UseForeColor = true;
-            this.simpleButton1.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
-            this.simpleButton1.Location = new System.Drawing.Point(506, 3);
-            this.simpleButton1.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat;
-            this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(110, 110);
-            this.simpleButton1.TabIndex = 37;
-            this.simpleButton1.Text = "41";
+            this.sb_HomePlanImg.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.sb_HomePlanImg.Appearance.BorderColor = System.Drawing.Color.Transparent;
+            this.sb_HomePlanImg.Appearance.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sb_HomePlanImg.Appearance.ForeColor = System.Drawing.Color.White;
+            this.sb_HomePlanImg.Appearance.Options.UseBackColor = true;
+            this.sb_HomePlanImg.Appearance.Options.UseBorderColor = true;
+            this.sb_HomePlanImg.Appearance.Options.UseFont = true;
+            this.sb_HomePlanImg.Appearance.Options.UseForeColor = true;
+            this.sb_HomePlanImg.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
+            this.sb_HomePlanImg.Location = new System.Drawing.Point(506, 3);
+            this.sb_HomePlanImg.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat;
+            this.sb_HomePlanImg.Name = "sb_HomePlanImg";
+            this.sb_HomePlanImg.Size = new System.Drawing.Size(110, 110);
+            this.sb_HomePlanImg.TabIndex = 37;
+            this.sb_HomePlanImg.Text = "41";
+            this.sb_HomePlanImg.Click += new System.EventHandler(this.sb_HomePlanImg_Click);
             // 
             // label9
             // 
@@ -3992,77 +4029,81 @@
             this.label6.TabIndex = 33;
             this.label6.Text = "规划文本";
             // 
-            // simpleButton5
+            // sb_HomePlanDoc
             // 
-            this.simpleButton5.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.simpleButton5.Appearance.BorderColor = System.Drawing.Color.Transparent;
-            this.simpleButton5.Appearance.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.simpleButton5.Appearance.ForeColor = System.Drawing.Color.White;
-            this.simpleButton5.Appearance.Options.UseBackColor = true;
-            this.simpleButton5.Appearance.Options.UseBorderColor = true;
-            this.simpleButton5.Appearance.Options.UseFont = true;
-            this.simpleButton5.Appearance.Options.UseForeColor = true;
-            this.simpleButton5.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
-            this.simpleButton5.Location = new System.Drawing.Point(3, 3);
-            this.simpleButton5.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat;
-            this.simpleButton5.Name = "simpleButton5";
-            this.simpleButton5.Size = new System.Drawing.Size(110, 110);
-            this.simpleButton5.TabIndex = 29;
-            this.simpleButton5.Text = "1";
+            this.sb_HomePlanDoc.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.sb_HomePlanDoc.Appearance.BorderColor = System.Drawing.Color.Transparent;
+            this.sb_HomePlanDoc.Appearance.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sb_HomePlanDoc.Appearance.ForeColor = System.Drawing.Color.White;
+            this.sb_HomePlanDoc.Appearance.Options.UseBackColor = true;
+            this.sb_HomePlanDoc.Appearance.Options.UseBorderColor = true;
+            this.sb_HomePlanDoc.Appearance.Options.UseFont = true;
+            this.sb_HomePlanDoc.Appearance.Options.UseForeColor = true;
+            this.sb_HomePlanDoc.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
+            this.sb_HomePlanDoc.Location = new System.Drawing.Point(3, 3);
+            this.sb_HomePlanDoc.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat;
+            this.sb_HomePlanDoc.Name = "sb_HomePlanDoc";
+            this.sb_HomePlanDoc.Size = new System.Drawing.Size(110, 110);
+            this.sb_HomePlanDoc.TabIndex = 29;
+            this.sb_HomePlanDoc.Text = "1";
+            this.sb_HomePlanDoc.Click += new System.EventHandler(this.sb_HomePlanDoc_Click);
             // 
-            // simpleButton8
+            // sb_HomePlanMap
             // 
-            this.simpleButton8.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(119)))), ((int)(((byte)(173)))));
-            this.simpleButton8.Appearance.BorderColor = System.Drawing.Color.Transparent;
-            this.simpleButton8.Appearance.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.simpleButton8.Appearance.ForeColor = System.Drawing.Color.White;
-            this.simpleButton8.Appearance.Options.UseBackColor = true;
-            this.simpleButton8.Appearance.Options.UseBorderColor = true;
-            this.simpleButton8.Appearance.Options.UseFont = true;
-            this.simpleButton8.Appearance.Options.UseForeColor = true;
-            this.simpleButton8.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
-            this.simpleButton8.Location = new System.Drawing.Point(380, 3);
-            this.simpleButton8.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat;
-            this.simpleButton8.Name = "simpleButton8";
-            this.simpleButton8.Size = new System.Drawing.Size(110, 110);
-            this.simpleButton8.TabIndex = 32;
-            this.simpleButton8.Text = "17";
+            this.sb_HomePlanMap.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(119)))), ((int)(((byte)(173)))));
+            this.sb_HomePlanMap.Appearance.BorderColor = System.Drawing.Color.Transparent;
+            this.sb_HomePlanMap.Appearance.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sb_HomePlanMap.Appearance.ForeColor = System.Drawing.Color.White;
+            this.sb_HomePlanMap.Appearance.Options.UseBackColor = true;
+            this.sb_HomePlanMap.Appearance.Options.UseBorderColor = true;
+            this.sb_HomePlanMap.Appearance.Options.UseFont = true;
+            this.sb_HomePlanMap.Appearance.Options.UseForeColor = true;
+            this.sb_HomePlanMap.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
+            this.sb_HomePlanMap.Location = new System.Drawing.Point(380, 3);
+            this.sb_HomePlanMap.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat;
+            this.sb_HomePlanMap.Name = "sb_HomePlanMap";
+            this.sb_HomePlanMap.Size = new System.Drawing.Size(110, 110);
+            this.sb_HomePlanMap.TabIndex = 32;
+            this.sb_HomePlanMap.Text = "17";
+            this.sb_HomePlanMap.Click += new System.EventHandler(this.sb_HomePlanMap_Click);
             // 
-            // simpleButton6
+            // sb_HomePlanDesc
             // 
-            this.simpleButton6.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(176)))), ((int)(((byte)(240)))));
-            this.simpleButton6.Appearance.BorderColor = System.Drawing.Color.Transparent;
-            this.simpleButton6.Appearance.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.simpleButton6.Appearance.ForeColor = System.Drawing.Color.White;
-            this.simpleButton6.Appearance.Options.UseBackColor = true;
-            this.simpleButton6.Appearance.Options.UseBorderColor = true;
-            this.simpleButton6.Appearance.Options.UseFont = true;
-            this.simpleButton6.Appearance.Options.UseForeColor = true;
-            this.simpleButton6.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
-            this.simpleButton6.Location = new System.Drawing.Point(128, 3);
-            this.simpleButton6.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat;
-            this.simpleButton6.Name = "simpleButton6";
-            this.simpleButton6.Size = new System.Drawing.Size(110, 110);
-            this.simpleButton6.TabIndex = 30;
-            this.simpleButton6.Text = "1";
+            this.sb_HomePlanDesc.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(176)))), ((int)(((byte)(240)))));
+            this.sb_HomePlanDesc.Appearance.BorderColor = System.Drawing.Color.Transparent;
+            this.sb_HomePlanDesc.Appearance.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sb_HomePlanDesc.Appearance.ForeColor = System.Drawing.Color.White;
+            this.sb_HomePlanDesc.Appearance.Options.UseBackColor = true;
+            this.sb_HomePlanDesc.Appearance.Options.UseBorderColor = true;
+            this.sb_HomePlanDesc.Appearance.Options.UseFont = true;
+            this.sb_HomePlanDesc.Appearance.Options.UseForeColor = true;
+            this.sb_HomePlanDesc.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
+            this.sb_HomePlanDesc.Location = new System.Drawing.Point(128, 3);
+            this.sb_HomePlanDesc.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat;
+            this.sb_HomePlanDesc.Name = "sb_HomePlanDesc";
+            this.sb_HomePlanDesc.Size = new System.Drawing.Size(110, 110);
+            this.sb_HomePlanDesc.TabIndex = 30;
+            this.sb_HomePlanDesc.Text = "1";
+            this.sb_HomePlanDesc.Click += new System.EventHandler(this.sb_HomePlanDesc_Click);
             // 
-            // simpleButton7
+            // sb_HomePlanThematic
             // 
-            this.simpleButton7.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(176)))), ((int)(((byte)(97)))));
-            this.simpleButton7.Appearance.BorderColor = System.Drawing.Color.Transparent;
-            this.simpleButton7.Appearance.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.simpleButton7.Appearance.ForeColor = System.Drawing.Color.White;
-            this.simpleButton7.Appearance.Options.UseBackColor = true;
-            this.simpleButton7.Appearance.Options.UseBorderColor = true;
-            this.simpleButton7.Appearance.Options.UseFont = true;
-            this.simpleButton7.Appearance.Options.UseForeColor = true;
-            this.simpleButton7.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
-            this.simpleButton7.Location = new System.Drawing.Point(254, 3);
-            this.simpleButton7.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat;
-            this.simpleButton7.Name = "simpleButton7";
-            this.simpleButton7.Size = new System.Drawing.Size(110, 110);
-            this.simpleButton7.TabIndex = 31;
-            this.simpleButton7.Text = "8";
+            this.sb_HomePlanThematic.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(176)))), ((int)(((byte)(97)))));
+            this.sb_HomePlanThematic.Appearance.BorderColor = System.Drawing.Color.Transparent;
+            this.sb_HomePlanThematic.Appearance.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sb_HomePlanThematic.Appearance.ForeColor = System.Drawing.Color.White;
+            this.sb_HomePlanThematic.Appearance.Options.UseBackColor = true;
+            this.sb_HomePlanThematic.Appearance.Options.UseBorderColor = true;
+            this.sb_HomePlanThematic.Appearance.Options.UseFont = true;
+            this.sb_HomePlanThematic.Appearance.Options.UseForeColor = true;
+            this.sb_HomePlanThematic.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
+            this.sb_HomePlanThematic.Location = new System.Drawing.Point(254, 3);
+            this.sb_HomePlanThematic.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat;
+            this.sb_HomePlanThematic.Name = "sb_HomePlanThematic";
+            this.sb_HomePlanThematic.Size = new System.Drawing.Size(110, 110);
+            this.sb_HomePlanThematic.TabIndex = 31;
+            this.sb_HomePlanThematic.Text = "8";
+            this.sb_HomePlanThematic.Click += new System.EventHandler(this.sb_HomePlanThematic_Click);
             // 
             // label11
             // 
@@ -4085,7 +4126,6 @@
             this.label10.Size = new System.Drawing.Size(1415, 14);
             this.label10.TabIndex = 17;
             this.label10.Text = resources.GetString("label10.Text");
-            this.label10.Click += new System.EventHandler(this.label10_Click);
             // 
             // label4
             // 
@@ -4120,6 +4160,7 @@
             this.Query_button.Size = new System.Drawing.Size(591, 38);
             this.Query_button.TabIndex = 7;
             this.Query_button.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.buttonEdit1_ButtonClick);
+            this.Query_button.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Query_button_KeyDown);
             // 
             // axLicenseControl1
             // 
@@ -4326,7 +4367,7 @@
             // 
             this.barDockControl1.CausesValidation = false;
             this.barDockControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.barDockControl1.Location = new System.Drawing.Point(0, 0);
+            this.barDockControl1.Location = new System.Drawing.Point(0, 147);
             this.barDockControl1.Size = new System.Drawing.Size(1100, 0);
             // 
             // barDockControl2
@@ -4340,15 +4381,15 @@
             // 
             this.barDockControl3.CausesValidation = false;
             this.barDockControl3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControl3.Location = new System.Drawing.Point(0, 0);
-            this.barDockControl3.Size = new System.Drawing.Size(0, 699);
+            this.barDockControl3.Location = new System.Drawing.Point(0, 147);
+            this.barDockControl3.Size = new System.Drawing.Size(0, 552);
             // 
             // barDockControl4
             // 
             this.barDockControl4.CausesValidation = false;
             this.barDockControl4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControl4.Location = new System.Drawing.Point(1100, 0);
-            this.barDockControl4.Size = new System.Drawing.Size(0, 699);
+            this.barDockControl4.Location = new System.Drawing.Point(1100, 147);
+            this.barDockControl4.Size = new System.Drawing.Size(0, 552);
             // 
             // pdfFileOpenBarItem1
             // 
@@ -4360,14 +4401,14 @@
             // 
             this.pdfPreviousPageBarItem1.Enabled = false;
             this.pdfPreviousPageBarItem1.Id = 1;
-            this.pdfPreviousPageBarItem1.ItemShortcut = new DevExpress.XtraBars.BarShortcut(System.Windows.Forms.Keys.Prior);
+            this.pdfPreviousPageBarItem1.ItemShortcut = new DevExpress.XtraBars.BarShortcut(System.Windows.Forms.Keys.PageUp);
             this.pdfPreviousPageBarItem1.Name = "pdfPreviousPageBarItem1";
             // 
             // pdfNextPageBarItem1
             // 
             this.pdfNextPageBarItem1.Enabled = false;
             this.pdfNextPageBarItem1.Id = 2;
-            this.pdfNextPageBarItem1.ItemShortcut = new DevExpress.XtraBars.BarShortcut(System.Windows.Forms.Keys.Next);
+            this.pdfNextPageBarItem1.ItemShortcut = new DevExpress.XtraBars.BarShortcut(System.Windows.Forms.Keys.PageDown);
             this.pdfNextPageBarItem1.Name = "pdfNextPageBarItem1";
             // 
             // pdfZoomOutBarItem1
@@ -4964,16 +5005,16 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel Statistics_panel;
         private System.Windows.Forms.Label label3;
-        private DevExpress.XtraEditors.SimpleButton simpleButton1;
+        private DevExpress.XtraEditors.SimpleButton sb_HomePlanImg;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
-        private DevExpress.XtraEditors.SimpleButton simpleButton5;
-        private DevExpress.XtraEditors.SimpleButton simpleButton8;
-        private DevExpress.XtraEditors.SimpleButton simpleButton6;
-        private DevExpress.XtraEditors.SimpleButton simpleButton7;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup 地图关键词;
+        private DevExpress.XtraEditors.SimpleButton sb_HomePlanDoc;
+        private DevExpress.XtraEditors.SimpleButton sb_HomePlanMap;
+        private DevExpress.XtraEditors.SimpleButton sb_HomePlanDesc;
+        private DevExpress.XtraEditors.SimpleButton sb_HomePlanThematic;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup_MapKeyword;
         private DevExpress.XtraBars.RibbonGalleryBarItem ribbonGallery_MapKeywords;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup4;
         private DevExpress.XtraBars.RibbonGalleryBarItem ribbonGallery_MapTables;
@@ -4983,6 +5024,9 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItem4;
         private DevExpress.XtraBars.BarButtonItem bDocConfig;
         private DevExpress.XtraBars.BarButtonItem bMap_RemoveKeyword;
+        private DevExpress.XtraBars.BarButtonItem bGalleryPlanDoc;
+        private DevExpress.XtraBars.BarButtonItem bGalleryPlanDesc;
+        private DevExpress.XtraBars.BarButtonItem bGalleryThematicDoc;
 
     }
 }

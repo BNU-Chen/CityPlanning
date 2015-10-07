@@ -28,7 +28,6 @@ using DevExpress.Utils;
 
 using ESRI.ArcGIS.Controls;
 
-
 //本项目解决方案
 using ConnectionCenter;
 using GISManager;
@@ -128,6 +127,7 @@ namespace CityPlanning
         {
             try
             {
+                #region //用户管理
                 string tabName = "用户管理";
                 //如果已经有这个tabPage
                 XtraTabPage ifTabPage = ComponentOperator.IfHasTabPage(tabName, this.xtraTabControl_Main);
@@ -170,7 +170,7 @@ namespace CityPlanning
                 xtp.Refresh();
                 this.xtraTabControl_Main.Refresh();
                 this.Refresh();
-
+                #endregion
             }
             catch
             {
@@ -180,29 +180,33 @@ namespace CityPlanning
         //全部文档
         private void bGalleryDocument_ItemClick(object sender, ItemClickEventArgs e)
         {
-            this.panelControl_Navigation.Controls.Clear();
-            this.panelControl_Navigation.Controls.Add(ucNaviFiles);
-            ucNaviFiles.SourceFolder = ConnectionCenter.Config.FTPCatalog;
-            ucNaviFiles.FetchFiles();
+            OpenAllPlanDocs();
         }
-
-        //空间数据库
+        //规划文本
+        private void bGalleryPlanDoc_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            OpenPlanDoc();
+        }
+        //规划说明
+        private void bGalleryPlanDesc_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            OpenPlanDesc();
+        }
+        //专题报告
+        private void bGalleryThematicDoc_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            OpenThematicDocs();
+        }
+        //规划地图
         private void bGalleryGeodatabase_ItemClick(object sender, ItemClickEventArgs e)
         {
-            this.panelControl_Navigation.Controls.Clear();
-            this.panelControl_Navigation.Controls.Add(ucNaviFiles);
-            ucNaviFiles.SourceFolder = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.PlanMap;
-            ucNaviFiles.FetchFiles();
+            OpenPlanMaps();
         }
 
-        //规划文档效果图
+        //规划图集
         private void bGalleryImage_ItemClick(object sender, ItemClickEventArgs e)
         {
-            this.panelControl_Navigation.Controls.Clear();
-            this.panelControl_Navigation.Controls.Add(ucNavImage);
-            ucNavImage.XTabControl = this.xtraTabControl_Main;
-            ucNavImage.ImageFolderPath = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.PlanImg;
-            ucNavImage.Dock = DockStyle.Fill;
+            OpenPlanImgs();
         }
         //关系数据库
         private void bGalleryRelationalDatabase_ItemClick(object sender, ItemClickEventArgs e)
@@ -924,29 +928,7 @@ namespace CityPlanning
         }
 
         #endregion
-
-        private void buttonEdit1_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
-        {
-            string filterText = this.Query_button.Text.Trim();
-            MessageBox.Show(filterText);
-        }
-
-        private void label10_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void xtraTabPage_Home_SizeChanged(object sender, EventArgs e)
-        {
-            int homeWidth = xtraTabPage_Home.ClientSize.Width;
-            Query_button.Location = new System.Drawing.Point((homeWidth - Query_button.Size.Width) / 2, Query_button.Location.Y);
-            label2.Location = new System.Drawing.Point((homeWidth - label2.Size.Width) / 2, label2.Location.Y);
-            label4.Location = new System.Drawing.Point((homeWidth - label4.Size.Width) / 2, label4.Location.Y);
-            label11.Location = new System.Drawing.Point((homeWidth - label11.Size.Width) / 2, label11.Location.Y);
-            Statistics_panel.Location = new System.Drawing.Point((homeWidth - Statistics_panel.Size.Width) / 2, Statistics_panel.Location.Y);
-
-        }
-
+        
         #region //MapControl 事件
         void curAxMapControl_OnMouseUp(object sender, IMapControlEvents2_OnMouseUpEvent e)
         {
@@ -971,6 +953,165 @@ namespace CityPlanning
 
         #endregion
 
+        #region //主页TabPage相关
+        //点击进行搜索
+        private void buttonEdit1_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+            string keyword = this.Query_button.Text.Trim();
+            SearchInDoc(keyword, ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.PlanDoc);
+        }
+        //enter键搜索
+        private void Query_button_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                string keyword = this.Query_button.Text.Trim();
+                SearchInDoc(keyword, ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.PlanDoc);
+            }
+        }
+        
+        //主页大小变化，布局跟随改变
+        private void xtraTabPage_Home_SizeChanged(object sender, EventArgs e)
+        {
+            int homeWidth = xtraTabPage_Home.ClientSize.Width;
+            Query_button.Location = new System.Drawing.Point((homeWidth - Query_button.Size.Width) / 2, Query_button.Location.Y);
+            label2.Location = new System.Drawing.Point((homeWidth - label2.Size.Width) / 2, label2.Location.Y);
+            label4.Location = new System.Drawing.Point((homeWidth - label4.Size.Width) / 2, label4.Location.Y);
+            label11.Location = new System.Drawing.Point((homeWidth - label11.Size.Width) / 2, label11.Location.Y);
+            Statistics_panel.Location = new System.Drawing.Point((homeWidth - Statistics_panel.Size.Width) / 2, Statistics_panel.Location.Y);
+
+        }
+        //规划文本
+        private void sb_HomePlanDoc_Click(object sender, EventArgs e)
+        {
+            OpenPlanDoc();
+        }
+        //规划说明
+        private void sb_HomePlanDesc_Click(object sender, EventArgs e)
+        {
+            OpenPlanDesc();
+        }
+        //专题报告
+        private void sb_HomePlanThematic_Click(object sender, EventArgs e)
+        {
+            OpenThematicDocs();
+        }
+        //规划地图
+        private void sb_HomePlanMap_Click(object sender, EventArgs e)
+        {
+            OpenPlanMaps();
+        }
+        //规划图集
+        private void sb_HomePlanImg_Click(object sender, EventArgs e)
+        {
+            OpenPlanImgs();
+        }
+        #endregion
+
+        #region //通用函数
+        //搜索文本
+        private void SearchInDoc(string keyword,string path)
+        {
+            if (keyword == "")
+            {
+                return;
+            }
+            if (!File.Exists(path))
+            {
+                return;
+            }
+            this.panelControl_Navigation.Controls.Clear();
+            this.panelControl_Navigation.Controls.Add(ucDocIntSearch);
+            ucDocIntSearch.SearchFromDocument(keyword, path);
+        }
+        //全部规划文档
+        private void OpenAllPlanDocs()
+        {
+            this.panelControl_Navigation.Controls.Clear();
+            this.panelControl_Navigation.Controls.Add(ucNaviFiles);
+            ucNaviFiles.SourceFolder = ConnectionCenter.Config.FTPCatalog;
+            ucNaviFiles.FetchFiles();
+        }
+        //规划文本
+        private void OpenPlanDoc()
+        {
+            string path = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.PlanDoc;
+            OpenDocInTabPage(path);
+        }
+        //规划说明
+        private void OpenPlanDesc()
+        {
+            string path = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.PlanDesc;
+            OpenDocInTabPage(path);
+        }
+        //专题报告
+        private void OpenThematicDocs()
+        {
+            this.panelControl_Navigation.Controls.Clear();
+            this.panelControl_Navigation.Controls.Add(ucNaviFiles);
+            ucNaviFiles.SourceFolder = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.ThematicMap;
+            ucNaviFiles.FetchFiles();
+        }
+        //规划地图
+        private void OpenPlanMaps()
+        {
+            this.panelControl_Navigation.Controls.Clear();
+            this.panelControl_Navigation.Controls.Add(ucNaviFiles);
+            ucNaviFiles.SourceFolder = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.PlanMap;
+            ucNaviFiles.FetchFiles();
+        }
+        //规划图集
+        private void OpenPlanImgs()
+        {
+            this.panelControl_Navigation.Controls.Clear();
+            this.panelControl_Navigation.Controls.Add(ucNavImage);
+            ucNavImage.XTabControl = this.xtraTabControl_Main;
+            ucNavImage.ImageFolderPath = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.PlanImg;
+            ucNavImage.Dock = DockStyle.Fill;
+        }
+        //在tab中打开文档
+        private void OpenDocInTabPage(string path)
+        {
+            if (!File.Exists(path))
+            {
+                return;
+            }
+            string fileName = Path.GetFileName(path);
+            string fileExt = Path.GetExtension(path);
+            //如果已经有这个tabPage
+            XtraTabPage ifTabPage = ComponentOperator.IfHasTabPage(fileName, this.xtraTabControl_Main);
+            if (ifTabPage != null)
+            {
+                this.xtraTabControl_Main.SelectedTabPage = ifTabPage;
+            }
+            else
+            {
+                int iconIndex = this.imageCollectionIcons.Images.Keys.IndexOf(fileExt);
+                RichEditControl rec = new RichEditControl();
+                rec.LoadDocument(path);
+                if (rec != null)
+                {
+                    //TabPage
+                    XtraTabPage xtp = new XtraTabPage();
+                    xtp.Text = fileName;
+                    if (iconIndex >= 0)
+                    {
+                        Image tableIcon = this.imageCollectionIcons.Images[iconIndex];
+                        xtp.Image = tableIcon;
+                    }
+                    xtp.Controls.Add(rec);
+                    rec.Dock = DockStyle.Fill;
+                    this.xtraTabControl_Main.TabPages.Add(xtp);
+                    this.xtraTabControl_Main.SelectedTabPage = xtp;
+
+                    rec.Refresh();
+                    xtp.Refresh();
+                    this.xtraTabControl_Main.Refresh();
+                    this.Refresh();
+                }
+            }
+        }
+        #endregion 
         
     }
 }
