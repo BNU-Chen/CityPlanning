@@ -1256,7 +1256,7 @@ namespace CityPlanning
                     double JBNTArea = ColumnSum(dt, "JBNTMJ");
 
 
-                    DataTable pDataTable = new DataTable("TestData");
+                    DataTable pDataTable = new DataTable();
                     DataColumn pDataColumn = null;
                     //pDataColumn = pDataTable.Columns.Add("ID", Type.GetType("System.Int32"));
                     //pDataColumn.AutoIncrement = true;
@@ -1269,26 +1269,26 @@ namespace CityPlanning
                     //pDataColumn = pDataTable.Columns.Add("工地面积", Type.GetType("System.Double"));
                     //pDataColumn = pDataTable.Columns.Add("基本农田面积", Type.GetType("System.Double"));
                     pDataColumn = pDataTable.Columns.Add("用地类型", Type.GetType("System.String"));
-                    pDataColumn = pDataTable.Columns.Add("面积", Type.GetType("System.Double"));
+                    pDataColumn = pDataTable.Columns.Add("占地面积", Type.GetType("System.Double"));
 
                     DataRow pDataRow = pDataTable.NewRow();
                     pDataRow["用地类型"] = "居住地";
-                    pDataRow["面积"] = JZQArea;
+                    pDataRow["占地面积"] = JZQArea;
                     pDataTable.Rows.Add(pDataRow);
 
                     DataRow pDataRow1 = pDataTable.NewRow();
                     pDataRow1["用地类型"] = "农用地";
-                    pDataRow1["面积"] = NYDArea;
+                    pDataRow1["占地面积"] = NYDArea;
                     pDataTable.Rows.Add(pDataRow1);
 
                     DataRow pDataRow2 = pDataTable.NewRow();
                     pDataRow2["用地类型"] = "工地";
-                    pDataRow2["面积"] = GDArea;
+                    pDataRow2["占地面积"] = GDArea;
                     pDataTable.Rows.Add(pDataRow2);
 
                     DataRow pDataRow3 = pDataTable.NewRow();
                     pDataRow3["用地类型"] = "基本农田";
-                    pDataRow3["面积"] = JBNTArea;
+                    pDataRow3["占地面积"] = JBNTArea;
                     pDataTable.Rows.Add(pDataRow3);
 
                     if (pDataTable != null)
@@ -1298,8 +1298,12 @@ namespace CityPlanning
                         ucc.DataSource = pDataTable.Copy();
                         //ucc.Range = pDataTable;
                         ucc.StartPosition = FormStartPosition.Manual;
-                        ucc.Left = Screen.PrimaryScreen.WorkingArea.Width - ucc.Width;
-                        //ucc.Top = Screen.PrimaryScreen.WorkingArea.Height;
+                        //ucc.Right = xtraTabPage_Home.Right;
+                        //ucc.Left = Screen.PrimaryScreen.WorkingArea.Width - ucc.Width;
+                        ucc.Left = 250;
+                        //ucc.Top = ucc.Height;
+                        ucc.Top = 200;
+                        ucc.Size = new Size(300,200);
                         ucc.ViewType = ViewType.Pie;
                         StatisticChart.ShowOperation.CreatPieChart(ucc.ChartControl, pDataTable);
                         ucc.Activated += curChartForm_Activated;
@@ -2006,7 +2010,10 @@ namespace CityPlanning
             thr.Close();
             //changepfl
             //分析结果文字显示
-            ResultShowForm ResFrm = new ResultShowForm();
+            string Text = "交通网络密度分析结果如下：";
+            ResultShowForm ResFrm = new ResultShowForm(Text);
+            ResFrm.Left = 250;
+            ResFrm.Top = 200;
             ResFrm.Show();
         }
 
@@ -2023,7 +2030,10 @@ namespace CityPlanning
             thr.Close();
             //changepfl
             //分析结果文字显示
-            ResultShowForm ResFrm = new ResultShowForm();
+            string Text = "电力网络密度分析结果如下：";
+            ResultShowForm ResFrm = new ResultShowForm(Text);
+            ResFrm.Left = 250;
+            ResFrm.Top = 200;
             ResFrm.Show();
         }
 
@@ -2040,7 +2050,10 @@ namespace CityPlanning
             thr.Close();
             //changepfl
             //分析结果文字显示
-            ResultShowForm ResFrm = new ResultShowForm();
+            string Text = "综合灾害风险分析结果如下：";
+            ResultShowForm ResFrm = new ResultShowForm(Text);
+            ResFrm.Left = 250;
+            ResFrm.Top = 200;
             ResFrm.Show();
         }
 
@@ -2057,7 +2070,10 @@ namespace CityPlanning
             thr.Close();
             //changepfl
             //分析结果文字显示
-            ResultShowForm ResFrm = new ResultShowForm();
+            string Text = "生态服务价值分析结果如下：";
+            ResultShowForm ResFrm = new ResultShowForm(Text);
+            ResFrm.Left = 250;
+            ResFrm.Top = 200;
             ResFrm.Show();
         }
 
@@ -2074,7 +2090,10 @@ namespace CityPlanning
             thr.Close();
             //changepfl
             //分析结果文字显示
-            ResultShowForm ResFrm = new ResultShowForm();
+            string Text = "水文分析结果如下：";
+            ResultShowForm ResFrm = new ResultShowForm(Text);
+            ResFrm.Left = 250;
+            ResFrm.Top = 200;
             ResFrm.Show();
         }
 
@@ -2091,7 +2110,10 @@ namespace CityPlanning
             thr.Close();
             //changepfl
             //分析结果文字显示
-            ResultShowForm ResFrm = new ResultShowForm();
+            string Text = "洪涝损失分析结果如下：";
+            ResultShowForm ResFrm = new ResultShowForm(Text);
+            ResFrm.Left = 250;
+            ResFrm.Top = 200;
             ResFrm.Show();
         }
 
@@ -2108,7 +2130,10 @@ namespace CityPlanning
             thr.Close();
             //changepfl
             //分析结果文字显示
-            ResultShowForm ResFrm = new ResultShowForm();
+            string Text = "GDP重心转移分析结果如下：";
+            ResultShowForm ResFrm = new ResultShowForm(Text);
+            ResFrm.Left = 250;
+            ResFrm.Top = 200;
             ResFrm.Show();
         }
         #endregion

@@ -12,9 +12,15 @@ namespace CityPlanning
 {
     public partial class ResultShowForm : Form
     {
-        public ResultShowForm()
+        public ResultShowForm(string text)
         {
             InitializeComponent();
+            this.textBox1.Text = text;
+        }
+
+        private void ResultShowForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
