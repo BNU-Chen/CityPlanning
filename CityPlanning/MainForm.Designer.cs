@@ -811,7 +811,7 @@
             this.barButtonItem4,
             this.bDocConfig,
             this.bMap_RemoveKeyword,
-<<<<<<< HEAD
+
             this.barButtonItem5,
             this.bDataAnalysis,
             this.bCoorInputButton,
@@ -822,18 +822,15 @@
             this.bEcoServiceValue,
             this.bHydroAnalysis,
             this.bFloodLoss,
-            this.bGDPCenterTransfer});
-            this.ribbonControl.LargeImages = this.ribbonImageCollectionLarge;
-            this.ribbonControl.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl.MaxItemId = 717;
-=======
+            this.bGDPCenterTransfer,
+
             this.bGalleryPlanDoc,
             this.bGalleryPlanDesc,
             this.bGalleryThematicDoc});
             this.ribbonControl.LargeImages = this.ribbonImageCollectionLarge;
             this.ribbonControl.Location = new System.Drawing.Point(0, 0);
             this.ribbonControl.MaxItemId = 709;
->>>>>>> master
+
             this.ribbonControl.Name = "ribbonControl";
             this.ribbonControl.PageCategories.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageCategory[] {
             this.ribbonPageCategory_map,
@@ -3189,7 +3186,7 @@
             this.bMap_RemoveKeyword.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.bMap_RemoveKeyword.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bMap_RemoveKeyword_ItemClick);
             // 
-<<<<<<< HEAD
+
             // barButtonItem5
             // 
             this.barButtonItem5.Caption = "barButtonItem5";
@@ -3269,7 +3266,7 @@
             this.bGDPCenterTransfer.Id = 716;
             this.bGDPCenterTransfer.Name = "bGDPCenterTransfer";
             this.bGDPCenterTransfer.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
-=======
+
             // bGalleryPlanDoc
             // 
             this.bGalleryPlanDoc.Caption = "规划文本";
@@ -3296,7 +3293,7 @@
             this.bGalleryThematicDoc.Name = "bGalleryThematicDoc";
             this.bGalleryThematicDoc.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.bGalleryThematicDoc.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bGalleryThematicDoc_ItemClick);
->>>>>>> master
+
             // 
             // ribbonImageCollectionLarge
             // 
@@ -5169,7 +5166,7 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItem4;
         private DevExpress.XtraBars.BarButtonItem bDocConfig;
         private DevExpress.XtraBars.BarButtonItem bMap_RemoveKeyword;
-<<<<<<< HEAD
+
         private DevExpress.XtraBars.BarButtonItem barButtonItem5;
         private DevExpress.XtraBars.BarButtonItem bDataAnalysis;
         private DevExpress.XtraBars.BarButtonItem bCoorInputButton;
@@ -5184,11 +5181,11 @@
         private DevExpress.XtraBars.Ribbon.RibbonPage AnalysisRibbonPage;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup RedLineRibbonPageGroup;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ThemeRibbonPageGroup;
-=======
+
         private DevExpress.XtraBars.BarButtonItem bGalleryPlanDoc;
         private DevExpress.XtraBars.BarButtonItem bGalleryPlanDesc;
         private DevExpress.XtraBars.BarButtonItem bGalleryThematicDoc;
->>>>>>> master
+
 
     }
 }

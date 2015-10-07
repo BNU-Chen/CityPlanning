@@ -1104,8 +1104,8 @@ namespace CityPlanning
             {
                 return;
             }
-            string fileName = Path.GetFileName(path);
-            string fileExt = Path.GetExtension(path);
+            string fileName = System.IO.Path.GetFileName(path);
+            string fileExt = System.IO.Path.GetExtension(path);
             //如果已经有这个tabPage
             XtraTabPage ifTabPage = ComponentOperator.IfHasTabPage(fileName, this.xtraTabControl_Main);
             if (ifTabPage != null)
@@ -1131,7 +1131,9 @@ namespace CityPlanning
                     rec.Dock = DockStyle.Fill;
                     this.xtraTabControl_Main.TabPages.Add(xtp);
                     this.xtraTabControl_Main.SelectedTabPage = xtp;
-
+                }
+            }
+        }
 
        
        
@@ -1729,16 +1731,15 @@ namespace CityPlanning
                 mapControl.Refresh();
                 string dbfPath = "D:\\项目 - 沈阳经济区\\图集\\原始矢量数据\\图集\\矢量图\\shp\\GHJBNTJZQ（处理后）.dbf";
                 CreatResultPie(dbfPath);
-            }
-        }
-
+                RichEditControl rec = new RichEditControl();
                     rec.Refresh();
+                    XtraTabPage xtp = new XtraTabPage();
                     xtp.Refresh();
                     this.xtraTabControl_Main.Refresh();
                     this.Refresh();
                 }
             }
-        }
+        
         #endregion 
 
         
