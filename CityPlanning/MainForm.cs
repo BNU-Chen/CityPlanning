@@ -96,8 +96,12 @@ namespace CityPlanning
             //InitSkinGallery();
             //设置叠置分析环境
             _Environment = Application.StartupPath + @"\TempFiles";
+            if(!Directory.Exists(_Environment))
+            {
+                System.IO.Directory.CreateDirectory(_Environment);
+            }
         }
-        //窗体初始化函数
+        //窗体初始化函数 
         private void MainForm_Load(object sender, EventArgs e)
         {
             //启动界面
@@ -1745,8 +1749,9 @@ namespace CityPlanning
                         pactive.PartialRefresh(esriViewDrawPhase.esriViewGraphics, null, null);
                         IPolygon pGon = pPolygon as IPolygon;
                         IArea pArea = pGon as IArea;
-                        double s = pArea.Area * 10000;//
-                        MessageBox.Show("测量面积为：" + Convert.ToDouble(s).ToString("0.000") + "平方公里（km2）", "面积测量结果");
+                        double s = pArea.Area ;//
+                        double ss= Math.Abs(s);
+                        MessageBox.Show("该区域面积为：" + Convert.ToDouble(ss).ToString("0.000") + "平方公里（km2）", "项目区面积");
                         // IPointArray pts = new PointArrayClass();
                         if (MessageBox.Show("确定绘制？", "询问", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                         {
