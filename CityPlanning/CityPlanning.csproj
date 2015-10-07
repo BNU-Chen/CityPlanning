@@ -483,6 +483,7 @@
     <None Include="Resources\check.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\thematic-icon.png" />
     <None Include="Resources\AddKey.png" />
     <None Include="Resources\AttrTable.png" />
     <None Include="Resources\CityPlanningAbout.jpg" />
@@ -490,6 +491,8 @@
     <Content Include="Resources\delete_16.png" />
     <None Include="Resources\PlanImageIcon.png" />
     <None Include="Resources\RemoveKey.png" />
+    <None Include="Resources\icon_doc.png" />
+    <None Include="Resources\desc-icon.png" />
     <Content Include="Resources\saveAs_16.png" />
     <Content Include="Resources\saveAs_32.png" />
   </ItemGroup>
