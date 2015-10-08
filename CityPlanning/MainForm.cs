@@ -73,6 +73,7 @@ namespace CityPlanning
         public Modules.ucDocumentSearch ucDocSearch = new Modules.ucDocumentSearch();
         public Modules.ucDocumentInternalSearch ucDocIntSearch = new Modules.ucDocumentInternalSearch(); //郭海强 添加关键词搜索控件0913
         public Modules.ucNavigationImage ucNavImage = new Modules.ucNavigationImage();  //规划效果图浏览
+        public Modules.ucTOCControl ucTocCtrl = new Modules.ucTOCControl();     //地图关联图层面板
 
 
         //INI文件相关
@@ -604,6 +605,10 @@ namespace CityPlanning
                     curAxMapControl.OnMouseUp += curAxMapControl_OnMouseUp;
                     curAxMapControl.OnMouseDown += curAxMapControl_OnMouseDown;
                     curAxMapControl.OnMouseMove += curAxMapControl_OnMouseMove;
+
+                    //TOCControl
+                    ucTocCtrl.TOCControl.SetBuddyControl(curAxMapControl);
+                    ucTocCtrl.TOCControl.Refresh();
                     break;
                 }
                 else
@@ -899,7 +904,10 @@ namespace CityPlanning
         //打开图层列表
         private void bMapLayers_ItemClick(object sender, ItemClickEventArgs e)
         {
-
+            this.panelControl_Navigation.Controls.Clear();
+            this.panelControl_Navigation.Controls.Add(ucTocCtrl);
+            ucTocCtrl.Dock = DockStyle.Fill;
+            ucTocCtrl.TOCControl.SetBuddyControl(curAxMapControl);
         }
         #region //GIS Tools
         //重置按钮
@@ -2633,8 +2641,6 @@ namespace CityPlanning
             }
         }
         #endregion
-
-
 
 
     }
