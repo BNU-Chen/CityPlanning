@@ -60,7 +60,7 @@ namespace ConnectionCenter
                         DataRow dr = dt.NewRow();
                         dr["id"] = id;
                         dr["pid"] = pid;
-                        dr["name"] = Path.GetFileNameWithoutExtension(file.FullName);  //文件名 
+                        dr["name"] = Path.GetFileName(file.FullName);  //文件名 
                         dr["ext"] = file.Extension.Substring(1,file.Extension.Length-1).ToLower();      //拓展名，包含“.”
                         dr["type"] = "File";
                         dr["path"] = file.FullName;         //全路径

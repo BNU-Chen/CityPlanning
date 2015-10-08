@@ -453,6 +453,17 @@ namespace CityPlanning
                         this.xtraTabControl_Main.SelectedTabPage = xtpImage;
                         this.Refresh();                        
                         break;
+                    case "PdfViewer":
+                        DevExpress.XtraPdfViewer.PdfViewer pdfViewer = new DevExpress.XtraPdfViewer.PdfViewer();
+                        pdfViewer.LoadDocument(path);
+                        XtraTabPage xtpPdf = new XtraTabPage();
+                        xtpPdf.Text = nodeName;
+                        xtpPdf.Controls.Add(pdfViewer);
+                        pdfViewer.Dock = DockStyle.Fill;
+                        this.xtraTabControl_Main.TabPages.Add(xtpPdf);
+                        this.xtraTabControl_Main.SelectedTabPage = xtpPdf;
+                        this.Refresh();
+                        break;
                     default:
                         return;
                 }
@@ -517,7 +528,7 @@ namespace CityPlanning
         }
         #endregion
 
-        #region //主显示区事件
+        #region //主显示区Tab事件
         //TabPage关闭
         private void xtraTabControl_Main_CloseButtonClick(object sender, EventArgs e)
         {            
@@ -885,7 +896,17 @@ namespace CityPlanning
             }
         }
 
+        //打开图层列表
+        private void bMapLayers_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
+        }
         #region //GIS Tools
+        //重置按钮
+        private void bMapToolNull_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            GISTools.setNull(curAxMapControl);
+        }
         //添加图层
         private void bMapAddLayer_ItemClick(object sender, ItemClickEventArgs e)
         {
@@ -2612,6 +2633,7 @@ namespace CityPlanning
             }
         }
         #endregion
+
 
 
 
