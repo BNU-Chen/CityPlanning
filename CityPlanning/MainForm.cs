@@ -609,6 +609,10 @@ namespace CityPlanning
                     //TOCControl
                     ucTocCtrl.TOCControl.SetBuddyControl(curAxMapControl);
                     ucTocCtrl.TOCControl.Refresh();
+
+                    //地图关键词
+                    curMapKeyName = tabPage.Text;
+                    SetMapKeywords();
                     break;
                 }
                 else
@@ -799,25 +803,8 @@ namespace CityPlanning
         #endregion
 
         #region //地图工具按钮事件
-        //打开地图
-        private void bGalleryOpenMap_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Multiselect = false;    //单选
-            ofd.Title = "选择地图文件";
-            ofd.Filter = "mxd文件|*.mxd";
-            ofd.InitialDirectory = Environment.SpecialFolder.Desktop.ToString();
-            if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.Yes)
-            {
-                FileInfo fi = new FileInfo(ofd.FileName);
-                if (fi.Exists)
-                {
-                    curAxMapControl.LoadMxFile(fi.FullName);
-                    curAxMapControl.ActiveView.Refresh();
-                }
-            }
-        }
-
+        
+        #region //地图关键词
         //添加地图关键词
         private void bMap_AddKeyword_ItemClick(object sender, ItemClickEventArgs e)
         {
@@ -825,19 +812,19 @@ namespace CityPlanning
             Control curFirstChildControl = curTabPage.Controls[0];
             if(curFirstChildControl is AxMapControl)
             {
-                curMapKeyName = curTabPage.Text;
+                //curMapKeyName = curTabPage.Text;
                 Forms.frmAddMapKeyword frmAddKey = new Forms.frmAddMapKeyword(ConnectionCenter.Config.MapKeywordSection, curMapKeyName);
                 frmAddKey.FormClosed += frmAddKey_FormClosed;
                 frmAddKey.ShowDialog();
             }
             //if()
         }
-
+        //当窗体关闭时，刷新地图关键词
         void frmAddKey_FormClosed(object sender, FormClosedEventArgs e)
         {
             SetMapKeywords();
         }
-
+        //设置地图关键词
         private void SetMapKeywords()
         {
             this.ribbonGallery_MapKeywords.Gallery.Groups.Clear();
@@ -900,6 +887,11 @@ namespace CityPlanning
                 ConnectionCenter.INIFile.IniWriteValue(ConnectionCenter.Config.MapKeywordSection, curMapKeyName, keys);
             }
         }
+        #endregion 
+        
+        #region //地图关联表
+        //private void 
+        #endregion
 
         //打开图层列表
         private void bMapLayers_ItemClick(object sender, ItemClickEventArgs e)
@@ -909,6 +901,25 @@ namespace CityPlanning
             ucTocCtrl.Dock = DockStyle.Fill;
             ucTocCtrl.TOCControl.SetBuddyControl(curAxMapControl);
         }
+        //打开地图
+        private void bGalleryOpenMap_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Multiselect = false;    //单选
+            ofd.Title = "选择地图文件";
+            ofd.Filter = "mxd文件|*.mxd";
+            ofd.InitialDirectory = Environment.SpecialFolder.Desktop.ToString();
+            if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.Yes)
+            {
+                FileInfo fi = new FileInfo(ofd.FileName);
+                if (fi.Exists)
+                {
+                    curAxMapControl.LoadMxFile(fi.FullName);
+                    curAxMapControl.ActiveView.Refresh();
+                }
+            }
+        }
+
         #region //GIS Tools
         //重置按钮
         private void bMapToolNull_ItemClick(object sender, ItemClickEventArgs e)
