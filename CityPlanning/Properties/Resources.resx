@@ -124,11 +124,17 @@
   <data name="map-64" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\map-64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="desc-icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\desc-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="saveAs_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\saveAs_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="map-641" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\map-641.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CityPlanningAbout" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CityPlanningAbout.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="saveAs_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\saveAs_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -139,14 +145,17 @@
   <data name="Config-64" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Config-64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="scaleOut_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\scaleOut_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="search_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\search_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="scaleIn_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\scaleIn_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="zoomIn_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\zoomIn_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="search_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\search_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="icon_doc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_doc.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="esri-128" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\esri-128.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -163,14 +172,17 @@
   <data name="query_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\query_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="polyline_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\polyline_32.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="icon_pan_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon_pan_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="openMap-64" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\openMap-64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="aboutUs-64" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\aboutUs-64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ElecIdensity_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ElecIdensity_32.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="esri-64" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\esri-64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -181,14 +193,35 @@
   <data name="exportMap-64" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\exportMap-64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="thematic-icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\thematic-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="disaster_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\disaster_32.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Hydro_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Hydro_32.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="search_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\search_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="layers-icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\layers-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="check" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\check.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="eco_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\eco_32.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="flood1_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\flood1_32.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="relationalDatabase-64" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\relationalDatabase-64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Coordinate" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Coordinate.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="fullExtent_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\fullExtent_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -202,16 +235,22 @@
   <data name="Help-64" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Help-64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="CityPlanningAbout" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\CityPlanningAbout.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="aboutUs-64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\aboutUs-64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="AddKey" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AddKey.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="scaleIn_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\scaleIn_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="RemoveKey" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\RemoveKey.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TransIdensity_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TransIdensity_32.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="scaleOut_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\scaleOut_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cursor-icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cursor-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
