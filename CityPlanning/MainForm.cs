@@ -1050,7 +1050,7 @@ namespace CityPlanning
 
         #region //主页TabPage相关
         //点击进行搜索
-        private void buttonEdit1_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        private void Query_button_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
             string keyword = this.Query_button.Text.Trim();
             //SearchInDoc(keyword, ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.PlanDoc);
@@ -1070,12 +1070,9 @@ namespace CityPlanning
         //主页大小变化，布局跟随改变
         private void xtraTabPage_Home_SizeChanged(object sender, EventArgs e)
         {
-            int homeWidth = xtraTabPage_Home.ClientSize.Width;
-            Query_button.Location = new System.Drawing.Point((homeWidth - Query_button.Size.Width) / 2, Query_button.Location.Y);
-            label2.Location = new System.Drawing.Point((homeWidth - label2.Size.Width) / 2, label2.Location.Y);
-            label4.Location = new System.Drawing.Point((homeWidth - label4.Size.Width) / 2, label4.Location.Y);
-            label11.Location = new System.Drawing.Point((homeWidth - label11.Size.Width) / 2, label11.Location.Y);
-            Statistics_panel.Location = new System.Drawing.Point((homeWidth - Statistics_panel.Size.Width) / 2, Statistics_panel.Location.Y);
+            int lx = (this.xtraTabPage_Home.Width - this.panel_HomeSearch.Width)/2;
+            int ly = (this.xtraTabPage_Home.Height - this.panel_HomeSearch.Height) / 5 * 2;
+            this.panel_HomeSearch.Location = new System.Drawing.Point(lx, ly);
 
         }
         //规划文本
