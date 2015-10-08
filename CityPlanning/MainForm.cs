@@ -120,6 +120,7 @@ namespace CityPlanning
             //启动界面
             frmStartConnectionConfig fscc = new frmStartConnectionConfig(this);
             fscc.ShowDialog();
+            this.setMultiDocumentsPath();
         }
 
         //初始化控件
@@ -156,12 +157,14 @@ namespace CityPlanning
             //启动界面
             frmStartConnectionConfig fscc = new frmStartConnectionConfig(null);
             fscc.ShowDialog();
+            this.setMultiDocumentsPath();
         }
         //文件配置
         private void bDocConfig_ItemClick(object sender, ItemClickEventArgs e)
         {
             Forms.frmSysConfig fSysConfig = new Forms.frmSysConfig();
             fSysConfig.ShowDialog();
+            this.setMultiDocumentsPath();
         }
 
         //用户管理
@@ -1007,10 +1010,22 @@ namespace CityPlanning
             if (control is RichEditControl)
             {
                 this.panelControl_Navigation.Controls.Clear();
+                ucDocIntSearch.setInitializationSearchResult();
                 this.panelControl_Navigation.Controls.Add(ucDocIntSearch);
-                RichEditControl richEditControl = (RichEditControl)control;
-                ucDocIntSearch.RichEditControl = richEditControl;
+                ucDocIntSearch.XtraTabPage = this.xtraTabControl_Main.SelectedTabPage;
             }
+        }
+
+        //郭海强 添加文本、说明及专题文档路径1008
+        private void setMultiDocumentsPath()
+        {
+            List<string> documentPaths = new List<string>();
+            documentPaths.Add(ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.PlanDoc);
+            documentPaths.Add(ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.PlanDesc);
+            DataTable dt = ConnectionCenter.ConnLocalDisk.getDataTable(ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.ThematicMap);
+            foreach (DataRow dr in dt.Rows)
+                documentPaths.Add(dr["path"].ToString());
+            ucDocIntSearch.DocumentPathCollection = documentPaths;
         }
 
         //郭海强 测试图表显示控件0922
@@ -1204,7 +1219,7 @@ namespace CityPlanning
             }
             this.panelControl_Navigation.Controls.Clear();
             this.panelControl_Navigation.Controls.Add(ucDocIntSearch);
-            ucDocIntSearch.SearchFromDocument(keyword, path);
+            ucDocIntSearch.SearchFromDocument(keyword, path, this.xtraTabControl_Main.SelectedTabPage);
         }
         #endregion
 

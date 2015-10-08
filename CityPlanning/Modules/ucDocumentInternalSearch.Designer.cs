@@ -34,9 +34,12 @@
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.lblSearchResultInfo = new DevExpress.XtraEditors.LabelControl();
             this.flowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.cbe_SearchRange = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.labSearchRange = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.te_KeyWord.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbe_SearchRange.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControl1
@@ -85,7 +88,7 @@
             // 
             // lblSearchResultInfo
             // 
-            this.lblSearchResultInfo.Location = new System.Drawing.Point(5, 44);
+            this.lblSearchResultInfo.Location = new System.Drawing.Point(3, 69);
             this.lblSearchResultInfo.Name = "lblSearchResultInfo";
             this.lblSearchResultInfo.Size = new System.Drawing.Size(60, 14);
             this.lblSearchResultInfo.TabIndex = 1;
@@ -99,11 +102,37 @@
             this.flowLayoutPanel.AutoScroll = true;
             this.flowLayoutPanel.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.flowLayoutPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.flowLayoutPanel.Location = new System.Drawing.Point(1, 63);
+            this.flowLayoutPanel.Location = new System.Drawing.Point(1, 89);
             this.flowLayoutPanel.Name = "flowLayoutPanel";
-            this.flowLayoutPanel.Size = new System.Drawing.Size(230, 378);
+            this.flowLayoutPanel.Size = new System.Drawing.Size(230, 352);
             this.flowLayoutPanel.TabIndex = 2;
             this.flowLayoutPanel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.flowLayoutPanel_MouseClick);
+            // 
+            // cbe_SearchRange
+            // 
+            this.cbe_SearchRange.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbe_SearchRange.Location = new System.Drawing.Point(69, 44);
+            this.cbe_SearchRange.Name = "cbe_SearchRange";
+            this.cbe_SearchRange.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cbe_SearchRange.Properties.Items.AddRange(new object[] {
+            "规划文本",
+            "规划说明",
+            "专题报告",
+            "全部文档"});
+            this.cbe_SearchRange.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.cbe_SearchRange.Size = new System.Drawing.Size(160, 20);
+            this.cbe_SearchRange.TabIndex = 3;
+            this.cbe_SearchRange.SelectedIndexChanged += new System.EventHandler(this.cbe_SearchRange_SelectedIndexChanged);
+            // 
+            // labSearchRange
+            // 
+            this.labSearchRange.Location = new System.Drawing.Point(3, 47);
+            this.labSearchRange.Name = "labSearchRange";
+            this.labSearchRange.Size = new System.Drawing.Size(60, 14);
+            this.labSearchRange.TabIndex = 4;
+            this.labSearchRange.Text = "搜索范围：";
             // 
             // ucDocumentInternalSearch
             // 
@@ -111,6 +140,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Controls.Add(this.labSearchRange);
+            this.Controls.Add(this.cbe_SearchRange);
             this.Controls.Add(this.flowLayoutPanel);
             this.Controls.Add(this.lblSearchResultInfo);
             this.Controls.Add(this.panelControl1);
@@ -120,6 +151,7 @@
             this.panelControl1.ResumeLayout(false);
             this.panelControl1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.te_KeyWord.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbe_SearchRange.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -133,5 +165,7 @@
         private System.Windows.Forms.Button btn_Search;
         private DevExpress.XtraEditors.LabelControl lblSearchResultInfo;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel;
+        private DevExpress.XtraEditors.ComboBoxEdit cbe_SearchRange;
+        private DevExpress.XtraEditors.LabelControl labSearchRange;
     }
 }
