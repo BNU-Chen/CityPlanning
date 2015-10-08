@@ -442,6 +442,17 @@ namespace CityPlanning
                         curMapKeyName = nodeName;
                         SetMapKeywords();
                         break;
+                    case "Image":
+                        Modules.ucImageViewer ucImage = new Modules.ucImageViewer();
+                        ucImage.ImagePath = path;
+                        XtraTabPage xtpImage = new XtraTabPage();
+                        xtpImage.Text = nodeName;
+                        xtpImage.Controls.Add(ucImage);
+                        ucImage.Dock = DockStyle.Fill;
+                        this.xtraTabControl_Main.TabPages.Add(xtpImage);
+                        this.xtraTabControl_Main.SelectedTabPage = xtpImage;
+                        this.Refresh();                        
+                        break;
                     default:
                         return;
                 }
@@ -525,6 +536,24 @@ namespace CityPlanning
             }
             catch
             {
+            }
+        }
+        //中键关闭tabPage
+        private void xtraTabControl_Main_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button.IsMiddle())
+            {
+                XtraTabControl xtc = sender as XtraTabControl;
+                System.Drawing.Point pos = new System.Drawing.Point(e.X, e.Y);
+                DevExpress.XtraTab.ViewInfo.XtraTabHitInfo xthi = xtc.CalcHitInfo(pos);
+
+                if (xthi.Page.Text == this.xtraTabPage_Home.Text)
+                {
+                    return; //如果是关闭主页，则返回
+                }
+                this.xtraTabControl_Main.TabPages.Remove(xthi.Page);
+                xthi.Page.Dispose();
+                GC.Collect();
             }
         }
         //TabPage切换事件
@@ -1048,7 +1077,7 @@ namespace CityPlanning
 
         #endregion
 
-        #region //主页TabPage相关
+        #region //主页搜索TabPage相关
         //点击进行搜索
         private void Query_button_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
@@ -2583,6 +2612,7 @@ namespace CityPlanning
             }
         }
         #endregion
+
 
 
     }
