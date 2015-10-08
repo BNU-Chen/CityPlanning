@@ -187,7 +187,11 @@ namespace CityPlanning.Modules
             {
                 return;
             }
-            string NodeText = e.Node.GetDisplayText(TreeListFiles.Nodes[0].Id);
+            string NodeText = e.Node.GetDisplayText("name");
+            if (NodeText == "")
+            {
+                return;
+            }
             bool IsVisible = NodeText.ToUpper().IndexOf(filterText.ToUpper()) >= 0;
             if (IsVisible)
             {
