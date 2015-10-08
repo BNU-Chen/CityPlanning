@@ -2082,7 +2082,7 @@ namespace CityPlanning
             xtp.Refresh();
             this.xtraTabControl_Main.Refresh();
             this.Refresh();
-            string path = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.PlanMap + @"\18.沈阳经济区红线融合图.mxd";
+            string path = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.RedLineMap;
             mapControl.LoadMxFile(path);
             mapControl.ActiveView.Refresh();
             AlreadyAddMap = true;
@@ -2094,7 +2094,7 @@ namespace CityPlanning
             AxMapControl mapControl = new AxMapControl();
             mapControl = curAxMapControl;
             mapControl.ClearLayers();
-            string path = ConnectionCenter.Config.FTPCatalog+ConnectionCenter.Config.PlanMap+@"\18.沈阳经济区红线融合图.mxd";
+            string path = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.RedLineMap;
             mapControl.LoadMxFile(path);
             mapControl.Refresh();
         }
@@ -2114,7 +2114,7 @@ namespace CityPlanning
             }
             thr.Close();
             //加载结果图
-            string path = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.PlanMap + @"\交通网络密度图.mxd";
+            string path = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.ThematicTraffic;
             if(AlreadyAddMap)
             {
                 curXtraTabPage.Text = "交通网络密度图";
@@ -2184,7 +2184,7 @@ namespace CityPlanning
             }
             thr.Close();
             //加载结果图
-            string path = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.PlanMap + @"\电力网络密度图.mxd";
+            string path = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.ThematicElectricity;
             if (AlreadyAddMap)
             {
                 curXtraTabPage.Text = "电力网络密度图";
@@ -2253,7 +2253,7 @@ namespace CityPlanning
             }
             thr.Close();
             //加载结果图
-            string path = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.PlanMap + @"\综合灾害风险图.mxd";
+            string path = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.ThematicDisaster;
             if (AlreadyAddMap)
             {
                 curXtraTabPage.Text = "综合灾害风险图";
@@ -2322,7 +2322,7 @@ namespace CityPlanning
             }
             thr.Close();
             //加载结果图
-            string path = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.PlanMap + @"\生态服务价值图.mxd";
+            string path = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.ThematicZoology;
             if (AlreadyAddMap)
             {
                 curXtraTabPage.Text = "生态服务价值图";
@@ -2391,7 +2391,7 @@ namespace CityPlanning
             }
             thr.Close();
             //加载结果图
-            string path = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.PlanMap + @"\水文分析图.mxd";
+            string path = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.ThematicHydrology;
             if (AlreadyAddMap)
             {
                 curXtraTabPage.Text = "水文分析图";
@@ -2460,7 +2460,7 @@ namespace CityPlanning
             }
             thr.Close();
             //加载结果图
-            string path = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.PlanMap + @"\洪涝损失分析图.mxd";
+            string path = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.ThematicFlood;
             if (AlreadyAddMap)
             {
                 curXtraTabPage.Text = "洪涝损失分析图";
@@ -2529,7 +2529,7 @@ namespace CityPlanning
             }
             thr.Close();
             //加载结果图
-            string path = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.PlanMap + @"\GDP重心转移图.mxd";
+            string path = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.ThematicGDPTrans;
             if (AlreadyAddMap)
             {
                 curXtraTabPage.Text = "GDP重心转移图";

@@ -8,7 +8,7 @@ namespace ConnectionCenter
 {
     public class Config
     {
-        //FTP
+        //FTP  ---------------------------------------------
         private static string fTPSection = "FTP";
 
         public static string FTPSection
@@ -45,7 +45,7 @@ namespace ConnectionCenter
             set { INIFile.IniWriteValue(fTPSection, fTPCatalog, value); }
         }
 
-        //数据库连接
+        //数据库连接  ---------------------------------------------
         private static string dbSection = "Database";
 
         public static string DbSection
@@ -83,7 +83,7 @@ namespace ConnectionCenter
             set { INIFile.IniWriteValue(dbSection, dbPsd, value); }
         }
 
-        //用户
+        //用户  ---------------------------------------------
         private static string userSection = "User";
 
         public static string UserSection
@@ -107,7 +107,7 @@ namespace ConnectionCenter
             set { INIFile.IniWriteValue(userSection, userPsd, value); }
         }
 
-        //地图关键词
+        //地图关键词  ---------------------------------------------
         private static string mapKeywordSection = "MapKeyword";
 
         public static string MapKeywordSection
@@ -116,7 +116,7 @@ namespace ConnectionCenter
             set { Config.mapKeywordSection = value; }
         }
 
-        //系统文档路径
+        //系统文档路径  ---------------------------------------------
         private static string sectionDocConfig = "DocConfig";
 
         public static string SectionDocConfig
@@ -160,5 +160,72 @@ namespace ConnectionCenter
             get { return INIFile.IniReadValue(sectionDocConfig, keyPlanMap); }
             set { INIFile.IniWriteValue(sectionDocConfig, keyPlanMap, value); }
         }
+
+        //专题地图  ---------------------------------------------
+        private static string sectionThematic = "ThematicMap";
+        public static string SectionThematic
+        {
+            get { return Config.sectionThematic; }
+            set { Config.sectionThematic = value; }
+        }
+        //基本红线
+        private static string keyRedLineMap = "RedLineMap";
+        public static string RedLineMap
+        {
+            get { return INIFile.IniReadValue(sectionThematic, keyRedLineMap); }
+            set { INIFile.IniWriteValue(sectionThematic, keyRedLineMap, value); }
+        }
+        //交通网络
+        private static string keyThematicTraffic = "ThematicTraffic";
+        public static string ThematicTraffic
+        {
+            get { return INIFile.IniReadValue(sectionThematic, keyThematicTraffic); }
+            set { INIFile.IniWriteValue(sectionThematic, keyThematicTraffic, value); }
+        }
+        //电力网络
+        private static string keyThematicElectricity = "ThematicElectricity";
+        public static string ThematicElectricity
+        {
+            get { return INIFile.IniReadValue(sectionThematic, keyThematicElectricity); }
+            set { INIFile.IniWriteValue(sectionThematic, keyThematicElectricity, value); }
+        }
+        //灾害风险
+        private static string keyThematicDisaster = "ThematicDisaster";
+        public static string ThematicDisaster
+        {
+            get { return INIFile.IniReadValue(sectionThematic, keyThematicDisaster); }
+            set { INIFile.IniWriteValue(sectionThematic, keyThematicDisaster, value); }
+        }
+        //生态服务
+        private static string keyThematicZoology = "ThematicZoology";
+        public static string ThematicZoology
+        {
+            get { return INIFile.IniReadValue(sectionThematic, keyThematicZoology); }
+            set { INIFile.IniWriteValue(sectionThematic, keyThematicZoology, value); }
+        }
+        //水分分析
+        private static string keyThematicHydrology = "ThematicHydrology";
+        public static string ThematicHydrology
+        {
+            get { return INIFile.IniReadValue(sectionThematic, keyThematicHydrology); }
+            set { INIFile.IniWriteValue(sectionThematic, keyThematicHydrology, value); }
+        }
+        //洪涝灾害
+        private static string keyThematicFlood = "ThematicFlood";
+        public static string ThematicFlood
+        {
+            get { return INIFile.IniReadValue(sectionThematic, keyThematicFlood); }
+            set { INIFile.IniWriteValue(sectionThematic, keyThematicFlood, value); }
+        }
+        //GDP重心转移
+        private static string keyThematicGDPTrans = "ThematicGDPTrans";
+        public static string ThematicGDPTrans
+        {
+            get { return INIFile.IniReadValue(sectionThematic, keyThematicGDPTrans); }
+            set { INIFile.IniWriteValue(sectionThematic, keyThematicGDPTrans, value); }
+        }
+
+        
+
     }
 }

@@ -31,6 +31,15 @@ namespace CityPlanning.Forms
             this.txt_ThematicMap.Text = ConnectionCenter.Config.ThematicMap;
             this.txt_PlanImg.Text = ConnectionCenter.Config.PlanImg;
             this.txt_PlanMap.Text = ConnectionCenter.Config.PlanMap;
+            
+            this.txt_RedLineMap.Text = ConnectionCenter.Config.RedLineMap;
+            this.txt_ThematicTrafficNet.Text = ConnectionCenter.Config.ThematicTraffic;
+            this.txt_ThematicElectricityNet.Text = ConnectionCenter.Config.ThematicElectricity;
+            this.txt_ThematicDisaster.Text = ConnectionCenter.Config.ThematicDisaster;
+            this.txt_ThematicZoology.Text = ConnectionCenter.Config.ThematicZoology;
+            this.txt_ThematicHydrology.Text = ConnectionCenter.Config.ThematicHydrology;
+            this.txt_ThematicFlood.Text = ConnectionCenter.Config.ThematicFlood;
+            this.txt_ThematicGDPTrans.Text = ConnectionCenter.Config.ThematicGDPTrans;
         }
 
         private void btn_Submit_Click(object sender, EventArgs e)
@@ -41,6 +50,15 @@ namespace CityPlanning.Forms
             ConnectionCenter.Config.PlanImg = this.txt_PlanImg.Text;
             ConnectionCenter.Config.PlanMap = this.txt_PlanMap.Text;
 
+            ConnectionCenter.Config.RedLineMap = this.txt_RedLineMap.Text;
+            ConnectionCenter.Config.ThematicTraffic = this.txt_ThematicTrafficNet.Text;
+            ConnectionCenter.Config.ThematicElectricity = this.txt_ThematicElectricityNet.Text;
+            ConnectionCenter.Config.ThematicDisaster = this.txt_ThematicDisaster.Text;
+            ConnectionCenter.Config.ThematicZoology = this.txt_ThematicZoology.Text;
+            ConnectionCenter.Config.ThematicHydrology = this.txt_ThematicHydrology.Text;
+            ConnectionCenter.Config.ThematicFlood = this.txt_ThematicFlood.Text;
+            ConnectionCenter.Config.ThematicGDPTrans = this.txt_ThematicGDPTrans.Text;
+
             this.Close();
         }
 
@@ -48,7 +66,7 @@ namespace CityPlanning.Forms
         {
             this.Close();
         }
-
+        #region //规划数据 按钮
         //规划文本
         private void btn_SetPlanDoc_Click(object sender, EventArgs e)
         {
@@ -99,7 +117,92 @@ namespace CityPlanning.Forms
         {
             OpenPath(this.txt_PlanMap.Text);
         }
+        #endregion 
 
+        #region //专题图集 按钮
+        //基本红线地图
+        private void btn_SetRedLineMap_Click(object sender, EventArgs e)
+        {
+            SetFilePath(this.txt_RedLineMap);
+        }
+
+        private void btn_OpenRedLineMap_Click(object sender, EventArgs e)
+        {
+            OpenPath(this.txt_RedLineMap.Text.Trim());
+        }
+        //交通网络
+        private void btn_SetThematicTrafficNet_Click(object sender, EventArgs e)
+        {
+            SetFilePath(this.txt_ThematicTrafficNet);
+        }
+
+        private void btn_OpenThematicTrafficNet_Click(object sender, EventArgs e)
+        {
+            OpenPath(this.txt_ThematicTrafficNet.Text);
+        }
+        //电力网络
+        private void btn_SetThematicElectricityNet_Click(object sender, EventArgs e)
+        {
+            SetFilePath(this.txt_ThematicElectricityNet);
+        }
+
+        private void btn_OpenThematicElectricityNet_Click(object sender, EventArgs e)
+        {
+            OpenPath(this.txt_ThematicElectricityNet.Text);
+        }
+        //灾害风险
+        private void btn_SetThematicDisaster_Click(object sender, EventArgs e)
+        {
+            SetFilePath(this.txt_ThematicDisaster);
+        }
+
+        private void btn_OpenThematicDisaster_Click(object sender, EventArgs e)
+        {
+            OpenPath(this.txt_ThematicDisaster.Text);
+        }
+        //生态服务
+        private void btn_SetThematicZoology_Click(object sender, EventArgs e)
+        {
+            SetFilePath(this.txt_ThematicZoology);
+        }
+
+        private void btn_OpenThematicZoology_Click(object sender, EventArgs e)
+        {
+            OpenPath(this.txt_ThematicZoology.Text);
+        }
+        //水分分析
+        private void btn_SetThematicHydrology_Click(object sender, EventArgs e)
+        {
+            SetFilePath(this.txt_ThematicHydrology);
+        }
+
+        private void btn_OpenThematicHydrology_Click(object sender, EventArgs e)
+        {
+            OpenPath(this.txt_ThematicHydrology.Text);
+        }
+        //洪涝灾害
+        private void btn_SetThematicFlood_Click(object sender, EventArgs e)
+        {
+            SetFilePath(this.txt_ThematicFlood);
+        }
+
+        private void btn_OpenThematicFlood_Click(object sender, EventArgs e)
+        {
+            OpenPath(this.txt_ThematicFlood.Text);
+        }
+        //GDP重心转移
+        private void btn_SetThematicGDPTrans_Click(object sender, EventArgs e)
+        {
+            SetFilePath(this.txt_ThematicGDPTrans);
+        }
+
+        private void btn_OpenThematicGDPTrans_Click(object sender, EventArgs e)
+        {
+            OpenPath(this.txt_ThematicGDPTrans.Text);
+        }
+        #endregion
+
+        #region //设置路径函数
         //设置路径
         private void SetFilePath(TextBox txtBox)
         {
@@ -162,7 +265,7 @@ namespace CityPlanning.Forms
         //打开路径
         private void OpenPath(string path)
         {
-            string fullPath = DataPath + path;
+            string fullPath = DataPath + path.Trim();
             bool flag = false;
             if (File.Exists(fullPath))
             {
@@ -179,5 +282,6 @@ namespace CityPlanning.Forms
             }
             System.Diagnostics.Process.Start("Explorer", "/select," + fullPath);
         }
+        #endregion
     }
 }
