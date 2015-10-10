@@ -68,6 +68,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GISConfig.cs" />
     <Compile Include="GISHandler.cs" />
     <Compile Include="GISTools.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -30,6 +30,10 @@ namespace CityPlanning.Forms
                 return;
             }
             string keywords = "";
+            if (keyName == "")
+            {
+                return;
+            }
             //先获取key
             curKeys = ConnectionCenter.INIFile.IniReadValue(sectionName, keyName);
             //追加key

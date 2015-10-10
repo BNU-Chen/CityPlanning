@@ -93,7 +93,7 @@ namespace CityPlanning.Modules
         //点击图片浏览大图
         void ucThumb_Click(object sender, EventArgs e)
         {
-
+            GC.Collect();
             DevExpress.XtraEditors.PictureEdit ucImg = (DevExpress.XtraEditors.PictureEdit)sender;
             string fileName = Convert.ToString(ucImg.Tag);
             string filePathOfBigPicture = imageFolderPath +"\\"+ fileName;

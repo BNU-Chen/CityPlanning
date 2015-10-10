@@ -265,6 +265,12 @@
     <Compile Include="Modules\ucNavigationRDB.Designer.cs">
       <DependentUpon>ucNavigationRDB.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modules\ucTOCControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\ucTOCControl.Designer.cs">
+      <DependentUpon>ucTOCControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modules\ucUserManagerPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -342,6 +348,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\ucNavigationRDB.resx">
       <DependentUpon>ucNavigationRDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\ucTOCControl.resx">
+      <DependentUpon>ucTOCControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\ucUserManagerPanel.resx">
       <DependentUpon>ucUserManagerPanel.cs</DependentUpon>
@@ -490,6 +499,7 @@
     <None Include="Resources\CityPlanningAbout.jpg" />
     <None Include="Resources\cofniglist64.png" />
     <None Include="Resources\Coordinate.jpg" />
+    <None Include="Resources\cursor-icon.png" />
     <Content Include="Resources\delete_16.png" />
     <None Include="Resources\PlanImageIcon.png" />
     <None Include="Resources\RemoveKey.png" />
@@ -500,6 +510,8 @@
     <None Include="Resources\flood1_32.jpg" />
     <None Include="Resources\eco_32.jpg" />
     <None Include="Resources\polyline_32.jpg" />
+    <None Include="Resources\layers-icon.png" />
+    <None Include="Resources\pie_chart_report.png" />
     <Content Include="Resources\saveAs_16.png" />
     <Content Include="Resources\saveAs_32.png" />
   </ItemGroup>

@@ -153,6 +153,16 @@ namespace CityPlanning.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap cursor_icon {
+            get {
+                object obj = ResourceManager.GetObject("cursor-icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap delete_16 {
             get {
                 object obj = ResourceManager.GetObject("delete_16", resourceCulture);
@@ -313,6 +323,16 @@ namespace CityPlanning.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap layers_icon {
+            get {
+                object obj = ResourceManager.GetObject("layers-icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap map_64 {
             get {
                 object obj = ResourceManager.GetObject("map-64", resourceCulture);
@@ -336,6 +356,16 @@ namespace CityPlanning.Properties {
         internal static System.Drawing.Bitmap openMap_64 {
             get {
                 object obj = ResourceManager.GetObject("openMap-64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap pie_chart_report {
+            get {
+                object obj = ResourceManager.GetObject("pie_chart_report", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
