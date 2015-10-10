@@ -2181,9 +2181,40 @@ namespace CityPlanning
         }
 
         #endregion
-        
+
         #region //专题图分析事件
-        private void bTranspNetDensity_ItemClick(object sender, ItemClickEventArgs e)
+        private void ribbonGallery_MapAnalysis_GalleryItemClick(object sender, GalleryItemClickEventArgs e)
+        {
+            string itemCaption = e.Item.Caption;
+            switch (itemCaption)
+            {
+                case "交通网络密度":
+                    TranspNetDensity();
+                    break;
+                case "电力网络密度":
+                    ElecNetDensity();
+                    break;
+                case "综合灾害风险":
+                    IntDisasterRisk();
+                    break;
+                case "生态服务价值":
+                    EcoServiceValue();
+                    break;
+                case "水文分析":
+                    HydroAnalysis();
+                    break;
+                case "洪涝损失分析":
+                    FloodLoss();
+                    break;
+                case "GDP重心转移":
+                    GDPCenterTransfer();
+                    break;
+
+            }
+        }
+
+        //交通网络密度图
+        private void TranspNetDensity()
         {
             //加载进度条
             ThreadForm thr = new ThreadForm(0, 100);
@@ -2253,7 +2284,8 @@ namespace CityPlanning
             }
         }
 
-        private void bElecNetDensity_ItemClick(object sender, ItemClickEventArgs e)
+        //电力网络密度图
+        private void ElecNetDensity()
         {
             //加载进度条
             ThreadForm thr = new ThreadForm(0, 100);
@@ -2322,7 +2354,8 @@ namespace CityPlanning
             }
         }
 
-        private void bIntDisasterRisk_ItemClick(object sender, ItemClickEventArgs e)
+        //综合灾害风险图
+        private void IntDisasterRisk()
         {
             //加载进度条
             ThreadForm thr = new ThreadForm(0, 100);
@@ -2391,7 +2424,8 @@ namespace CityPlanning
             }
         }
 
-        private void bEcoServiceValue_ItemClick(object sender, ItemClickEventArgs e)
+        //生态服务价值图
+        private void EcoServiceValue()
         {
             //加载进度条
             ThreadForm thr = new ThreadForm(0, 100);
@@ -2460,7 +2494,8 @@ namespace CityPlanning
             }
         }
 
-        private void bHydroAnalysis_ItemClick(object sender, ItemClickEventArgs e)
+        //水文分析图
+        private void HydroAnalysis()
         {
             //加载进度条
             ThreadForm thr = new ThreadForm(0, 100);
@@ -2529,7 +2564,8 @@ namespace CityPlanning
             }
         }
 
-        private void bFloodLoss_ItemClick(object sender, ItemClickEventArgs e)
+        //洪涝损失分析图
+        private void FloodLoss()
         {
             //加载进度条
             ThreadForm thr = new ThreadForm(0, 100);
@@ -2598,7 +2634,8 @@ namespace CityPlanning
             }
         }
 
-        private void bGDPCenterTransfer_ItemClick(object sender, ItemClickEventArgs e)
+        //GDP重心转移图
+        private void GDPCenterTransfer()
         {
             //加载进度条
             ThreadForm thr = new ThreadForm(0, 100);
@@ -2667,6 +2704,8 @@ namespace CityPlanning
             }
         }
         #endregion
+
+
 
 
     }

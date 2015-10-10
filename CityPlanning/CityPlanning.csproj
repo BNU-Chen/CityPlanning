@@ -511,6 +511,7 @@
     <None Include="Resources\eco_32.jpg" />
     <None Include="Resources\polyline_32.jpg" />
     <None Include="Resources\layers-icon.png" />
+    <None Include="Resources\pie_chart_report.png" />
     <Content Include="Resources\saveAs_16.png" />
     <Content Include="Resources\saveAs_32.png" />
   </ItemGroup>
