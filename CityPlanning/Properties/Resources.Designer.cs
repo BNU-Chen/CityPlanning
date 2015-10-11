@@ -363,6 +363,16 @@ namespace CityPlanning.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap pie_chart_report {
+            get {
+                object obj = ResourceManager.GetObject("pie_chart_report", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap PlanImageIcon {
             get {
                 object obj = ResourceManager.GetObject("PlanImageIcon", resourceCulture);
