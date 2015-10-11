@@ -121,6 +121,7 @@ namespace CityPlanning
             frmStartConnectionConfig fscc = new frmStartConnectionConfig(this);
             fscc.ShowDialog();
             this.setMultiDocumentsPath();
+            OpenAllPlanDocs();  //系统打开时，默认打开所有文件列表
         }
 
         //初始化控件
@@ -530,6 +531,8 @@ namespace CityPlanning
         { 
             //根据TabPage，选择性显示
             XtraTabPage tabPage = e.Page;
+            
+            //其他tab
             foreach (Control control in tabPage.Controls)
             {
                 if (control is SpreadsheetControl)
