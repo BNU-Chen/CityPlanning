@@ -26,7 +26,6 @@ using DevExpress.XtraCharts;
 //using DevExpress.Docs;          //Worksheet专用
 using DevExpress.Utils;
 //叠置专用
-using System.IO;
 using ESRI.ArcGIS.Controls;
 using ESRI.ArcGIS.Geodatabase;
 using ESRI.ArcGIS.Geometry;
@@ -1394,18 +1393,80 @@ namespace CityPlanning
             return pt;
         }
         //提取mxd中shp?
-        private void extractShp(string MxFilePath)
+        private void extractShp(AxMapControl mapControl)
         {
-            IMapDocument pMapDoc = new MapDocumentClass();
-            IFeatureLayer pFeatureLayer;
-            pMapDoc.Open(MxFilePath,"");
-            for(int i=0; i<=pMapDoc.MapCount-1; i++)
-            {
-                pFeatureLayer=pMapDoc.get_Layer(i,i) as IFeatureLayer;
-                File.Copy(pFeatureLayer.ToString(), tempPath, true);
-            }
+                try
+                {
+                    for (int i = 0; i < mapControl.Map.LayerCount - 1; i++)
+                    {
+                        ILayer pLayer = mapControl.Map.get_Layer(10);
+                        if (pLayer != null)
+                        {
+                            IFeatureLayer pFeatureLayer = pLayer as IFeatureLayer;
+                            ExportFeature(pFeatureLayer.FeatureClass, tempPath + @"\" + pLayer.Name);
+                        }
+                    }
+                    MessageBox.Show("导出成功");
+                }
+                catch
+                {
+                    MessageBox.Show("导出失败！");
+                }
+            #region//Method2 failed
+            //ILayer pLayer = null;
+            //IDataLayer2 pDataLayer = null;
+            //IDatasetName pDatasetName = null;
+            //IWorkspaceName pWorkspaceName = null;
+            //for (int i = 0; i < mapControl.Map.LayerCount - 1; i++ )
+            //{
+            //    pLayer = mapControl.Map.get_Layer(i);
+            //    pDataLayer = pLayer as IDataLayer2;
+            //    pDatasetName = pDataLayer.DataSourceName as IDatasetName;
+            //    pWorkspaceName = pDatasetName.WorkspaceName;
+            //    File.Copy(pWorkspaceName.PathName + @"\" + pLayer.Name.ToString(), tempPath + @"\" + pLayer.Name.ToString(), true);
+            //}
+            #endregion
+            #region//Method1 failed
+            //IMapDocument pMapDoc = new MapDocumentClass();
+            //IFeatureLayer pFeatureLayer;
+            //pMapDoc.Open(MxFilePath,"");
+            //for(int i=0; i<=pMapDoc.MapCount-1; i++)
+            //{
+            //    pFeatureLayer=pMapDoc.get_Layer(i,i) as IFeatureLayer;
+            //    File.Copy(pFeatureLayer.ToString(), tempPath, true);
+            //}
+            #endregion
         }
-
+        public void ExportFeature(IFeatureClass pInFeatureClass, string pPath)
+        {           
+            // create a new Access workspace factory                   
+            IWorkspaceFactory pWorkspaceFactory = new ShapefileWorkspaceFactoryClass();            
+            string parentPath=pPath.Substring(0, pPath.LastIndexOf("//"));           
+            string fileName= pPath.Substring(pPath.LastIndexOf("//") + 1, pPath.Length - pPath.LastIndexOf("//") - 1);           
+            IWorkspaceName pWorkspaceName = pWorkspaceFactory.Create(parentPath,fileName, null, 0);           
+            // Cast for IName                   
+            IName name = (IName)pWorkspaceName;           
+            //Open a reference to the access workspace through the name object                   
+            IWorkspace pOutWorkspace = (IWorkspace)name.Open();
+            IDataset pInDataset = pInFeatureClass as IDataset;
+            IFeatureClassName pInFCName = pInDataset.FullName as IFeatureClassName; 
+            IWorkspace pInWorkspace = pInDataset.Workspace;
+            IDataset pOutDataset = pOutWorkspace as IDataset; 
+            IWorkspaceName pOutWorkspaceName = pOutDataset.FullName as IWorkspaceName;
+            IFeatureClassName pOutFCName = new FeatureClassNameClass();
+            IDatasetName pDatasetName = pOutFCName as IDatasetName; 
+            pDatasetName.WorkspaceName = pOutWorkspaceName;
+            pDatasetName.Name = pInFeatureClass.AliasName;
+            IFieldChecker pFieldChecker = new FieldCheckerClass(); 
+            pFieldChecker.InputWorkspace = pInWorkspace;
+            pFieldChecker.ValidateWorkspace = pOutWorkspace; 
+            IFields pFields = pInFeatureClass.Fields;
+            IFields pOutFields;
+            IEnumFieldError pEnumFieldError; 
+            pFieldChecker.Validate(pFields, out pEnumFieldError, out pOutFields);
+            IFeatureDataConverter pFeatureDataConverter = new FeatureDataConverterClass(); 
+            pFeatureDataConverter.ConvertFeatureClass(pInFCName, null, null, pOutFCName, null, pOutFields, "", 100, 0);
+        }
 
         //叠置分析
         private void StartIntersect(string strInputFeature, string strOverLayFeature)
@@ -1552,12 +1613,12 @@ namespace CityPlanning
                         //ucc.Right = xtraTabPage_Home.Right;
                         //ucc.Left = Screen.PrimaryScreen.WorkingArea.Width - ucc.Width;
                         ucc.Left = 250;
-                        //ucc.Top = ucc.Height;
+                        ////ucc.Top = ucc.Height;
                         ucc.Top = 200;
-                        ucc.Size = new Size(300,200);
+                        ucc.Size = new Size(400,300);
                         ucc.ViewType = ViewType.Pie;
                         StatisticChart.ShowOperation.CreatPieChart(ucc.ChartControl, pDataTable);
-                        ucc.Activated += curChartForm_Activated;
+                       // ucc.Activated += curChartForm_Activated;
                         ucc.Show();
                         ResetFieldComboBox(curChartForm.VariableField, curChartForm.ValueField);
                     }
@@ -1600,7 +1661,7 @@ namespace CityPlanning
             OpenFileDialog op = new OpenFileDialog();
             op.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
 
-            op.Filter = "文本文件(*.txt)|*.txt|excel文件(*.xls)|*.xls";
+            op.Filter = "文本文件(*.txt)|*.txt";
            
             if (op.ShowDialog(this) == DialogResult.OK)
                  {
@@ -1714,7 +1775,7 @@ namespace CityPlanning
                      IFeatureClass pNewFeaCls = pFWS.CreateFeatureClass(shpName, validatedFields, null, null, esriFeatureType.esriFTSimple, "Shape", "");
                      IFeature feature = null;
                      //feature = pNewFeaCls.CreateFeature();
-
+                    
 
               #region//Read TXT      
                 if(extension==".txt")
@@ -1752,6 +1813,7 @@ namespace CityPlanning
                                 feature.set_Value(2, pt.X.ToString());
                                 feature.set_Value(3, pt.Y.ToString());
                                 feature.Store();
+
                                 IMap pmap = curAxMapControl.Map;
                                 IActiveView pactive = pmap as IActiveView;
 
@@ -1793,6 +1855,7 @@ namespace CityPlanning
                                 feature.set_Value(2, pt.X.ToString());
                                 feature.set_Value(3, pt.Y.ToString());
                                 feature.Store();
+
                                 IMap pmap = curAxMapControl.Map;
                                 IActiveView pactive = pmap as IActiveView;
 
@@ -1827,6 +1890,7 @@ namespace CityPlanning
                             feature.set_Value(2, pt.X.ToString());
                             feature.set_Value(3, pt.Y.ToString());
                             feature.Store();
+                            
                         }
                     }
                 }
@@ -1922,8 +1986,8 @@ namespace CityPlanning
 
                     }
 
-                if (MessageBox.Show("开始分析?", "询问", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
-                {
+                //if (MessageBox.Show("开始分析?", "询问", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                //{
                     //read shp of mxd
                     string strInputFeaturePath = ConnectionCenter.Config.FTPCatalog+ConnectionCenter.Config.PlanMap+@"\shp\GHJBNTJZQ（处理后）.shp";
                     string strInputFeatureName = System.IO.Path.GetFileNameWithoutExtension(strInputFeaturePath);// "GHJBNTJZQ（处理后）.shp";
@@ -1950,22 +2014,46 @@ namespace CityPlanning
 
                     this.StartIntersect(strInputFeature, strOverLayFeature);
                     //分析进度条
-                    ThreadForm thr = new ThreadForm(0, 100);
-                    thr.Show(this);
-                    for (int i = 0; i < 100; i++)
-                    {
-                        thr.setPos(i);
-                        Thread.Sleep(20);
-                    }
-                    thr.Close();
+                    //ThreadForm thr = new ThreadForm(0, 100);
+                    //thr.Show(this);
+                    //for (int i = 0; i < 100; i++)
+                    //{
+                    //    thr.setPos(i);
+                    //    Thread.Sleep(20);
+                    //}
+                    //thr.Close();
                     //添加叠置结果图
                     mapControl.ClearLayers();
                     mapControl.LoadMxFile(ConnectionCenter.Config.FTPCatalog+ConnectionCenter.Config.PlanMap+@"\18.沈阳经济区红线融合图.mxd");
                     mapControl.AddShapeFile(DirPath, "Result.shp");
+                    mapControl.AddShapeFile(DirPath, "test.shp");
+                    ILayer pL=null;
+                    ILayer pLayer=null;
+                    for (int i = 0; i < mapControl.LayerCount; i++)
+                    {
+                        
+                        pL =mapControl.get_Layer(i);
+                        if (pL is IGroupLayer)
+                        {
+                            ICompositeLayer pGL = pL as ICompositeLayer;
+                            for (int j = 0; j < pGL.Count; j++)
+                            {
+                                if (pGL.get_Layer(j).Name == "test.shp") 
+                                {
+                                    pLayer = pGL.get_Layer(j);
+                                    if (pLayer is IFeatureLayer)//如果第一个图层时矢量图层
+                                    {
+                                        ILayerEffects pLayerEffects = pLayer as ILayerEffects;
+                                        pLayerEffects.Transparency = 65;//设置ILayerEffects接口的Transparency属性使该矢量图层的透明度属性为65.
+                                    }  
+                                }
+                            }
+                        }
+                    }
                     mapControl.Refresh();
                     string dbfPath = tempPath + @"\Result.dbf";
                     CreatResultPie(dbfPath);
-                }
+                //}
               }
             }//ifdiag
         }
@@ -2149,8 +2237,8 @@ namespace CityPlanning
                     mapControl = curAxMapControl;
                     mapControl.AddShapeFile(DirPath, "draw.shp");
                     mapControl.Refresh();
-                    if (MessageBox.Show("开始分析?", "询问", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
-                    {
+                    //if (MessageBox.Show("开始分析?", "询问", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                    //{
                         //read shp of mxd
                         string strInputFeaturePath = ConnectionCenter.Config.FTPCatalog+ConnectionCenter.Config.PlanMap+@"\shp\GHJBNTJZQ（处理后）.shp";
                         string strInputFeatureName = System.IO.Path.GetFileNameWithoutExtension(strInputFeaturePath); //"GHJBNTJZQ（处理后）.shp";
@@ -2176,18 +2264,18 @@ namespace CityPlanning
                         this.strOverLayFeature = fileInfo1.Name;
 
                         this.StartIntersect(strInputFeature, strOverLayFeature);
-                        ThreadForm thr = new ThreadForm(0, 100);
-                        thr.Show(this);
-                        for (int i = 0; i < 100; i++)
-                        {
-                            thr.setPos(i);
-                            Thread.Sleep(20);
-                            //if(i==95)
-                            //{
-                            //    break;
-                            //}
-                        }
-                        thr.Close();
+                        //ThreadForm thr = new ThreadForm(0, 100);
+                        //thr.Show(this);
+                        //for (int i = 0; i < 100; i++)
+                        //{
+                        //    thr.setPos(i);
+                        //    Thread.Sleep(20);
+                        //    //if(i==95)
+                        //    //{
+                        //    //    break;
+                        //    //}
+                        //}
+                        //thr.Close();
                         mapControl.ClearLayers();
                         string path = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.PlanMap + @"\18.沈阳经济区红线融合图.mxd";
                         mapControl.LoadMxFile(path);
@@ -2195,16 +2283,16 @@ namespace CityPlanning
                         mapControl.Refresh();
                         string dbfPath =ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.PlanMap + @"\shp\GHJBNTJZQ（处理后）.dbf";
                         CreatResultPie(dbfPath);
-                        RichEditControl rec = new RichEditControl();
-                        rec.Refresh();
-                        XtraTabPage xtp = new XtraTabPage();
-                        xtp.Refresh();
-                        this.xtraTabControl_Main.Refresh();
-                        this.Refresh();
+                        //RichEditControl rec = new RichEditControl();
+                        //rec.Refresh();
+                        //XtraTabPage xtp = new XtraTabPage();
+                        //xtp.Refresh();
+                       // this.xtraTabControl_Main.Refresh();
+                        //this.Refresh();
                     }
                     DrawPolygon = false;
                     //startIntersect = true;
-                }
+                //}
             }
         }
         #endregion 
@@ -2238,6 +2326,7 @@ namespace CityPlanning
             this.Refresh();
             string path = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.RedLineMap;
             mapControl.LoadMxFile(path);
+            extractShp(mapControl);
             mapControl.ActiveView.Refresh();
             AlreadyAddMap = true;
         }
@@ -2246,11 +2335,15 @@ namespace CityPlanning
         private void bClearAnalysis_ItemClick(object sender, ItemClickEventArgs e)
         {
             AxMapControl mapControl = new AxMapControl();
+           Modules.ucChartForm ucc = new Modules.ucChartForm(this);
+           ucc.Activated += curChartForm_Activated;
             mapControl = curAxMapControl;
             mapControl.ClearLayers();
+            ucc.Close();
             string path = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.RedLineMap;
             mapControl.LoadMxFile(path);
             mapControl.Refresh();
+            
         }
 
         #endregion

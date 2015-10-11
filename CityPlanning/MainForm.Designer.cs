@@ -834,11 +834,7 @@
             this.barButtonGroup18});
             this.ribbonControl.LargeImages = this.ribbonImageCollectionLarge;
             this.ribbonControl.Location = new System.Drawing.Point(0, 0);
-<<<<<<< HEAD
-            this.ribbonControl.MaxItemId = 714;
-=======
             this.ribbonControl.MaxItemId = 715;
->>>>>>> master
             this.ribbonControl.Name = "ribbonControl";
             this.ribbonControl.PageCategories.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageCategory[] {
             this.ribbonPageCategory_map,
