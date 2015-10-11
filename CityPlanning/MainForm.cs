@@ -1157,6 +1157,7 @@ namespace CityPlanning
             int lx = (this.xtraTabPage_Home.Width - this.panel_HomeSearch.Width)/2;
             int ly = (this.xtraTabPage_Home.Height - this.panel_HomeSearch.Height) / 5 * 2;
             this.panel_HomeSearch.Location = new System.Drawing.Point(lx, ly);
+            this.label11.Location = new System.Drawing.Point((this.xtraTabPage_Home.Width - this.label11.Width)/2,label11.Location.Y );
 
         }
         //规划文本
