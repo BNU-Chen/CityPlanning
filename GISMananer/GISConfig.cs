@@ -30,10 +30,35 @@ namespace GISManager
             get
             {
                 fieldToConvert.Clear();
-                fieldToConvert.Add("bsm", "标识码");
-                fieldToConvert.Add("ysdm", "要素代码");
-                fieldToConvert.Add("kzmj", "控制面积");
-                fieldToConvert.Add("shape_area", "");
+                fieldToConvert.Add("BSM", "标识码");
+                fieldToConvert.Add("YSDM", "要素代码");
+                fieldToConvert.Add("TBBH", "图斑编号");
+                fieldToConvert.Add("DLBM", "地类编码");
+                fieldToConvert.Add("DLMC", "地类名称");
+                fieldToConvert.Add("QSDWMC", "权属单位名称");
+                fieldToConvert.Add("ZLDWDM", "坐落单位代码");
+                fieldToConvert.Add("ZLDWMC", "坐落单位名称");
+                fieldToConvert.Add("TBDLMJ", "图斑地类面积");
+                fieldToConvert.Add("TBMJ", "图斑面积");
+                fieldToConvert.Add("XZQDM", "行政区代码");
+                fieldToConvert.Add("XZQMC", "行政区名称");
+                fieldToConvert.Add("KZMJ", "控制面积");
+                fieldToConvert.Add("MSSM", "描述说明");
+                fieldToConvert.Add("JZQMJ", "集中区面积");
+                fieldToConvert.Add("NYDMJ", "农用地面积");
+                fieldToConvert.Add("GDMJ", "耕地面积");
+                fieldToConvert.Add("JBNTMJ", "基本农田面积");
+                fieldToConvert.Add("SM", "说明");
+                fieldToConvert.Add("GZQLXDM", "管制区类型代码");
+                fieldToConvert.Add("GZQMJ", "管制区面积");
+                fieldToConvert.Add("GNFQLXDM", "功能分区类型代码");
+                fieldToConvert.Add("TDLYGNFQBH", "土地利用功能分区编号");
+                fieldToConvert.Add("GNFQMJ", "功能分区面积");
+                fieldToConvert.Add("XZQDWDM", "行政区地物代码");
+                fieldToConvert.Add("F1", "年份");
+                fieldToConvert.Add("X0", "经度");
+                fieldToConvert.Add("Y0", "纬度");
+                fieldToConvert.Add("FID_国家下发地类图", "国家下发地类图");
                 return GISConfig.fieldToConvert; 
             }
         }
@@ -59,10 +84,10 @@ namespace GISManager
             {
                 name = "";
             }
-            else
-            {
-                name = originName;
-            }
+            //else
+            //{
+            //    name = originName;        //保留原来的字段名称
+            //}
 
             return name;
         }
