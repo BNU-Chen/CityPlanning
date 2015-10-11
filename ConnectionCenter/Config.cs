@@ -8,6 +8,35 @@ namespace ConnectionCenter
 {
     public class Config
     {
+        #region //软件数据项配置
+        private static string mapTableIndexName = "专题数据对照表";      //地图和表格的对照表
+        private static string mapTableIndexFieldThematic = "专题文档名称";    //“专题文档名称”字段
+        private static string mapTableIndexFieldTable = "表名称";    //“表名称”字段
+        private static string mapTableIndexFieldMap = "地图文档名称";    //“地图文档名称”字段
+
+        public static string MapTableIndexFieldThematic
+        {
+            get { return mapTableIndexFieldThematic; }
+        }
+
+        public static string MapTableIndexFieldTable
+        {
+            get { return mapTableIndexFieldTable; }
+        }
+
+        public static string MapTableIndexFieldMap
+        {
+            get { return mapTableIndexFieldMap; }
+        }
+
+        public static string MapTableIndexName
+        {
+            get { return mapTableIndexName; }
+        }
+
+        #endregion 
+
+        #region //文档数据路径配置
         //FTP  ---------------------------------------------
         private static string fTPSection = "FTP";
 
@@ -225,7 +254,8 @@ namespace ConnectionCenter
             set { INIFile.IniWriteValue(sectionThematic, keyThematicGDPTrans, value); }
         }
 
-        
+        #endregion 
+
 
     }
 }

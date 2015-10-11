@@ -51,6 +51,11 @@ namespace ConnectionCenter
 
             return conn;
         }
+        
+        /// <summary>
+        /// 获取数据库所有数据表
+        /// </summary>
+        /// <returns>所有数据表的DataTable</returns>
         public static DataTable GetDatabaseSchema()
         {
             DataTable dtSchema = new DataTable();
@@ -58,12 +63,11 @@ namespace ConnectionCenter
             dtSchema.Columns.Add("TABLE_CATALOG", System.Type.GetType("System.String"));
             dtSchema.Columns.Add("TABLE_SCHEMA", System.Type.GetType("System.String"));
             dtSchema.Columns.Add("TABLE_NAME", System.Type.GetType("System.String"));
-            dtSchema.Columns.Add("TABLE_TYPE", System.Type.GetType("System.String")); 
+            dtSchema.Columns.Add("TABLE_TYPE", System.Type.GetType("System.String"));
 
             SqlConnection conn = GetSQLConnection();
             if (conn == null)
             {
-                dtSchema = null;
                 return dtSchema;
             }
             try
@@ -79,11 +83,7 @@ namespace ConnectionCenter
                 da.Fill(ds, "TableList");
                 dtSchema = ds.Tables[0];
             }
-            catch
-            {
-                dtSchema = null;
-                MessageBox.Show("获取数据库列表失败。", "错误", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            catch { }
             finally
             {
                 conn.Close();
@@ -91,6 +91,11 @@ namespace ConnectionCenter
             return dtSchema;
         }
 
+        /// <summary>
+        /// 由表名称获取表数据
+        /// </summary>
+        /// <param name="tableName">表名称</param>
+        /// <returns>表数据</returns>
         public static DataTable GetDataByTableName(string tableName)
         {
             DataTable dtData = new DataTable();
@@ -98,25 +103,55 @@ namespace ConnectionCenter
             SqlConnection conn = GetSQLConnection();
             if (conn == null)
             {
-                dtData = null;
                 return dtData;
             }
             try
             {
                 conn.Open();
                 //SQL语句
-                string sqlStr = "SELECT * FROM "+tableName;
+                string sqlStr = "SELECT * FROM " + tableName;
 
                 SqlDataAdapter da = new SqlDataAdapter(sqlStr, conn);
                 DataSet ds = new DataSet();
                 da.Fill(ds, "TableList");
                 dtData = ds.Tables[0];
             }
-            catch
+            catch { }
+            finally
             {
-                dtData = null;
-                MessageBox.Show("获取数据库列表失败。", "错误", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                conn.Close();
             }
+            return dtData;
+        }
+
+        /// <summary>
+        /// 由关键词查询表数据
+        /// </summary>
+        /// <param name="keyword">关键词</param>
+        /// <param name="tableName">表名称</param>
+        /// <param name="fieldName">字段名称</param>
+        /// <returns>数据表</returns>
+        public static DataTable GetDataByKeyword(string keyword, string tableName, string fieldName)
+        {
+            DataTable dtData = new DataTable();
+
+            SqlConnection conn = GetSQLConnection();
+            if (conn == null)
+            {
+                return dtData;
+            }
+            try
+            {
+                conn.Open();
+                //SQL语句
+                string sqlStr = "SELECT * FROM " + tableName + " WHERE " + fieldName + " like '%" + keyword + "%'";
+
+                SqlDataAdapter da = new SqlDataAdapter(sqlStr, conn);
+                DataSet ds = new DataSet();
+                da.Fill(ds, "TableList");
+                dtData = ds.Tables[0];
+            }
+            catch { }
             finally
             {
                 conn.Close();
@@ -140,7 +175,6 @@ namespace ConnectionCenter
             SqlConnection conn = GetSQLConnection();
             if (conn == null)
             {
-                dtUser = null;
                 return dtUser;
             }
             try
@@ -156,11 +190,7 @@ namespace ConnectionCenter
                 da.Fill(ds, "用户列表");
                 dtUser = ds.Tables[0];
             }
-            catch
-            {
-                dtUser = null;
-                MessageBox.Show("获取用户列表失败。", "错误", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            catch { }
             finally
             {
                 conn.Close();
