@@ -121,6 +121,7 @@ namespace CityPlanning
             frmStartConnectionConfig fscc = new frmStartConnectionConfig(this);
             fscc.ShowDialog();
             this.setMultiDocumentsPath();
+            OpenAllPlanDocs();  //系统打开时，默认打开所有文件列表
         }
 
         //初始化控件
@@ -183,7 +184,7 @@ namespace CityPlanning
                 }
                 //如果不包含该TabPage，则新建
                 DataTable dt = SQLServerConnection.GetUserList();
-                if (dt == null)
+                if (dt.Rows.Count == 0)
                 {
                     MessageBox.Show("获取数据失败。", "错误", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
@@ -260,13 +261,9 @@ namespace CityPlanning
             this.panelControl_Navigation.Controls.Add(ucNaviRDB);
 
             DataTable dt = SQLServerConnection.GetDatabaseSchema();
-            if (dt == null)
-            {
-                MessageBox.Show("没有获取到数据。", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
             if (dt.Rows.Count == 0)
             {
+                MessageBox.Show("没有获取到数据。", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
             this.ucNaviRDB.TreeList.KeyFieldName = "id";     //主要显示内容
@@ -309,49 +306,7 @@ namespace CityPlanning
                 if (hi.Node != null)
                 {                    
                     string nodeName = (string)hi.Node["TABLE_NAME"];
-                    //如果已经有这个tabPage
-                    XtraTabPage ifTabPage = ComponentOperator.IfHasTabPage(nodeName, this.xtraTabControl_Main);
-                    if (ifTabPage != null)
-                    {
-                        this.xtraTabControl_Main.SelectedTabPage = ifTabPage;
-                        return;
-                    }
-                    //如果不包含该TabPage，则新建
-                    DataTable dt = SQLServerConnection.GetDataByTableName(nodeName);
-                    if(dt == null)
-                    {
-                        MessageBox.Show("获取数据失败。", "错误", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        return;
-                    }
-                    //表格控件
-                    SpreadsheetControl ssc = new SpreadsheetControl();                    
-                    IWorkbook workbook = ssc.Document;
-                    workbook.BeginUpdate();
-                    Worksheet worksheet = workbook.Worksheets[0];
-                    worksheet.Name = nodeName;
-                    worksheet.Import(dt,true, 0, 0);        //import方法需要添加DevExpress.Docs命名空间
-                    workbook.EndUpdate();
-                    
-                    //icon
-                    int imgIndex = this.imageCollectionIcons.Images.Keys.IndexOf("table");
-                    
-                    //TabPage
-                    XtraTabPage xtp = new XtraTabPage();                    
-                    xtp.Text = nodeName;
-                    xtp.Controls.Add(ssc);
-                    if (imgIndex >= 0)
-                    {
-                        Image tableIcon = this.imageCollectionIcons.Images[imgIndex];
-                        xtp.Image = tableIcon;
-                    }
-                    ssc.Dock = DockStyle.Fill;
-                    this.xtraTabControl_Main.TabPages.Add(xtp);
-                    this.xtraTabControl_Main.SelectedTabPage = xtp;
-                    
-                    ssc.Refresh();
-                    xtp.Refresh();
-                    this.xtraTabControl_Main.Refresh();
-                    this.Refresh();
+                    OpenDatatableInSpreadsheet(nodeName);       //打开关系数据库中的表
                 }
             }
             catch
@@ -576,6 +531,8 @@ namespace CityPlanning
         { 
             //根据TabPage，选择性显示
             XtraTabPage tabPage = e.Page;
+            
+            //其他tab
             foreach (Control control in tabPage.Controls)
             {
                 if (control is SpreadsheetControl)
@@ -613,9 +570,13 @@ namespace CityPlanning
                     ucTocCtrl.TOCControl.SetBuddyControl(curAxMapControl);
                     ucTocCtrl.TOCControl.Refresh();
 
-                    //地图关键词
                     curMapKeyName = tabPage.Text;
+
+                    //地图关键词                    
                     SetMapKeywords();
+
+                    //地图关联表
+                    SetMapTables(curMapKeyName);
                     break;
                 }
                 else
@@ -848,7 +809,7 @@ namespace CityPlanning
                 GalleryItem item1 = new GalleryItem();
                 item1.Caption = key;
                 item1.Value = key;
-                item1.ItemClick += item1_ItemClick;                
+                item1.ItemClick += itemMapKeywords_ItemClick;                
                 galleryItemList.Add(item1);
             }
             GalleryItem[] galleryItems = galleryItemList.ToArray();
@@ -858,7 +819,7 @@ namespace CityPlanning
             //throw new NotImplementedException();
         }
         //地图关键词搜索文档
-        void item1_ItemClick(object sender, GalleryItemClickEventArgs e)
+        void itemMapKeywords_ItemClick(object sender, GalleryItemClickEventArgs e)
         {            
             GalleryItem item = (GalleryItem)sender;
             string keyword = item.Caption;
@@ -893,7 +854,59 @@ namespace CityPlanning
         #endregion 
         
         #region //地图关联表
-        //private void 
+        private void SetMapTables(string curMapKeyName)
+        {
+        	if(curMapKeyName == ""){
+        		return;
+        	}
+            //处理搜索关键词
+            string searchKeyword = curMapKeyName;
+            if (curMapKeyName.Length > 10)
+            {
+                searchKeyword = curMapKeyName.Substring(3, curMapKeyName.Length - 8);
+            }
+            //获取关联表格
+            DataTable dt = ConnectionCenter.SQLServerConnection.GetDataByKeyword(searchKeyword, ConnectionCenter.Config.MapTableIndexName, ConnectionCenter.Config.MapTableIndexFieldMap);
+            if (dt.Rows.Count == 0)
+            {
+                return;
+            }
+            //添加到Gallery
+            this.ribbonGallery_MapTables.Gallery.Groups.Clear();
+            this.ribbonGallery_MapTables.Gallery.ItemCheckMode = DevExpress.XtraBars.Ribbon.Gallery.ItemCheckMode.SingleCheck;
+            GalleryItemGroup itemGroup = new GalleryItemGroup();
+            this.ribbonGallery_MapTables.Gallery.Groups.Add(itemGroup);
+            List<GalleryItem> galleryItemList = new List<GalleryItem>();
+            
+            foreach (DataRow row in dt.Rows)
+            {
+                string tableName = Convert.ToString(row[ConnectionCenter.Config.MapTableIndexFieldTable]);
+                if (tableName == "")
+                {
+                    continue;
+                }
+                GalleryItem item = new GalleryItem();
+                item.Caption = tableName;
+                item.Value = tableName;
+                item.ItemClick += itemMapTables_ItemClick;
+                galleryItemList.Add(item);
+            }
+
+            GalleryItem[] galleryItems = galleryItemList.ToArray();
+            itemGroup.Items.AddRange(galleryItems);
+            ribbonGallery_MapTables.Gallery.ColumnCount = 1;
+            this.ribbonGallery_MapTables.Refresh();
+        }
+        //点击图层关联表
+        void itemMapTables_ItemClick(object sender, GalleryItemClickEventArgs e)
+        {
+            string tableName = e.Item.Caption;
+            if (tableName == "")
+            {
+                return;
+            }
+            OpenDatatableInSpreadsheet(tableName);
+        }
         #endregion
 
         //打开图层列表
@@ -1154,10 +1167,22 @@ namespace CityPlanning
         //主页大小变化，布局跟随改变
         private void xtraTabPage_Home_SizeChanged(object sender, EventArgs e)
         {
+            //搜索框的位置
             int lx = (this.xtraTabPage_Home.Width - this.panel_HomeSearch.Width)/2;
             int ly = (this.xtraTabPage_Home.Height - this.panel_HomeSearch.Height) / 5 * 2;
             this.panel_HomeSearch.Location = new System.Drawing.Point(lx, ly);
             this.label11.Location = new System.Drawing.Point((this.xtraTabPage_Home.Width - this.label11.Width)/2,label11.Location.Y );
+
+            //int panelHeight = this.xtraTabPage_Home.Height / 2;
+            //if (panelHeight > this.panel_HomeSearch.MinimumSize.Height)
+            //{
+            //    this.panel_HomeSearch.Height = panelHeight;
+            //}
+
+            //版权信息的位置
+            int infox = (this.xtraTabPage_Home.Width - this.lbl_CopyrightInfo.Width) / 2;
+            this.lbl_CopyrightInfo.Location = new System.Drawing.Point(infox, this.lbl_CopyrightInfo.Location.Y);
+                 
 
         }
         //规划文本
@@ -1307,9 +1332,57 @@ namespace CityPlanning
                 }
             }
         }
-#endregion
-       
-       
+		#endregion
+
+        #region //打开关系数据库
+        private void OpenDatatableInSpreadsheet(string tableName)
+        {
+            //如果已经有这个tabPage
+            XtraTabPage ifTabPage = ComponentOperator.IfHasTabPage(tableName, this.xtraTabControl_Main);
+            if (ifTabPage != null)
+            {
+                this.xtraTabControl_Main.SelectedTabPage = ifTabPage;
+                return;
+            }
+            //如果不包含该TabPage，则新建
+            DataTable dt = SQLServerConnection.GetDataByTableName(tableName);
+            if (dt.Rows.Count == 0)
+            {
+                MessageBox.Show("获取数据失败。", "错误", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            //表格控件
+            SpreadsheetControl ssc = new SpreadsheetControl();
+            IWorkbook workbook = ssc.Document;
+            workbook.BeginUpdate();
+            Worksheet worksheet = workbook.Worksheets[0];
+            worksheet.Name = tableName;
+            worksheet.Import(dt, true, 0, 0);        //import方法需要添加DevExpress.Docs命名空间
+            workbook.EndUpdate();
+
+            //icon
+            int imgIndex = this.imageCollectionIcons.Images.Keys.IndexOf("table");
+
+            //TabPage
+            XtraTabPage xtp = new XtraTabPage();
+            xtp.Text = tableName;
+            xtp.Controls.Add(ssc);
+            if (imgIndex >= 0)
+            {
+                Image tableIcon = this.imageCollectionIcons.Images[imgIndex];
+                xtp.Image = tableIcon;
+            }
+            ssc.Dock = DockStyle.Fill;
+            this.xtraTabControl_Main.TabPages.Add(xtp);
+            this.xtraTabControl_Main.SelectedTabPage = xtp;
+
+            ssc.Refresh();
+            xtp.Refresh();
+            this.xtraTabControl_Main.Refresh();
+            this.Refresh();
+        }
+        #endregion
+
         #region//叠置分析所需方法
         //坐标点赋坐标
         private IPoint GetGeo(double x, double y)
@@ -2138,7 +2211,7 @@ namespace CityPlanning
         #endregion 
         #endregion
 
-        #region 专题图
+        #region //专题图
         //地图打开事件
         private void bOpenRedLine_ItemClick(object sender, ItemClickEventArgs e)
         {
