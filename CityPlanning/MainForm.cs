@@ -1914,7 +1914,7 @@ namespace CityPlanning
                     {
                         //添加feature;
                         //F:\坐标转shp\坐标序列文件\土地样例.xls
-                        string strcon = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source="+op.FileName+";Extended Properties='Excel 8.0;HDR=YES;IMEX=1;'";
+                        string strcon = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source="+op.FileName+";Extended Properties='Excel 12.0;HDR=YES;IMEX=1;'";
                         OleDbConnection con = new OleDbConnection(strcon);
                         con.Open();
                         string sheetname = "";
@@ -2326,7 +2326,7 @@ namespace CityPlanning
             this.Refresh();
             string path = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.RedLineMap;
             mapControl.LoadMxFile(path);
-            extractShp(mapControl);
+            //extractShp(mapControl);
             mapControl.ActiveView.Refresh();
             AlreadyAddMap = true;
         }
@@ -2335,11 +2335,8 @@ namespace CityPlanning
         private void bClearAnalysis_ItemClick(object sender, ItemClickEventArgs e)
         {
             AxMapControl mapControl = new AxMapControl();
-           Modules.ucChartForm ucc = new Modules.ucChartForm(this);
-           ucc.Activated += curChartForm_Activated;
             mapControl = curAxMapControl;
             mapControl.ClearLayers();
-            ucc.Close();
             string path = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.RedLineMap;
             mapControl.LoadMxFile(path);
             mapControl.Refresh();
@@ -2816,7 +2813,7 @@ namespace CityPlanning
             string path = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.ThematicGDPTrans;
             if (AlreadyAddMap)
             {
-                curXtraTabPage.Text = "GDP重心转移图";
+                this.curXtraTabPage.Text = "GDP重心转移图";
                 curAxMapControl.ClearLayers();
                 curAxMapControl.LoadMxFile(path);
                 curAxMapControl.ActiveView.Refresh();
