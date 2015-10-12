@@ -1,4 +1,4 @@
-DevExpress.Patch.InMemoryPatch, DevExpress.Patch.Common, Version=6.2.0.0, Culture=neutral, PublicKeyToken=7fc7bfca2443de66
+DevExpress.Patch.InMemoryPatch, DevExpress.Patch.Common, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7fc7bfca2443de66
 DevExpress.XtraGrid.GridControl, DevExpress.XtraGrid.v13.1, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a
 DevExpress.XtraPdfViewer.PdfViewer, DevExpress.XtraPdfViewer.v13.1, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a
 DevExpress.XtraSpreadsheet.SpreadsheetControl, DevExpress.XtraSpreadsheet.v13.1, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a

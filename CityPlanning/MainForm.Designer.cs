@@ -331,6 +331,8 @@
             this.bMapToolNull = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonGallery_MapAnalysis = new DevExpress.XtraBars.RibbonGalleryBarItem();
             this.imageCollection_MapAnalysis = new DevExpress.Utils.ImageCollection(this.components);
+            this.barButtonGroup17 = new DevExpress.XtraBars.BarButtonGroup();
+            this.barButtonGroup18 = new DevExpress.XtraBars.BarButtonGroup();
             this.ribbonImageCollectionLarge = new DevExpress.Utils.ImageCollection(this.components);
             this.ribbonPageCategory_map = new DevExpress.XtraBars.Ribbon.RibbonPageCategory();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -461,8 +463,6 @@
             this.pdfSetFitWidthZoomModeCheckItem1 = new DevExpress.XtraPdfViewer.Bars.PdfSetFitWidthZoomModeCheckItem();
             this.pdfSetFitVisibleZoomModeCheckItem1 = new DevExpress.XtraPdfViewer.Bars.PdfSetFitVisibleZoomModeCheckItem();
             this.pdfBarController1 = new DevExpress.XtraPdfViewer.Bars.PdfBarController();
-            this.barButtonGroup17 = new DevExpress.XtraBars.BarButtonGroup();
-            this.barButtonGroup18 = new DevExpress.XtraBars.BarButtonGroup();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.appMenu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonImageCollection)).BeginInit();
@@ -834,7 +834,7 @@
             this.barButtonGroup18});
             this.ribbonControl.LargeImages = this.ribbonImageCollectionLarge;
             this.ribbonControl.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl.MaxItemId = 715;
+            this.ribbonControl.MaxItemId = 717;
             this.ribbonControl.Name = "ribbonControl";
             this.ribbonControl.PageCategories.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageCategory[] {
             this.ribbonPageCategory_map,
@@ -3327,6 +3327,22 @@
             this.imageCollection_MapAnalysis.Images.SetKeyName(5, "flood1_32.jpg");
             this.imageCollection_MapAnalysis.Images.SetKeyName(6, "polyline_32.jpg");
             // 
+            // barButtonGroup17
+            // 
+            this.barButtonGroup17.Caption = "barButtonGroup17";
+            this.barButtonGroup17.Id = 713;
+            this.barButtonGroup17.ItemLinks.Add(this.bMapZoomIn);
+            this.barButtonGroup17.ItemLinks.Add(this.bMapScaleIn);
+            this.barButtonGroup17.Name = "barButtonGroup17";
+            // 
+            // barButtonGroup18
+            // 
+            this.barButtonGroup18.Caption = "barButtonGroup18";
+            this.barButtonGroup18.Id = 714;
+            this.barButtonGroup18.ItemLinks.Add(this.bMapZoomOut);
+            this.barButtonGroup18.ItemLinks.Add(this.bMapScaleOut);
+            this.barButtonGroup18.Name = "barButtonGroup18";
+            // 
             // ribbonImageCollectionLarge
             // 
             this.ribbonImageCollectionLarge.ImageSize = new System.Drawing.Size(32, 32);
@@ -4598,14 +4614,14 @@
             // 
             this.pdfPreviousPageBarItem1.Enabled = false;
             this.pdfPreviousPageBarItem1.Id = 1;
-            this.pdfPreviousPageBarItem1.ItemShortcut = new DevExpress.XtraBars.BarShortcut(System.Windows.Forms.Keys.Prior);
+            this.pdfPreviousPageBarItem1.ItemShortcut = new DevExpress.XtraBars.BarShortcut(System.Windows.Forms.Keys.PageUp);
             this.pdfPreviousPageBarItem1.Name = "pdfPreviousPageBarItem1";
             // 
             // pdfNextPageBarItem1
             // 
             this.pdfNextPageBarItem1.Enabled = false;
             this.pdfNextPageBarItem1.Id = 2;
-            this.pdfNextPageBarItem1.ItemShortcut = new DevExpress.XtraBars.BarShortcut(System.Windows.Forms.Keys.Next);
+            this.pdfNextPageBarItem1.ItemShortcut = new DevExpress.XtraBars.BarShortcut(System.Windows.Forms.Keys.PageDown);
             this.pdfNextPageBarItem1.Name = "pdfNextPageBarItem1";
             // 
             // pdfZoomOutBarItem1
@@ -4748,22 +4764,6 @@
             this.pdfBarController1.BarItems.Add(this.pdfSetPageLevelZoomModeCheckItem1);
             this.pdfBarController1.BarItems.Add(this.pdfSetFitWidthZoomModeCheckItem1);
             this.pdfBarController1.BarItems.Add(this.pdfSetFitVisibleZoomModeCheckItem1);
-            // 
-            // barButtonGroup17
-            // 
-            this.barButtonGroup17.Caption = "barButtonGroup17";
-            this.barButtonGroup17.Id = 713;
-            this.barButtonGroup17.ItemLinks.Add(this.bMapZoomIn);
-            this.barButtonGroup17.ItemLinks.Add(this.bMapScaleIn);
-            this.barButtonGroup17.Name = "barButtonGroup17";
-            // 
-            // barButtonGroup18
-            // 
-            this.barButtonGroup18.Caption = "barButtonGroup18";
-            this.barButtonGroup18.Id = 714;
-            this.barButtonGroup18.ItemLinks.Add(this.bMapZoomOut);
-            this.barButtonGroup18.ItemLinks.Add(this.bMapScaleOut);
-            this.barButtonGroup18.Name = "barButtonGroup18";
             // 
             // MainForm
             // 
