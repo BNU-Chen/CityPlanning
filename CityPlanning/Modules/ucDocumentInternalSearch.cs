@@ -339,7 +339,7 @@ namespace CityPlanning.Modules
             if (this.documentRangeCollection.Count == 0)
                 this.lblSearchResultInfo.Text = "搜索结果：";
             else
-                this.lblSearchResultInfo.Text = "搜索结果：" + this.documentRangeCollection.Count;
+                this.lblSearchResultInfo.Text = "搜索结果：" + this.documentRangeCollection.Count + "个";
         }
         #endregion
 
@@ -388,31 +388,31 @@ namespace CityPlanning.Modules
 
             switch (extName)
             {
-                case "doc":
+                case ".doc":
                     documentFormat = DocumentFormat.Doc;
                     break;
-                case "docx":
+                case ".docx":
                     documentFormat = DocumentFormat.OpenXml;
                     break;
-                case "epub":
+                case ".epub":
                     documentFormat = DocumentFormat.ePub;
                     break;
-                case "html":
+                case ".html":
                     documentFormat = DocumentFormat.Html;
                     break;
-                case "mht":
+                case ".mht":
                     documentFormat = DocumentFormat.Mht;
                     break;
-                case "odt":
+                case ".odt":
                     documentFormat = DocumentFormat.OpenDocument;
                     break;
-                case "txt":
+                case ".txt":
                     documentFormat = DocumentFormat.PlainText;
                     break;
-                case "rtf":
+                case ".rtf":
                     documentFormat = DocumentFormat.Rtf;
                     break;
-                case "xml":
+                case ".xml":
                     documentFormat = DocumentFormat.WordML;
                     break;
                 default:
