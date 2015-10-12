@@ -12,8 +12,8 @@ namespace ConnectionCenter
         private static string ftpPort;
         private static string ftpUserName;
         private static string ftpPassword;
-
-
+        private static string ftpCatalog;  //初始化目录
+                
         //FTP
         public static string FtpIP
         {
@@ -34,6 +34,11 @@ namespace ConnectionCenter
         {
             get { return ftpPassword.Trim(); }
             set { ftpPassword = value; }
+        }
+        public static string FtpCatalog
+        {
+            get { return FTPConnection.ftpCatalog; }
+            set { FTPConnection.ftpCatalog = value; }
         }
     }
 }

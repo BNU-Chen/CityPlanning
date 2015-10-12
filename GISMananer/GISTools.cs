@@ -29,6 +29,7 @@ namespace GISManager
                 return;
             }
             IMapControl2 mapControl = (IMapControl2)axMapControl.Object;
+            mapControl.MousePointer = esriControlsMousePointer.esriPointerArrow;
             mapControl.CurrentTool = null;
         }
         /// <summary>
