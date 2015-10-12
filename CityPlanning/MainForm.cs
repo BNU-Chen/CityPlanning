@@ -42,6 +42,8 @@ using SharpMap.Data.Providers;
 using ESRI.ArcGIS.Geoprocessor;
 using ESRI.ArcGIS.AnalysisTools;
 using ESRI.ArcGIS.DataSourcesRaster;
+using CityPlanning.Forms;
+using CityPlanning.Modules;
 
 //本项目解决方案
 using ConnectionCenter;
@@ -618,6 +620,22 @@ namespace CityPlanning
                     SetMapKeywords();
                     break;
                 }
+                if (control is ucSpatialAnalysisResult)
+                {
+                    curAxMapControl = (AxMapControl)control;
+                    this.ribbonPageCategory_xls.Visible = false;
+                    this.ribbonPageCategory_doc.Visible = false;
+                    this.ribbonPageCategory_map.Visible = true;
+                    this.ribbonControl.SelectedPage = this.ribbonPageCategory_map.Pages[0];
+                    curAxMapControl.OnMouseUp += curAxMapControl_OnMouseUp;
+                    curAxMapControl.OnMouseDown += curAxMapControl_OnMouseDown;
+                    curAxMapControl.OnMouseMove += curAxMapControl_OnMouseMove;
+
+                    //TOCControl
+                    ucTocCtrl.TOCControl.SetBuddyControl(curAxMapControl);
+                    ucTocCtrl.TOCControl.Refresh();
+                    break;
+                }
                 else
                 {
                     //先隐藏所有ribbonPageCategory
@@ -857,9 +875,15 @@ namespace CityPlanning
             ribbonGallery_MapKeywords.Gallery.ColumnCount = 3;
             //throw new NotImplementedException();
         }
-        //地图关键词搜索文档
+        //地图关键词搜索文档//郭海强1012 修复无法删除关键词Bug
         void item1_ItemClick(object sender, GalleryItemClickEventArgs e)
         {            
+            //GalleryItem item = (GalleryItem)sender;
+            //string keyword = item.Caption;
+            //SearchInPlanDoc(keyword);
+        }
+        private void ribbonGallery_MapKeywords_ItemDoubleClick(object sender, ItemClickEventArgs e)
+        {
             GalleryItem item = (GalleryItem)sender;
             string keyword = item.Caption;
             SearchInPlanDoc(keyword);
@@ -1219,6 +1243,16 @@ namespace CityPlanning
             }
             this.panelControl_Navigation.Controls.Clear();
             this.panelControl_Navigation.Controls.Add(ucDocIntSearch);
+            
+            XtraTabPage xtp = new XtraTabPage();
+            xtp.Text = System.IO.Path.GetFileName(path);
+            string extension = System.IO.Path.GetExtension(path);
+            extension = extension.Replace(".", "");
+            int iconIndex = this.imageCollectionIcons.Images.Keys.IndexOf(extension);
+            if (iconIndex >= 0) 
+                xtp.Image = this.imageCollectionIcons.Images[iconIndex];
+            this.xtraTabControl_Main.TabPages.Add(xtp);
+            this.xtraTabControl_Main.SelectedTabPage = xtp;
             ucDocIntSearch.SearchFromDocument(keyword, path, this.xtraTabControl_Main.SelectedTabPage);
         }
         #endregion
@@ -2216,6 +2250,14 @@ namespace CityPlanning
         //交通网络密度图
         private void TranspNetDensity()
         {
+            frmAnalysisTrafficNetworkDensity frmTrafficAnalysis = new frmAnalysisTrafficNetworkDensity();
+            frmTrafficAnalysis.FilePathOfRoadDistributionMap = "";
+            frmTrafficAnalysis.FilePathOfPolygonBoundaryMap = "";
+            frmTrafficAnalysis.FilePathOfTrafficDensityMap = "";
+            frmTrafficAnalysis.ShowDialog();
+            bool whetherAnalysis = frmTrafficAnalysis.StartAnalysis;
+            if (!whetherAnalysis) return;
+
             //加载进度条
             ThreadForm thr = new ThreadForm(0, 100);
             thr.Show(this);
@@ -2226,47 +2268,25 @@ namespace CityPlanning
             }
             thr.Close();
             //加载结果图
+            XtraTabPage xtraTabPage = new XtraTabPage();
+            xtraTabPage.Text = "店里网络密度分析";
+            xtraTabPage.Image = this.imageCollectionIcons.Images[this.imageCollectionIcons.Images.Keys.IndexOf("mxd")];
+            xtraTabControl_Main.TabPages.Add(xtraTabPage);
+            xtraTabControl_Main.SelectedTabPage = xtraTabPage;
+
             string path = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.ThematicTraffic;
-            if(AlreadyAddMap)
-            {
-                curXtraTabPage.Text = "交通网络密度图";
-                curAxMapControl.ClearLayers();
-                curAxMapControl.LoadMxFile(path);
-                curAxMapControl.ActiveView.Refresh();
-            }
-            else
-            {
-                AxMapControl mapControl = new AxMapControl();
-                mapControl.BeginInit();     //必须有begin和end
-                mapControl.Location = new System.Drawing.Point(0, 0);
-                mapControl.Name = "mapControl1";
-                mapControl.Dock = DockStyle.Fill;
-                mapControl.OnMouseDown += new IMapControlEvents2_Ax_OnMouseDownEventHandler(mapControl_OnMouseDown);
-                //MapControl不支持先声明，后设置，故而直接设置
+            string path2 = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.ThematicDisaster;
 
-                XtraTabPage xtp = new XtraTabPage();
-                xtp.Text = "交通网络密度图";
-                //resourses路径获取
-                Bitmap image = new Bitmap(System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.Windows.Forms.Application.StartupPath).ToString()) + @"\Resources\Globe-16.jpg");
-                xtp.Image = image;
-                xtp.Controls.Add(mapControl);
-                this.xtraTabControl_Main.TabPages.Add(xtp);
-                this.xtraTabControl_Main.SelectedTabPage = xtp;
-                mapControl.EndInit();       //必须有begin和end
-
-                mapControl.Refresh();
-                xtp.Refresh();
-                this.xtraTabControl_Main.Refresh();
-                this.Refresh();
-                mapControl.LoadMxFile(path);
-                mapControl.ActiveView.Refresh();
-                AlreadyAddMap = true;
-            }
+            ucSpatialAnalysisResult alyRetShow = new ucSpatialAnalysisResult(path, path2);
+            xtraTabPage.Controls.Add(alyRetShow);
+            alyRetShow.Dock = DockStyle.Fill;
+            alyRetShow.Refresh();
+            xtraTabControl_Main.Refresh();
+            /*
             //分析结果文字显示
-            //窗体显示唯一
             if (ResFrm == null)
             {
-                string Text = "交通网络密度分析结果如下：";
+                string Text = "电力网络密度分析结果如下：";
                 ResFrm = new ResultShowForm(Text);
                 ResFrm.Left = 250;
                 ResFrm.Top = 200;
@@ -2275,18 +2295,27 @@ namespace CityPlanning
             else
             {
                 ResFrm.Close();
-                string Text = "交通网络密度分析结果如下：";
+                string Text = "电力网络密度分析结果如下：";
                 ResFrm = new ResultShowForm(Text);
                 ResFrm.Left = 250;
                 ResFrm.Top = 200;
                 ResFrm.Show();
                 ResFrm.Activate();
             }
+            */
         }
 
         //电力网络密度图
         private void ElecNetDensity()
         {
+            frmAnalysisElectricnetDensityAnalysis frmElectricnetAnalysis = new frmAnalysisElectricnetDensityAnalysis();
+            frmElectricnetAnalysis.FilePathOfElectricnetDistributionMap = "";
+            frmElectricnetAnalysis.FilePathOfPolygonBoundaryMap = "";
+            frmElectricnetAnalysis.FilePathOfElectricnetDensityMap = "";
+            frmElectricnetAnalysis.ShowDialog();
+            bool whetherAnalysis = frmElectricnetAnalysis.StartAnalysis;
+            if (!whetherAnalysis) return;
+
             //加载进度条
             ThreadForm thr = new ThreadForm(0, 100);
             thr.Show(this);
@@ -2297,66 +2326,36 @@ namespace CityPlanning
             }
             thr.Close();
             //加载结果图
-            string path = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.ThematicElectricity;
-            if (AlreadyAddMap)
-            {
-                curXtraTabPage.Text = "电力网络密度图";
-                curAxMapControl.ClearLayers();
-                curAxMapControl.LoadMxFile(path);
-                curAxMapControl.ActiveView.Refresh();
-            }
-            else
-            {
-                AxMapControl mapControl = new AxMapControl();
-                mapControl.BeginInit();     //必须有begin和end
-                mapControl.Location = new System.Drawing.Point(0, 0);
-                mapControl.Name = "mapControl1";
-                mapControl.Dock = DockStyle.Fill;
-                mapControl.OnMouseDown += new IMapControlEvents2_Ax_OnMouseDownEventHandler(mapControl_OnMouseDown);
-                //MapControl不支持先声明，后设置，故而直接设置
+            XtraTabPage xtraTabPage = new XtraTabPage();
+            xtraTabPage.Text = "电力网络密度分析";
+            xtraTabPage.Image = this.imageCollectionIcons.Images[this.imageCollectionIcons.Images.Keys.IndexOf("mxd")];
+            xtraTabControl_Main.TabPages.Add(xtraTabPage);
+            xtraTabControl_Main.SelectedTabPage = xtraTabPage;
 
-                XtraTabPage xtp = new XtraTabPage();
-                xtp.Text = "电力网络密度图";
-                //resourses路径获取
-                Bitmap image = new Bitmap(System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.Windows.Forms.Application.StartupPath).ToString()) + @"\Resources\Globe-16.jpg");
-                xtp.Image = image;
-                xtp.Controls.Add(mapControl);
-                this.xtraTabControl_Main.TabPages.Add(xtp);
-                this.xtraTabControl_Main.SelectedTabPage = xtp;
-                mapControl.EndInit();       //必须有begin和end
+            string path = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.ThematicTraffic;
+            string path2 = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.ThematicDisaster;
 
-                mapControl.Refresh();
-                xtp.Refresh();
-                this.xtraTabControl_Main.Refresh();
-                this.Refresh();
-                mapControl.LoadMxFile(path);
-                mapControl.ActiveView.Refresh();
-                AlreadyAddMap = true;
-            }
-            //分析结果文字显示
-            if (ResFrm == null)
-            {
-                string Text = "电力网络密度分析结果如下：";
-                ResFrm = new ResultShowForm(Text);
-                ResFrm.Left = 250;
-                ResFrm.Top = 200;
-                ResFrm.Show();
-            }
-            else
-            {
-                ResFrm.Close();
-                string Text = "电力网络密度分析结果如下：";
-                ResFrm = new ResultShowForm(Text);
-                ResFrm.Left = 250;
-                ResFrm.Top = 200;
-                ResFrm.Show();
-                ResFrm.Activate();
-            }
+            ucSpatialAnalysisResult alyRetShow = new ucSpatialAnalysisResult(path, path2);
+            xtraTabPage.Controls.Add(alyRetShow);
+            alyRetShow.Dock = DockStyle.Fill;
+            alyRetShow.Refresh();
+            xtraTabControl_Main.Refresh();
         }
 
         //综合灾害风险图
         private void IntDisasterRisk()
         {
+            frmAnalysisComprehensiveRiskEvaluation frmComprehensiveRiskAnalysis = new frmAnalysisComprehensiveRiskEvaluation();
+            frmComprehensiveRiskAnalysis.FilePathOfEarthquakeDistributionMap = "";
+            frmComprehensiveRiskAnalysis.FilePathOfFloodDistributionMap = "";
+            frmComprehensiveRiskAnalysis.FilePathOfSandyDistributionMap = "";
+            frmComprehensiveRiskAnalysis.FilePathOfOtherDistributionMap = "";
+            frmComprehensiveRiskAnalysis.FilePathOfPolygonBoundaryMap = "";
+            frmComprehensiveRiskAnalysis.FilePathOfEvaluationResultMap = "";
+            frmComprehensiveRiskAnalysis.ShowDialog();
+            bool whetherAnalysis = frmComprehensiveRiskAnalysis.StartAnalysis;
+            if (!whetherAnalysis) return;
+
             //加载进度条
             ThreadForm thr = new ThreadForm(0, 100);
             thr.Show(this);
@@ -2367,131 +2366,57 @@ namespace CityPlanning
             }
             thr.Close();
             //加载结果图
-            string path = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.ThematicDisaster;
-            if (AlreadyAddMap)
-            {
-                curXtraTabPage.Text = "综合灾害风险图";
-                curAxMapControl.ClearLayers();
-                curAxMapControl.LoadMxFile(path);
-                curAxMapControl.ActiveView.Refresh();
-            }
-            else
-            {
-                AxMapControl mapControl = new AxMapControl();
-                mapControl.BeginInit();     //必须有begin和end
-                mapControl.Location = new System.Drawing.Point(0, 0);
-                mapControl.Name = "mapControl1";
-                mapControl.Dock = DockStyle.Fill;
-                mapControl.OnMouseDown += new IMapControlEvents2_Ax_OnMouseDownEventHandler(mapControl_OnMouseDown);
-                //MapControl不支持先声明，后设置，故而直接设置
+            XtraTabPage xtraTabPage = new XtraTabPage();
+            xtraTabPage.Text = "综合灾害风险评估";
+            xtraTabPage.Image = this.imageCollectionIcons.Images[this.imageCollectionIcons.Images.Keys.IndexOf("mxd")];
+            xtraTabControl_Main.TabPages.Add(xtraTabPage);
+            xtraTabControl_Main.SelectedTabPage = xtraTabPage;
 
-                XtraTabPage xtp = new XtraTabPage();
-                xtp.Text = "综合灾害风险图";
-                //resourses路径获取
-                Bitmap image = new Bitmap(System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.Windows.Forms.Application.StartupPath).ToString()) + @"\Resources\Globe-16.jpg");
-                xtp.Image = image;
-                xtp.Controls.Add(mapControl);
-                this.xtraTabControl_Main.TabPages.Add(xtp);
-                this.xtraTabControl_Main.SelectedTabPage = xtp;
-                mapControl.EndInit();       //必须有begin和end
+            string path = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.ThematicTraffic;
+            string path2 = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.ThematicDisaster;
 
-                mapControl.Refresh();
-                xtp.Refresh();
-                this.xtraTabControl_Main.Refresh();
-                this.Refresh();
-                mapControl.LoadMxFile(path);
-                mapControl.ActiveView.Refresh();
-                AlreadyAddMap = true;
-            }
-            //分析结果文字显示
-            if (ResFrm == null)
-            {
-                string Text = "综合灾害风险分析结果如下：";
-                ResFrm = new ResultShowForm(Text);
-                ResFrm.Left = 250;
-                ResFrm.Top = 200;
-                ResFrm.Show();
-            }
-            else
-            {
-                ResFrm.Close();
-                string Text = "综合灾害风险分析结果如下：";
-                ResFrm = new ResultShowForm(Text);
-                ResFrm.Left = 250;
-                ResFrm.Top = 200;
-                ResFrm.Show();
-                ResFrm.Activate();
-            }
+            ucSpatialAnalysisResult alyRetShow = new ucSpatialAnalysisResult(path, path2);
+            xtraTabPage.Controls.Add(alyRetShow);
+            alyRetShow.Dock = DockStyle.Fill;
+            alyRetShow.Refresh();
+            xtraTabControl_Main.Refresh();
         }
 
         //生态服务价值图
         private void EcoServiceValue()
         {
+            frmAnalysisEcologicalPriceEvaluation frmEcologicalPriceAnalysis = new frmAnalysisEcologicalPriceEvaluation();
+            frmEcologicalPriceAnalysis.FilePathOfLandtypeDistributionMap = "";
+            frmEcologicalPriceAnalysis.FilePathOfPolygonBoundaryMap = "";
+            frmEcologicalPriceAnalysis.FilePathOfEcologicalPriceDistributionMap = "";
+            frmEcologicalPriceAnalysis.ShowDialog();
+            bool whetherAnalysis = frmEcologicalPriceAnalysis.StartAnalysis;
+            if (!whetherAnalysis) return;
+
             //加载进度条
             ThreadForm thr = new ThreadForm(0, 100);
             thr.Show(this);
             for (int i = 0; i < 100; i++)
             {
                 thr.setPos(i);
-                Thread.Sleep(50);
+                Thread.Sleep(40);
             }
             thr.Close();
             //加载结果图
-            string path = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.ThematicZoology;
-            if (AlreadyAddMap)
-            {
-                curXtraTabPage.Text = "生态服务价值图";
-                curAxMapControl.ClearLayers();
-                curAxMapControl.LoadMxFile(path);
-                curAxMapControl.ActiveView.Refresh();
-            }
-            else
-            {
-                AxMapControl mapControl = new AxMapControl();
-                mapControl.BeginInit();     //必须有begin和end
-                mapControl.Location = new System.Drawing.Point(0, 0);
-                mapControl.Name = "mapControl1";
-                mapControl.Dock = DockStyle.Fill;
-                mapControl.OnMouseDown += new IMapControlEvents2_Ax_OnMouseDownEventHandler(mapControl_OnMouseDown);
-                //MapControl不支持先声明，后设置，故而直接设置
+            XtraTabPage xtraTabPage = new XtraTabPage();
+            xtraTabPage.Text = "电力网络密度分析";
+            xtraTabPage.Image = this.imageCollectionIcons.Images[this.imageCollectionIcons.Images.Keys.IndexOf("mxd")];
+            xtraTabControl_Main.TabPages.Add(xtraTabPage);
+            xtraTabControl_Main.SelectedTabPage = xtraTabPage;
 
-                XtraTabPage xtp = new XtraTabPage();
-                xtp.Text = "生态服务价值图";
-                //resourses路径获取
-                Bitmap image = new Bitmap(System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.Windows.Forms.Application.StartupPath).ToString()) + @"\Resources\Globe-16.jpg");
-                xtp.Image = image;
-                xtp.Controls.Add(mapControl);
-                this.xtraTabControl_Main.TabPages.Add(xtp);
-                this.xtraTabControl_Main.SelectedTabPage = xtp;
-                mapControl.EndInit();       //必须有begin和end
+            string path = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.ThematicTraffic;
+            string path2 = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.ThematicDisaster;
 
-                mapControl.Refresh();
-                xtp.Refresh();
-                this.xtraTabControl_Main.Refresh();
-                this.Refresh();
-                mapControl.LoadMxFile(path);
-                mapControl.ActiveView.Refresh();
-                AlreadyAddMap = true;
-            }
-            //分析结果文字显示
-            if (ResFrm == null)
-            {
-                string Text = "生态服务价值分析结果如下：";
-                ResFrm = new ResultShowForm(Text);
-                ResFrm.Left = 250;
-                ResFrm.Top = 200;
-                ResFrm.Show();
-            }
-            else
-            {
-                ResFrm.Close();
-                string Text = "生态服务价值分析结果如下：";
-                ResFrm = new ResultShowForm(Text);
-                ResFrm.Left = 250;
-                ResFrm.Top = 200;
-                ResFrm.Show();
-                ResFrm.Activate();
-            }
+            ucSpatialAnalysisResult alyRetShow = new ucSpatialAnalysisResult(path, path2);
+            xtraTabPage.Controls.Add(alyRetShow);
+            alyRetShow.Dock = DockStyle.Fill;
+            alyRetShow.Refresh();
+            xtraTabControl_Main.Refresh();
         }
 
         //水文分析图
@@ -2637,76 +2562,39 @@ namespace CityPlanning
         //GDP重心转移图
         private void GDPCenterTransfer()
         {
+            frmAnalysisGDPCenterTansfer frmGDPCenterTansferAnalysis = new frmAnalysisGDPCenterTansfer();
+            frmGDPCenterTansferAnalysis.FilePathOfCityCenterDistributionMap = "";
+            frmGDPCenterTansferAnalysis.FilePathOfGDPStatisticalTable = "";
+            frmGDPCenterTansferAnalysis.FilePathOfEconomicCenterTransferMap = "";
+            frmGDPCenterTansferAnalysis.ShowDialog();
+            bool whetherAnalysis = frmGDPCenterTansferAnalysis.StartAnalysis;
+            if (!whetherAnalysis) return;
+
             //加载进度条
             ThreadForm thr = new ThreadForm(0, 100);
             thr.Show(this);
             for (int i = 0; i < 100; i++)
             {
                 thr.setPos(i);
-                Thread.Sleep(60);
+                Thread.Sleep(40);
             }
             thr.Close();
             //加载结果图
-            string path = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.ThematicGDPTrans;
-            if (AlreadyAddMap)
-            {
-                curXtraTabPage.Text = "GDP重心转移图";
-                curAxMapControl.ClearLayers();
-                curAxMapControl.LoadMxFile(path);
-                curAxMapControl.ActiveView.Refresh();
-            }
-            else
-            {
-                AxMapControl mapControl = new AxMapControl();
-                mapControl.BeginInit();     //必须有begin和end
-                mapControl.Location = new System.Drawing.Point(0, 0);
-                mapControl.Name = "mapControl1";
-                mapControl.Dock = DockStyle.Fill;
-                mapControl.OnMouseDown += new IMapControlEvents2_Ax_OnMouseDownEventHandler(mapControl_OnMouseDown);
-                //MapControl不支持先声明，后设置，故而直接设置
+            XtraTabPage xtraTabPage = new XtraTabPage();
+            xtraTabPage.Text = "电力网络密度分析";
+            xtraTabPage.Image = this.imageCollectionIcons.Images[this.imageCollectionIcons.Images.Keys.IndexOf("mxd")];
+            xtraTabControl_Main.TabPages.Add(xtraTabPage);
+            xtraTabControl_Main.SelectedTabPage = xtraTabPage;
 
-                XtraTabPage xtp = new XtraTabPage();
-                xtp.Text = "GDP重心转移图";
-                //resourses路径获取
-                Bitmap image = new Bitmap(System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.Windows.Forms.Application.StartupPath).ToString()) + @"\Resources\Globe-16.jpg");
-                xtp.Image = image;
-                xtp.Controls.Add(mapControl);
-                this.xtraTabControl_Main.TabPages.Add(xtp);
-                this.xtraTabControl_Main.SelectedTabPage = xtp;
-                mapControl.EndInit();       //必须有begin和end
+            string path = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.ThematicTraffic;
+            string path2 = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.ThematicDisaster;
 
-                mapControl.Refresh();
-                xtp.Refresh();
-                this.xtraTabControl_Main.Refresh();
-                this.Refresh();
-                mapControl.LoadMxFile(path);
-                mapControl.ActiveView.Refresh();
-                AlreadyAddMap = true;
-            }
-            //分析结果文字显示
-            if (ResFrm == null)
-            {
-                string Text = "GDP重心转移分析结果如下：";
-                ResFrm = new ResultShowForm(Text);
-                ResFrm.Left = 250;
-                ResFrm.Top = 200;
-                ResFrm.Show();
-            }
-            else
-            {
-                ResFrm.Close();
-                string Text = "GDP重心转移分析结果如下：";
-                ResFrm = new ResultShowForm(Text);
-                ResFrm.Left = 250;
-                ResFrm.Top = 200;
-                ResFrm.Show();
-                ResFrm.Activate();
-            }
+            ucSpatialAnalysisResult alyRetShow = new ucSpatialAnalysisResult(path, path2);
+            xtraTabPage.Controls.Add(alyRetShow);
+            alyRetShow.Dock = DockStyle.Fill;
+            alyRetShow.Refresh();
+            xtraTabControl_Main.Refresh();
         }
         #endregion
-
-
-
-
     }
 }
