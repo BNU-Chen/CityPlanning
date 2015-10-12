@@ -455,6 +455,7 @@ namespace CityPlanning
                 }
             }
         }
+        
         //关系数据库导航栏图标
         private void ucNaviRDB_TreeList_GetStateImage(object sender, DevExpress.XtraTreeList.GetStateImageEventArgs e)
         {
@@ -465,6 +466,7 @@ namespace CityPlanning
             }
 
         }
+        
         //文件数据库导航栏图标
         private void ucNaviFiles_TreeList_GetStateImage(object sender, DevExpress.XtraTreeList.GetStateImageEventArgs e)
         {
@@ -577,6 +579,19 @@ namespace CityPlanning
 
                     //地图关联表
                     SetMapTables(curMapKeyName);
+
+                    //地图属性查询
+                    if (pFrmMapFeatureAttr != null && pFrmMapFeatureAttr.IsDisposed == false)
+                    {
+                        pFrmMapFeatureAttr.Close();
+                        pFrmMapFeatureAttr.Dispose();
+                        pFrmMapFeatureAttr = null;
+                    }
+                    GISTools.setNull(curAxMapControl);
+                    isIdentifyMap = false;
+                    this.bMapQueryByPoint.Down = false;
+                    curAxMapControl.Map.ClearSelection();
+                    curAxMapControl.Refresh();
                     break;
                 }
                 else
@@ -909,6 +924,24 @@ namespace CityPlanning
         }
         #endregion
 
+        //要素属性查询
+        private void bMapQueryByPoint_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            GISManager.GISTools.setNull(curAxMapControl);
+
+            isIdentifyMap = this.bMapQueryByPoint.Down;
+            if (isIdentifyMap)
+            {
+                //curAxMapControl.MousePointer = ESRI.ArcGIS.Controls.esriControlsMousePointer.esriPointerCrosshair;
+                GISTools.SelectFeature(curAxMapControl);
+            }
+            else
+            {
+                //curAxMapControl.MousePointer = ESRI.ArcGIS.Controls.esriControlsMousePointer.esriPointerArrow;
+                curAxMapControl.Map.ClearSelection();
+                curAxMapControl.Refresh();
+            }
+        }
         //打开图层列表
         private void bMapLayers_ItemClick(object sender, ItemClickEventArgs e)
         {
@@ -983,23 +1016,6 @@ namespace CityPlanning
             GISTools.ZoomOutFix(curAxMapControl);
         }
 
-        private void bMapQueryByPoint_ItemClick(object sender, ItemClickEventArgs e)
-        {            
-            GISManager.GISTools.setNull(curAxMapControl);
-
-            isIdentifyMap = this.bMapQueryByPoint.Down;
-            if (isIdentifyMap)
-            {
-                //curAxMapControl.MousePointer = ESRI.ArcGIS.Controls.esriControlsMousePointer.esriPointerCrosshair;
-                GISTools.SelectFeature(curAxMapControl);
-            }
-            else
-            {
-                //curAxMapControl.MousePointer = ESRI.ArcGIS.Controls.esriControlsMousePointer.esriPointerArrow;
-                curAxMapControl.Map.ClearSelection();
-                curAxMapControl.Refresh();
-            }
-        }
         #endregion
         #endregion
 
