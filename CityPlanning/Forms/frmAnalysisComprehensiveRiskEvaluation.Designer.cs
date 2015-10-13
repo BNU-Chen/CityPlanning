@@ -288,6 +288,7 @@
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmAnalysisComprehensiveRiskEvaluation";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "综合灾害风险评估";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

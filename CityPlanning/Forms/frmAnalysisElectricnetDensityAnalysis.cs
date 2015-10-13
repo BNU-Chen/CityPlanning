@@ -95,6 +95,12 @@ namespace CityPlanning.Forms
         //开始分析
         private void button4_Click(object sender, EventArgs e)
         {
+            if (this.filePathOfElectricnetDistributionMap == "" || this.filePathOfPolygonBoundaryMap == "" ||
+                this.filePathOfElectricnetDensityMap == "")
+            {
+                MessageBox.Show("分析设置未完成，请完成设置再开始分析！");
+                return;
+            }
             this.StartAnalysis = true;
             this.Close();
         }
@@ -109,15 +115,15 @@ namespace CityPlanning.Forms
         //文件路径文本框内容变更事件
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            this.FilePathOfElectricnetDistributionMap = this.tbElectricnetDistributionMapPath.Text.ToString();
+            this.FilePathOfElectricnetDistributionMap = this.tbElectricnetDistributionMapPath.Text.ToString().Trim();
         }
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
-            this.FilePathOfPolygonBoundaryMap = this.tbPolygonBoundaryMapPath.Text.ToString();
+            this.FilePathOfPolygonBoundaryMap = this.tbPolygonBoundaryMapPath.Text.ToString().Trim();
         }
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
-            this.FilePathOfElectricnetDensityMap = this.tbElectricnetDensityMapPath.Text.ToString();
+            this.FilePathOfElectricnetDensityMap = this.tbElectricnetDensityMapPath.Text.ToString().Trim();
         }
     }
 }

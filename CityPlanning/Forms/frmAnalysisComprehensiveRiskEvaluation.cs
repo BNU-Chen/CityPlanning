@@ -156,6 +156,13 @@ namespace CityPlanning.Forms
         //开始分析
         private void button4_Click(object sender, EventArgs e)
         {
+            if (this.filePathOfEarthquakeDistributionMap == "" || this.filePathOfFloodDistributionMap == "" ||
+                this.filePathOfSandyDistributionMap == "" || this.filePathOfOtherDistributionMap == "" ||
+                this.filePathOfPolygonBoundaryMap == "" || this.filePathOfEvaluationResultMap == "")
+            {
+                MessageBox.Show("分析设置未完成，请完成设置再开始分析！");
+                return;
+            }
             this.StartAnalysis = true;
             this.Close();
         }
@@ -170,27 +177,27 @@ namespace CityPlanning.Forms
         //文件路径文本框内容变更事件
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            this.FilePathOfEarthquakeDistributionMap = this.tbEarthquakeDistributionMapPath.Text.ToString();
+            this.FilePathOfEarthquakeDistributionMap = this.tbEarthquakeDistributionMapPath.Text.ToString().Trim();
         }
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
-            this.FilePathOfFloodDistributionMap = this.tbFloodDistributionMapPath.Text.ToString();
+            this.FilePathOfFloodDistributionMap = this.tbFloodDistributionMapPath.Text.ToString().Trim();
         }
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
-            this.FilePathOfEvaluationResultMap = this.tbEvaluationResultMapPath.Text.ToString();
+            this.FilePathOfEvaluationResultMap = this.tbEvaluationResultMapPath.Text.ToString().Trim();
         }
         private void textBox4_TextChanged(object sender, EventArgs e)
         {
-            this.FilePathOfSandyDistributionMap = this.tbSandyDistributionMapPath.Text.ToString();
+            this.FilePathOfSandyDistributionMap = this.tbSandyDistributionMapPath.Text.ToString().Trim();
         }
         private void textBox5_TextChanged(object sender, EventArgs e)
         {
-            this.FilePathOfOtherDistributionMap = this.tbOtherDistributionMapPath.Text.ToString();
+            this.FilePathOfOtherDistributionMap = this.tbOtherDistributionMapPath.Text.ToString().Trim();
         }
         private void textBox6_TextChanged(object sender, EventArgs e)
         {
-            this.FilePathOfPolygonBoundaryMap = this.tbPolygonBoundaryMapPath.Text.ToString();//FilePathOfEvaluationResultMap
+            this.FilePathOfPolygonBoundaryMap = this.tbPolygonBoundaryMapPath.Text.ToString().Trim();
         }
     }
 }

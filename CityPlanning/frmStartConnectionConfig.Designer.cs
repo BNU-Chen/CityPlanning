@@ -261,7 +261,7 @@
             // 
             // txt_ftpCatalog
             // 
-            this.txt_ftpCatalog.EditValue = "E:\\项目 - 2014 沈阳经济区\\data\\图集\\原始矢量数据\\图集\\矢量图";
+            this.txt_ftpCatalog.EditValue = "F:\\项目资料\\项目-沈阳经济开发区\\项目 - 沈阳经济区";
             this.txt_ftpCatalog.Location = new System.Drawing.Point(67, 72);
             this.txt_ftpCatalog.Name = "txt_ftpCatalog";
             this.txt_ftpCatalog.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(241)))), ((int)(((byte)(252)))));

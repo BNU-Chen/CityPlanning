@@ -50,11 +50,11 @@ namespace CityPlanning.Forms
             this.tbEconomicCenterTransferMapPath.Text = "";
         }
 
-        //输入文件（道路分布图）变更按钮点击事件
+        //输入文件（城市中心分布图）变更按钮点击事件
         private void button1_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Title = "打开输入文件（道路分布图）";
+            openFileDialog.Title = "打开输入文件（城市中心分布图）";
             openFileDialog.CheckFileExists = true;
             openFileDialog.RestoreDirectory = true;
             openFileDialog.Filter = "shp文件|*.shp";
@@ -65,14 +65,14 @@ namespace CityPlanning.Forms
                 this.tbCityCenterDistributionMapPath.Text = openFileDialog.FileName;
         }
 
-        //输入文件（面状边界图）变更按钮点击事件
+        //输入文件（历年GDP统计表）变更按钮点击事件
         private void button2_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Title = "打开输入文件（面状边界图）";
+            openFileDialog.Title = "打开输入文件（历年GDP统计表）";
             openFileDialog.CheckFileExists = true;
             openFileDialog.RestoreDirectory = true;
-            openFileDialog.Filter = "shp文件|*.shp";
+            openFileDialog.Filter = "Excel文件|*.xls|*.xlsx";
             string curDir = this.tbCityCenterDistributionMapPath.Text.ToString();
             if (curDir != "")
                 openFileDialog.InitialDirectory = Path.GetDirectoryName(curDir);
@@ -98,6 +98,12 @@ namespace CityPlanning.Forms
         //开始分析
         private void button4_Click(object sender, EventArgs e)
         {
+            if (this.filePathOfCityCenterDistributionMap == "" || this.filePathOfGDPStatisticalTable == "" ||
+                this.filePathOfEconomicCenterTransferMap == "")
+            {
+                MessageBox.Show("分析设置未完成，请完成设置再开始分析！");
+                return;
+            }
             this.StartAnalysis = true;
             this.Close();
         }
@@ -112,15 +118,15 @@ namespace CityPlanning.Forms
         //文件路径文本框内容变更事件
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            this.FilePathOfCityCenterDistributionMap = this.tbCityCenterDistributionMapPath.Text.ToString();
+            this.FilePathOfCityCenterDistributionMap = this.tbCityCenterDistributionMapPath.Text.ToString().Trim();
         }
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
-            this.FilePathOfGDPStatisticalTable = this.tbGDPStatisticalTablePath.Text.ToString();
+            this.FilePathOfGDPStatisticalTable = this.tbGDPStatisticalTablePath.Text.ToString().Trim();
         }
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
-            this.FilePathOfEconomicCenterTransferMap = this.tbEconomicCenterTransferMapPath.Text.ToString();
+            this.FilePathOfEconomicCenterTransferMap = this.tbEconomicCenterTransferMapPath.Text.ToString().Trim();
         }
     }
 }

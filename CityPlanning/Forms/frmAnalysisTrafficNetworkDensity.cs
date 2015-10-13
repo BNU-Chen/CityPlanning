@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 
+using ESRI.ArcGIS.SystemUI;
+using ESRI.ArcGIS.Controls;
+
 namespace CityPlanning.Forms
 {
     public partial class frmAnalysisTrafficNetworkDensity : Form
@@ -63,6 +66,11 @@ namespace CityPlanning.Forms
                 openFileDialog.InitialDirectory = Path.GetDirectoryName(curDir);
             if (openFileDialog.ShowDialog() == DialogResult.OK)
                 this.tbRoadDistributionMapPath.Text = openFileDialog.FileName;
+
+            ICommand pCommand;
+            pCommand = new ControlsAddDataCommandClass();
+            //pCommand.OnCreate(axMapControl.Object);
+            pCommand.OnClick();
         }
 
         //输入文件（面状边界图）变更按钮点击事件
@@ -98,6 +106,12 @@ namespace CityPlanning.Forms
         //开始分析
         private void button4_Click(object sender, EventArgs e)
         {
+            if (this.filePathOfRoadDistributionMap == "" || this.filePathOfPolygonBoundaryMap == "" ||
+                this.filePathOfTrafficDensityMap == "")
+            {
+                MessageBox.Show("分析设置未完成，请完成设置再开始分析！");
+                return;
+            }
             this.StartAnalysis = true;
             this.Close();
         }
@@ -112,15 +126,15 @@ namespace CityPlanning.Forms
         //文件路径文本框内容变更事件
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            this.FilePathOfRoadDistributionMap = this.tbRoadDistributionMapPath.Text.ToString();
+            this.FilePathOfRoadDistributionMap = this.tbRoadDistributionMapPath.Text.ToString().Trim();
         }
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
-            this.FilePathOfPolygonBoundaryMap = this.tbPolygonBoundaryMapPath.Text.ToString();
+            this.FilePathOfPolygonBoundaryMap = this.tbPolygonBoundaryMapPath.Text.ToString().Trim();
         }
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
-            this.FilePathOfTrafficDensityMap = this.tbTrafficDensityMapPath.Text.ToString();
+            this.FilePathOfTrafficDensityMap = this.tbTrafficDensityMapPath.Text.ToString().Trim();
         }
     }
 }

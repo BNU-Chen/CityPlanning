@@ -93,6 +93,7 @@ namespace CityPlanning.Modules
                     {
                         this.SearchFromDocument(this.te_KeyWord.Text.Trim(), roRTBControl.Tag.ToString(), this.xtraTabPage);
                         this.multiDocumentSearch = false;
+                        this.cbe_SearchRange.SelectedIndex = -1;
                     }
                     else
                         MoveToParagraph(roRTBControl.Paragraph);
@@ -490,6 +491,7 @@ namespace CityPlanning.Modules
                         ReadOnlyRichTextBox roRTB = this.getReadOnlyRichTextBoxOfMultiDocumentSearch(documentPath, DocumentRanges.Count);
                         this.flowLayoutPanel.Controls.Add(roRTB);
                     }
+                    this.flowLayoutPanel.Refresh();
                 }
                 this.multiDocumentSearch = true;
                 //控件状态恢复

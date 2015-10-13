@@ -51,6 +51,7 @@
             this.axMapControl2.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axMapControl2.OcxState")));
             this.axMapControl2.Size = new System.Drawing.Size(400, 600);
             this.axMapControl2.TabIndex = 1;
+            this.axMapControl2.OnExtentUpdated += new ESRI.ArcGIS.Controls.IMapControlEvents2_Ax_OnExtentUpdatedEventHandler(this.axMapControl2_OnExtentUpdated);
             // 
             // ucSpatialAnalysisResult
             // 

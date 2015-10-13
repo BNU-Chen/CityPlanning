@@ -308,6 +308,7 @@
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmAnalysisEcologicalPriceEvaluation";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "生态服务价值评估";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

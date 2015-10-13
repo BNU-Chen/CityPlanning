@@ -136,6 +136,13 @@ namespace CityPlanning.Forms
         //开始分析
         private void button4_Click(object sender, EventArgs e)
         {
+            if (this.filePathOfLandtypeDistributionMap == "" || this.filePathOfPolygonBoundaryMap == "" ||
+                this.filePathOfEcologicalPriceDistributionMap == "" || this.lindiPrice == 0.0 || this.caodiPrice == 0.0 || 
+                this.nongtianPrice == 0.0 || this.shidiPrice == 0.0 || this.heliuOrHupoPrice == 0.0)
+            {
+                MessageBox.Show("分析设置未完成，请完成设置再开始分析！");
+                return;
+            }
             this.StartAnalysis = true;
             this.Close();
         }
@@ -150,39 +157,39 @@ namespace CityPlanning.Forms
         //文件路径文本框内容变更事件
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            this.FilePathOfLandtypeDistributionMap = this.tbLandtypeDistributionMapPath.Text.ToString();
+            this.FilePathOfLandtypeDistributionMap = this.tbLandtypeDistributionMapPath.Text.ToString().Trim();
         }
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
-            this.FilePathOfPolygonBoundaryMap = this.tbPolygonBoundaryMapPath.Text.ToString();
+            this.FilePathOfPolygonBoundaryMap = this.tbPolygonBoundaryMapPath.Text.ToString().Trim();
         }
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
-            this.FilePathOfEcologicalPriceDistributionMap = this.tbEcologicalPriceDistributionMapPath.Text.ToString();
+            this.FilePathOfEcologicalPriceDistributionMap = this.tbEcologicalPriceDistributionMapPath.Text.ToString().Trim();
         }
         private void textBox4_TextChanged(object sender, EventArgs e)
         {
-            double price = Convert.ToDouble(this.tbLindiPrice.Text.ToString());
+            double price = Convert.ToDouble(this.tbLindiPrice.Text.ToString().Trim());
             this.LindiPrice = price;
         }
         private void textBox5_TextChanged(object sender, EventArgs e)
         {
-            double price = Convert.ToDouble(this.tbCaodiPrice.Text.ToString());
+            double price = Convert.ToDouble(this.tbCaodiPrice.Text.ToString().Trim());
             this.CaodiPrice = price;
         }
         private void textBox6_TextChanged(object sender, EventArgs e)
         {
-            double price = Convert.ToDouble(this.tbNongtianPrice.Text.ToString());
+            double price = Convert.ToDouble(this.tbNongtianPrice.Text.ToString().Trim());
             this.NongtianPrice = price;
         }
         private void textBox7_TextChanged(object sender, EventArgs e)
         {
-            double price = Convert.ToDouble(this.tbShidiPrice.Text.ToString());
+            double price = Convert.ToDouble(this.tbShidiPrice.Text.ToString().Trim());
             this.ShidiPrice = price;
         }
         private void textBox8_TextChanged(object sender, EventArgs e)
         {
-            double price = Convert.ToDouble(this.tbHeliuOrHupoPrice.Text.ToString());
+            double price = Convert.ToDouble(this.tbHeliuOrHupoPrice.Text.ToString().Trim());
             this.HeliuOrHupoPrice = price;
         }
     }

@@ -189,6 +189,7 @@
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmAnalysisGDPCenterTansfer";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "GDP中心转移分析";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
