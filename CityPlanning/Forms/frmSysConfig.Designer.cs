@@ -452,16 +452,6 @@
             this.txt_ThematicGDPTrans.Size = new System.Drawing.Size(343, 21);
             this.txt_ThematicGDPTrans.TabIndex = 28;
             // 
-            // btn_SetThematicDisaster
-            // 
-            this.btn_SetThematicDisaster.Location = new System.Drawing.Point(425, 101);
-            this.btn_SetThematicDisaster.Name = "btn_SetThematicDisaster";
-            this.btn_SetThematicDisaster.Size = new System.Drawing.Size(47, 23);
-            this.btn_SetThematicDisaster.TabIndex = 29;
-            this.btn_SetThematicDisaster.Text = "选择";
-            this.btn_SetThematicDisaster.UseVisualStyleBackColor = true;
-            this.btn_SetThematicDisaster.Click += new System.EventHandler(this.btn_SetThematicDisaster_Click);
-            // 
             // btn_OpenThematicElectricityNet
             // 
             this.btn_OpenThematicElectricityNet.Location = new System.Drawing.Point(478, 72);
@@ -471,7 +461,18 @@
             this.btn_OpenThematicElectricityNet.Text = "打开";
             this.btn_OpenThematicElectricityNet.UseVisualStyleBackColor = true;
             this.btn_OpenThematicElectricityNet.Click += new System.EventHandler(this.btn_OpenThematicElectricityNet_Click);
+            
             // 
+            // btn_SetThematicDisaster
+            // 
+            this.btn_SetThematicDisaster.Location = new System.Drawing.Point(425, 101);
+            this.btn_SetThematicDisaster.Name = "btn_SetThematicDisaster";
+            this.btn_SetThematicDisaster.Size = new System.Drawing.Size(47, 23);
+            this.btn_SetThematicDisaster.TabIndex = 29;
+            this.btn_SetThematicDisaster.Text = "选择";
+            this.btn_SetThematicDisaster.UseVisualStyleBackColor = true;
+            this.btn_SetThematicDisaster.Click += new System.EventHandler(this.btn_SetThematicDisaster_Click);
+            //
             // btn_SetThematicElectricityNet
             // 
             this.btn_SetThematicElectricityNet.Location = new System.Drawing.Point(425, 72);
@@ -564,10 +565,7 @@
             this.txt_ThematicTrafficNet.Location = new System.Drawing.Point(77, 43);
             this.txt_ThematicTrafficNet.Name = "txt_ThematicTrafficNet";
             this.txt_ThematicTrafficNet.Size = new System.Drawing.Size(343, 21);
-            this.txt_ThematicTrafficNet.TabIndex = 28;
-            // 
-            // label7
-            // 
+            this.txt_ThematicTrafficNet.TabIndex = 28;  
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(9, 46);
             this.label7.Name = "label7";
