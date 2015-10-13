@@ -37,8 +37,6 @@ namespace CityPlanning.Forms
             this.txt_ThematicElectricityNet.Text = ConnectionCenter.Config.ThematicElectricity;
             this.txt_ThematicDisaster.Text = ConnectionCenter.Config.ThematicDisaster;
             this.txt_ThematicZoology.Text = ConnectionCenter.Config.ThematicZoology;
-            this.txt_ThematicHydrology.Text = ConnectionCenter.Config.ThematicHydrology;
-            this.txt_ThematicFlood.Text = ConnectionCenter.Config.ThematicFlood;
             this.txt_ThematicGDPTrans.Text = ConnectionCenter.Config.ThematicGDPTrans;
         }
 
@@ -55,8 +53,6 @@ namespace CityPlanning.Forms
             ConnectionCenter.Config.ThematicElectricity = this.txt_ThematicElectricityNet.Text;
             ConnectionCenter.Config.ThematicDisaster = this.txt_ThematicDisaster.Text;
             ConnectionCenter.Config.ThematicZoology = this.txt_ThematicZoology.Text;
-            ConnectionCenter.Config.ThematicHydrology = this.txt_ThematicHydrology.Text;
-            ConnectionCenter.Config.ThematicFlood = this.txt_ThematicFlood.Text;
             ConnectionCenter.Config.ThematicGDPTrans = this.txt_ThematicGDPTrans.Text;
 
             this.Close();
@@ -169,26 +165,6 @@ namespace CityPlanning.Forms
         private void btn_OpenThematicZoology_Click(object sender, EventArgs e)
         {
             OpenPath(this.txt_ThematicZoology.Text);
-        }
-        //水分分析
-        private void btn_SetThematicHydrology_Click(object sender, EventArgs e)
-        {
-            SetFilePath(this.txt_ThematicHydrology);
-        }
-
-        private void btn_OpenThematicHydrology_Click(object sender, EventArgs e)
-        {
-            OpenPath(this.txt_ThematicHydrology.Text);
-        }
-        //洪涝灾害
-        private void btn_SetThematicFlood_Click(object sender, EventArgs e)
-        {
-            SetFilePath(this.txt_ThematicFlood);
-        }
-
-        private void btn_OpenThematicFlood_Click(object sender, EventArgs e)
-        {
-            OpenPath(this.txt_ThematicFlood.Text);
         }
         //GDP重心转移
         private void btn_SetThematicGDPTrans_Click(object sender, EventArgs e)

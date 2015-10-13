@@ -58,26 +58,18 @@
             this.txt_RedLineMap = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.btn_OpenThematicGDPTrans = new System.Windows.Forms.Button();
-            this.btn_OpenThematicFlood = new System.Windows.Forms.Button();
             this.btn_SetThematicGDPTrans = new System.Windows.Forms.Button();
-            this.btn_OpenThematicHydrology = new System.Windows.Forms.Button();
-            this.btn_SetThematicFlood = new System.Windows.Forms.Button();
             this.btn_OpenThematicZoology = new System.Windows.Forms.Button();
-            this.btn_SetThematicHydrology = new System.Windows.Forms.Button();
             this.btn_OpenThematicDisaster = new System.Windows.Forms.Button();
             this.btn_SetThematicZoology = new System.Windows.Forms.Button();
             this.txt_ThematicGDPTrans = new System.Windows.Forms.TextBox();
             this.btn_SetThematicDisaster = new System.Windows.Forms.Button();
-            this.txt_ThematicFlood = new System.Windows.Forms.TextBox();
             this.btn_OpenThematicElectricityNet = new System.Windows.Forms.Button();
-            this.txt_ThematicHydrology = new System.Windows.Forms.TextBox();
             this.btn_SetThematicElectricityNet = new System.Windows.Forms.Button();
             this.txt_ThematicZoology = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.txt_ThematicDisaster = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
             this.btn_OpenThematicTrafficNet = new System.Windows.Forms.Button();
-            this.label11 = new System.Windows.Forms.Label();
             this.txt_ThematicElectricityNet = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -93,7 +85,7 @@
             // btn_Submit
             // 
             this.btn_Submit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_Submit.Location = new System.Drawing.Point(454, 299);
+            this.btn_Submit.Location = new System.Drawing.Point(454, 229);
             this.btn_Submit.Name = "btn_Submit";
             this.btn_Submit.Size = new System.Drawing.Size(75, 23);
             this.btn_Submit.TabIndex = 1;
@@ -104,7 +96,7 @@
             // btn_Cancel
             // 
             this.btn_Cancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_Cancel.Location = new System.Drawing.Point(373, 299);
+            this.btn_Cancel.Location = new System.Drawing.Point(373, 229);
             this.btn_Cancel.Name = "btn_Cancel";
             this.btn_Cancel.Size = new System.Drawing.Size(75, 23);
             this.btn_Cancel.TabIndex = 1;
@@ -120,7 +112,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(543, 283);
+            this.tabControl1.Size = new System.Drawing.Size(543, 213);
             this.tabControl1.TabIndex = 2;
             // 
             // tabPage1
@@ -148,7 +140,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(535, 257);
+            this.tabPage1.Size = new System.Drawing.Size(535, 187);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "规划文档路径";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -161,6 +153,7 @@
             this.btn_OpenPlanMap.TabIndex = 24;
             this.btn_OpenPlanMap.Text = "打开";
             this.btn_OpenPlanMap.UseVisualStyleBackColor = true;
+            this.btn_OpenPlanMap.Click += new System.EventHandler(this.btn_OpenPlanMap_Click);
             // 
             // btn_OpenPlanImg
             // 
@@ -170,6 +163,7 @@
             this.btn_OpenPlanImg.TabIndex = 23;
             this.btn_OpenPlanImg.Text = "打开";
             this.btn_OpenPlanImg.UseVisualStyleBackColor = true;
+            this.btn_OpenPlanImg.Click += new System.EventHandler(this.btn_OpenPlanImg_Click);
             // 
             // btn_OpenThematicMap
             // 
@@ -179,6 +173,7 @@
             this.btn_OpenThematicMap.TabIndex = 22;
             this.btn_OpenThematicMap.Text = "打开";
             this.btn_OpenThematicMap.UseVisualStyleBackColor = true;
+            this.btn_OpenThematicMap.Click += new System.EventHandler(this.btn_OpenThematicMap_Click);
             // 
             // btn_OpenPlanDesc
             // 
@@ -188,6 +183,7 @@
             this.btn_OpenPlanDesc.TabIndex = 21;
             this.btn_OpenPlanDesc.Text = "打开";
             this.btn_OpenPlanDesc.UseVisualStyleBackColor = true;
+            this.btn_OpenPlanDesc.Click += new System.EventHandler(this.btn_OpenPlanDesc_Click);
             // 
             // btn_OpenPlanDoc
             // 
@@ -197,6 +193,7 @@
             this.btn_OpenPlanDoc.TabIndex = 19;
             this.btn_OpenPlanDoc.Text = "打开";
             this.btn_OpenPlanDoc.UseVisualStyleBackColor = true;
+            this.btn_OpenPlanDoc.Click += new System.EventHandler(this.btn_OpenPlanDoc_Click);
             // 
             // btn_SetPlanMap
             // 
@@ -206,6 +203,7 @@
             this.btn_SetPlanMap.TabIndex = 18;
             this.btn_SetPlanMap.Text = "选择";
             this.btn_SetPlanMap.UseVisualStyleBackColor = true;
+            this.btn_SetPlanMap.Click += new System.EventHandler(this.btn_SetPlanMap_Click);
             // 
             // btn_SetPlanImg
             // 
@@ -215,6 +213,7 @@
             this.btn_SetPlanImg.TabIndex = 17;
             this.btn_SetPlanImg.Text = "选择";
             this.btn_SetPlanImg.UseVisualStyleBackColor = true;
+            this.btn_SetPlanImg.Click += new System.EventHandler(this.btn_SetPlanImg_Click);
             // 
             // btn_SetThematicMap
             // 
@@ -224,6 +223,7 @@
             this.btn_SetThematicMap.TabIndex = 16;
             this.btn_SetThematicMap.Text = "选择";
             this.btn_SetThematicMap.UseVisualStyleBackColor = true;
+            this.btn_SetThematicMap.Click += new System.EventHandler(this.btn_SetThematicMap_Click);
             // 
             // btn_SetPlanDesc
             // 
@@ -233,6 +233,7 @@
             this.btn_SetPlanDesc.TabIndex = 25;
             this.btn_SetPlanDesc.Text = "选择";
             this.btn_SetPlanDesc.UseVisualStyleBackColor = true;
+            this.btn_SetPlanDesc.Click += new System.EventHandler(this.btn_SetPlanDesc_Click);
             // 
             // btn_SetPlanDoc
             // 
@@ -242,6 +243,7 @@
             this.btn_SetPlanDoc.TabIndex = 15;
             this.btn_SetPlanDoc.Text = "选择";
             this.btn_SetPlanDoc.UseVisualStyleBackColor = true;
+            this.btn_SetPlanDoc.Click += new System.EventHandler(this.btn_SetPlanDoc_Click);
             // 
             // txt_PlanMap
             // 
@@ -330,26 +332,18 @@
             this.tabPage2.Controls.Add(this.txt_RedLineMap);
             this.tabPage2.Controls.Add(this.label6);
             this.tabPage2.Controls.Add(this.btn_OpenThematicGDPTrans);
-            this.tabPage2.Controls.Add(this.btn_OpenThematicFlood);
             this.tabPage2.Controls.Add(this.btn_SetThematicGDPTrans);
-            this.tabPage2.Controls.Add(this.btn_OpenThematicHydrology);
-            this.tabPage2.Controls.Add(this.btn_SetThematicFlood);
             this.tabPage2.Controls.Add(this.btn_OpenThematicZoology);
-            this.tabPage2.Controls.Add(this.btn_SetThematicHydrology);
             this.tabPage2.Controls.Add(this.btn_OpenThematicDisaster);
             this.tabPage2.Controls.Add(this.btn_SetThematicZoology);
             this.tabPage2.Controls.Add(this.txt_ThematicGDPTrans);
             this.tabPage2.Controls.Add(this.btn_SetThematicDisaster);
-            this.tabPage2.Controls.Add(this.txt_ThematicFlood);
             this.tabPage2.Controls.Add(this.btn_OpenThematicElectricityNet);
-            this.tabPage2.Controls.Add(this.txt_ThematicHydrology);
             this.tabPage2.Controls.Add(this.btn_SetThematicElectricityNet);
             this.tabPage2.Controls.Add(this.txt_ThematicZoology);
             this.tabPage2.Controls.Add(this.label13);
             this.tabPage2.Controls.Add(this.txt_ThematicDisaster);
-            this.tabPage2.Controls.Add(this.label12);
             this.tabPage2.Controls.Add(this.btn_OpenThematicTrafficNet);
-            this.tabPage2.Controls.Add(this.label11);
             this.tabPage2.Controls.Add(this.txt_ThematicElectricityNet);
             this.tabPage2.Controls.Add(this.label10);
             this.tabPage2.Controls.Add(this.label9);
@@ -403,7 +397,7 @@
             // 
             // btn_OpenThematicGDPTrans
             // 
-            this.btn_OpenThematicGDPTrans.Location = new System.Drawing.Point(478, 217);
+            this.btn_OpenThematicGDPTrans.Location = new System.Drawing.Point(478, 162);
             this.btn_OpenThematicGDPTrans.Name = "btn_OpenThematicGDPTrans";
             this.btn_OpenThematicGDPTrans.Size = new System.Drawing.Size(47, 23);
             this.btn_OpenThematicGDPTrans.TabIndex = 30;
@@ -411,45 +405,15 @@
             this.btn_OpenThematicGDPTrans.UseVisualStyleBackColor = true;
             this.btn_OpenThematicGDPTrans.Click += new System.EventHandler(this.btn_OpenThematicGDPTrans_Click);
             // 
-            // btn_OpenThematicFlood
-            // 
-            this.btn_OpenThematicFlood.Location = new System.Drawing.Point(479, 188);
-            this.btn_OpenThematicFlood.Name = "btn_OpenThematicFlood";
-            this.btn_OpenThematicFlood.Size = new System.Drawing.Size(47, 23);
-            this.btn_OpenThematicFlood.TabIndex = 30;
-            this.btn_OpenThematicFlood.Text = "打开";
-            this.btn_OpenThematicFlood.UseVisualStyleBackColor = true;
-            this.btn_OpenThematicFlood.Click += new System.EventHandler(this.btn_OpenThematicFlood_Click);
-            // 
             // btn_SetThematicGDPTrans
             // 
-            this.btn_SetThematicGDPTrans.Location = new System.Drawing.Point(425, 217);
+            this.btn_SetThematicGDPTrans.Location = new System.Drawing.Point(425, 162);
             this.btn_SetThematicGDPTrans.Name = "btn_SetThematicGDPTrans";
             this.btn_SetThematicGDPTrans.Size = new System.Drawing.Size(47, 23);
             this.btn_SetThematicGDPTrans.TabIndex = 29;
             this.btn_SetThematicGDPTrans.Text = "选择";
             this.btn_SetThematicGDPTrans.UseVisualStyleBackColor = true;
             this.btn_SetThematicGDPTrans.Click += new System.EventHandler(this.btn_SetThematicGDPTrans_Click);
-            // 
-            // btn_OpenThematicHydrology
-            // 
-            this.btn_OpenThematicHydrology.Location = new System.Drawing.Point(479, 159);
-            this.btn_OpenThematicHydrology.Name = "btn_OpenThematicHydrology";
-            this.btn_OpenThematicHydrology.Size = new System.Drawing.Size(47, 23);
-            this.btn_OpenThematicHydrology.TabIndex = 30;
-            this.btn_OpenThematicHydrology.Text = "打开";
-            this.btn_OpenThematicHydrology.UseVisualStyleBackColor = true;
-            this.btn_OpenThematicHydrology.Click += new System.EventHandler(this.btn_OpenThematicHydrology_Click);
-            // 
-            // btn_SetThematicFlood
-            // 
-            this.btn_SetThematicFlood.Location = new System.Drawing.Point(426, 188);
-            this.btn_SetThematicFlood.Name = "btn_SetThematicFlood";
-            this.btn_SetThematicFlood.Size = new System.Drawing.Size(47, 23);
-            this.btn_SetThematicFlood.TabIndex = 29;
-            this.btn_SetThematicFlood.Text = "选择";
-            this.btn_SetThematicFlood.UseVisualStyleBackColor = true;
-            this.btn_SetThematicFlood.Click += new System.EventHandler(this.btn_SetThematicFlood_Click);
             // 
             // btn_OpenThematicZoology
             // 
@@ -460,16 +424,6 @@
             this.btn_OpenThematicZoology.Text = "打开";
             this.btn_OpenThematicZoology.UseVisualStyleBackColor = true;
             this.btn_OpenThematicZoology.Click += new System.EventHandler(this.btn_OpenThematicZoology_Click);
-            // 
-            // btn_SetThematicHydrology
-            // 
-            this.btn_SetThematicHydrology.Location = new System.Drawing.Point(426, 159);
-            this.btn_SetThematicHydrology.Name = "btn_SetThematicHydrology";
-            this.btn_SetThematicHydrology.Size = new System.Drawing.Size(47, 23);
-            this.btn_SetThematicHydrology.TabIndex = 29;
-            this.btn_SetThematicHydrology.Text = "选择";
-            this.btn_SetThematicHydrology.UseVisualStyleBackColor = true;
-            this.btn_SetThematicHydrology.Click += new System.EventHandler(this.btn_SetThematicHydrology_Click);
             // 
             // btn_OpenThematicDisaster
             // 
@@ -493,27 +447,10 @@
             // 
             // txt_ThematicGDPTrans
             // 
-            this.txt_ThematicGDPTrans.Location = new System.Drawing.Point(76, 217);
+            this.txt_ThematicGDPTrans.Location = new System.Drawing.Point(76, 162);
             this.txt_ThematicGDPTrans.Name = "txt_ThematicGDPTrans";
             this.txt_ThematicGDPTrans.Size = new System.Drawing.Size(343, 21);
             this.txt_ThematicGDPTrans.TabIndex = 28;
-            // 
-            // btn_SetThematicDisaster
-            // 
-            this.btn_SetThematicDisaster.Location = new System.Drawing.Point(425, 101);
-            this.btn_SetThematicDisaster.Name = "btn_SetThematicDisaster";
-            this.btn_SetThematicDisaster.Size = new System.Drawing.Size(47, 23);
-            this.btn_SetThematicDisaster.TabIndex = 29;
-            this.btn_SetThematicDisaster.Text = "选择";
-            this.btn_SetThematicDisaster.UseVisualStyleBackColor = true;
-            this.btn_SetThematicDisaster.Click += new System.EventHandler(this.btn_SetThematicDisaster_Click);
-            // 
-            // txt_ThematicFlood
-            // 
-            this.txt_ThematicFlood.Location = new System.Drawing.Point(77, 188);
-            this.txt_ThematicFlood.Name = "txt_ThematicFlood";
-            this.txt_ThematicFlood.Size = new System.Drawing.Size(343, 21);
-            this.txt_ThematicFlood.TabIndex = 28;
             // 
             // btn_OpenThematicElectricityNet
             // 
@@ -524,14 +461,18 @@
             this.btn_OpenThematicElectricityNet.Text = "打开";
             this.btn_OpenThematicElectricityNet.UseVisualStyleBackColor = true;
             this.btn_OpenThematicElectricityNet.Click += new System.EventHandler(this.btn_OpenThematicElectricityNet_Click);
+            
             // 
-            // txt_ThematicHydrology
+            // btn_SetThematicDisaster
             // 
-            this.txt_ThematicHydrology.Location = new System.Drawing.Point(77, 159);
-            this.txt_ThematicHydrology.Name = "txt_ThematicHydrology";
-            this.txt_ThematicHydrology.Size = new System.Drawing.Size(343, 21);
-            this.txt_ThematicHydrology.TabIndex = 28;
-            // 
+            this.btn_SetThematicDisaster.Location = new System.Drawing.Point(425, 101);
+            this.btn_SetThematicDisaster.Name = "btn_SetThematicDisaster";
+            this.btn_SetThematicDisaster.Size = new System.Drawing.Size(47, 23);
+            this.btn_SetThematicDisaster.TabIndex = 29;
+            this.btn_SetThematicDisaster.Text = "选择";
+            this.btn_SetThematicDisaster.UseVisualStyleBackColor = true;
+            this.btn_SetThematicDisaster.Click += new System.EventHandler(this.btn_SetThematicDisaster_Click);
+            //
             // btn_SetThematicElectricityNet
             // 
             this.btn_SetThematicElectricityNet.Location = new System.Drawing.Point(425, 72);
@@ -552,7 +493,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(8, 220);
+            this.label13.Location = new System.Drawing.Point(8, 165);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(59, 12);
             this.label13.TabIndex = 27;
@@ -565,15 +506,6 @@
             this.txt_ThematicDisaster.Size = new System.Drawing.Size(343, 21);
             this.txt_ThematicDisaster.TabIndex = 28;
             // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(9, 191);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(65, 12);
-            this.label12.TabIndex = 27;
-            this.label12.Text = "洪涝灾害：";
-            // 
             // btn_OpenThematicTrafficNet
             // 
             this.btn_OpenThematicTrafficNet.Location = new System.Drawing.Point(479, 43);
@@ -583,15 +515,6 @@
             this.btn_OpenThematicTrafficNet.Text = "打开";
             this.btn_OpenThematicTrafficNet.UseVisualStyleBackColor = true;
             this.btn_OpenThematicTrafficNet.Click += new System.EventHandler(this.btn_OpenThematicTrafficNet_Click);
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(9, 162);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(65, 12);
-            this.label11.TabIndex = 27;
-            this.label11.Text = "水分分析：";
             // 
             // txt_ThematicElectricityNet
             // 
@@ -642,10 +565,7 @@
             this.txt_ThematicTrafficNet.Location = new System.Drawing.Point(77, 43);
             this.txt_ThematicTrafficNet.Name = "txt_ThematicTrafficNet";
             this.txt_ThematicTrafficNet.Size = new System.Drawing.Size(343, 21);
-            this.txt_ThematicTrafficNet.TabIndex = 28;
-            // 
-            // label7
-            // 
+            this.txt_ThematicTrafficNet.TabIndex = 28;  
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(9, 46);
             this.label7.Name = "label7";
@@ -657,7 +577,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(543, 334);
+            this.ClientSize = new System.Drawing.Size(543, 264);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.btn_Cancel);
             this.Controls.Add(this.btn_Submit);
@@ -720,14 +640,6 @@
         private System.Windows.Forms.Button btn_SetThematicZoology;
         private System.Windows.Forms.TextBox txt_ThematicZoology;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Button btn_OpenThematicHydrology;
-        private System.Windows.Forms.Button btn_SetThematicHydrology;
-        private System.Windows.Forms.TextBox txt_ThematicHydrology;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Button btn_OpenThematicFlood;
-        private System.Windows.Forms.Button btn_SetThematicFlood;
-        private System.Windows.Forms.TextBox txt_ThematicFlood;
-        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button btn_OpenThematicGDPTrans;
         private System.Windows.Forms.Button btn_SetThematicGDPTrans;
         private System.Windows.Forms.TextBox txt_ThematicGDPTrans;
