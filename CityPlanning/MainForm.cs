@@ -2066,30 +2066,34 @@ namespace CityPlanning
                     mapControl.ClearLayers();
                     mapControl.LoadMxFile(ConnectionCenter.Config.RedLineMap);
                     mapControl.AddShapeFile(DirPath, "Result.shp");
-                    mapControl.AddShapeFile(DirPath, "test.shp");
-                    ILayer pL=null;
-                    ILayer pLayer=null;
-                    for (int i = 0; i < mapControl.LayerCount; i++)
-                    {
+
+                    #region //添加分析前导入的坐标多边形
+                    //mapControl.AddShapeFile(DirPath, "test.shp");     
+                    //ILayer pL=null;
+                    //ILayer pLayer=null;
+                    //for (int i = 0; i < mapControl.LayerCount; i++)
+                    //{
                         
-                        pL =mapControl.get_Layer(i);
-                        if (pL is IGroupLayer)
-                        {
-                            ICompositeLayer pGL = pL as ICompositeLayer;
-                            for (int j = 0; j < pGL.Count; j++)
-                            {
-                                if (pGL.get_Layer(j).Name == "test.shp") 
-                                {
-                                    pLayer = pGL.get_Layer(j);
-                                    if (pLayer is IFeatureLayer)//如果第一个图层时矢量图层
-                                    {
-                                        ILayerEffects pLayerEffects = pLayer as ILayerEffects;                                        
-                                        pLayerEffects.Transparency = 65;//设置ILayerEffects接口的Transparency属性使该矢量图层的透明度属性为65.
-                                    }  
-                                }
-                            }
-                        }
-                    }
+                    //    pL =mapControl.get_Layer(i);
+                    //    if (pL is IGroupLayer)
+                    //    {
+                    //        ICompositeLayer pGL = pL as ICompositeLayer;
+                    //        for (int j = 0; j < pGL.Count; j++)
+                    //        {
+                    //            if (pGL.get_Layer(j).Name == "test.shp") 
+                    //            {
+                    //                pLayer = pGL.get_Layer(j);
+                    //                if (pLayer is IFeatureLayer)//如果第一个图层时矢量图层
+                    //                {
+                    //                    ILayerEffects pLayerEffects = pLayer as ILayerEffects;                                        
+                    //                    pLayerEffects.Transparency = 65;//设置ILayerEffects接口的Transparency属性使该矢量图层的透明度属性为65.
+                    //                }  
+                    //            }
+                    //        }
+                    //    }
+                    //}
+                    #endregion
+
                     mapControl.Refresh();
                     string dbfPath = tempPath + @"\Result.dbf";
                     CreatResultPie(dbfPath);
@@ -2711,8 +2715,7 @@ namespace CityPlanning
                 ResFrm.Activate();
             }
         }
-
-
+        
         //GDP重心转移图
         private void GDPCenterTransfer()
         {
