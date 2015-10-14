@@ -33,6 +33,7 @@ namespace CityPlanning.Modules
             this.checkChartDataLable.Checked = false;
             this.checkAxisXNetworkLine.Checked = true;
             this.checkAxisYNetworkLine.Checked = false;
+            this.checkPieDataShowType.Visible = false;
         }
 
         #region //图标显示设置
@@ -70,10 +71,12 @@ namespace CityPlanning.Modules
                 if (getViewTypByIndex(this.icbeChartType.SelectedIndex) == ViewType.Pie)
                 {
                     SetChartTitle(this.dataSource.TableName.Replace("$", ""), Color.Black, new Font("宋体", 24, FontStyle.Bold));// + "-" + this.checkedAxisYDataField.SelectedText, Color.Black
+                    this.checkPieDataShowType.Visible = true;
                 }
                 else
                 {
                     SetChartTitle(this.dataSource.TableName.Replace("$", ""), Color.Black, new Font("宋体", 24, FontStyle.Bold));
+                    this.checkPieDataShowType.Visible = false;
                 }
                 this.chartShowControl.Legend.Visible = this.checkChartLegend.Checked;
                 XYDiagram diagram = (XYDiagram)(this.chartShowControl).Diagram;
@@ -182,9 +185,22 @@ namespace CityPlanning.Modules
         //饼状图数据系列设置
         private void settingOfPieChart(Series ser)
         {
+            /*
+            Series series = new Series(val, vT);
+                    this.chartShowControl.Series.Add(series);
+                    series.DataSource = dt;
+                    series.ArgumentScaleType = ScaleType.Qualitative;
+                    series.ArgumentDataMember = this.cbeAxisXDataField.SelectedItem.ToString();
+                    series.ValueScaleType = ScaleType.Numerical;
+                    series.ValueDataMembers.AddRange(new string[] { val });
+                    if (vT == ViewType.Pie) settingOfPieChart(series);
+            */
             Series series = ser;
             series.Label.PointOptions.PointView = PointView.ArgumentAndValues;
-            series.Label.PointOptions.ValueNumericOptions.Format = NumericFormat.Percent;
+            if(this.checkPieDataShowType.Checked)
+                series.Label.PointOptions.ValueNumericOptions.Format = NumericFormat.Percent;
+            else
+                series.Label.PointOptions.ValueNumericOptions.Format = NumericFormat.Scientific;
             series.Label.PointOptions.ValueNumericOptions.Precision = 0;
             ((PieSeriesLabel)series.Label).ResolveOverlappingMode = ResolveOverlappingMode.Default;
         }
@@ -459,8 +475,20 @@ namespace CityPlanning.Modules
                 }
             }
         }
-        
+
+        //饼状图数据显示方式，百分比/数据
+        private void checkPieDataShowType_CheckedChanged(object sender, EventArgs e)
+        {
+            if (this.checkPieDataShowType.Checked == true)
+                foreach (Series series in this.chartShowControl.Series)
+                    series.Label.PointOptions.ValueNumericOptions.Format = NumericFormat.Percent;
+            else
+                foreach (Series series in this.chartShowControl.Series)
+                    series.Label.PointOptions.ValueNumericOptions.Format = NumericFormat.General;
+        }
+
         #endregion
+
 
         
     }
