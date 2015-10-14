@@ -2387,7 +2387,9 @@ namespace CityPlanning
             //加载进度条
             ThreadForm thr = new ThreadForm(0, 100);
             thr.Show(this);
-            for (int i = 0; i < 100; i++)
+            Random r = new Random();
+            int progress = r.Next(50, 150);
+            for (int i = 0; i < progress; i++)
             {
                 thr.setPos(i);
                 Thread.Sleep(40);
@@ -2434,7 +2436,9 @@ namespace CityPlanning
             //加载进度条
             ThreadForm thr = new ThreadForm(0, 100);
             thr.Show(this);
-            for (int i = 0; i < 100; i++)
+            Random r = new Random();
+            int progress = r.Next(50, 150);
+            for (int i = 0; i < progress; i++)
             {
                 thr.setPos(i);
                 Thread.Sleep(40);
@@ -2484,7 +2488,9 @@ namespace CityPlanning
             //加载进度条
             ThreadForm thr = new ThreadForm(0, 100);
             thr.Show(this);
-            for (int i = 0; i < 100; i++)
+            Random r = new Random();
+            int progress = r.Next(50, 150);
+            for (int i = 0; i < progress; i++)
             {
                 thr.setPos(i);
                 Thread.Sleep(40);
@@ -2531,7 +2537,9 @@ namespace CityPlanning
             //加载进度条
             ThreadForm thr = new ThreadForm(0, 100);
             thr.Show(this);
-            for (int i = 0; i < 100; i++)
+            Random r = new Random();
+            int progress = r.Next(50, 150);
+            for (int i = 0; i < progress; i++)
             {
                 thr.setPos(i);
                 Thread.Sleep(40);
@@ -2578,7 +2586,9 @@ namespace CityPlanning
             //加载进度条
             ThreadForm thr = new ThreadForm(0, 100);
             thr.Show(this);
-            for (int i = 0; i < 100; i++)
+            Random r = new Random();
+            int progress = r.Next(50, 150);
+            for (int i = 0; i < progress; i++)
             {
                 thr.setPos(i);
                 Thread.Sleep(40);
