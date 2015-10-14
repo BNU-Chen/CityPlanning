@@ -4,10 +4,41 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using System.IO;
+
 namespace ConnectionCenter
 {
     public class Config
     {
+        #region //软件数据项配置
+        private static string mapTableIndexName = "专题数据对照表";      //地图和表格的对照表
+        private static string mapTableIndexFieldThematic = "专题文档名称";    //“专题文档名称”字段
+        private static string mapTableIndexFieldTable = "表名称";    //“表名称”字段
+        private static string mapTableIndexFieldMap = "地图文档名称";    //“地图文档名称”字段
+
+        public static string MapTableIndexFieldThematic
+        {
+            get { return mapTableIndexFieldThematic; }
+        }
+
+        public static string MapTableIndexFieldTable
+        {
+            get { return mapTableIndexFieldTable; }
+        }
+
+        public static string MapTableIndexFieldMap
+        {
+            get { return mapTableIndexFieldMap; }
+        }
+
+        public static string MapTableIndexName
+        {
+            get { return mapTableIndexName; }
+        }
+
+        #endregion 
+
+        #region //文档数据路径配置
         //FTP  ---------------------------------------------
         private static string fTPSection = "FTP";
 
@@ -115,8 +146,9 @@ namespace ConnectionCenter
             get { return Config.mapKeywordSection; }
             set { Config.mapKeywordSection = value; }
         }
+        #endregion
 
-        //系统文档路径  ---------------------------------------------
+        #region //规划文档路径  
         private static string sectionDocConfig = "DocConfig";
 
         public static string SectionDocConfig
@@ -160,8 +192,9 @@ namespace ConnectionCenter
             get { return INIFile.IniReadValue(sectionDocConfig, keyPlanMap); }
             set { INIFile.IniWriteValue(sectionDocConfig, keyPlanMap, value); }
         }
+        #endregion
 
-        //专题地图  ---------------------------------------------
+        #region//专题地图
         private static string sectionThematic = "ThematicMap";
         public static string SectionThematic
         {
@@ -172,60 +205,167 @@ namespace ConnectionCenter
         private static string keyRedLineMap = "RedLineMap";
         public static string RedLineMap
         {
-            get { return INIFile.IniReadValue(sectionThematic, keyRedLineMap); }
+            get { return FTPCatalog + INIFile.IniReadValue(sectionThematic, keyRedLineMap); }
             set { INIFile.IniWriteValue(sectionThematic, keyRedLineMap, value); }
         }
         //交通网络
         private static string keyThematicTraffic = "ThematicTraffic";
         public static string ThematicTraffic
         {
-            get { return INIFile.IniReadValue(sectionThematic, keyThematicTraffic); }
+            get { return FTPCatalog + INIFile.IniReadValue(sectionThematic, keyThematicTraffic); }
             set { INIFile.IniWriteValue(sectionThematic, keyThematicTraffic, value); }
+        }
+        public static string ThematicTrafficAnalystedMap
+        {
+            get
+            {
+                return getAnalystedPath(ThematicTraffic);
+            }
+        }
+        public static string ThematicTrafficAnalystedXls
+        {
+            get
+            {
+                return getAnalystedXls(ThematicTraffic);
+            }
         }
         //电力网络
         private static string keyThematicElectricity = "ThematicElectricity";
         public static string ThematicElectricity
         {
-            get { return INIFile.IniReadValue(sectionThematic, keyThematicElectricity); }
+            get { return FTPCatalog + INIFile.IniReadValue(sectionThematic, keyThematicElectricity); }
             set { INIFile.IniWriteValue(sectionThematic, keyThematicElectricity, value); }
+        }
+        public static string ThematicElectricityAnalystedMap
+        {
+            get
+            {
+                return getAnalystedPath(ThematicElectricity);
+            }
+        }
+        public static string ThematicElectricityAnalystedXls
+        {
+            get
+            {
+                return getAnalystedXls(ThematicElectricity);
+            }
         }
         //灾害风险
         private static string keyThematicDisaster = "ThematicDisaster";
         public static string ThematicDisaster
         {
-            get { return INIFile.IniReadValue(sectionThematic, keyThematicDisaster); }
+            get { return FTPCatalog + INIFile.IniReadValue(sectionThematic, keyThematicDisaster); }
             set { INIFile.IniWriteValue(sectionThematic, keyThematicDisaster, value); }
+        }
+        public static string ThematicDisasterAnalystedMap
+        {
+            get
+            {
+                return getAnalystedPath(ThematicDisaster);
+            }
+        }
+        public static string ThematicDisasterAnalystedXls
+        {
+            get
+            {
+                return getAnalystedXls(ThematicDisaster);
+            }
         }
         //生态服务
         private static string keyThematicZoology = "ThematicZoology";
         public static string ThematicZoology
         {
-            get { return INIFile.IniReadValue(sectionThematic, keyThematicZoology); }
+            get { return FTPCatalog + INIFile.IniReadValue(sectionThematic, keyThematicZoology); }
             set { INIFile.IniWriteValue(sectionThematic, keyThematicZoology, value); }
         }
-        //水分分析
-        private static string keyThematicHydrology = "ThematicHydrology";
-        public static string ThematicHydrology
+        public static string ThematicZoologyAnalystedMap
         {
-            get { return INIFile.IniReadValue(sectionThematic, keyThematicHydrology); }
-            set { INIFile.IniWriteValue(sectionThematic, keyThematicHydrology, value); }
+            get
+            {
+                return getAnalystedPath(ThematicZoology);
+            }
         }
-        //洪涝灾害
-        private static string keyThematicFlood = "ThematicFlood";
-        public static string ThematicFlood
+        public static string ThematicZoologyAnalystedXls
         {
-            get { return INIFile.IniReadValue(sectionThematic, keyThematicFlood); }
-            set { INIFile.IniWriteValue(sectionThematic, keyThematicFlood, value); }
+            get
+            {
+                return getAnalystedXls(ThematicZoology);
+            }
         }
         //GDP重心转移
         private static string keyThematicGDPTrans = "ThematicGDPTrans";
         public static string ThematicGDPTrans
         {
-            get { return INIFile.IniReadValue(sectionThematic, keyThematicGDPTrans); }
+            get { return FTPCatalog + INIFile.IniReadValue(sectionThematic, keyThematicGDPTrans); }
             set { INIFile.IniWriteValue(sectionThematic, keyThematicGDPTrans, value); }
         }
+        public static string ThematicGDPTransAnalystedMap
+        {
+            get
+            {
+                return getAnalystedPath(ThematicGDPTrans);
+            }
+        }
+        public static string ThematicGDPTransAnalystedXls
+        {
+            get
+            {
+                return getAnalystedXls(ThematicGDPTrans);
+            }
+        }
 
-        
+        //获取分析后的地图路径
+        private static string getAnalystedPath(string preMxd){
+            string path = "";
+            if (!File.Exists(preMxd))
+            {
+                return path;
+            }
+            try
+            {
+                string dir = Path.GetDirectoryName(preMxd);
+                string fileNameWithoutExt = Path.GetFileNameWithoutExtension(preMxd);
+                string NAMEADD = " 后";
+                string ext = Path.GetExtension(preMxd);
+                path = dir + "\\" + fileNameWithoutExt + NAMEADD + ext;
+                if (!File.Exists(path))
+                {
+                    path = "";
+                }
+            }
+            catch { }
+            return path;
+        }
+        //获取分析后的xls路径
+        private static string getAnalystedXls(string preMxd)
+        {
+            string path = "";
+            if (!File.Exists(preMxd))
+            {
+                return path;
+            }
+            try
+            {
+                string dir = Path.GetDirectoryName(preMxd);
+                string fileNameWithoutExt = Path.GetFileNameWithoutExtension(preMxd);
+                string ext = ".xls";
+                string extx = ".xlsx";
+                path = dir + "\\" + fileNameWithoutExt + ext;
+                if (!File.Exists(path))
+                {
+                    path = dir + "\\" + fileNameWithoutExt + extx;
+                    if (!File.Exists(path))
+                    {
+                        path = "";
+                    }
+                }
+            }
+            catch { }
+            return path;
+        }
+
+        #endregion 
+
 
     }
 }

@@ -26,7 +26,6 @@ using DevExpress.XtraCharts;
 //using DevExpress.Docs;          //Worksheet专用
 using DevExpress.Utils;
 //叠置专用
-using System.IO;
 using ESRI.ArcGIS.Controls;
 using ESRI.ArcGIS.Geodatabase;
 using ESRI.ArcGIS.Geometry;
@@ -89,6 +88,8 @@ namespace CityPlanning
         private bool DrawPolygon = false;
         private bool startIntersect = false;
         private string tempPath = string.Empty;
+        private Form frmChartInOverlay = null;      //叠置分析饼状图窗口
+        private Modules.ucChartShow ucChartInOverlay = null;        //叠置分析饼图控件
         
         //专题分析相关
         public static ResultShowForm ResFrm;
@@ -109,7 +110,7 @@ namespace CityPlanning
             {
                 System.IO.Directory.CreateDirectory(_Environment);
             }
-            tempPath = Environment.SpecialFolder.MyDocuments.ToString()+@"\CityTemp";
+            tempPath = Application.StartupPath+@"\CityTemp";
             if (!Directory.Exists(tempPath))
             {
                 System.IO.Directory.CreateDirectory(tempPath);
@@ -123,6 +124,7 @@ namespace CityPlanning
             frmStartConnectionConfig fscc = new frmStartConnectionConfig(this);
             fscc.ShowDialog();
             this.setMultiDocumentsPath();
+            OpenAllPlanDocs();  //系统打开时，默认打开所有文件列表
         }
 
         //初始化控件
@@ -185,7 +187,7 @@ namespace CityPlanning
                 }
                 //如果不包含该TabPage，则新建
                 DataTable dt = SQLServerConnection.GetUserList();
-                if (dt == null)
+                if (dt.Rows.Count == 0)
                 {
                     MessageBox.Show("获取数据失败。", "错误", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
@@ -262,13 +264,9 @@ namespace CityPlanning
             this.panelControl_Navigation.Controls.Add(ucNaviRDB);
 
             DataTable dt = SQLServerConnection.GetDatabaseSchema();
-            if (dt == null)
-            {
-                MessageBox.Show("没有获取到数据。", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
             if (dt.Rows.Count == 0)
             {
+                MessageBox.Show("没有获取到数据。", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
             this.ucNaviRDB.TreeList.KeyFieldName = "id";     //主要显示内容
@@ -292,6 +290,11 @@ namespace CityPlanning
         {
 
         }
+        //帮助文档
+        private void bHelp_ItemClick(object sender, ItemClickEventArgs e)
+        {
+           
+        }
         //关于我们
         private void bAboutUs_ItemClick(object sender, ItemClickEventArgs e)
         {
@@ -311,49 +314,7 @@ namespace CityPlanning
                 if (hi.Node != null)
                 {
                     string nodeName = (string)hi.Node["TABLE_NAME"];
-                    //如果已经有这个tabPage
-                    XtraTabPage ifTabPage = ComponentOperator.IfHasTabPage(nodeName, this.xtraTabControl_Main);
-                    if (ifTabPage != null)
-                    {
-                        this.xtraTabControl_Main.SelectedTabPage = ifTabPage;
-                        return;
-                    }
-                    //如果不包含该TabPage，则新建
-                    DataTable dt = SQLServerConnection.GetDataByTableName(nodeName);
-                    if (dt == null)
-                    {
-                        MessageBox.Show("获取数据失败。", "错误", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        return;
-                    }
-                    //表格控件
-                    SpreadsheetControl ssc = new SpreadsheetControl();
-                    IWorkbook workbook = ssc.Document;
-                    workbook.BeginUpdate();
-                    Worksheet worksheet = workbook.Worksheets[0];
-                    worksheet.Name = nodeName;
-                    worksheet.Import(dt, true, 0, 0);        //import方法需要添加DevExpress.Docs命名空间
-                    workbook.EndUpdate();
-
-                    //icon
-                    int imgIndex = this.imageCollectionIcons.Images.Keys.IndexOf("table");
-
-                    //TabPage
-                    XtraTabPage xtp = new XtraTabPage();
-                    xtp.Text = nodeName;
-                    xtp.Controls.Add(ssc);
-                    if (imgIndex >= 0)
-                    {
-                        Image tableIcon = this.imageCollectionIcons.Images[imgIndex];
-                        xtp.Image = tableIcon;
-                    }
-                    ssc.Dock = DockStyle.Fill;
-                    this.xtraTabControl_Main.TabPages.Add(xtp);
-                    this.xtraTabControl_Main.SelectedTabPage = xtp;
-
-                    ssc.Refresh();
-                    xtp.Refresh();
-                    this.xtraTabControl_Main.Refresh();
-                    this.Refresh();
+                    OpenDatatableInSpreadsheet(nodeName);       //打开关系数据库中的表
                 }
             }
             catch
@@ -501,6 +462,7 @@ namespace CityPlanning
                 }
             }
         }
+        
         //关系数据库导航栏图标
         private void ucNaviRDB_TreeList_GetStateImage(object sender, DevExpress.XtraTreeList.GetStateImageEventArgs e)
         {
@@ -511,6 +473,7 @@ namespace CityPlanning
             }
 
         }
+        
         //文件数据库导航栏图标
         private void ucNaviFiles_TreeList_GetStateImage(object sender, DevExpress.XtraTreeList.GetStateImageEventArgs e)
         {
@@ -577,6 +540,8 @@ namespace CityPlanning
         { 
             //根据TabPage，选择性显示
             XtraTabPage tabPage = e.Page;
+            
+            //其他tab
             foreach (Control control in tabPage.Controls)
             {
                 if (control is SpreadsheetControl)
@@ -614,9 +579,26 @@ namespace CityPlanning
                     ucTocCtrl.TOCControl.SetBuddyControl(curAxMapControl);
                     ucTocCtrl.TOCControl.Refresh();
 
-                    //地图关键词
                     curMapKeyName = tabPage.Text;
+
+                    //地图关键词                    
                     SetMapKeywords();
+
+                    //地图关联表
+                    SetMapTables(curMapKeyName);
+
+                    //地图属性查询
+                    if (pFrmMapFeatureAttr != null && pFrmMapFeatureAttr.IsDisposed == false)
+                    {
+                        pFrmMapFeatureAttr.Close();
+                        pFrmMapFeatureAttr.Dispose();
+                        pFrmMapFeatureAttr = null;
+                    }
+                    GISTools.setNull(curAxMapControl);
+                    isIdentifyMap = false;
+                    this.bMapQueryByPoint.Down = false;
+                    curAxMapControl.Map.ClearSelection();
+                    curAxMapControl.Refresh();
                     break;
                 }
                 if (control is ucSpatialAnalysisResult)
@@ -856,7 +838,7 @@ namespace CityPlanning
                 GalleryItem item1 = new GalleryItem();
                 item1.Caption = key;
                 item1.Value = key;
-                item1.ItemClick += item1_ItemClick;                
+                item1.ItemClick += itemMapKeywords_ItemClick;                
                 galleryItemList.Add(item1);
             }
             GalleryItem[] galleryItems = galleryItemList.ToArray();
@@ -865,8 +847,8 @@ namespace CityPlanning
             ribbonGallery_MapKeywords.Gallery.ColumnCount = 3;
             //throw new NotImplementedException();
         }
-        //地图关键词搜索文档//郭海强1012 修复无法删除关键词Bug
-        void item1_ItemClick(object sender, GalleryItemClickEventArgs e)
+        //地图关键词搜索文档
+        void itemMapKeywords_ItemClick(object sender, GalleryItemClickEventArgs e)
         {            
             //GalleryItem item = (GalleryItem)sender;
             //string keyword = item.Caption;
@@ -907,9 +889,79 @@ namespace CityPlanning
         #endregion 
         
         #region //地图关联表
-        //private void 
+        private void SetMapTables(string curMapKeyName)
+        {
+        	if(curMapKeyName == ""){
+        		return;
+        	}
+            //处理搜索关键词
+            string searchKeyword = curMapKeyName;
+            if (curMapKeyName.Length > 10)
+            {
+                searchKeyword = curMapKeyName.Substring(3, curMapKeyName.Length - 8);
+            }
+            //获取关联表格
+            DataTable dt = ConnectionCenter.SQLServerConnection.GetDataByKeyword(searchKeyword, ConnectionCenter.Config.MapTableIndexName, ConnectionCenter.Config.MapTableIndexFieldMap);
+            if (dt.Rows.Count == 0)
+            {
+                return;
+            }
+            //添加到Gallery
+            this.ribbonGallery_MapTables.Gallery.Groups.Clear();
+            this.ribbonGallery_MapTables.Gallery.ItemCheckMode = DevExpress.XtraBars.Ribbon.Gallery.ItemCheckMode.SingleCheck;
+            GalleryItemGroup itemGroup = new GalleryItemGroup();
+            this.ribbonGallery_MapTables.Gallery.Groups.Add(itemGroup);
+            List<GalleryItem> galleryItemList = new List<GalleryItem>();
+            
+            foreach (DataRow row in dt.Rows)
+            {
+                string tableName = Convert.ToString(row[ConnectionCenter.Config.MapTableIndexFieldTable]);
+                if (tableName == "")
+                {
+                    continue;
+                }
+                GalleryItem item = new GalleryItem();
+                item.Caption = tableName;
+                item.Value = tableName;
+                item.ItemClick += itemMapTables_ItemClick;
+                galleryItemList.Add(item);
+            }
+
+            GalleryItem[] galleryItems = galleryItemList.ToArray();
+            itemGroup.Items.AddRange(galleryItems);
+            ribbonGallery_MapTables.Gallery.ColumnCount = 1;
+            this.ribbonGallery_MapTables.Refresh();
+        }
+        //点击图层关联表
+        void itemMapTables_ItemClick(object sender, GalleryItemClickEventArgs e)
+        {
+            string tableName = e.Item.Caption;
+            if (tableName == "")
+            {
+                return;
+            }
+            OpenDatatableInSpreadsheet(tableName);
+        }
         #endregion
 
+        //要素属性查询
+        private void bMapQueryByPoint_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            GISManager.GISTools.setNull(curAxMapControl);
+
+            isIdentifyMap = this.bMapQueryByPoint.Down;
+            if (isIdentifyMap)
+            {
+                //curAxMapControl.MousePointer = ESRI.ArcGIS.Controls.esriControlsMousePointer.esriPointerCrosshair;
+                GISTools.SelectFeature(curAxMapControl);
+            }
+            else
+            {
+                //curAxMapControl.MousePointer = ESRI.ArcGIS.Controls.esriControlsMousePointer.esriPointerArrow;
+                curAxMapControl.Map.ClearSelection();
+                curAxMapControl.Refresh();
+            }
+        }
         //打开图层列表
         private void bMapLayers_ItemClick(object sender, ItemClickEventArgs e)
         {
@@ -984,23 +1036,6 @@ namespace CityPlanning
             GISTools.ZoomOutFix(curAxMapControl);
         }
 
-        private void bMapQueryByPoint_ItemClick(object sender, ItemClickEventArgs e)
-        {            
-            GISManager.GISTools.setNull(curAxMapControl);
-
-            isIdentifyMap = this.bMapQueryByPoint.Down;
-            if (isIdentifyMap)
-            {
-                //curAxMapControl.MousePointer = ESRI.ArcGIS.Controls.esriControlsMousePointer.esriPointerCrosshair;
-                GISTools.SelectFeature(curAxMapControl);
-            }
-            else
-            {
-                //curAxMapControl.MousePointer = ESRI.ArcGIS.Controls.esriControlsMousePointer.esriPointerArrow;
-                curAxMapControl.Map.ClearSelection();
-                curAxMapControl.Refresh();
-            }
-        }
         #endregion
         #endregion
 
@@ -1168,9 +1203,21 @@ namespace CityPlanning
         //主页大小变化，布局跟随改变
         private void xtraTabPage_Home_SizeChanged(object sender, EventArgs e)
         {
+            //搜索框的位置
             int lx = (this.xtraTabPage_Home.Width - this.panel_HomeSearch.Width)/2;
             int ly = (this.xtraTabPage_Home.Height - this.panel_HomeSearch.Height) / 5 * 2;
             this.panel_HomeSearch.Location = new System.Drawing.Point(lx, ly);
+
+            //int panelHeight = this.xtraTabPage_Home.Height / 2;
+            //if (panelHeight > this.panel_HomeSearch.MinimumSize.Height)
+            //{
+            //    this.panel_HomeSearch.Height = panelHeight;
+            //}
+
+            //版权信息的位置
+            int infox = (this.xtraTabPage_Home.Width - this.lbl_CopyrightInfo.Width) / 2;
+            this.lbl_CopyrightInfo.Location = new System.Drawing.Point(infox, this.lbl_CopyrightInfo.Location.Y);
+                 
 
         }
         //规划文本
@@ -1330,9 +1377,57 @@ namespace CityPlanning
                 }
             }
         }
-#endregion
-       
-       
+		#endregion
+
+        #region //打开关系数据库
+        private void OpenDatatableInSpreadsheet(string tableName)
+        {
+            //如果已经有这个tabPage
+            XtraTabPage ifTabPage = ComponentOperator.IfHasTabPage(tableName, this.xtraTabControl_Main);
+            if (ifTabPage != null)
+            {
+                this.xtraTabControl_Main.SelectedTabPage = ifTabPage;
+                return;
+            }
+            //如果不包含该TabPage，则新建
+            DataTable dt = SQLServerConnection.GetDataByTableName(tableName);
+            if (dt.Rows.Count == 0)
+            {
+                MessageBox.Show("获取数据失败。", "错误", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            //表格控件
+            SpreadsheetControl ssc = new SpreadsheetControl();
+            IWorkbook workbook = ssc.Document;
+            workbook.BeginUpdate();
+            Worksheet worksheet = workbook.Worksheets[0];
+            worksheet.Name = tableName;
+            worksheet.Import(dt, true, 0, 0);        //import方法需要添加DevExpress.Docs命名空间
+            workbook.EndUpdate();
+
+            //icon
+            int imgIndex = this.imageCollectionIcons.Images.Keys.IndexOf("table");
+
+            //TabPage
+            XtraTabPage xtp = new XtraTabPage();
+            xtp.Text = tableName;
+            xtp.Controls.Add(ssc);
+            if (imgIndex >= 0)
+            {
+                Image tableIcon = this.imageCollectionIcons.Images[imgIndex];
+                xtp.Image = tableIcon;
+            }
+            ssc.Dock = DockStyle.Fill;
+            this.xtraTabControl_Main.TabPages.Add(xtp);
+            this.xtraTabControl_Main.SelectedTabPage = xtp;
+
+            ssc.Refresh();
+            xtp.Refresh();
+            this.xtraTabControl_Main.Refresh();
+            this.Refresh();
+        }
+        #endregion
+
         #region//叠置分析所需方法
         //坐标点赋坐标
         private IPoint GetGeo(double x, double y)
@@ -1345,18 +1440,80 @@ namespace CityPlanning
             return pt;
         }
         //提取mxd中shp?
-        private void extractShp(string MxFilePath)
+        private void extractShp(AxMapControl mapControl)
         {
-            IMapDocument pMapDoc = new MapDocumentClass();
-            IFeatureLayer pFeatureLayer;
-            pMapDoc.Open(MxFilePath,"");
-            for(int i=0; i<=pMapDoc.MapCount-1; i++)
-            {
-                pFeatureLayer=pMapDoc.get_Layer(i,i) as IFeatureLayer;
-                File.Copy(pFeatureLayer.ToString(), tempPath, true);
-            }
+                try
+                {
+                    for (int i = 0; i < mapControl.Map.LayerCount - 1; i++)
+                    {
+                        ILayer pLayer = mapControl.Map.get_Layer(10);
+                        if (pLayer != null)
+                        {
+                            IFeatureLayer pFeatureLayer = pLayer as IFeatureLayer;
+                            ExportFeature(pFeatureLayer.FeatureClass, tempPath + @"\" + pLayer.Name);
+                        }
+                    }
+                    MessageBox.Show("导出成功");
+                }
+                catch
+                {
+                    MessageBox.Show("导出失败！");
+                }
+            #region//Method2 failed
+            //ILayer pLayer = null;
+            //IDataLayer2 pDataLayer = null;
+            //IDatasetName pDatasetName = null;
+            //IWorkspaceName pWorkspaceName = null;
+            //for (int i = 0; i < mapControl.Map.LayerCount - 1; i++ )
+            //{
+            //    pLayer = mapControl.Map.get_Layer(i);
+            //    pDataLayer = pLayer as IDataLayer2;
+            //    pDatasetName = pDataLayer.DataSourceName as IDatasetName;
+            //    pWorkspaceName = pDatasetName.WorkspaceName;
+            //    File.Copy(pWorkspaceName.PathName + @"\" + pLayer.Name.ToString(), tempPath + @"\" + pLayer.Name.ToString(), true);
+            //}
+            #endregion
+            #region//Method1 failed
+            //IMapDocument pMapDoc = new MapDocumentClass();
+            //IFeatureLayer pFeatureLayer;
+            //pMapDoc.Open(MxFilePath,"");
+            //for(int i=0; i<=pMapDoc.MapCount-1; i++)
+            //{
+            //    pFeatureLayer=pMapDoc.get_Layer(i,i) as IFeatureLayer;
+            //    File.Copy(pFeatureLayer.ToString(), tempPath, true);
+            //}
+            #endregion
         }
-
+        public void ExportFeature(IFeatureClass pInFeatureClass, string pPath)
+        {           
+            // create a new Access workspace factory                   
+            IWorkspaceFactory pWorkspaceFactory = new ShapefileWorkspaceFactoryClass();            
+            string parentPath=pPath.Substring(0, pPath.LastIndexOf("//"));           
+            string fileName= pPath.Substring(pPath.LastIndexOf("//") + 1, pPath.Length - pPath.LastIndexOf("//") - 1);           
+            IWorkspaceName pWorkspaceName = pWorkspaceFactory.Create(parentPath,fileName, null, 0);           
+            // Cast for IName                   
+            IName name = (IName)pWorkspaceName;           
+            //Open a reference to the access workspace through the name object                   
+            IWorkspace pOutWorkspace = (IWorkspace)name.Open();
+            IDataset pInDataset = pInFeatureClass as IDataset;
+            IFeatureClassName pInFCName = pInDataset.FullName as IFeatureClassName; 
+            IWorkspace pInWorkspace = pInDataset.Workspace;
+            IDataset pOutDataset = pOutWorkspace as IDataset; 
+            IWorkspaceName pOutWorkspaceName = pOutDataset.FullName as IWorkspaceName;
+            IFeatureClassName pOutFCName = new FeatureClassNameClass();
+            IDatasetName pDatasetName = pOutFCName as IDatasetName; 
+            pDatasetName.WorkspaceName = pOutWorkspaceName;
+            pDatasetName.Name = pInFeatureClass.AliasName;
+            IFieldChecker pFieldChecker = new FieldCheckerClass(); 
+            pFieldChecker.InputWorkspace = pInWorkspace;
+            pFieldChecker.ValidateWorkspace = pOutWorkspace; 
+            IFields pFields = pInFeatureClass.Fields;
+            IFields pOutFields;
+            IEnumFieldError pEnumFieldError; 
+            pFieldChecker.Validate(pFields, out pEnumFieldError, out pOutFields);
+            IFeatureDataConverter pFeatureDataConverter = new FeatureDataConverterClass(); 
+            pFeatureDataConverter.ConvertFeatureClass(pInFCName, null, null, pOutFCName, null, pOutFields, "", 100, 0);
+        }
 
         //叠置分析
         private void StartIntersect(string strInputFeature, string strOverLayFeature)
@@ -1452,10 +1609,9 @@ namespace CityPlanning
                         dt.Rows.Add(dr);
                         pFeature = pFeatureCursor.NextFeature();
                     }
-                    double JZQArea = ColumnSum(dt, "JZQMJ");
-                    double NYDArea = ColumnSum(dt, "NYDMJ");
-                    double GDArea = ColumnSum(dt, "GDMJ");
-                    double JBNTArea = ColumnSum(dt, "JBNTMJ");
+                    double JBNTArea = ColumnSum(dt, "JBNT");
+                    double CSKFBJArea = ColumnSum(dt, "CSKFBJ");
+                    double STBHFWArea = ColumnSum(dt, "STBHFW");
 
 
                     DataTable pDataTable = new DataTable();
@@ -1474,45 +1630,63 @@ namespace CityPlanning
                     pDataColumn = pDataTable.Columns.Add("占地面积", Type.GetType("System.Double"));
 
                     DataRow pDataRow = pDataTable.NewRow();
-                    pDataRow["用地类型"] = "居住地";
-                    pDataRow["占地面积"] = JZQArea;
+                    pDataRow["用地类型"] = "基本农田";
+                    pDataRow["占地面积"] = JBNTArea;
                     pDataTable.Rows.Add(pDataRow);
 
                     DataRow pDataRow1 = pDataTable.NewRow();
-                    pDataRow1["用地类型"] = "农用地";
-                    pDataRow1["占地面积"] = NYDArea;
+                    pDataRow1["用地类型"] = "城市开发边界";
+                    pDataRow1["占地面积"] = CSKFBJArea;
                     pDataTable.Rows.Add(pDataRow1);
-
-                    DataRow pDataRow2 = pDataTable.NewRow();
-                    pDataRow2["用地类型"] = "工地";
-                    pDataRow2["占地面积"] = GDArea;
-                    pDataTable.Rows.Add(pDataRow2);
-
+                    
                     DataRow pDataRow3 = pDataTable.NewRow();
-                    pDataRow3["用地类型"] = "基本农田";
-                    pDataRow3["占地面积"] = JBNTArea;
+                    pDataRow3["用地类型"] = "生态保护范围";
+                    pDataRow3["占地面积"] = STBHFWArea;
                     pDataTable.Rows.Add(pDataRow3);
 
                     if (pDataTable != null)
                     {
-                        Modules.ucChartForm ucc = new Modules.ucChartForm(this);
-                        ucc.Icon = Icon.FromHandle(((Bitmap)PieChartButton.Glyph).GetHicon());
-                        ucc.DataSource = pDataTable.Copy();
-                        //ucc.Range = pDataTable;
-                        ucc.StartPosition = FormStartPosition.Manual;
-                        //ucc.Right = xtraTabPage_Home.Right;
-                        //ucc.Left = Screen.PrimaryScreen.WorkingArea.Width - ucc.Width;
-                        ucc.Left = 250;
-                        //ucc.Top = ucc.Height;
-                        ucc.Top = 200;
-                        ucc.Size = new Size(300,200);
-                        ucc.ViewType = ViewType.Pie;
-                        StatisticChart.ShowOperation.CreatPieChart(ucc.ChartControl, pDataTable);
-                        ucc.Activated += curChartForm_Activated;
-                        ucc.Show();
-                        ResetFieldComboBox(curChartForm.VariableField, curChartForm.ValueField);
+                        if (frmChartInOverlay == null)
+                        {
+                            frmChartInOverlay = new System.Windows.Forms.Form();
+                            frmChartInOverlay.FormClosed += frmChartInOverlay_FormClosed;
+                            frmChartInOverlay.Size = new System.Drawing.Size(640, 480);
+
+                            ucChartInOverlay = new Modules.ucChartShow();
+                            frmChartInOverlay.Controls.Add(ucChartInOverlay);
+                            ucChartInOverlay.Dock = DockStyle.Fill;
+                            ucChartInOverlay.SetChartShow(pDataTable, ViewType.Pie);
+                            //ucChartInOverlay.DataSource = pDataTable.Copy();
+                            frmChartInOverlay.Show();
+                        }
+                        else
+                        {
+                            if (!frmChartInOverlay.IsDisposed)
+                            {
+                                ucChartInOverlay.SetChartShow(pDataTable, ViewType.Pie);
+                                ucChartInOverlay.Refresh();
+                                frmChartInOverlay.BringToFront();
+                                frmChartInOverlay.Refresh();
+                            }
+                        }
+                        
+                        //ResetFieldComboBox(curChartForm.VariableField, curChartForm.ValueField);
                     }
                 }
+            }
+        }
+
+        void frmChartInOverlay_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            //关闭饼状图窗体
+            if (frmChartInOverlay != null)
+            {
+                if (!frmChartInOverlay.IsDisposed)
+                {
+                    frmChartInOverlay.Dispose();
+                }
+                frmChartInOverlay = null;
+                ucChartInOverlay = null;
             }
         }
 
@@ -1530,7 +1704,7 @@ namespace CityPlanning
         //加载红线地图?
         private void LoadRedLine()
         {
-            string path = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.PlanMap + @"\18.沈阳经济区红线融合图.mxd";
+            string path = ConnectionCenter.Config.RedLineMap;
             curAxMapControl.LoadMxFile(path);
             curAxMapControl.ActiveView.Refresh();
         }
@@ -1551,7 +1725,7 @@ namespace CityPlanning
             OpenFileDialog op = new OpenFileDialog();
             op.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
 
-            op.Filter = "文本文件(*.txt)|*.txt|excel文件(*.xls)|*.xls";
+            op.Filter = "文本文件(*.txt)|*.txt";
            
             if (op.ShowDialog(this) == DialogResult.OK)
                  {
@@ -1665,7 +1839,7 @@ namespace CityPlanning
                      IFeatureClass pNewFeaCls = pFWS.CreateFeatureClass(shpName, validatedFields, null, null, esriFeatureType.esriFTSimple, "Shape", "");
                      IFeature feature = null;
                      //feature = pNewFeaCls.CreateFeature();
-
+                    
 
               #region//Read TXT      
                 if(extension==".txt")
@@ -1703,6 +1877,7 @@ namespace CityPlanning
                                 feature.set_Value(2, pt.X.ToString());
                                 feature.set_Value(3, pt.Y.ToString());
                                 feature.Store();
+
                                 IMap pmap = curAxMapControl.Map;
                                 IActiveView pactive = pmap as IActiveView;
 
@@ -1744,6 +1919,7 @@ namespace CityPlanning
                                 feature.set_Value(2, pt.X.ToString());
                                 feature.set_Value(3, pt.Y.ToString());
                                 feature.Store();
+
                                 IMap pmap = curAxMapControl.Map;
                                 IActiveView pactive = pmap as IActiveView;
 
@@ -1778,6 +1954,7 @@ namespace CityPlanning
                             feature.set_Value(2, pt.X.ToString());
                             feature.set_Value(3, pt.Y.ToString());
                             feature.Store();
+                            
                         }
                     }
                 }
@@ -1801,7 +1978,7 @@ namespace CityPlanning
                     {
                         //添加feature;
                         //F:\坐标转shp\坐标序列文件\土地样例.xls
-                        string strcon = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source="+op.FileName+";Extended Properties='Excel 8.0;HDR=YES;IMEX=1;'";
+                        string strcon = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source="+op.FileName+";Extended Properties='Excel 12.0;HDR=YES;IMEX=1;'";
                         OleDbConnection con = new OleDbConnection(strcon);
                         con.Open();
                         string sheetname = "";
@@ -1873,8 +2050,8 @@ namespace CityPlanning
 
                     }
 
-                if (MessageBox.Show("开始分析?", "询问", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
-                {
+                //if (MessageBox.Show("开始分析?", "询问", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                //{
                     //read shp of mxd
                     string strInputFeaturePath = ConnectionCenter.Config.FTPCatalog+ConnectionCenter.Config.PlanMap+@"\shp\GHJBNTJZQ（处理后）.shp";
                     string strInputFeatureName = System.IO.Path.GetFileNameWithoutExtension(strInputFeaturePath);// "GHJBNTJZQ（处理后）.shp";
@@ -1901,22 +2078,46 @@ namespace CityPlanning
 
                     this.StartIntersect(strInputFeature, strOverLayFeature);
                     //分析进度条
-                    ThreadForm thr = new ThreadForm(0, 100);
-                    thr.Show(this);
-                    for (int i = 0; i < 100; i++)
-                    {
-                        thr.setPos(i);
-                        Thread.Sleep(20);
-                    }
-                    thr.Close();
+                    //ThreadForm thr = new ThreadForm(0, 100);
+                    //thr.Show(this);
+                    //for (int i = 0; i < 100; i++)
+                    //{
+                    //    thr.setPos(i);
+                    //    Thread.Sleep(20);
+                    //}
+                    //thr.Close();
                     //添加叠置结果图
                     mapControl.ClearLayers();
-                    mapControl.LoadMxFile(ConnectionCenter.Config.FTPCatalog+ConnectionCenter.Config.PlanMap+@"\18.沈阳经济区红线融合图.mxd");
+                    mapControl.LoadMxFile(ConnectionCenter.Config.RedLineMap);
                     mapControl.AddShapeFile(DirPath, "Result.shp");
+                    mapControl.AddShapeFile(DirPath, "test.shp");
+                    ILayer pL=null;
+                    ILayer pLayer=null;
+                    for (int i = 0; i < mapControl.LayerCount; i++)
+                    {
+                        
+                        pL =mapControl.get_Layer(i);
+                        if (pL is IGroupLayer)
+                        {
+                            ICompositeLayer pGL = pL as ICompositeLayer;
+                            for (int j = 0; j < pGL.Count; j++)
+                            {
+                                if (pGL.get_Layer(j).Name == "test.shp") 
+                                {
+                                    pLayer = pGL.get_Layer(j);
+                                    if (pLayer is IFeatureLayer)//如果第一个图层时矢量图层
+                                    {
+                                        ILayerEffects pLayerEffects = pLayer as ILayerEffects;                                        
+                                        pLayerEffects.Transparency = 65;//设置ILayerEffects接口的Transparency属性使该矢量图层的透明度属性为65.
+                                    }  
+                                }
+                            }
+                        }
+                    }
                     mapControl.Refresh();
                     string dbfPath = tempPath + @"\Result.dbf";
                     CreatResultPie(dbfPath);
-                }
+                //}
               }
             }//ifdiag
         }
@@ -1966,7 +2167,7 @@ namespace CityPlanning
                         if (System.IO.File.Exists(shpDirName + "\\" + dbfName))
                             System.IO.File.Delete(shpDirName + "\\" + dbfName);
                         if (System.IO.File.Exists(shpDirName + "\\" + shxName))
-                            System.IO.File.Delete(shpDirName +"\\"+ shxName);
+                            System.IO.File.Delete(shpDirName + "\\" + shxName);
                         if (System.IO.File.Exists(shpDirName + "\\" + sbnName))
                             System.IO.File.Delete(shpDirName + "\\" + sbnName);
                         if (System.IO.File.Exists(shpDirName + "\\" + xmlName))
@@ -2085,14 +2286,14 @@ namespace CityPlanning
                         pactive.PartialRefresh(esriViewDrawPhase.esriViewGraphics, null, null);
                         IPolygon pGon = pPolygon as IPolygon;
                         IArea pArea = pGon as IArea;
-                        double s = pArea.Area/1000000 ;//
-                        double ss= Math.Abs(s);
+                        double s = pArea.Area / 1000000;//
+                        double ss = Math.Abs(s);
                         MessageBox.Show("该区域面积为：" + Convert.ToDouble(ss).ToString("0.000") + "平方公里（km2）", "项目区面积");
                         // IPointArray pts = new PointArrayClass();
                         //if (MessageBox.Show("确定绘制？", "询问", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                         //{
-                            pgra.DeleteAllElements();
-                            this.curAxMapControl.Refresh();
+                        pgra.DeleteAllElements();
+                        this.curAxMapControl.Refresh();
                         //}
                     }
                     string DirPath = tempPath;
@@ -2100,68 +2301,74 @@ namespace CityPlanning
                     mapControl = curAxMapControl;
                     mapControl.AddShapeFile(DirPath, "draw.shp");
                     mapControl.Refresh();
-                    if (MessageBox.Show("开始分析?", "询问", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                    //if (MessageBox.Show("开始分析?", "询问", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                    //{
+                    //read shp of mxd
+                    string strInputFeaturePath = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.PlanMap + @"\shp\GHJBNTJZQ（处理后）.shp";
+                    string strInputFeatureName = System.IO.Path.GetFileNameWithoutExtension(strInputFeaturePath); //"GHJBNTJZQ（处理后）.shp";
+                    FileInfo fileInfo = new FileInfo(strInputFeaturePath);
+                    DirectoryInfo direct = fileInfo.Directory;
+                    if (!fileInfo.Exists || !direct.Exists)
                     {
-                        //read shp of mxd
-                        string strInputFeaturePath = ConnectionCenter.Config.FTPCatalog+ConnectionCenter.Config.PlanMap+@"\shp\GHJBNTJZQ（处理后）.shp";
-                        string strInputFeatureName = System.IO.Path.GetFileNameWithoutExtension(strInputFeaturePath); //"GHJBNTJZQ（处理后）.shp";
-                        FileInfo fileInfo = new FileInfo(strInputFeaturePath);
-                        DirectoryInfo direct = fileInfo.Directory;
-                        FileInfo[] fileinfos = direct.GetFiles(string.Format("{0}.*", fileInfo.Name.Substring(0, fileInfo.Name.LastIndexOf("."))));
-                        for (int i = 0; i < fileinfos.Count(); i++)
-                        {
-                            File.Copy(fileinfos[i].FullName, _Environment + @"\" + fileinfos[i].Name, true);
-                        }
-                        this.strInputFeature = fileInfo.Name;
-
-                        string strOverLayFeaturePath = tempPath+@"\draw.shp";
-                        string strOverLayFeatureName = "draw.shp";
-                        //string strOverLayFeatureName = System.IO.Path.GetFileNameWithoutExtension(strOverLayFeaturePath);
-                        FileInfo fileInfo1 = new FileInfo(strOverLayFeaturePath);
-                        DirectoryInfo direct1 = fileInfo1.Directory;
-                        FileInfo[] fileinfos1 = direct1.GetFiles(string.Format("{0}.*", fileInfo1.Name.Substring(0, fileInfo1.Name.LastIndexOf("."))));
-                        for (int i = 0; i < fileinfos1.Count(); i++)
-                        {
-                            File.Copy(fileinfos1[i].FullName, _Environment + @"\" + fileinfos1[i].Name, true);
-                        }
-                        this.strOverLayFeature = fileInfo1.Name;
-
-                        this.StartIntersect(strInputFeature, strOverLayFeature);
-                        ThreadForm thr = new ThreadForm(0, 100);
-                        thr.Show(this);
-                        for (int i = 0; i < 100; i++)
-                        {
-                            thr.setPos(i);
-                            Thread.Sleep(20);
-                            //if(i==95)
-                            //{
-                            //    break;
-                            //}
-                        }
-                        thr.Close();
-                        mapControl.ClearLayers();
-                        string path = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.PlanMap + @"\18.沈阳经济区红线融合图.mxd";
-                        mapControl.LoadMxFile(path);
-                        mapControl.AddShapeFile(DirPath, "Result.shp");
-                        mapControl.Refresh();
-                        string dbfPath =ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.PlanMap + @"\shp\GHJBNTJZQ（处理后）.dbf";
-                        CreatResultPie(dbfPath);
-                        RichEditControl rec = new RichEditControl();
-                        rec.Refresh();
-                        XtraTabPage xtp = new XtraTabPage();
-                        xtp.Refresh();
-                        this.xtraTabControl_Main.Refresh();
-                        this.Refresh();
+                        MessageBox.Show("叠置分析失败，请检查文件路径后重试。", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
                     }
-                    DrawPolygon = false;
-                    //startIntersect = true;
+                    FileInfo[] fileinfos = direct.GetFiles(string.Format("{0}.*", fileInfo.Name.Substring(0, fileInfo.Name.LastIndexOf("."))));
+                    for (int i = 0; i < fileinfos.Count(); i++)
+                    {
+                        File.Copy(fileinfos[i].FullName, _Environment + @"\" + fileinfos[i].Name, true);
+                    }
+                    this.strInputFeature = fileInfo.Name;
+
+                    string strOverLayFeaturePath = tempPath + @"\draw.shp";
+                    string strOverLayFeatureName = "draw.shp";
+                    //string strOverLayFeatureName = System.IO.Path.GetFileNameWithoutExtension(strOverLayFeaturePath);
+                    FileInfo fileInfo1 = new FileInfo(strOverLayFeaturePath);
+                    DirectoryInfo direct1 = fileInfo1.Directory;
+                    FileInfo[] fileinfos1 = direct1.GetFiles(string.Format("{0}.*", fileInfo1.Name.Substring(0, fileInfo1.Name.LastIndexOf("."))));
+                    for (int i = 0; i < fileinfos1.Count(); i++)
+                    {
+                        File.Copy(fileinfos1[i].FullName, _Environment + @"\" + fileinfos1[i].Name, true);
+                    }
+                    this.strOverLayFeature = fileInfo1.Name;
+
+                    this.StartIntersect(strInputFeature, strOverLayFeature);
+                    //ThreadForm thr = new ThreadForm(0, 100);
+                    //thr.Show(this);
+                    //for (int i = 0; i < 100; i++)
+                    //{
+                    //    thr.setPos(i);
+                    //    Thread.Sleep(20);
+                    //    //if(i==95)
+                    //    //{
+                    //    //    break;
+                    //    //}
+                    //}
+                    //thr.Close();
+                    mapControl.ClearLayers();
+                    string path = ConnectionCenter.Config.RedLineMap;
+                    mapControl.LoadMxFile(path);
+                    mapControl.AddShapeFile(DirPath, "Result.shp");
+                    mapControl.Refresh();
+                    //string dbfPath = ConnectionCenter.Config.PlanMap + @"\shp\GHJBNTJZQ（处理后）.dbf";
+                    string dbfPath = tempPath + @"\Result.dbf";
+                    CreatResultPie(dbfPath);
+                    //RichEditControl rec = new RichEditControl();
+                    //rec.Refresh();
+                    //XtraTabPage xtp = new XtraTabPage();
+                    //xtp.Refresh();
+                    // this.xtraTabControl_Main.Refresh();
+                    //this.Refresh();
                 }
+                DrawPolygon = false;
+                //startIntersect = true;
+                //}
             }
         }
         #endregion 
         #endregion
 
-        #region 专题图
+        #region //专题图
         //地图打开事件
         private void bOpenRedLine_ItemClick(object sender, ItemClickEventArgs e)
         {
@@ -2187,8 +2394,13 @@ namespace CityPlanning
             xtp.Refresh();
             this.xtraTabControl_Main.Refresh();
             this.Refresh();
-            string path = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.RedLineMap;
+            string path = ConnectionCenter.Config.RedLineMap;
+            if (!File.Exists(path))
+            {
+                return;
+            }
             mapControl.LoadMxFile(path);
+            //extractShp(mapControl);
             mapControl.ActiveView.Refresh();
             AlreadyAddMap = true;
         }
@@ -2196,12 +2408,24 @@ namespace CityPlanning
         //清除分析事件
         private void bClearAnalysis_ItemClick(object sender, ItemClickEventArgs e)
         {
+            //关闭饼状图窗体
+            if (frmChartInOverlay != null)
+            {
+                if (!frmChartInOverlay.IsDisposed)
+                {
+                    frmChartInOverlay.Dispose();
+                }
+                frmChartInOverlay = null;
+                ucChartInOverlay = null;
+            }
+
             AxMapControl mapControl = new AxMapControl();
             mapControl = curAxMapControl;
             mapControl.ClearLayers();
-            string path = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.RedLineMap;
+            string path = ConnectionCenter.Config.RedLineMap;
             mapControl.LoadMxFile(path);
             mapControl.Refresh();
+            
         }
 
         #endregion
@@ -2251,7 +2475,7 @@ namespace CityPlanning
             thr.Close();
             //加载结果图
             XtraTabPage xtraTabPage = new XtraTabPage();
-            xtraTabPage.Text = "店里网络密度分析";
+            xtraTabPage.Text = "交通网络密度分析";
             xtraTabPage.Image = this.imageCollectionIcons.Images[this.imageCollectionIcons.Images.Keys.IndexOf("mxd")];
             xtraTabControl_Main.TabPages.Add(xtraTabPage);
             xtraTabControl_Main.SelectedTabPage = xtraTabPage;

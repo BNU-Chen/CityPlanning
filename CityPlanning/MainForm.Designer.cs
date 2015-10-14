@@ -37,8 +37,6 @@
             DevExpress.XtraBars.Ribbon.GalleryItem galleryItem3 = new DevExpress.XtraBars.Ribbon.GalleryItem();
             DevExpress.XtraBars.Ribbon.GalleryItem galleryItem4 = new DevExpress.XtraBars.Ribbon.GalleryItem();
             DevExpress.XtraBars.Ribbon.GalleryItem galleryItem5 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem6 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem7 = new DevExpress.XtraBars.Ribbon.GalleryItem();
             DevExpress.XtraBars.Ribbon.ReduceOperation reduceOperation1 = new DevExpress.XtraBars.Ribbon.ReduceOperation();
             DevExpress.XtraBars.Ribbon.ReduceOperation reduceOperation2 = new DevExpress.XtraBars.Ribbon.ReduceOperation();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
@@ -333,6 +331,8 @@
             this.bMapToolNull = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonGallery_MapAnalysis = new DevExpress.XtraBars.RibbonGalleryBarItem();
             this.imageCollection_MapAnalysis = new DevExpress.Utils.ImageCollection(this.components);
+            this.barButtonGroup17 = new DevExpress.XtraBars.BarButtonGroup();
+            this.barButtonGroup18 = new DevExpress.XtraBars.BarButtonGroup();
             this.ribbonImageCollectionLarge = new DevExpress.Utils.ImageCollection(this.components);
             this.ribbonPageCategory_map = new DevExpress.XtraBars.Ribbon.RibbonPageCategory();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -424,10 +424,12 @@
             this.sb_HomePlanMap = new DevExpress.XtraEditors.SimpleButton();
             this.sb_HomePlanDesc = new DevExpress.XtraEditors.SimpleButton();
             this.sb_HomePlanThematic = new DevExpress.XtraEditors.SimpleButton();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.Query_button = new DevExpress.XtraEditors.ButtonEdit();
-            this.label11 = new System.Windows.Forms.Label();
+            this.lbl_CopyrightInfo = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.spreadsheetBarController1 = new DevExpress.XtraSpreadsheet.UI.SpreadsheetBarController();
             this.spreadsheetCommandBarButtonItem75 = new DevExpress.XtraSpreadsheet.UI.SpreadsheetCommandBarButtonItem();
@@ -498,6 +500,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.axLicenseControl1)).BeginInit();
             this.panel_HomeSearch.SuspendLayout();
             this.Statistics_panel.SuspendLayout();
+            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Query_button.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spreadsheetBarController1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
@@ -826,10 +829,12 @@
             this.bClearAnalysis,
             this.bMapLayers,
             this.bMapToolNull,
-            this.ribbonGallery_MapAnalysis});
+            this.ribbonGallery_MapAnalysis,
+            this.barButtonGroup17,
+            this.barButtonGroup18});
             this.ribbonControl.LargeImages = this.ribbonImageCollectionLarge;
             this.ribbonControl.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl.MaxItemId = 713;
+            this.ribbonControl.MaxItemId = 717;
             this.ribbonControl.Name = "ribbonControl";
             this.ribbonControl.PageCategories.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageCategory[] {
             this.ribbonPageCategory_map,
@@ -1047,6 +1052,7 @@
             this.bHelp.Name = "bHelp";
             this.bHelp.RibbonStyle = ((DevExpress.XtraBars.Ribbon.RibbonItemStyles)(((DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large | DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithText) 
             | DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithoutText)));
+            this.bHelp.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bHelp_ItemClick);
             // 
             // bAboutUs
             // 
@@ -3136,6 +3142,10 @@
             // ribbonGallery_MapTables
             // 
             this.ribbonGallery_MapTables.Caption = "ribbonGalleryBarItem1";
+            // 
+            // 
+            // 
+            this.ribbonGallery_MapTables.Gallery.ShowItemText = true;
             this.ribbonGallery_MapTables.Id = 698;
             this.ribbonGallery_MapTables.Name = "ribbonGallery_MapTables";
             // 
@@ -3195,7 +3205,7 @@
             // 
             // bOpenRedLine
             // 
-            this.bOpenRedLine.Caption = "叠纸分析";
+            this.bOpenRedLine.Caption = "叠置分析";
             this.bOpenRedLine.Glyph = global::CityPlanning.Properties.Resources.thematic_icon;
             this.bOpenRedLine.Id = 707;
             this.bOpenRedLine.Name = "bOpenRedLine";
@@ -3291,20 +3301,14 @@
             galleryItem3.ImageIndex = 2;
             galleryItem4.Caption = "生态服务价值";
             galleryItem4.ImageIndex = 3;
-            galleryItem5.Caption = "水文分析";
-            galleryItem5.ImageIndex = 4;
-            galleryItem6.Caption = "洪涝损失分析";
-            galleryItem6.ImageIndex = 5;
-            galleryItem7.Caption = "GDP重心转移";
-            galleryItem7.ImageIndex = 6;
+            galleryItem5.Caption = "GDP重心转移";
+            galleryItem5.ImageIndex = 6;
             galleryItemGroup2.Items.AddRange(new DevExpress.XtraBars.Ribbon.GalleryItem[] {
             galleryItem1,
             galleryItem2,
             galleryItem3,
             galleryItem4,
-            galleryItem5,
-            galleryItem6,
-            galleryItem7});
+            galleryItem5});
             this.ribbonGallery_MapAnalysis.Gallery.Groups.AddRange(new DevExpress.XtraBars.Ribbon.GalleryItemGroup[] {
             galleryItemGroup2});
             this.ribbonGallery_MapAnalysis.Gallery.Images = this.imageCollection_MapAnalysis;
@@ -3324,6 +3328,22 @@
             this.imageCollection_MapAnalysis.Images.SetKeyName(4, "Hydro_32.jpg");
             this.imageCollection_MapAnalysis.Images.SetKeyName(5, "flood1_32.jpg");
             this.imageCollection_MapAnalysis.Images.SetKeyName(6, "polyline_32.jpg");
+            // 
+            // barButtonGroup17
+            // 
+            this.barButtonGroup17.Caption = "barButtonGroup17";
+            this.barButtonGroup17.Id = 713;
+            this.barButtonGroup17.ItemLinks.Add(this.bMapZoomIn);
+            this.barButtonGroup17.ItemLinks.Add(this.bMapScaleIn);
+            this.barButtonGroup17.Name = "barButtonGroup17";
+            // 
+            // barButtonGroup18
+            // 
+            this.barButtonGroup18.Caption = "barButtonGroup18";
+            this.barButtonGroup18.Id = 714;
+            this.barButtonGroup18.ItemLinks.Add(this.bMapZoomOut);
+            this.barButtonGroup18.ItemLinks.Add(this.bMapScaleOut);
+            this.barButtonGroup18.Name = "barButtonGroup18";
             // 
             // ribbonImageCollectionLarge
             // 
@@ -3366,6 +3386,7 @@
             this.ribbonPageGroup1.ItemLinks.Add(this.bGalleryOpenMap);
             this.ribbonPageGroup1.ItemLinks.Add(this.bMapAddLayer);
             this.ribbonPageGroup1.ItemLinks.Add(this.bMapOutput);
+            this.ribbonPageGroup1.ItemLinks.Add(this.bMapLayers);
             this.ribbonPageGroup1.Name = "ribbonPageGroup1";
             this.ribbonPageGroup1.Text = "文件";
             // 
@@ -3373,12 +3394,9 @@
             // 
             this.ribbonPageGroup2.ItemLinks.Add(this.bMapToolNull);
             this.ribbonPageGroup2.ItemLinks.Add(this.bMapPan);
-            this.ribbonPageGroup2.ItemLinks.Add(this.bMapZoomIn);
-            this.ribbonPageGroup2.ItemLinks.Add(this.bMapZoomOut);
+            this.ribbonPageGroup2.ItemLinks.Add(this.barButtonGroup17);
+            this.ribbonPageGroup2.ItemLinks.Add(this.barButtonGroup18);
             this.ribbonPageGroup2.ItemLinks.Add(this.bMapFullExtent);
-            this.ribbonPageGroup2.ItemLinks.Add(this.bMapScaleIn);
-            this.ribbonPageGroup2.ItemLinks.Add(this.bMapScaleOut);
-            this.ribbonPageGroup2.ItemLinks.Add(this.bMapLayers);
             this.ribbonPageGroup2.Name = "ribbonPageGroup2";
             this.ribbonPageGroup2.Text = "工具";
             // 
@@ -4097,7 +4115,7 @@
             this.xtraTabPage_Home.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.xtraTabPage_Home.Controls.Add(this.axLicenseControl1);
             this.xtraTabPage_Home.Controls.Add(this.panel_HomeSearch);
-            this.xtraTabPage_Home.Controls.Add(this.label11);
+            this.xtraTabPage_Home.Controls.Add(this.lbl_CopyrightInfo);
             this.xtraTabPage_Home.Controls.Add(this.label10);
             this.xtraTabPage_Home.Name = "xtraTabPage_Home";
             this.xtraTabPage_Home.Size = new System.Drawing.Size(846, 480);
@@ -4115,17 +4133,19 @@
             // 
             // panel_HomeSearch
             // 
+            this.panel_HomeSearch.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.panel_HomeSearch.Controls.Add(this.Statistics_panel);
-            this.panel_HomeSearch.Controls.Add(this.label4);
-            this.panel_HomeSearch.Controls.Add(this.label2);
+            this.panel_HomeSearch.Controls.Add(this.panel1);
             this.panel_HomeSearch.Controls.Add(this.Query_button);
-            this.panel_HomeSearch.Location = new System.Drawing.Point(40, 43);
+            this.panel_HomeSearch.Location = new System.Drawing.Point(52, 43);
+            this.panel_HomeSearch.MinimumSize = new System.Drawing.Size(736, 351);
             this.panel_HomeSearch.Name = "panel_HomeSearch";
             this.panel_HomeSearch.Size = new System.Drawing.Size(736, 351);
             this.panel_HomeSearch.TabIndex = 19;
             // 
             // Statistics_panel
             // 
+            this.Statistics_panel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.Statistics_panel.Controls.Add(this.label3);
             this.Statistics_panel.Controls.Add(this.sb_HomePlanImg);
             this.Statistics_panel.Controls.Add(this.label9);
@@ -4136,18 +4156,18 @@
             this.Statistics_panel.Controls.Add(this.sb_HomePlanMap);
             this.Statistics_panel.Controls.Add(this.sb_HomePlanDesc);
             this.Statistics_panel.Controls.Add(this.sb_HomePlanThematic);
-            this.Statistics_panel.Location = new System.Drawing.Point(52, 200);
+            this.Statistics_panel.Location = new System.Drawing.Point(117, 221);
             this.Statistics_panel.Name = "Statistics_panel";
-            this.Statistics_panel.Size = new System.Drawing.Size(618, 138);
-            this.Statistics_panel.TabIndex = 29;
+            this.Statistics_panel.Size = new System.Drawing.Size(503, 124);
+            this.Statistics_panel.TabIndex = 31;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("楷体", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label3.Location = new System.Drawing.Point(138, 116);
+            this.label3.Font = new System.Drawing.Font("楷体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label3.Location = new System.Drawing.Point(115, 98);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(93, 20);
+            this.label3.Size = new System.Drawing.Size(76, 16);
             this.label3.TabIndex = 38;
             this.label3.Text = "规划说明";
             // 
@@ -4162,10 +4182,10 @@
             this.sb_HomePlanImg.Appearance.Options.UseFont = true;
             this.sb_HomePlanImg.Appearance.Options.UseForeColor = true;
             this.sb_HomePlanImg.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
-            this.sb_HomePlanImg.Location = new System.Drawing.Point(506, 3);
+            this.sb_HomePlanImg.Location = new System.Drawing.Point(411, 7);
             this.sb_HomePlanImg.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat;
             this.sb_HomePlanImg.Name = "sb_HomePlanImg";
-            this.sb_HomePlanImg.Size = new System.Drawing.Size(110, 110);
+            this.sb_HomePlanImg.Size = new System.Drawing.Size(80, 80);
             this.sb_HomePlanImg.TabIndex = 37;
             this.sb_HomePlanImg.Text = "41";
             this.sb_HomePlanImg.Click += new System.EventHandler(this.sb_HomePlanImg_Click);
@@ -4173,40 +4193,40 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("楷体", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label9.Location = new System.Drawing.Point(515, 116);
+            this.label9.Font = new System.Drawing.Font("楷体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label9.Location = new System.Drawing.Point(415, 98);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(93, 20);
+            this.label9.Size = new System.Drawing.Size(76, 16);
             this.label9.TabIndex = 36;
             this.label9.Text = "规划图集";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("楷体", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label8.Location = new System.Drawing.Point(387, 116);
+            this.label8.Font = new System.Drawing.Font("楷体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label8.Location = new System.Drawing.Point(315, 98);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(93, 20);
+            this.label8.Size = new System.Drawing.Size(76, 16);
             this.label8.TabIndex = 35;
             this.label8.Text = "专题地图";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("楷体", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label7.Location = new System.Drawing.Point(261, 116);
+            this.label7.Font = new System.Drawing.Font("楷体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label7.Location = new System.Drawing.Point(215, 98);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(93, 20);
+            this.label7.Size = new System.Drawing.Size(76, 16);
             this.label7.TabIndex = 34;
             this.label7.Text = "专题报告";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("楷体", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label6.Location = new System.Drawing.Point(5, 116);
+            this.label6.Font = new System.Drawing.Font("楷体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label6.Location = new System.Drawing.Point(15, 98);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(93, 20);
+            this.label6.Size = new System.Drawing.Size(76, 16);
             this.label6.TabIndex = 33;
             this.label6.Text = "规划文本";
             // 
@@ -4221,10 +4241,10 @@
             this.sb_HomePlanDoc.Appearance.Options.UseFont = true;
             this.sb_HomePlanDoc.Appearance.Options.UseForeColor = true;
             this.sb_HomePlanDoc.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
-            this.sb_HomePlanDoc.Location = new System.Drawing.Point(3, 3);
+            this.sb_HomePlanDoc.Location = new System.Drawing.Point(11, 7);
             this.sb_HomePlanDoc.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat;
             this.sb_HomePlanDoc.Name = "sb_HomePlanDoc";
-            this.sb_HomePlanDoc.Size = new System.Drawing.Size(110, 110);
+            this.sb_HomePlanDoc.Size = new System.Drawing.Size(80, 80);
             this.sb_HomePlanDoc.TabIndex = 29;
             this.sb_HomePlanDoc.Text = "1";
             this.sb_HomePlanDoc.Click += new System.EventHandler(this.sb_HomePlanDoc_Click);
@@ -4240,10 +4260,10 @@
             this.sb_HomePlanMap.Appearance.Options.UseFont = true;
             this.sb_HomePlanMap.Appearance.Options.UseForeColor = true;
             this.sb_HomePlanMap.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
-            this.sb_HomePlanMap.Location = new System.Drawing.Point(380, 3);
+            this.sb_HomePlanMap.Location = new System.Drawing.Point(311, 7);
             this.sb_HomePlanMap.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat;
             this.sb_HomePlanMap.Name = "sb_HomePlanMap";
-            this.sb_HomePlanMap.Size = new System.Drawing.Size(110, 110);
+            this.sb_HomePlanMap.Size = new System.Drawing.Size(80, 80);
             this.sb_HomePlanMap.TabIndex = 32;
             this.sb_HomePlanMap.Text = "17";
             this.sb_HomePlanMap.Click += new System.EventHandler(this.sb_HomePlanMap_Click);
@@ -4259,10 +4279,10 @@
             this.sb_HomePlanDesc.Appearance.Options.UseFont = true;
             this.sb_HomePlanDesc.Appearance.Options.UseForeColor = true;
             this.sb_HomePlanDesc.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
-            this.sb_HomePlanDesc.Location = new System.Drawing.Point(128, 3);
+            this.sb_HomePlanDesc.Location = new System.Drawing.Point(111, 7);
             this.sb_HomePlanDesc.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat;
             this.sb_HomePlanDesc.Name = "sb_HomePlanDesc";
-            this.sb_HomePlanDesc.Size = new System.Drawing.Size(110, 110);
+            this.sb_HomePlanDesc.Size = new System.Drawing.Size(80, 80);
             this.sb_HomePlanDesc.TabIndex = 30;
             this.sb_HomePlanDesc.Text = "1";
             this.sb_HomePlanDesc.Click += new System.EventHandler(this.sb_HomePlanDesc_Click);
@@ -4278,38 +4298,60 @@
             this.sb_HomePlanThematic.Appearance.Options.UseFont = true;
             this.sb_HomePlanThematic.Appearance.Options.UseForeColor = true;
             this.sb_HomePlanThematic.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
-            this.sb_HomePlanThematic.Location = new System.Drawing.Point(254, 3);
+            this.sb_HomePlanThematic.Location = new System.Drawing.Point(211, 7);
             this.sb_HomePlanThematic.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat;
             this.sb_HomePlanThematic.Name = "sb_HomePlanThematic";
-            this.sb_HomePlanThematic.Size = new System.Drawing.Size(110, 110);
+            this.sb_HomePlanThematic.Size = new System.Drawing.Size(80, 80);
             this.sb_HomePlanThematic.TabIndex = 31;
             this.sb_HomePlanThematic.Text = "8";
             this.sb_HomePlanThematic.Click += new System.EventHandler(this.sb_HomePlanThematic_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.label5);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Location = new System.Drawing.Point(92, 4);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(591, 124);
+            this.panel1.TabIndex = 30;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(150, 83);
+            this.label4.Location = new System.Drawing.Point(28, 85);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(455, 18);
-            this.label4.TabIndex = 28;
+            this.label4.TabIndex = 31;
             this.label4.Text = "“一核六带”的空间发展格局      一体化、开放式的区域城镇分工体系";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("华文新魏", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label5.Location = new System.Drawing.Point(439, 45);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(122, 21);
+            this.label5.TabIndex = 29;
+            this.label5.Text = "(2013-2020)";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("华文新魏", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label2.Location = new System.Drawing.Point(16, 19);
+            this.label2.Location = new System.Drawing.Point(8, 21);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(712, 48);
-            this.label2.TabIndex = 27;
-            this.label2.Text = "沈阳经济区国土规划(2013-2020)";
+            this.label2.Size = new System.Drawing.Size(452, 48);
+            this.label2.TabIndex = 30;
+            this.label2.Text = "沈阳经济区国土规划";
             // 
             // Query_button
             // 
+            this.Query_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.Query_button.EditValue = "";
-            this.Query_button.Location = new System.Drawing.Point(64, 134);
+            this.Query_button.Location = new System.Drawing.Point(64, 142);
             this.Query_button.MenuManager = this.ribbonControl;
             this.Query_button.Name = "Query_button";
             this.Query_button.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -4321,16 +4363,16 @@
             this.Query_button.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.Query_button_ButtonClick);
             this.Query_button.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Query_button_KeyDown);
             // 
-            // label11
+            // lbl_CopyrightInfo
             // 
-            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.lbl_CopyrightInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(305, 457);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(242, 14);
-            this.label11.TabIndex = 18;
-            this.label11.Text = "版权所有@辽宁省国土资源厅  北京师范大学";
+            this.lbl_CopyrightInfo.AutoSize = true;
+            this.lbl_CopyrightInfo.Location = new System.Drawing.Point(305, 457);
+            this.lbl_CopyrightInfo.Name = "lbl_CopyrightInfo";
+            this.lbl_CopyrightInfo.Size = new System.Drawing.Size(242, 14);
+            this.lbl_CopyrightInfo.TabIndex = 18;
+            this.lbl_CopyrightInfo.Text = "版权所有@辽宁省国土资源厅  北京师范大学";
             // 
             // label10
             // 
@@ -4784,9 +4826,10 @@
             this.xtraTabPage_Home.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axLicenseControl1)).EndInit();
             this.panel_HomeSearch.ResumeLayout(false);
-            this.panel_HomeSearch.PerformLayout();
             this.Statistics_panel.ResumeLayout(false);
             this.Statistics_panel.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Query_button.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spreadsheetBarController1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
@@ -5174,7 +5217,7 @@
         private DevExpress.XtraBars.BarButtonItem bGalleryImage;
         private DevExpress.XtraEditors.TextEdit textEdit1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label lbl_CopyrightInfo;
         private System.Windows.Forms.Label label10;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup_MapKeyword;
         private DevExpress.XtraBars.RibbonGalleryBarItem ribbonGallery_MapKeywords;
@@ -5198,6 +5241,17 @@
         private DevExpress.XtraBars.BarButtonItem bGalleryThematicDoc;
         private DevExpress.XtraBars.BarButtonItem bClearAnalysis;
         private System.Windows.Forms.Panel panel_HomeSearch;
+        private DevExpress.XtraEditors.ButtonEdit Query_button;
+        private ESRI.ArcGIS.Controls.AxLicenseControl axLicenseControl1;
+        private DevExpress.XtraBars.BarButtonItem bMapLayers;
+        private DevExpress.XtraBars.BarButtonItem bMapToolNull;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup6;
+        private DevExpress.XtraBars.RibbonGalleryBarItem ribbonGallery_MapAnalysis;
+        private DevExpress.Utils.ImageCollection imageCollection_MapAnalysis;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel Statistics_panel;
         private System.Windows.Forms.Label label3;
         private DevExpress.XtraEditors.SimpleButton sb_HomePlanImg;
@@ -5209,15 +5263,8 @@
         private DevExpress.XtraEditors.SimpleButton sb_HomePlanMap;
         private DevExpress.XtraEditors.SimpleButton sb_HomePlanDesc;
         private DevExpress.XtraEditors.SimpleButton sb_HomePlanThematic;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label2;
-        private DevExpress.XtraEditors.ButtonEdit Query_button;
-        private ESRI.ArcGIS.Controls.AxLicenseControl axLicenseControl1;
-        private DevExpress.XtraBars.BarButtonItem bMapLayers;
-        private DevExpress.XtraBars.BarButtonItem bMapToolNull;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup6;
-        private DevExpress.XtraBars.RibbonGalleryBarItem ribbonGallery_MapAnalysis;
-        private DevExpress.Utils.ImageCollection imageCollection_MapAnalysis;
+        private DevExpress.XtraBars.BarButtonGroup barButtonGroup17;
+        private DevExpress.XtraBars.BarButtonGroup barButtonGroup18;
 
 
     }
