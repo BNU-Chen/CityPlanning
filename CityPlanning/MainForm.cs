@@ -288,7 +288,8 @@ namespace CityPlanning
         //三维地图
         private void bGallery3DMap_ItemClick(object sender, ItemClickEventArgs e)
         {
-
+            string path = ConnectionCenter.Config.Thematic3DMap;
+            System.Diagnostics.Process.Start(path);
         }
         //帮助文档
         private void bHelp_ItemClick(object sender, ItemClickEventArgs e)
