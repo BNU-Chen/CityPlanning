@@ -3137,6 +3137,7 @@
             this.ribbonGallery_MapKeywords.Gallery.ShowItemText = true;
             this.ribbonGallery_MapKeywords.Id = 697;
             this.ribbonGallery_MapKeywords.Name = "ribbonGallery_MapKeywords";
+            this.ribbonGallery_MapKeywords.ItemDoubleClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ribbonGallery_MapKeywords_ItemDoubleClick);
             // 
             // ribbonGallery_MapTables
             // 
