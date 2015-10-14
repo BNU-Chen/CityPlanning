@@ -22,7 +22,7 @@ namespace CityPlanning.Modules
         private List<string> documentPathCollection = new List<string>();
         private List<DocumentRange> documentRangeCollection = new List<DocumentRange>();
         private List<Paragraph> paragraphCollection = new List<Paragraph>();
-        private List<ReadOnlyRichTextBox> readOnlyRichTextBoxCollection = new List<ReadOnlyRichTextBox>();
+        private List<RichTextBox> readOnlyRichTextBoxCollection = new List<RichTextBox>();
         private List<RichTextBox> roRichTextBoxCollection = new List<RichTextBox>();
         private bool multiDocumentSearch = false;
 
@@ -100,7 +100,7 @@ namespace CityPlanning.Modules
         {
             try
             {
-                ReadOnlyRichTextBox roRTBControl = (ReadOnlyRichTextBox)sender;
+                RichTextBox roRTBControl = (RichTextBox)sender;
                 if (roRTBControl != null)
                 {
                     if (this.multiDocumentSearch)
@@ -110,7 +110,7 @@ namespace CityPlanning.Modules
                         this.SearchFromDocument(this.te_KeyWord.Text.Trim(), roRTBControl.Tag.ToString(), this.xtraTabPage);
                     }
                     else
-                        MoveToParagraph(roRTBControl.Paragraph);
+                        MoveToParagraph((Paragraph)(roRTBControl.Tag));
                 }
             }
             catch { }
@@ -258,21 +258,22 @@ namespace CityPlanning.Modules
         }
 
         //根据段落集合生成ReadOnlyRichTextBox控件集合
-        private List<ReadOnlyRichTextBox> getReadOnlyRichTextBoxCollectionByParagrapheCollection(string keyWord, List<Paragraph> paragraphCollection, Document searchDocument)
+        private List<RichTextBox> getReadOnlyRichTextBoxCollectionByParagrapheCollection(string keyWord, List<Paragraph> paragraphCollection, Document searchDocument)
         {
-            List<ReadOnlyRichTextBox> readOnlyRichTextBoxCollection = new List<ReadOnlyRichTextBox>();
+            List<RichTextBox> readOnlyRichTextBoxCollection = new List<RichTextBox>();
             if (paragraphCollection.Count != 0 && searchDocument != null)
             {
                 for (int i = 0; i < paragraphCollection.Count; i++)
                 {
-                    ReadOnlyRichTextBox roRTB = new ReadOnlyRichTextBox();
+                    RichTextBox roRTB = new RichTextBox();
 
                     roRTB.MouseClick += new MouseEventHandler(this.flowLayoutPanel_MouseClick);
                     roRTB.MouseWheel += new MouseEventHandler(flowLayoutPanel1_MouseWheel);
+                    roRTB.ContentsResized += roRTB_ContentsResized;
                     roRTB.Width = this.flowLayoutPanel.Width - 25;
-                    roRTB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+                    //roRTB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
                     Paragraph paragraph = paragraphCollection[i];
-                    roRTB.Paragraph = paragraph;
+                    roRTB.Tag = paragraph;
                     string par_Text = searchDocument.GetText(paragraph.Range);
                     int startPosition = 0;
                     roRTB.Text = par_Text;
@@ -283,27 +284,32 @@ namespace CityPlanning.Modules
                         roRTB.SelectionColor = Color.Red;
                         startPosition = curPosition + keyWord.Length;
                     }
-                    roRTB.Select(0, par_Text.Length - 1);
-                    roRTB.SelectionColor = Color.Red;
-                    roRTB.Refresh();
+                    //this.flowLayoutPanel.Controls.Add(roRTB);
                     readOnlyRichTextBoxCollection.Add(roRTB);
                 }
             }
             return readOnlyRichTextBoxCollection;
         }
 
-        //添加ReadOnlyRichTextBox控件至flowLayoutPanel
-        private void AddRichTextBoxToFlowLayoutPanal(List<ReadOnlyRichTextBox> readOnlyRichTextBoxCollection)
+        void roRTB_ContentsResized(object sender, ContentsResizedEventArgs e)
         {
-            foreach (ReadOnlyRichTextBox readOnlyRichTextBox in readOnlyRichTextBoxCollection)
+            RichTextBox rtb = (RichTextBox)sender;
+            rtb.Height = e.NewRectangle.Height + 10;
+            //OnContentsResized(e);
+        }
+
+        //添加ReadOnlyRichTextBox控件至flowLayoutPanel
+        private void AddRichTextBoxToFlowLayoutPanal(List<RichTextBox> readOnlyRichTextBoxCollection)
+        {
+            foreach (RichTextBox readOnlyRichTextBox in readOnlyRichTextBoxCollection)
                 this.flowLayoutPanel.Controls.Add(readOnlyRichTextBox);
             this.flowLayoutPanel.Refresh();
         }
 
         //根据文档搜索结果生成ReadOnlyRichTextBox控件
-        private ReadOnlyRichTextBox getReadOnlyRichTextBoxOfMultiDocumentSearch(string filePath, int resultCount)
+        private RichTextBox getReadOnlyRichTextBoxOfMultiDocumentSearch(string filePath, int resultCount)
         {
-            ReadOnlyRichTextBox roRTB = new ReadOnlyRichTextBox();
+            RichTextBox roRTB = new RichTextBox();
             roRTB.MouseClick += new MouseEventHandler(this.flowLayoutPanel_MouseClick);
             roRTB.MouseWheel += new MouseEventHandler(flowLayoutPanel1_MouseWheel);
             roRTB.Width = this.flowLayoutPanel.Width - 25;
@@ -362,10 +368,7 @@ namespace CityPlanning.Modules
         //搜索结果提示信息变更
         private void SearchResultInfoChange()
         {
-            if (this.documentRangeCollection.Count == 0)
-                this.lblSearchResultInfo.Text = "搜索结果：";
-            else
-                this.lblSearchResultInfo.Text = "搜索结果：" + this.documentRangeCollection.Count + "个";
+            this.lblSearchResultInfo.Text = "搜索结果：" + this.documentRangeCollection.Count + "个";
         }
         #endregion
 
@@ -524,7 +527,8 @@ namespace CityPlanning.Modules
                             searchPosetion = curKeyWordPosetion + keyWord.Length;
                             curKeyWordPosetion = text.IndexOf(keyWord, searchPosetion);
                         }
-                        ReadOnlyRichTextBox roRTB = this.getReadOnlyRichTextBoxOfMultiDocumentSearch(documentPath, keyWordCount);
+                        RichTextBox roRTB = this.getReadOnlyRichTextBoxOfMultiDocumentSearch(documentPath, keyWordCount);
+                        roRTB.ContentsResized +=roRTB_ContentsResized;
                         this.flowLayoutPanel.Controls.Add(roRTB);
                     }
                     this.flowLayoutPanel.Refresh();
@@ -545,61 +549,61 @@ namespace CityPlanning.Modules
     /// <summary>
     /// 自定义控件：完全用户只读的RichTextBox
     /// </summary>
-    public class ReadOnlyRichTextBox : RichTextBox  //  完全用户只读的RichTextBox
-    {
-        private const int WM_SETFOCUS = 0x7;
-        private const int WM_LBUTTONDOWN = 0x201;
-        private const int WM_LBUTTONUP = 0x202;
-        private const int WM_LBUTTONDBLCLK = 0x203;
-        private const int WM_RBUTTONDOWN = 0x204;
-        private const int WM_RBUTTONUP = 0x205;
-        private const int WM_RBUTTONDBLCLK = 0x206;
-        private const int WM_KEYDOWN = 0x0100;
-        private const int WM_KEYUP = 0x0101;
-        private Paragraph paragraph;
+    //public class ReadOnlyRichTextBox : RichTextBox  //  完全用户只读的RichTextBox
+    //{
+    //    private const int WM_SETFOCUS = 0x7;
+    //    private const int WM_LBUTTONDOWN = 0x201;
+    //    private const int WM_LBUTTONUP = 0x202;
+    //    private const int WM_LBUTTONDBLCLK = 0x203;
+    //    private const int WM_RBUTTONDOWN = 0x204;
+    //    private const int WM_RBUTTONUP = 0x205;
+    //    private const int WM_RBUTTONDBLCLK = 0x206;
+    //    private const int WM_KEYDOWN = 0x0100;
+    //    private const int WM_KEYUP = 0x0101;
+    //    private Paragraph paragraph;
 
-        public Paragraph Paragraph
-        {
-            set { paragraph = value; }
-            get { return paragraph; }
-        }
+    //    public Paragraph Paragraph
+    //    {
+    //        set { paragraph = value; }
+    //        get { return paragraph; }
+    //    }
 
-        /// <summary>
-        /// 构造函数：设置指针样式
-        /// </summary>
-        public ReadOnlyRichTextBox()    // 构造函数：设置指针样式
-        {
-            this.Cursor = Cursors.Arrow;    //设置鼠标样式   
-            this.ScrollBars = RichTextBoxScrollBars.None;
-            this.ReadOnly = true;
-        }
-        /*
-        /// <summary>
-        /// 屏蔽控件所有鼠标消息的发送
-        /// </summary>
-        /// <param name="m">消息</param>
-        protected override void WndProc(ref Message m)
-        {
-            if (m.Msg == WM_SETFOCUS
-                || m.Msg == WM_KEYDOWN
-                || m.Msg == WM_KEYUP
-                //|| m.Msg == WM_LBUTTONDOWN
-                //|| m.Msg == WM_LBUTTONUP
-                //|| m.Msg == WM_LBUTTONDBLCLK
-                || m.Msg == WM_RBUTTONDOWN
-                || m.Msg == WM_RBUTTONUP
-                || m.Msg == WM_RBUTTONDBLCLK
-                )
-            {
-                return;
-            }
-            base.WndProc(ref m);
-        }
-        */
-        protected override void OnContentsResized(ContentsResizedEventArgs e)
-        {
-            this.Height = e.NewRectangle.Height + 10;
-            base.OnContentsResized(e);
-        }
-    }
+    //    /// <summary>
+    //    /// 构造函数：设置指针样式
+    //    /// </summary>
+    //    public ReadOnlyRichTextBox()    // 构造函数：设置指针样式
+    //    {
+    //        this.Cursor = Cursors.Arrow;    //设置鼠标样式   
+    //        this.ScrollBars = RichTextBoxScrollBars.None;
+    //        this.ReadOnly = true;
+    //    }
+    //    /*
+    //    /// <summary>
+    //    /// 屏蔽控件所有鼠标消息的发送
+    //    /// </summary>
+    //    /// <param name="m">消息</param>
+    //    protected override void WndProc(ref Message m)
+    //    {
+    //        if (m.Msg == WM_SETFOCUS
+    //            || m.Msg == WM_KEYDOWN
+    //            || m.Msg == WM_KEYUP
+    //            //|| m.Msg == WM_LBUTTONDOWN
+    //            //|| m.Msg == WM_LBUTTONUP
+    //            //|| m.Msg == WM_LBUTTONDBLCLK
+    //            || m.Msg == WM_RBUTTONDOWN
+    //            || m.Msg == WM_RBUTTONUP
+    //            || m.Msg == WM_RBUTTONDBLCLK
+    //            )
+    //        {
+    //            return;
+    //        }
+    //        base.WndProc(ref m);
+    //    }
+    //    */
+    //    protected override void OnContentsResized(ContentsResizedEventArgs e)
+    //    {
+    //        this.Height = e.NewRectangle.Height + 10;
+    //        base.OnContentsResized(e);
+    //    }
+    //}
 }
