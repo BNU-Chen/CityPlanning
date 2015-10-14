@@ -2543,10 +2543,6 @@ namespace CityPlanning
             frmSpatialAnalysisResultExcel frmSheetResult = new frmSpatialAnalysisResultExcel(sheetPath);
             frmSheetResult.Show();
         }
-<<<<<<< HEAD
-        
-=======
->>>>>>> refs/remotes/origin/master
         //GDP重心转移图
         private void GDPCenterTransfer()
         {
