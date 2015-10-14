@@ -38,12 +38,26 @@ namespace CityPlanning.Modules
             get { return documentPathCollection; }
         }
 
+        public string Searchkeyword
+        {
+            set
+            {
+                this.te_KeyWord.Text = value;
+                XtraTabPage.Tag = value;
+                KeyWordSearch();
+            }
+            get
+            {
+                string keyword = (string)XtraTabPage.Tag;
+                return keyword;
+            }
+        }
+
         public int SearchRangeSelectedIndex
         {
             set
             {
                 this.cbe_SearchRange.SelectedIndex = value;
-                XtraTabPage.Tag = value;
             }
             get
             {
@@ -147,6 +161,8 @@ namespace CityPlanning.Modules
             {
                 btn_Search.BackgroundImage = global::CityPlanning.Properties.Resources.delete_16;
                 imageFlag = false;
+
+                this.XtraTabPage.Tag = this.te_KeyWord.Text;   //记录搜索范围
             }
         }
 
@@ -157,7 +173,6 @@ namespace CityPlanning.Modules
             {
                 setInitializationSearchResult();
                 int selectedIndex = this.cbe_SearchRange.SelectedIndex;
-                this.XtraTabPage.Tag = selectedIndex;   //记录搜索范围
                 List<string> documentPaths = new List<string>();
                 switch (selectedIndex)
                 {

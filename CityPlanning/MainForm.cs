@@ -538,6 +538,7 @@ namespace CityPlanning
         //TabPage切换事件
         private void xtraTabControl_Main_SelectedPageChanged(object sender, TabPageChangedEventArgs e)
         { 
+            
             //根据TabPage，选择性显示
             XtraTabPage tabPage = e.Page;
             
@@ -569,11 +570,11 @@ namespace CityPlanning
 
                     //绑定文本搜索控件
                     ucDocIntSearch.XtraTabPage = tabPage;
-                    int searchIndex = -1;
-                    if(tabPage.Tag is int){
-                        searchIndex = (int)tabPage.Tag;
+                    string searchKey = "";
+                    if(tabPage.Tag is string){
+                        searchKey = (string)tabPage.Tag;
                     }
-                    ucDocIntSearch.SearchRangeSelectedIndex = searchIndex;
+                    ucDocIntSearch.Searchkeyword = searchKey;
 
                     break;
                 }
@@ -629,6 +630,8 @@ namespace CityPlanning
                     this.ribbonPageCategory_xls.Visible = false;
                     this.ribbonPageCategory_doc.Visible = false;
                     this.ribbonPageCategory_map.Visible = false;
+
+                    OpenAllPlanDocs();
                 }
             }
         }
