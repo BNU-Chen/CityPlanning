@@ -23,6 +23,7 @@ namespace CityPlanning.Modules
         private List<DocumentRange> documentRangeCollection = new List<DocumentRange>();
         private List<Paragraph> paragraphCollection = new List<Paragraph>();
         private List<ReadOnlyRichTextBox> readOnlyRichTextBoxCollection = new List<ReadOnlyRichTextBox>();
+        private List<RichTextBox> roRichTextBoxCollection = new List<RichTextBox>();
         private bool multiDocumentSearch = false;
 
         public XtraTabPage XtraTabPage
@@ -91,9 +92,9 @@ namespace CityPlanning.Modules
                 {
                     if (this.multiDocumentSearch)
                     {
-                        this.SearchFromDocument(this.te_KeyWord.Text.Trim(), roRTBControl.Tag.ToString(), this.xtraTabPage);
                         this.multiDocumentSearch = false;
                         this.cbe_SearchRange.SelectedIndex = -1;
+                        this.SearchFromDocument(this.te_KeyWord.Text.Trim(), roRTBControl.Tag.ToString(), this.xtraTabPage);
                     }
                     else
                         MoveToParagraph(roRTBControl.Paragraph);
@@ -158,7 +159,7 @@ namespace CityPlanning.Modules
                         break;
                     default:
                         this.multiDocumentSearch = false;
-                        this.SearchFromDocument(this.te_KeyWord.Text.Trim(), this.documentPathCollection[0], this.xtraTabPage);
+                        //this.SearchFromDocument(this.te_KeyWord.Text.Trim(), this.documentPathCollection[0], this.xtraTabPage);
                         break;
                 }
 
@@ -246,6 +247,7 @@ namespace CityPlanning.Modules
                 for (int i = 0; i < paragraphCollection.Count; i++)
                 {
                     ReadOnlyRichTextBox roRTB = new ReadOnlyRichTextBox();
+
                     roRTB.MouseClick += new MouseEventHandler(this.flowLayoutPanel_MouseClick);
                     roRTB.MouseWheel += new MouseEventHandler(flowLayoutPanel1_MouseWheel);
                     roRTB.Width = this.flowLayoutPanel.Width - 25;
@@ -481,14 +483,25 @@ namespace CityPlanning.Modules
                 this.xtraTabPage = xtraTabPage;
                 this.xtraTabPage.Controls.Clear();
                 this.xtraTabPage.Text = "";
-                this.setInitializationSearchResult();
+                this.xtraTabPage.Refresh();
                 foreach (string documentPath in documentPaths)
                 {
                     RichEditControl richEditControl = new RichEditControl();
                     if (OpenDocumentFile(documentPath, richEditControl))
                     {
-                        List<DocumentRange> DocumentRanges = this.getDocumentRangeCollectionByKeyWord(keyWord, richEditControl.Document);
-                        ReadOnlyRichTextBox roRTB = this.getReadOnlyRichTextBoxOfMultiDocumentSearch(documentPath, DocumentRanges.Count);
+                        string text = richEditControl.Document.GetText(richEditControl.Document.Range);
+                        if (text == null) continue;
+                        richEditControl.Dispose();
+                        int searchPosetion = 0;
+                        int keyWordCount = 0;
+                        int curKeyWordPosetion = text.IndexOf(keyWord, searchPosetion);
+                        while (curKeyWordPosetion != -1)
+                        {
+                            keyWordCount += 1;
+                            searchPosetion = curKeyWordPosetion + keyWord.Length;
+                            curKeyWordPosetion = text.IndexOf(keyWord, searchPosetion);
+                        }
+                        ReadOnlyRichTextBox roRTB = this.getReadOnlyRichTextBoxOfMultiDocumentSearch(documentPath, keyWordCount);
                         this.flowLayoutPanel.Controls.Add(roRTB);
                     }
                     this.flowLayoutPanel.Refresh();
@@ -535,8 +548,9 @@ namespace CityPlanning.Modules
         {
             this.Cursor = Cursors.Arrow;    //设置鼠标样式   
             this.ScrollBars = RichTextBoxScrollBars.None;
+            this.ReadOnly = true;
         }
-
+        /*
         /// <summary>
         /// 屏蔽控件所有鼠标消息的发送
         /// </summary>
@@ -558,7 +572,7 @@ namespace CityPlanning.Modules
             }
             base.WndProc(ref m);
         }
-
+        */
         protected override void OnContentsResized(ContentsResizedEventArgs e)
         {
             this.Height = e.NewRectangle.Height + 10;
