@@ -2379,8 +2379,8 @@ namespace CityPlanning
             xtraTabControl_Main.TabPages.Add(xtraTabPage);
             xtraTabControl_Main.SelectedTabPage = xtraTabPage;
 
-            string originPath = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.ThematicTraffic;
-            string resultPath = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.ThematicDisaster;
+            string originPath = ConnectionCenter.Config.ThematicTraffic;
+            string resultPath = ConnectionCenter.Config.ThematicTrafficAnalystedMap;
             
             ucSpatialAnalysisResult alyRetShow = new ucSpatialAnalysisResult(originPath, resultPath);
             alyRetShow.AxMapControl1.Enter += AxMapControl1_Enter;
@@ -2395,7 +2395,7 @@ namespace CityPlanning
             this.ribbonPageCategory_map.Visible = true;
             this.ribbonControl.SelectedPage = this.ribbonPageCategory_map.Pages[0];
 
-            string sheetPath = @"F:\项目资料\项目-沈阳经济开发区\项目 - 沈阳经济区\评价结果.xlsx";
+            string sheetPath = ConnectionCenter.Config.ThematicTrafficAnalystedXls;
             frmSpatialAnalysisResultExcel frmSheetResult = new frmSpatialAnalysisResultExcel(sheetPath);
             frmSheetResult.Show();
         }
@@ -2426,10 +2426,10 @@ namespace CityPlanning
             xtraTabControl_Main.TabPages.Add(xtraTabPage);
             xtraTabControl_Main.SelectedTabPage = xtraTabPage;
 
-            string path = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.ThematicTraffic;
-            string path2 = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.ThematicDisaster;
+            string originPath = ConnectionCenter.Config.ThematicElectricity;
+            string resultPath = ConnectionCenter.Config.ThematicElectricityAnalystedMap;
 
-            ucSpatialAnalysisResult alyRetShow = new ucSpatialAnalysisResult(path, path2);
+            ucSpatialAnalysisResult alyRetShow = new ucSpatialAnalysisResult(originPath, resultPath);
             alyRetShow.AxMapControl1.Enter += AxMapControl1_Enter;
             alyRetShow.AxMapControl2.Enter += AxMapControl2_Enter;
             xtraTabPage.Controls.Add(alyRetShow);
@@ -2442,7 +2442,7 @@ namespace CityPlanning
             this.ribbonPageCategory_map.Visible = true;
             this.ribbonControl.SelectedPage = this.ribbonPageCategory_map.Pages[0];
 
-            string sheetPath = @"F:\项目资料\项目-沈阳经济开发区\项目 - 沈阳经济区\评价结果.xlsx";
+            string sheetPath = ConnectionCenter.Config.ThematicElectricityAnalystedXls;
             frmSpatialAnalysisResultExcel frmSheetResult = new frmSpatialAnalysisResultExcel(sheetPath);
             frmSheetResult.Show();
         }
@@ -2476,10 +2476,10 @@ namespace CityPlanning
             xtraTabControl_Main.TabPages.Add(xtraTabPage);
             xtraTabControl_Main.SelectedTabPage = xtraTabPage;
 
-            string path = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.ThematicTraffic;
-            string path2 = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.ThematicDisaster;
+            string originPath = ConnectionCenter.Config.ThematicDisaster;
+            string resultPath = ConnectionCenter.Config.ThematicDisasterAnalystedMap;
 
-            ucSpatialAnalysisResult alyRetShow = new ucSpatialAnalysisResult(path, path2);
+            ucSpatialAnalysisResult alyRetShow = new ucSpatialAnalysisResult(originPath, resultPath);
             alyRetShow.AxMapControl1.Enter += AxMapControl1_Enter;
             alyRetShow.AxMapControl2.Enter += AxMapControl2_Enter;
             xtraTabPage.Controls.Add(alyRetShow);
@@ -2492,7 +2492,7 @@ namespace CityPlanning
             this.ribbonPageCategory_map.Visible = true;
             this.ribbonControl.SelectedPage = this.ribbonPageCategory_map.Pages[0];
 
-            string sheetPath = @"F:\项目资料\项目-沈阳经济开发区\项目 - 沈阳经济区\评价结果.xlsx";
+            string sheetPath = ConnectionCenter.Config.ThematicDisasterAnalystedXls;
             frmSpatialAnalysisResultExcel frmSheetResult = new frmSpatialAnalysisResultExcel(sheetPath);
             frmSheetResult.Show();
         }
@@ -2518,15 +2518,15 @@ namespace CityPlanning
             thr.Close();
             //加载结果图
             XtraTabPage xtraTabPage = new XtraTabPage();
-            xtraTabPage.Text = "电力网络密度分析";
+            xtraTabPage.Text = "生态服务价值评估";
             xtraTabPage.Image = this.imageCollectionIcons.Images[this.imageCollectionIcons.Images.Keys.IndexOf("mxd")];
             xtraTabControl_Main.TabPages.Add(xtraTabPage);
             xtraTabControl_Main.SelectedTabPage = xtraTabPage;
 
-            string path = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.ThematicTraffic;
-            string path2 = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.ThematicDisaster;
+            string originPath = ConnectionCenter.Config.ThematicZoology;
+            string resultPath = ConnectionCenter.Config.ThematicZoologyAnalystedMap;
 
-            ucSpatialAnalysisResult alyRetShow = new ucSpatialAnalysisResult(path, path2);
+            ucSpatialAnalysisResult alyRetShow = new ucSpatialAnalysisResult(originPath, resultPath);
             alyRetShow.AxMapControl1.Enter += AxMapControl1_Enter;
             alyRetShow.AxMapControl2.Enter += AxMapControl2_Enter;
             xtraTabPage.Controls.Add(alyRetShow);
@@ -2539,7 +2539,7 @@ namespace CityPlanning
             this.ribbonPageCategory_map.Visible = true;
             this.ribbonControl.SelectedPage = this.ribbonPageCategory_map.Pages[0];
 
-            string sheetPath = @"F:\项目资料\项目-沈阳经济开发区\项目 - 沈阳经济区\评价结果.xlsx";
+            string sheetPath = ConnectionCenter.Config.ThematicZoologyAnalystedXls;
             frmSpatialAnalysisResultExcel frmSheetResult = new frmSpatialAnalysisResultExcel(sheetPath);
             frmSheetResult.Show();
         }
@@ -2565,15 +2565,15 @@ namespace CityPlanning
             thr.Close();
             //加载结果图
             XtraTabPage xtraTabPage = new XtraTabPage();
-            xtraTabPage.Text = "电力网络密度分析";
+            xtraTabPage.Text = "GDP重心转移分析";
             xtraTabPage.Image = this.imageCollectionIcons.Images[this.imageCollectionIcons.Images.Keys.IndexOf("mxd")];
             xtraTabControl_Main.TabPages.Add(xtraTabPage);
             xtraTabControl_Main.SelectedTabPage = xtraTabPage;
 
-            string path = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.ThematicTraffic;
-            string path2 = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.ThematicDisaster;
+            string originPath = ConnectionCenter.Config.ThematicGDPTrans;
+            string resultPath = ConnectionCenter.Config.ThematicGDPTransAnalystedMap;
 
-            ucSpatialAnalysisResult alyRetShow = new ucSpatialAnalysisResult(path, path2);
+            ucSpatialAnalysisResult alyRetShow = new ucSpatialAnalysisResult(originPath, resultPath);
             alyRetShow.AxMapControl1.Enter += AxMapControl1_Enter;
             alyRetShow.AxMapControl2.Enter += AxMapControl2_Enter;
             xtraTabPage.Controls.Add(alyRetShow);
@@ -2586,11 +2586,10 @@ namespace CityPlanning
             this.ribbonPageCategory_map.Visible = true;
             this.ribbonControl.SelectedPage = this.ribbonPageCategory_map.Pages[0];
 
-            string sheetPath = @"F:\项目资料\项目-沈阳经济开发区\项目 - 沈阳经济区\评价结果.xlsx";
+            string sheetPath = ConnectionCenter.Config.ThematicGDPTransAnalystedXls;
             frmSpatialAnalysisResultExcel frmSheetResult = new frmSpatialAnalysisResultExcel(sheetPath);
             frmSheetResult.Show();
         }
-
         void AxMapControl1_Enter(object sender, EventArgs e)
         {
             curAxMapControl = (AxMapControl)sender;
