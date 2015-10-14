@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraCharts.SideBySideBarSeriesLabel sideBySideBarSeriesLabel2 = new DevExpress.XtraCharts.SideBySideBarSeriesLabel();
+            DevExpress.XtraCharts.SideBySideBarSeriesLabel sideBySideBarSeriesLabel1 = new DevExpress.XtraCharts.SideBySideBarSeriesLabel();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucChartShow));
             this.chartShowControl = new DevExpress.XtraCharts.ChartControl();
             this.icChartTypeImage = new DevExpress.Utils.ImageCollection(this.components);
@@ -50,8 +50,9 @@
             this.cbeAxisXDataField = new DevExpress.XtraEditors.ComboBoxEdit();
             this.checkedAxisYDataField = new DevExpress.XtraEditors.CheckedComboBoxEdit();
             this.btnSaveAs = new DevExpress.XtraEditors.SimpleButton();
+            this.checkPieDataShowType = new DevExpress.XtraEditors.CheckEdit();
             ((System.ComponentModel.ISupportInitialize)(this.chartShowControl)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(sideBySideBarSeriesLabel2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(sideBySideBarSeriesLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.icChartTypeImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.icbeChartType.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.teChartTitle.Properties)).BeginInit();
@@ -63,6 +64,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.checkAxisXNetworkLine.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbeAxisXDataField.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkedAxisYDataField.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkPieDataShowType.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // chartShowControl
@@ -74,8 +76,8 @@
             this.chartShowControl.Margin = new System.Windows.Forms.Padding(5);
             this.chartShowControl.Name = "chartShowControl";
             this.chartShowControl.SeriesSerializable = new DevExpress.XtraCharts.Series[0];
-            sideBySideBarSeriesLabel2.LineVisible = true;
-            this.chartShowControl.SeriesTemplate.Label = sideBySideBarSeriesLabel2;
+            sideBySideBarSeriesLabel1.LineVisible = true;
+            this.chartShowControl.SeriesTemplate.Label = sideBySideBarSeriesLabel1;
             this.chartShowControl.Size = new System.Drawing.Size(640, 380);
             this.chartShowControl.TabIndex = 0;
             this.chartShowControl.ObjectSelected += new DevExpress.XtraCharts.HotTrackEventHandler(this.chartShowControl_ObjectSelected);
@@ -281,12 +283,25 @@
             this.btnSaveAs.Text = "另存为...";
             this.btnSaveAs.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnSaveAs_MouseClick);
             // 
+            // checkPieDataShowType
+            // 
+            this.checkPieDataShowType.EditValue = true;
+            this.checkPieDataShowType.Location = new System.Drawing.Point(533, 67);
+            this.checkPieDataShowType.Name = "checkPieDataShowType";
+            this.checkPieDataShowType.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.checkPieDataShowType.Properties.Appearance.Options.UseFont = true;
+            this.checkPieDataShowType.Properties.Caption = "百分比";
+            this.checkPieDataShowType.Size = new System.Drawing.Size(96, 25);
+            this.checkPieDataShowType.TabIndex = 18;
+            this.checkPieDataShowType.CheckedChanged += new System.EventHandler(this.checkPieDataShowType_CheckedChanged);
+            // 
             // ucChartShow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Controls.Add(this.checkPieDataShowType);
             this.Controls.Add(this.btnSaveAs);
             this.Controls.Add(this.checkedAxisYDataField);
             this.Controls.Add(this.cbeAxisXDataField);
@@ -309,7 +324,7 @@
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "ucChartShow";
             this.Size = new System.Drawing.Size(648, 480);
-            ((System.ComponentModel.ISupportInitialize)(sideBySideBarSeriesLabel2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(sideBySideBarSeriesLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartShowControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.icChartTypeImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.icbeChartType.Properties)).EndInit();
@@ -322,6 +337,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.checkAxisXNetworkLine.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbeAxisXDataField.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkedAxisYDataField.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkPieDataShowType.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -348,5 +364,6 @@
         private DevExpress.XtraEditors.ComboBoxEdit cbeAxisXDataField;
         private DevExpress.XtraEditors.CheckedComboBoxEdit checkedAxisYDataField;
         private DevExpress.XtraEditors.SimpleButton btnSaveAs;
+        private DevExpress.XtraEditors.CheckEdit checkPieDataShowType;
     }
 }

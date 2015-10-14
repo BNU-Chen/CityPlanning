@@ -41,6 +41,8 @@ using SharpMap.Data.Providers;
 using ESRI.ArcGIS.Geoprocessor;
 using ESRI.ArcGIS.AnalysisTools;
 using ESRI.ArcGIS.DataSourcesRaster;
+using CityPlanning.Forms;
+using CityPlanning.Modules;
 
 //本项目解决方案
 using ConnectionCenter;
@@ -310,14 +312,13 @@ namespace CityPlanning
                 TreeList tree = sender as TreeList;
                 TreeListHitInfo hi = tree.CalcHitInfo(tree.PointToClient(Control.MousePosition));
                 if (hi.Node != null)
-                {                    
+                {
                     string nodeName = (string)hi.Node["TABLE_NAME"];
                     OpenDatatableInSpreadsheet(nodeName);       //打开关系数据库中的表
                 }
             }
             catch
-            {
-            }
+            { }
         }
         
         //文件数据导航栏双击事件
@@ -600,6 +601,14 @@ namespace CityPlanning
                     curAxMapControl.Refresh();
                     break;
                 }
+                if (control is ucSpatialAnalysisResult)
+                {
+                    this.ribbonPageCategory_xls.Visible = false;
+                    this.ribbonPageCategory_doc.Visible = false;
+                    this.ribbonPageCategory_map.Visible = true;
+                    this.ribbonControl.SelectedPage = this.ribbonPageCategory_map.Pages[0];
+                    break;
+                }
                 else
                 {
                     //先隐藏所有ribbonPageCategory
@@ -611,103 +620,26 @@ namespace CityPlanning
             }
         }
         
-
         #region //ChartButton生成统计图表
         //柱状图
         private void BarChartButton_ItemClick(object sender, ItemClickEventArgs e)
         {
-            Control control = this.xtraTabControl_Main.SelectedTabPage.Controls[0];
-            if (control is SpreadsheetControl)
-            {
-                SpreadsheetControl ssc = (SpreadsheetControl)control;
-                Worksheet worksheet = ssc.Document.Worksheets.ActiveWorksheet;
-                DataTable dt = StatisticChart.DataOperation.CreateTablefromWorkSheet(worksheet);
-                
-                if (dt != null)
-                {
-                    Modules.ucChartForm ucc = new Modules.ucChartForm(this);
-                    ucc.Icon = Icon.FromHandle(((Bitmap)BarChartButton.Glyph).GetHicon());
-                    ucc.DataSource = dt.Copy();
-                    ucc.Range = worksheet.Selection;
-                    ucc.ViewType = ViewType.Bar;
-                    StatisticChart.ShowOperation.CreatChart(ucc.ChartControl, dt, ucc.ViewType);
-                    ucc.Activated += curChartForm_Activated;
-                    ucc.Show();
-                    ResetFieldComboBox(curChartForm.VariableField, curChartForm.ValueField);
-                }
-            }
+            OpenChartWindow(ViewType.Bar);
         }
         //折线图
         private void LineChartButton_ItemClick(object sender, ItemClickEventArgs e)
         {
-            Control control = this.xtraTabControl_Main.SelectedTabPage.Controls[0];
-            if (control is SpreadsheetControl)
-            {
-                SpreadsheetControl ssc = (SpreadsheetControl)control;
-                Worksheet worksheet = ssc.Document.Worksheets.ActiveWorksheet;
-                DataTable dt = StatisticChart.DataOperation.CreateTablefromWorkSheet(worksheet);
-
-                if (dt != null)
-                {
-                    Modules.ucChartForm ucc = new Modules.ucChartForm(this);
-                    ucc.Icon = Icon.FromHandle(((Bitmap)LineChartButton.Glyph).GetHicon());
-                    ucc.DataSource = dt.Copy();
-                    ucc.Range = worksheet.Selection;
-                    ucc.ViewType = ViewType.Line;
-                    StatisticChart.ShowOperation.CreatChart(ucc.ChartControl, dt, ucc.ViewType);
-                    ucc.Activated += curChartForm_Activated;
-                    ucc.Show();
-                    ResetFieldComboBox(curChartForm.VariableField, curChartForm.ValueField);
-                }
-            }
+            OpenChartWindow(ViewType.Line);
         }
         //散点图
         private void PointChartButton_ItemClick(object sender, ItemClickEventArgs e)
         {
-            Control control = this.xtraTabControl_Main.SelectedTabPage.Controls[0];
-            if (control is SpreadsheetControl)
-            {
-                SpreadsheetControl ssc = (SpreadsheetControl)control;
-                Worksheet worksheet = ssc.Document.Worksheets.ActiveWorksheet;
-                DataTable dt = StatisticChart.DataOperation.CreateTablefromWorkSheet(worksheet);
-                
-                if (dt != null)
-                {
-                    Modules.ucChartForm ucc = new Modules.ucChartForm(this);
-                    ucc.Icon = Icon.FromHandle(((Bitmap)PointChartButton.Glyph).GetHicon());
-                    ucc.DataSource = dt.Copy();
-                    ucc.Range = worksheet.Selection;
-                    ucc.ViewType = ViewType.Point;
-                    StatisticChart.ShowOperation.CreatChart(ucc.ChartControl, dt, ucc.ViewType);
-                    ucc.Activated += curChartForm_Activated;
-                    ucc.Show();
-                    ResetFieldComboBox(curChartForm.VariableField, curChartForm.ValueField);
-                }
-            }
+            OpenChartWindow(ViewType.Point);
         }
         //饼状图
         private void PieChartButton_ItemClick(object sender, ItemClickEventArgs e)
         {
-            Control control = this.xtraTabControl_Main.SelectedTabPage.Controls[0];
-            if (control is SpreadsheetControl)
-            {
-                SpreadsheetControl ssc = (SpreadsheetControl)control;
-                Worksheet worksheet = ssc.Document.Worksheets.ActiveWorksheet;
-                DataTable dt = StatisticChart.DataOperation.CreateTablefromWorkSheet(worksheet);
-
-                if (dt != null)
-                {
-                    Modules.ucChartForm ucc = new Modules.ucChartForm(this);
-                    ucc.Icon = Icon.FromHandle(((Bitmap)PieChartButton.Glyph).GetHicon());
-                    ucc.DataSource = dt.Copy();
-                    ucc.Range = worksheet.Selection;
-                    ucc.ViewType = ViewType.Pie;
-                    StatisticChart.ShowOperation.CreatPieChart(ucc.ChartControl, dt);
-                    ucc.Activated += curChartForm_Activated;
-                    ucc.Show();
-                    ResetFieldComboBox(curChartForm.VariableField, curChartForm.ValueField);
-                }
-            }
+            OpenChartWindow(ViewType.Pie);
         }
         //切换图表窗口，对应显示worksheet原数据
         private void curChartForm_Activated(object sender, EventArgs e)
@@ -729,60 +661,12 @@ namespace CityPlanning
         //重设字段选择控件内容
         private void ResetFieldComboBox(List<string> vars, List<string> vals)
         {
-            AxisXCombobox.EditValue = null;
-            AxisYCombobox.EditValue = null;
             repositoryItemComboBox1.Items.Clear();
             repositoryItemCheckedComboBoxEdit1.Items.Clear();
             foreach (string var in vars) repositoryItemComboBox1.Items.Add(var);
             foreach (string val in vals) repositoryItemCheckedComboBoxEdit1.Items.Add(val);
         }
-        //重选变量字段
-        private void AxisXCombobox_EditValueChanged(object sender, EventArgs e)
-        {
-            if (curChartForm == null || AxisXCombobox.EditValue == null) return;
-            DataTable dt = curChartForm.DataSource;
-            string var = AxisXCombobox.EditValue.ToString();
-            dt.Columns[var].SetOrdinal(0);
-            if(curChartForm.ViewType == ViewType.Pie)
-                StatisticChart.ShowOperation.CreatPieChart(curChartForm.ChartControl, dt);
-            else if(curChartForm.ViewType == ViewType.Bar || curChartForm.ViewType == ViewType.Line || curChartForm.ViewType == ViewType.Point)
-                StatisticChart.ShowOperation.CreatChart(curChartForm.ChartControl, dt, curChartForm.ViewType);
-        }
-        //重选数据字段
-        private void AxisYCombobox_EditValueChanged(object sender, EventArgs e)
-        {
-            if (curChartForm == null || AxisYCombobox.EditValue == null) return;
-            DataTable dt = curChartForm.DataSource;
-            string[] vals = AxisYCombobox.EditValue.ToString().Replace(", ", ",").Split(',');
-            if (curChartForm.ViewType == ViewType.Pie)
-            {
-                dt.Columns[vals[0]].SetOrdinal(1);
-                StatisticChart.ShowOperation.CreatPieChart(curChartForm.ChartControl, dt);
-            }
-            else if (curChartForm.ViewType == ViewType.Bar || curChartForm.ViewType == ViewType.Line || curChartForm.ViewType == ViewType.Point)
-                StatisticChart.ShowOperation.CreatChart(curChartForm.ChartControl, dt, curChartForm.ViewType, vals);
-        }
-        //设置图表标题
-        private void ChartTitlebarEditItem_EditValueChanged(object sender, EventArgs e)
-        {
-            if (curChartForm == null || ChartTitlebarEditItem.EditValue.ToString() == "") return;
-            curChartForm.ChartControl = StatisticChart.ShowOperation.SetChartTitle(curChartForm.ChartControl,
-                ChartTitlebarEditItem.EditValue.ToString());
-        }
-        //设置横坐标标题
-        private void AxisXTitlebarEditItem_EditValueChanged(object sender, EventArgs e)
-        {
-            if (curChartForm == null || AxisXTitlebarEditItem.EditValue.ToString() == "" || curChartForm.ViewType==ViewType.Pie) return;
-            curChartForm.ChartControl = StatisticChart.ShowOperation.SetAxisXChartTitle(curChartForm.ChartControl,
-                AxisXTitlebarEditItem.EditValue.ToString());
-        }
-        //设置纵坐标标题
-        private void AxisYTitlebarEditItem_EditValueChanged(object sender, EventArgs e)
-        {
-            if (curChartForm == null || AxisYTitlebarEditItem.EditValue.ToString() == "" || curChartForm.ViewType == ViewType.Pie) return;
-            curChartForm.ChartControl = StatisticChart.ShowOperation.SetAxisYChartTitle(curChartForm.ChartControl,
-                AxisYTitlebarEditItem.EditValue.ToString());
-        }
+        
         #endregion
 
         #endregion
@@ -842,6 +726,12 @@ namespace CityPlanning
         //地图关键词搜索文档
         void itemMapKeywords_ItemClick(object sender, GalleryItemClickEventArgs e)
         {            
+            //GalleryItem item = (GalleryItem)sender;
+            //string keyword = item.Caption;
+            //SearchInPlanDoc(keyword);
+        }
+        private void ribbonGallery_MapKeywords_ItemDoubleClick(object sender, ItemClickEventArgs e)
+        {
             GalleryItem item = (GalleryItem)sender;
             string keyword = item.Caption;
             SearchInPlanDoc(keyword);
@@ -1066,6 +956,12 @@ namespace CityPlanning
         //郭海强 测试图表显示控件0922
         private void barButtonItem1_ItemClick(object sender, ItemClickEventArgs e)
         {
+            OpenChartWindow(ViewType.Bar);
+        }
+
+        //打开统计图表
+        private void OpenChartWindow(ViewType chartType)
+        {
             Control control = this.xtraTabControl_Main.SelectedTabPage.Controls[0];
             if (control is SpreadsheetControl)
             {
@@ -1075,18 +971,31 @@ namespace CityPlanning
 
                 if (dt != null)
                 {
-                    Modules.ucChartShow ucChSh = new Modules.ucChartShow();
-                    XtraTabPage xtp = new XtraTabPage();
-                    xtp.Text = dt.TableName;
-                    xtp.Controls.Add(ucChSh);
-                    ucChSh.Dock = DockStyle.Fill;
-                    this.xtraTabControl_Main.TabPages.Add(xtp);
-                    this.xtraTabControl_Main.SelectedTabPage = xtp;
-                    ucChSh.SetChartShow(dt, ViewType.Bar);
-                    ucChSh.Refresh();
-                    xtp.Refresh();
-                    this.xtraTabControl_Main.Refresh();
-                    this.Refresh();
+                    if (frmChartInOverlay == null)
+                    {
+                        frmChartInOverlay = new System.Windows.Forms.Form();
+                        frmChartInOverlay.FormClosed += frmChartInOverlay_FormClosed;
+                        frmChartInOverlay.Size = new System.Drawing.Size(640, 480);
+                        frmChartInOverlay.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
+
+                        ucChartInOverlay = new Modules.ucChartShow();
+                        frmChartInOverlay.Controls.Add(ucChartInOverlay);
+                        ucChartInOverlay.Dock = DockStyle.Fill;
+                        
+                        ucChartInOverlay.SetChartShow(dt, chartType);
+                        ucChartInOverlay.Refresh();
+                        frmChartInOverlay.Show();
+                    }
+                    else
+                    {
+                        if (!frmChartInOverlay.IsDisposed)
+                        {
+                            ucChartInOverlay.SetChartShow(dt, ViewType.Pie);
+                            ucChartInOverlay.Refresh();
+                            frmChartInOverlay.BringToFront();
+                            frmChartInOverlay.Refresh();
+                        }
+                    }
                 }
             }
         }
@@ -1266,6 +1175,16 @@ namespace CityPlanning
             }
             this.panelControl_Navigation.Controls.Clear();
             this.panelControl_Navigation.Controls.Add(ucDocIntSearch);
+            
+            XtraTabPage xtp = new XtraTabPage();
+            xtp.Text = System.IO.Path.GetFileName(path);
+            string extension = System.IO.Path.GetExtension(path);
+            extension = extension.Replace(".", "");
+            int iconIndex = this.imageCollectionIcons.Images.Keys.IndexOf(extension);
+            if (iconIndex >= 0) 
+                xtp.Image = this.imageCollectionIcons.Images[iconIndex];
+            this.xtraTabControl_Main.TabPages.Add(xtp);
+            this.xtraTabControl_Main.SelectedTabPage = xtp;
             ucDocIntSearch.SearchFromDocument(keyword, path, this.xtraTabControl_Main.SelectedTabPage);
         }
         #endregion
@@ -2431,13 +2350,19 @@ namespace CityPlanning
                 case "GDP重心转移":
                     GDPCenterTransfer();
                     break;
-
             }
         }
-
         //交通网络密度图
         private void TranspNetDensity()
         {
+            frmAnalysisTrafficNetworkDensity frmTrafficAnalysis = new frmAnalysisTrafficNetworkDensity();
+            frmTrafficAnalysis.FilePathOfRoadDistributionMap = "";
+            frmTrafficAnalysis.FilePathOfPolygonBoundaryMap = "";
+            frmTrafficAnalysis.FilePathOfTrafficDensityMap = "";
+            frmTrafficAnalysis.ShowDialog();
+            bool whetherAnalysis = frmTrafficAnalysis.StartAnalysis;
+            if (!whetherAnalysis) return;
+
             //加载进度条
             ThreadForm thr = new ThreadForm(0, 100);
             thr.Show(this);
@@ -2448,67 +2373,43 @@ namespace CityPlanning
             }
             thr.Close();
             //加载结果图
-            string path = ConnectionCenter.Config.ThematicTraffic;
-            if(AlreadyAddMap)
-            {
-                curXtraTabPage.Text = "交通网络密度图";
-                curAxMapControl.ClearLayers();
-                curAxMapControl.LoadMxFile(path);
-                curAxMapControl.ActiveView.Refresh();
-            }
-            else
-            {
-                AxMapControl mapControl = new AxMapControl();
-                mapControl.BeginInit();     //必须有begin和end
-                mapControl.Location = new System.Drawing.Point(0, 0);
-                mapControl.Name = "mapControl1";
-                mapControl.Dock = DockStyle.Fill;
-                mapControl.OnMouseDown += new IMapControlEvents2_Ax_OnMouseDownEventHandler(mapControl_OnMouseDown);
-                //MapControl不支持先声明，后设置，故而直接设置
+            XtraTabPage xtraTabPage = new XtraTabPage();
+            xtraTabPage.Text = "交通网络密度分析";
+            xtraTabPage.Image = this.imageCollectionIcons.Images[this.imageCollectionIcons.Images.Keys.IndexOf("mxd")];
+            xtraTabControl_Main.TabPages.Add(xtraTabPage);
+            xtraTabControl_Main.SelectedTabPage = xtraTabPage;
 
-                XtraTabPage xtp = new XtraTabPage();
-                xtp.Text = "交通网络密度图";
-                //resourses路径获取
-                Bitmap image = new Bitmap(System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.Windows.Forms.Application.StartupPath).ToString()) + @"\Resources\Globe-16.jpg");
-                xtp.Image = image;
-                xtp.Controls.Add(mapControl);
-                this.xtraTabControl_Main.TabPages.Add(xtp);
-                this.xtraTabControl_Main.SelectedTabPage = xtp;
-                mapControl.EndInit();       //必须有begin和end
+            string originPath = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.ThematicTraffic;
+            string resultPath = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.ThematicDisaster;
+            
+            ucSpatialAnalysisResult alyRetShow = new ucSpatialAnalysisResult(originPath, resultPath);
+            alyRetShow.AxMapControl1.Enter += AxMapControl1_Enter;
+            alyRetShow.AxMapControl2.Enter += AxMapControl2_Enter;
+            xtraTabPage.Controls.Add(alyRetShow);
+            alyRetShow.Dock = DockStyle.Fill;
+            alyRetShow.Refresh();
+            xtraTabControl_Main.Refresh();
+            curAxMapControl = alyRetShow.AxMapControl1;
+            this.ribbonPageCategory_xls.Visible = false;
+            this.ribbonPageCategory_doc.Visible = false;
+            this.ribbonPageCategory_map.Visible = true;
+            this.ribbonControl.SelectedPage = this.ribbonPageCategory_map.Pages[0];
 
-                mapControl.Refresh();
-                xtp.Refresh();
-                this.xtraTabControl_Main.Refresh();
-                this.Refresh();
-                mapControl.LoadMxFile(path);
-                mapControl.ActiveView.Refresh();
-                AlreadyAddMap = true;
-            }
-            //分析结果文字显示
-            //窗体显示唯一
-            if (ResFrm == null)
-            {
-                string Text = "交通网络密度分析结果如下：";
-                ResFrm = new ResultShowForm(Text);
-                ResFrm.Left = 250;
-                ResFrm.Top = 200;
-                ResFrm.Show();
-            }
-            else
-            {
-                ResFrm.Close();
-                string Text = "交通网络密度分析结果如下：";
-                ResFrm = new ResultShowForm(Text);
-                ResFrm.Left = 250;
-                ResFrm.Top = 200;
-                ResFrm.Show();
-                ResFrm.Activate();
-            }
+            string sheetPath = @"F:\项目资料\项目-沈阳经济开发区\项目 - 沈阳经济区\评价结果.xlsx";
+            frmSpatialAnalysisResultExcel frmSheetResult = new frmSpatialAnalysisResultExcel(sheetPath);
+            frmSheetResult.Show();
         }
-
         //电力网络密度图
         private void ElecNetDensity()
         {
+            frmAnalysisElectricnetDensityAnalysis frmElectricnetAnalysis = new frmAnalysisElectricnetDensityAnalysis();
+            frmElectricnetAnalysis.FilePathOfElectricnetDistributionMap = "";
+            frmElectricnetAnalysis.FilePathOfPolygonBoundaryMap = "";
+            frmElectricnetAnalysis.FilePathOfElectricnetDensityMap = "";
+            frmElectricnetAnalysis.ShowDialog();
+            bool whetherAnalysis = frmElectricnetAnalysis.StartAnalysis;
+            if (!whetherAnalysis) return;
+
             //加载进度条
             ThreadForm thr = new ThreadForm(0, 100);
             thr.Show(this);
@@ -2519,66 +2420,46 @@ namespace CityPlanning
             }
             thr.Close();
             //加载结果图
-            string path = ConnectionCenter.Config.ThematicElectricity;
-            if (AlreadyAddMap)
-            {
-                curXtraTabPage.Text = "电力网络密度图";
-                curAxMapControl.ClearLayers();
-                curAxMapControl.LoadMxFile(path);
-                curAxMapControl.ActiveView.Refresh();
-            }
-            else
-            {
-                AxMapControl mapControl = new AxMapControl();
-                mapControl.BeginInit();     //必须有begin和end
-                mapControl.Location = new System.Drawing.Point(0, 0);
-                mapControl.Name = "mapControl1";
-                mapControl.Dock = DockStyle.Fill;
-                mapControl.OnMouseDown += new IMapControlEvents2_Ax_OnMouseDownEventHandler(mapControl_OnMouseDown);
-                //MapControl不支持先声明，后设置，故而直接设置
+            XtraTabPage xtraTabPage = new XtraTabPage();
+            xtraTabPage.Text = "电力网络密度分析";
+            xtraTabPage.Image = this.imageCollectionIcons.Images[this.imageCollectionIcons.Images.Keys.IndexOf("mxd")];
+            xtraTabControl_Main.TabPages.Add(xtraTabPage);
+            xtraTabControl_Main.SelectedTabPage = xtraTabPage;
 
-                XtraTabPage xtp = new XtraTabPage();
-                xtp.Text = "电力网络密度图";
-                //resourses路径获取
-                Bitmap image = new Bitmap(System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.Windows.Forms.Application.StartupPath).ToString()) + @"\Resources\Globe-16.jpg");
-                xtp.Image = image;
-                xtp.Controls.Add(mapControl);
-                this.xtraTabControl_Main.TabPages.Add(xtp);
-                this.xtraTabControl_Main.SelectedTabPage = xtp;
-                mapControl.EndInit();       //必须有begin和end
+            string path = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.ThematicTraffic;
+            string path2 = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.ThematicDisaster;
 
-                mapControl.Refresh();
-                xtp.Refresh();
-                this.xtraTabControl_Main.Refresh();
-                this.Refresh();
-                mapControl.LoadMxFile(path);
-                mapControl.ActiveView.Refresh();
-                AlreadyAddMap = true;
-            }
-            //分析结果文字显示
-            if (ResFrm == null)
-            {
-                string Text = "电力网络密度分析结果如下：";
-                ResFrm = new ResultShowForm(Text);
-                ResFrm.Left = 250;
-                ResFrm.Top = 200;
-                ResFrm.Show();
-            }
-            else
-            {
-                ResFrm.Close();
-                string Text = "电力网络密度分析结果如下：";
-                ResFrm = new ResultShowForm(Text);
-                ResFrm.Left = 250;
-                ResFrm.Top = 200;
-                ResFrm.Show();
-                ResFrm.Activate();
-            }
+            ucSpatialAnalysisResult alyRetShow = new ucSpatialAnalysisResult(path, path2);
+            alyRetShow.AxMapControl1.Enter += AxMapControl1_Enter;
+            alyRetShow.AxMapControl2.Enter += AxMapControl2_Enter;
+            xtraTabPage.Controls.Add(alyRetShow);
+            alyRetShow.Dock = DockStyle.Fill;
+            alyRetShow.Refresh();
+            xtraTabControl_Main.Refresh();
+            curAxMapControl = alyRetShow.AxMapControl1;
+            this.ribbonPageCategory_xls.Visible = false;
+            this.ribbonPageCategory_doc.Visible = false;
+            this.ribbonPageCategory_map.Visible = true;
+            this.ribbonControl.SelectedPage = this.ribbonPageCategory_map.Pages[0];
+
+            string sheetPath = @"F:\项目资料\项目-沈阳经济开发区\项目 - 沈阳经济区\评价结果.xlsx";
+            frmSpatialAnalysisResultExcel frmSheetResult = new frmSpatialAnalysisResultExcel(sheetPath);
+            frmSheetResult.Show();
         }
-
         //综合灾害风险图
         private void IntDisasterRisk()
         {
+            frmAnalysisComprehensiveRiskEvaluation frmComprehensiveRiskAnalysis = new frmAnalysisComprehensiveRiskEvaluation();
+            frmComprehensiveRiskAnalysis.FilePathOfEarthquakeDistributionMap = "";
+            frmComprehensiveRiskAnalysis.FilePathOfFloodDistributionMap = "";
+            frmComprehensiveRiskAnalysis.FilePathOfSandyDistributionMap = "";
+            frmComprehensiveRiskAnalysis.FilePathOfOtherDistributionMap = "";
+            frmComprehensiveRiskAnalysis.FilePathOfPolygonBoundaryMap = "";
+            frmComprehensiveRiskAnalysis.FilePathOfEvaluationResultMap = "";
+            frmComprehensiveRiskAnalysis.ShowDialog();
+            bool whetherAnalysis = frmComprehensiveRiskAnalysis.StartAnalysis;
+            if (!whetherAnalysis) return;
+
             //加载进度条
             ThreadForm thr = new ThreadForm(0, 100);
             thr.Show(this);
@@ -2589,207 +2470,140 @@ namespace CityPlanning
             }
             thr.Close();
             //加载结果图
-            string path = ConnectionCenter.Config.ThematicDisaster;
-            if (AlreadyAddMap)
-            {
-                curXtraTabPage.Text = "综合灾害风险图";
-                curAxMapControl.ClearLayers();
-                curAxMapControl.LoadMxFile(path);
-                curAxMapControl.ActiveView.Refresh();
-            }
-            else
-            {
-                AxMapControl mapControl = new AxMapControl();
-                mapControl.BeginInit();     //必须有begin和end
-                mapControl.Location = new System.Drawing.Point(0, 0);
-                mapControl.Name = "mapControl1";
-                mapControl.Dock = DockStyle.Fill;
-                mapControl.OnMouseDown += new IMapControlEvents2_Ax_OnMouseDownEventHandler(mapControl_OnMouseDown);
-                //MapControl不支持先声明，后设置，故而直接设置
+            XtraTabPage xtraTabPage = new XtraTabPage();
+            xtraTabPage.Text = "综合灾害风险评估";
+            xtraTabPage.Image = this.imageCollectionIcons.Images[this.imageCollectionIcons.Images.Keys.IndexOf("mxd")];
+            xtraTabControl_Main.TabPages.Add(xtraTabPage);
+            xtraTabControl_Main.SelectedTabPage = xtraTabPage;
 
-                XtraTabPage xtp = new XtraTabPage();
-                xtp.Text = "综合灾害风险图";
-                //resourses路径获取
-                Bitmap image = new Bitmap(System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.Windows.Forms.Application.StartupPath).ToString()) + @"\Resources\Globe-16.jpg");
-                xtp.Image = image;
-                xtp.Controls.Add(mapControl);
-                this.xtraTabControl_Main.TabPages.Add(xtp);
-                this.xtraTabControl_Main.SelectedTabPage = xtp;
-                mapControl.EndInit();       //必须有begin和end
+            string path = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.ThematicTraffic;
+            string path2 = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.ThematicDisaster;
 
-                mapControl.Refresh();
-                xtp.Refresh();
-                this.xtraTabControl_Main.Refresh();
-                this.Refresh();
-                mapControl.LoadMxFile(path);
-                mapControl.ActiveView.Refresh();
-                AlreadyAddMap = true;
-            }
-            //分析结果文字显示
-            if (ResFrm == null)
-            {
-                string Text = "综合灾害风险分析结果如下：";
-                ResFrm = new ResultShowForm(Text);
-                ResFrm.Left = 250;
-                ResFrm.Top = 200;
-                ResFrm.Show();
-            }
-            else
-            {
-                ResFrm.Close();
-                string Text = "综合灾害风险分析结果如下：";
-                ResFrm = new ResultShowForm(Text);
-                ResFrm.Left = 250;
-                ResFrm.Top = 200;
-                ResFrm.Show();
-                ResFrm.Activate();
-            }
+            ucSpatialAnalysisResult alyRetShow = new ucSpatialAnalysisResult(path, path2);
+            alyRetShow.AxMapControl1.Enter += AxMapControl1_Enter;
+            alyRetShow.AxMapControl2.Enter += AxMapControl2_Enter;
+            xtraTabPage.Controls.Add(alyRetShow);
+            alyRetShow.Dock = DockStyle.Fill;
+            alyRetShow.Refresh();
+            xtraTabControl_Main.Refresh();
+            curAxMapControl = alyRetShow.AxMapControl1;
+            this.ribbonPageCategory_xls.Visible = false;
+            this.ribbonPageCategory_doc.Visible = false;
+            this.ribbonPageCategory_map.Visible = true;
+            this.ribbonControl.SelectedPage = this.ribbonPageCategory_map.Pages[0];
+
+            string sheetPath = @"F:\项目资料\项目-沈阳经济开发区\项目 - 沈阳经济区\评价结果.xlsx";
+            frmSpatialAnalysisResultExcel frmSheetResult = new frmSpatialAnalysisResultExcel(sheetPath);
+            frmSheetResult.Show();
         }
-
         //生态服务价值图
         private void EcoServiceValue()
         {
+            frmAnalysisEcologicalPriceEvaluation frmEcologicalPriceAnalysis = new frmAnalysisEcologicalPriceEvaluation();
+            frmEcologicalPriceAnalysis.FilePathOfLandtypeDistributionMap = "";
+            frmEcologicalPriceAnalysis.FilePathOfPolygonBoundaryMap = "";
+            frmEcologicalPriceAnalysis.FilePathOfEcologicalPriceDistributionMap = "";
+            frmEcologicalPriceAnalysis.ShowDialog();
+            bool whetherAnalysis = frmEcologicalPriceAnalysis.StartAnalysis;
+            if (!whetherAnalysis) return;
+
             //加载进度条
             ThreadForm thr = new ThreadForm(0, 100);
             thr.Show(this);
             for (int i = 0; i < 100; i++)
             {
                 thr.setPos(i);
-                Thread.Sleep(50);
+                Thread.Sleep(40);
             }
             thr.Close();
             //加载结果图
-            string path = ConnectionCenter.Config.ThematicZoology;
-            if (AlreadyAddMap)
-            {
-                curXtraTabPage.Text = "生态服务价值图";
-                curAxMapControl.ClearLayers();
-                curAxMapControl.LoadMxFile(path);
-                curAxMapControl.ActiveView.Refresh();
-            }
-            else
-            {
-                AxMapControl mapControl = new AxMapControl();
-                mapControl.BeginInit();     //必须有begin和end
-                mapControl.Location = new System.Drawing.Point(0, 0);
-                mapControl.Name = "mapControl1";
-                mapControl.Dock = DockStyle.Fill;
-                mapControl.OnMouseDown += new IMapControlEvents2_Ax_OnMouseDownEventHandler(mapControl_OnMouseDown);
-                //MapControl不支持先声明，后设置，故而直接设置
+            XtraTabPage xtraTabPage = new XtraTabPage();
+            xtraTabPage.Text = "电力网络密度分析";
+            xtraTabPage.Image = this.imageCollectionIcons.Images[this.imageCollectionIcons.Images.Keys.IndexOf("mxd")];
+            xtraTabControl_Main.TabPages.Add(xtraTabPage);
+            xtraTabControl_Main.SelectedTabPage = xtraTabPage;
 
-                XtraTabPage xtp = new XtraTabPage();
-                xtp.Text = "生态服务价值图";
-                //resourses路径获取
-                Bitmap image = new Bitmap(System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.Windows.Forms.Application.StartupPath).ToString()) + @"\Resources\Globe-16.jpg");
-                xtp.Image = image;
-                xtp.Controls.Add(mapControl);
-                this.xtraTabControl_Main.TabPages.Add(xtp);
-                this.xtraTabControl_Main.SelectedTabPage = xtp;
-                mapControl.EndInit();       //必须有begin和end
+            string path = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.ThematicTraffic;
+            string path2 = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.ThematicDisaster;
 
-                mapControl.Refresh();
-                xtp.Refresh();
-                this.xtraTabControl_Main.Refresh();
-                this.Refresh();
-                mapControl.LoadMxFile(path);
-                mapControl.ActiveView.Refresh();
-                AlreadyAddMap = true;
-            }
-            //分析结果文字显示
-            if (ResFrm == null)
-            {
-                string Text = "生态服务价值分析结果如下：";
-                ResFrm = new ResultShowForm(Text);
-                ResFrm.Left = 250;
-                ResFrm.Top = 200;
-                ResFrm.Show();
-            }
-            else
-            {
-                ResFrm.Close();
-                string Text = "生态服务价值分析结果如下：";
-                ResFrm = new ResultShowForm(Text);
-                ResFrm.Left = 250;
-                ResFrm.Top = 200;
-                ResFrm.Show();
-                ResFrm.Activate();
-            }
+            ucSpatialAnalysisResult alyRetShow = new ucSpatialAnalysisResult(path, path2);
+            alyRetShow.AxMapControl1.Enter += AxMapControl1_Enter;
+            alyRetShow.AxMapControl2.Enter += AxMapControl2_Enter;
+            xtraTabPage.Controls.Add(alyRetShow);
+            alyRetShow.Dock = DockStyle.Fill;
+            alyRetShow.Refresh();
+            xtraTabControl_Main.Refresh();
+            curAxMapControl = alyRetShow.AxMapControl1;
+            this.ribbonPageCategory_xls.Visible = false;
+            this.ribbonPageCategory_doc.Visible = false;
+            this.ribbonPageCategory_map.Visible = true;
+            this.ribbonControl.SelectedPage = this.ribbonPageCategory_map.Pages[0];
+
+            string sheetPath = @"F:\项目资料\项目-沈阳经济开发区\项目 - 沈阳经济区\评价结果.xlsx";
+            frmSpatialAnalysisResultExcel frmSheetResult = new frmSpatialAnalysisResultExcel(sheetPath);
+            frmSheetResult.Show();
         }
+<<<<<<< HEAD
         
+=======
+>>>>>>> refs/remotes/origin/master
         //GDP重心转移图
         private void GDPCenterTransfer()
         {
+            frmAnalysisGDPCenterTansfer frmGDPCenterTansferAnalysis = new frmAnalysisGDPCenterTansfer();
+            frmGDPCenterTansferAnalysis.FilePathOfCityCenterDistributionMap = "";
+            frmGDPCenterTansferAnalysis.FilePathOfGDPStatisticalTable = "";
+            frmGDPCenterTansferAnalysis.FilePathOfEconomicCenterTransferMap = "";
+            frmGDPCenterTansferAnalysis.ShowDialog();
+            bool whetherAnalysis = frmGDPCenterTansferAnalysis.StartAnalysis;
+            if (!whetherAnalysis) return;
+
             //加载进度条
             ThreadForm thr = new ThreadForm(0, 100);
             thr.Show(this);
             for (int i = 0; i < 100; i++)
             {
                 thr.setPos(i);
-                Thread.Sleep(60);
+                Thread.Sleep(40);
             }
             thr.Close();
             //加载结果图
-            string path = ConnectionCenter.Config.ThematicGDPTrans;
-            if (AlreadyAddMap)
-            {
-                this.curXtraTabPage.Text = "GDP重心转移图";
-                curAxMapControl.ClearLayers();
-                curAxMapControl.LoadMxFile(path);
-                curAxMapControl.ActiveView.Refresh();
-            }
-            else
-            {
-                AxMapControl mapControl = new AxMapControl();
-                mapControl.BeginInit();     //必须有begin和end
-                mapControl.Location = new System.Drawing.Point(0, 0);
-                mapControl.Name = "mapControl1";
-                mapControl.Dock = DockStyle.Fill;
-                mapControl.OnMouseDown += new IMapControlEvents2_Ax_OnMouseDownEventHandler(mapControl_OnMouseDown);
-                //MapControl不支持先声明，后设置，故而直接设置
+            XtraTabPage xtraTabPage = new XtraTabPage();
+            xtraTabPage.Text = "电力网络密度分析";
+            xtraTabPage.Image = this.imageCollectionIcons.Images[this.imageCollectionIcons.Images.Keys.IndexOf("mxd")];
+            xtraTabControl_Main.TabPages.Add(xtraTabPage);
+            xtraTabControl_Main.SelectedTabPage = xtraTabPage;
 
-                XtraTabPage xtp = new XtraTabPage();
-                xtp.Text = "GDP重心转移图";
-                //resourses路径获取
-                Bitmap image = new Bitmap(System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.Windows.Forms.Application.StartupPath).ToString()) + @"\Resources\Globe-16.jpg");
-                xtp.Image = image;
-                xtp.Controls.Add(mapControl);
-                this.xtraTabControl_Main.TabPages.Add(xtp);
-                this.xtraTabControl_Main.SelectedTabPage = xtp;
-                mapControl.EndInit();       //必须有begin和end
+            string path = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.ThematicTraffic;
+            string path2 = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.ThematicDisaster;
 
-                mapControl.Refresh();
-                xtp.Refresh();
-                this.xtraTabControl_Main.Refresh();
-                this.Refresh();
-                mapControl.LoadMxFile(path);
-                mapControl.ActiveView.Refresh();
-                AlreadyAddMap = true;
-            }
-            //分析结果文字显示
-            if (ResFrm == null)
-            {
-                string Text = "GDP重心转移分析结果如下：";
-                ResFrm = new ResultShowForm(Text);
-                ResFrm.Left = 250;
-                ResFrm.Top = 200;
-                ResFrm.Show();
-            }
-            else
-            {
-                ResFrm.Close();
-                string Text = "GDP重心转移分析结果如下：";
-                ResFrm = new ResultShowForm(Text);
-                ResFrm.Left = 250;
-                ResFrm.Top = 200;
-                ResFrm.Show();
-                ResFrm.Activate();
-            }
+            ucSpatialAnalysisResult alyRetShow = new ucSpatialAnalysisResult(path, path2);
+            alyRetShow.AxMapControl1.Enter += AxMapControl1_Enter;
+            alyRetShow.AxMapControl2.Enter += AxMapControl2_Enter;
+            xtraTabPage.Controls.Add(alyRetShow);
+            alyRetShow.Dock = DockStyle.Fill;
+            alyRetShow.Refresh();
+            xtraTabControl_Main.Refresh();
+            curAxMapControl = alyRetShow.AxMapControl1;
+            this.ribbonPageCategory_xls.Visible = false;
+            this.ribbonPageCategory_doc.Visible = false;
+            this.ribbonPageCategory_map.Visible = true;
+            this.ribbonControl.SelectedPage = this.ribbonPageCategory_map.Pages[0];
+
+            string sheetPath = @"F:\项目资料\项目-沈阳经济开发区\项目 - 沈阳经济区\评价结果.xlsx";
+            frmSpatialAnalysisResultExcel frmSheetResult = new frmSpatialAnalysisResultExcel(sheetPath);
+            frmSheetResult.Show();
         }
+
+        void AxMapControl1_Enter(object sender, EventArgs e)
+        {
+            curAxMapControl = (AxMapControl)sender;
+        }
+        void AxMapControl2_Enter(object sender, EventArgs e)
+        {
+            curAxMapControl = (AxMapControl)sender;
+        }
+
         #endregion
-
-
-
-
-
     }
 }

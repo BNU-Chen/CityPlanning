@@ -17,7 +17,6 @@ namespace CityPlanning
         public ResultShowForm(string text)
         {
             InitializeComponent();
-            this.richTextBoxEx1.Text = text;
             this.dataGrid1 = new System.Windows.Forms.DataGridView();
             this.dataGrid1.DataMember = "";
             this.dataGrid1.Name = "dataGrid1";

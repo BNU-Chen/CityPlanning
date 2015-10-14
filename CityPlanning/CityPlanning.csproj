@@ -156,11 +156,47 @@
     <Compile Include="Forms\frmAddMapKeyword.Designer.cs">
       <DependentUpon>frmAddMapKeyword.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\frmAnalysisTrafficNetworkDensity.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmAnalysisTrafficNetworkDensity.Designer.cs">
+      <DependentUpon>frmAnalysisTrafficNetworkDensity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmSpatialAnalysisResultExcel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmSpatialAnalysisResultExcel.Designer.cs">
+      <DependentUpon>frmSpatialAnalysisResultExcel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\frmSysConfig.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\frmSysConfig.Designer.cs">
       <DependentUpon>frmSysConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmAnalysisComprehensiveRiskEvaluation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmAnalysisComprehensiveRiskEvaluation.Designer.cs">
+      <DependentUpon>frmAnalysisComprehensiveRiskEvaluation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmAnalysisElectricnetDensityAnalysis.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmAnalysisElectricnetDensityAnalysis.Designer.cs">
+      <DependentUpon>frmAnalysisElectricnetDensityAnalysis.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmAnalysisEcologicalPriceEvaluation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmAnalysisEcologicalPriceEvaluation.Designer.cs">
+      <DependentUpon>frmAnalysisEcologicalPriceEvaluation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmAnalysisGDPCenterTansfer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmAnalysisGDPCenterTansfer.Designer.cs">
+      <DependentUpon>frmAnalysisGDPCenterTansfer.cs</DependentUpon>
     </Compile>
     <Compile Include="HandleCenter.cs" />
     <Compile Include="ComponentOperator.cs" />
@@ -266,6 +302,12 @@
     <Compile Include="Modules\ucNavigationRDB.Designer.cs">
       <DependentUpon>ucNavigationRDB.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modules\ucSpatialAnalysisResult.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\ucSpatialAnalysisResult.Designer.cs">
+      <DependentUpon>ucSpatialAnalysisResult.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modules\ucTOCControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -299,11 +341,29 @@
     <EmbeddedResource Include="Forms\frmAddMapKeyword.resx">
       <DependentUpon>frmAddMapKeyword.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmAnalysisTrafficNetworkDensity.resx">
+      <DependentUpon>frmAnalysisTrafficNetworkDensity.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmMapFeatureAttr.resx">
       <DependentUpon>frmMapFeatureAttr.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmSpatialAnalysisResultExcel.resx">
+      <DependentUpon>frmSpatialAnalysisResultExcel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmSysConfig.resx">
       <DependentUpon>frmSysConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmAnalysisComprehensiveRiskEvaluation.resx">
+      <DependentUpon>frmAnalysisComprehensiveRiskEvaluation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmAnalysisElectricnetDensityAnalysis.resx">
+      <DependentUpon>frmAnalysisElectricnetDensityAnalysis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmAnalysisEcologicalPriceEvaluation.resx">
+      <DependentUpon>frmAnalysisEcologicalPriceEvaluation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmAnalysisGDPCenterTansfer.resx">
+      <DependentUpon>frmAnalysisGDPCenterTansfer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmStartConnectionConfig.resx">
       <DependentUpon>frmStartConnectionConfig.cs</DependentUpon>
@@ -349,6 +409,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\ucNavigationRDB.resx">
       <DependentUpon>ucNavigationRDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\ucSpatialAnalysisResult.resx">
+      <DependentUpon>ucSpatialAnalysisResult.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\ucTOCControl.resx">
       <DependentUpon>ucTOCControl.cs</DependentUpon>
