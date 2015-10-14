@@ -624,98 +624,22 @@ namespace CityPlanning
         //柱状图
         private void BarChartButton_ItemClick(object sender, ItemClickEventArgs e)
         {
-            Control control = this.xtraTabControl_Main.SelectedTabPage.Controls[0];
-            if (control is SpreadsheetControl)
-            {
-                SpreadsheetControl ssc = (SpreadsheetControl)control;
-                Worksheet worksheet = ssc.Document.Worksheets.ActiveWorksheet;
-                DataTable dt = StatisticChart.DataOperation.CreateTablefromWorkSheet(worksheet);
-                
-                if (dt != null)
-                {
-                    Modules.ucChartForm ucc = new Modules.ucChartForm(this);
-                    ucc.Icon = Icon.FromHandle(((Bitmap)BarChartButton.Glyph).GetHicon());
-                    ucc.DataSource = dt.Copy();
-                    ucc.Range = worksheet.Selection;
-                    ucc.ViewType = ViewType.Bar;
-                    StatisticChart.ShowOperation.CreatChart(ucc.ChartControl, dt, ucc.ViewType);
-                    ucc.Activated += curChartForm_Activated;
-                    ucc.Show();
-                    ResetFieldComboBox(curChartForm.VariableField, curChartForm.ValueField);
-                }
-            }
+            OpenChartWindow(ViewType.Bar);
         }
         //折线图
         private void LineChartButton_ItemClick(object sender, ItemClickEventArgs e)
         {
-            Control control = this.xtraTabControl_Main.SelectedTabPage.Controls[0];
-            if (control is SpreadsheetControl)
-            {
-                SpreadsheetControl ssc = (SpreadsheetControl)control;
-                Worksheet worksheet = ssc.Document.Worksheets.ActiveWorksheet;
-                DataTable dt = StatisticChart.DataOperation.CreateTablefromWorkSheet(worksheet);
-
-                if (dt != null)
-                {
-                    Modules.ucChartForm ucc = new Modules.ucChartForm(this);
-                    ucc.Icon = Icon.FromHandle(((Bitmap)LineChartButton.Glyph).GetHicon());
-                    ucc.DataSource = dt.Copy();
-                    ucc.Range = worksheet.Selection;
-                    ucc.ViewType = ViewType.Line;
-                    StatisticChart.ShowOperation.CreatChart(ucc.ChartControl, dt, ucc.ViewType);
-                    ucc.Activated += curChartForm_Activated;
-                    ucc.Show();
-                    ResetFieldComboBox(curChartForm.VariableField, curChartForm.ValueField);
-                }
-            }
+            OpenChartWindow(ViewType.Line);
         }
         //散点图
         private void PointChartButton_ItemClick(object sender, ItemClickEventArgs e)
         {
-            Control control = this.xtraTabControl_Main.SelectedTabPage.Controls[0];
-            if (control is SpreadsheetControl)
-            {
-                SpreadsheetControl ssc = (SpreadsheetControl)control;
-                Worksheet worksheet = ssc.Document.Worksheets.ActiveWorksheet;
-                DataTable dt = StatisticChart.DataOperation.CreateTablefromWorkSheet(worksheet);
-                
-                if (dt != null)
-                {
-                    Modules.ucChartForm ucc = new Modules.ucChartForm(this);
-                    ucc.Icon = Icon.FromHandle(((Bitmap)PointChartButton.Glyph).GetHicon());
-                    ucc.DataSource = dt.Copy();
-                    ucc.Range = worksheet.Selection;
-                    ucc.ViewType = ViewType.Point;
-                    StatisticChart.ShowOperation.CreatChart(ucc.ChartControl, dt, ucc.ViewType);
-                    ucc.Activated += curChartForm_Activated;
-                    ucc.Show();
-                    ResetFieldComboBox(curChartForm.VariableField, curChartForm.ValueField);
-                }
-            }
+            OpenChartWindow(ViewType.Point);
         }
         //饼状图
         private void PieChartButton_ItemClick(object sender, ItemClickEventArgs e)
         {
-            Control control = this.xtraTabControl_Main.SelectedTabPage.Controls[0];
-            if (control is SpreadsheetControl)
-            {
-                SpreadsheetControl ssc = (SpreadsheetControl)control;
-                Worksheet worksheet = ssc.Document.Worksheets.ActiveWorksheet;
-                DataTable dt = StatisticChart.DataOperation.CreateTablefromWorkSheet(worksheet);
-
-                if (dt != null)
-                {
-                    Modules.ucChartForm ucc = new Modules.ucChartForm(this);
-                    ucc.Icon = Icon.FromHandle(((Bitmap)PieChartButton.Glyph).GetHicon());
-                    ucc.DataSource = dt.Copy();
-                    ucc.Range = worksheet.Selection;
-                    ucc.ViewType = ViewType.Pie;
-                    StatisticChart.ShowOperation.CreatPieChart(ucc.ChartControl, dt);
-                    ucc.Activated += curChartForm_Activated;
-                    ucc.Show();
-                    ResetFieldComboBox(curChartForm.VariableField, curChartForm.ValueField);
-                }
-            }
+            OpenChartWindow(ViewType.Pie);
         }
         //切换图表窗口，对应显示worksheet原数据
         private void curChartForm_Activated(object sender, EventArgs e)
@@ -737,60 +661,12 @@ namespace CityPlanning
         //重设字段选择控件内容
         private void ResetFieldComboBox(List<string> vars, List<string> vals)
         {
-            AxisXCombobox.EditValue = null;
-            AxisYCombobox.EditValue = null;
             repositoryItemComboBox1.Items.Clear();
             repositoryItemCheckedComboBoxEdit1.Items.Clear();
             foreach (string var in vars) repositoryItemComboBox1.Items.Add(var);
             foreach (string val in vals) repositoryItemCheckedComboBoxEdit1.Items.Add(val);
         }
-        //重选变量字段
-        private void AxisXCombobox_EditValueChanged(object sender, EventArgs e)
-        {
-            if (curChartForm == null || AxisXCombobox.EditValue == null) return;
-            DataTable dt = curChartForm.DataSource;
-            string var = AxisXCombobox.EditValue.ToString();
-            dt.Columns[var].SetOrdinal(0);
-            if(curChartForm.ViewType == ViewType.Pie)
-                StatisticChart.ShowOperation.CreatPieChart(curChartForm.ChartControl, dt);
-            else if(curChartForm.ViewType == ViewType.Bar || curChartForm.ViewType == ViewType.Line || curChartForm.ViewType == ViewType.Point)
-                StatisticChart.ShowOperation.CreatChart(curChartForm.ChartControl, dt, curChartForm.ViewType);
-        }
-        //重选数据字段
-        private void AxisYCombobox_EditValueChanged(object sender, EventArgs e)
-        {
-            if (curChartForm == null || AxisYCombobox.EditValue == null) return;
-            DataTable dt = curChartForm.DataSource;
-            string[] vals = AxisYCombobox.EditValue.ToString().Replace(", ", ",").Split(',');
-            if (curChartForm.ViewType == ViewType.Pie)
-            {
-                dt.Columns[vals[0]].SetOrdinal(1);
-                StatisticChart.ShowOperation.CreatPieChart(curChartForm.ChartControl, dt);
-            }
-            else if (curChartForm.ViewType == ViewType.Bar || curChartForm.ViewType == ViewType.Line || curChartForm.ViewType == ViewType.Point)
-                StatisticChart.ShowOperation.CreatChart(curChartForm.ChartControl, dt, curChartForm.ViewType, vals);
-        }
-        //设置图表标题
-        private void ChartTitlebarEditItem_EditValueChanged(object sender, EventArgs e)
-        {
-            if (curChartForm == null || ChartTitlebarEditItem.EditValue.ToString() == "") return;
-            curChartForm.ChartControl = StatisticChart.ShowOperation.SetChartTitle(curChartForm.ChartControl,
-                ChartTitlebarEditItem.EditValue.ToString());
-        }
-        //设置横坐标标题
-        private void AxisXTitlebarEditItem_EditValueChanged(object sender, EventArgs e)
-        {
-            if (curChartForm == null || AxisXTitlebarEditItem.EditValue.ToString() == "" || curChartForm.ViewType==ViewType.Pie) return;
-            curChartForm.ChartControl = StatisticChart.ShowOperation.SetAxisXChartTitle(curChartForm.ChartControl,
-                AxisXTitlebarEditItem.EditValue.ToString());
-        }
-        //设置纵坐标标题
-        private void AxisYTitlebarEditItem_EditValueChanged(object sender, EventArgs e)
-        {
-            if (curChartForm == null || AxisYTitlebarEditItem.EditValue.ToString() == "" || curChartForm.ViewType == ViewType.Pie) return;
-            curChartForm.ChartControl = StatisticChart.ShowOperation.SetAxisYChartTitle(curChartForm.ChartControl,
-                AxisYTitlebarEditItem.EditValue.ToString());
-        }
+        
         #endregion
 
         #endregion
@@ -1080,6 +956,12 @@ namespace CityPlanning
         //郭海强 测试图表显示控件0922
         private void barButtonItem1_ItemClick(object sender, ItemClickEventArgs e)
         {
+            OpenChartWindow(ViewType.Bar);
+        }
+
+        //打开统计图表
+        private void OpenChartWindow(ViewType chartType)
+        {
             Control control = this.xtraTabControl_Main.SelectedTabPage.Controls[0];
             if (control is SpreadsheetControl)
             {
@@ -1089,18 +971,31 @@ namespace CityPlanning
 
                 if (dt != null)
                 {
-                    Modules.ucChartShow ucChSh = new Modules.ucChartShow();
-                    XtraTabPage xtp = new XtraTabPage();
-                    xtp.Text = dt.TableName;
-                    xtp.Controls.Add(ucChSh);
-                    ucChSh.Dock = DockStyle.Fill;
-                    this.xtraTabControl_Main.TabPages.Add(xtp);
-                    this.xtraTabControl_Main.SelectedTabPage = xtp;
-                    ucChSh.SetChartShow(dt, ViewType.Bar);
-                    ucChSh.Refresh();
-                    xtp.Refresh();
-                    this.xtraTabControl_Main.Refresh();
-                    this.Refresh();
+                    if (frmChartInOverlay == null)
+                    {
+                        frmChartInOverlay = new System.Windows.Forms.Form();
+                        frmChartInOverlay.FormClosed += frmChartInOverlay_FormClosed;
+                        frmChartInOverlay.Size = new System.Drawing.Size(640, 480);
+                        frmChartInOverlay.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
+
+                        ucChartInOverlay = new Modules.ucChartShow();
+                        frmChartInOverlay.Controls.Add(ucChartInOverlay);
+                        ucChartInOverlay.Dock = DockStyle.Fill;
+                        
+                        ucChartInOverlay.SetChartShow(dt, chartType);
+                        ucChartInOverlay.Refresh();
+                        frmChartInOverlay.Show();
+                    }
+                    else
+                    {
+                        if (!frmChartInOverlay.IsDisposed)
+                        {
+                            ucChartInOverlay.SetChartShow(dt, ViewType.Pie);
+                            ucChartInOverlay.Refresh();
+                            frmChartInOverlay.BringToFront();
+                            frmChartInOverlay.Refresh();
+                        }
+                    }
                 }
             }
         }
