@@ -737,15 +737,15 @@ namespace CityPlanning
             GalleryItem[] galleryItems = galleryItemList.ToArray();
             itemGroup1.Items.AddRange(galleryItems);
             // Specify the number of items to display horizontally. 
-            ribbonGallery_MapKeywords.Gallery.ColumnCount = 3;
+            ribbonGallery_MapKeywords.Gallery.ColumnCount = 2;
             //throw new NotImplementedException();
         }
         //地图关键词搜索文档
         void itemMapKeywords_ItemClick(object sender, GalleryItemClickEventArgs e)
-        {            
-            //GalleryItem item = (GalleryItem)sender;
-            //string keyword = item.Caption;
-            //SearchInPlanDoc(keyword);
+        {
+            GalleryItem item = (GalleryItem)sender;
+            string keyword = item.Caption;
+            SearchInPlanDoc(keyword);
         }
         private void ribbonGallery_MapKeywords_ItemDoubleClick(object sender, ItemClickEventArgs e)
         {
@@ -1970,8 +1970,8 @@ namespace CityPlanning
                 //if (MessageBox.Show("开始分析?", "询问", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
                 //{
                     //read shp of mxd
-                    string strInputFeaturePath = ConnectionCenter.Config.FTPCatalog+ConnectionCenter.Config.PlanMap+@"\shp\GHJBNTJZQ（处理后）.shp";
-                    string strInputFeatureName = System.IO.Path.GetFileNameWithoutExtension(strInputFeaturePath);// "GHJBNTJZQ（处理后）.shp";
+                    string strInputFeaturePath = ConnectionCenter.Config.FTPCatalog+ConnectionCenter.Config.PlanMap+@"\shp\基本红线保护区.shp";
+                    string strInputFeatureName = System.IO.Path.GetFileNameWithoutExtension(strInputFeaturePath);// "基本红线保护区.shp";
                     FileInfo fileInfo = new FileInfo(strInputFeaturePath);
                     DirectoryInfo direct = fileInfo.Directory;
                     FileInfo[] fileinfos = direct.GetFiles(string.Format("{0}.*", fileInfo.Name.Substring(0, fileInfo.Name.LastIndexOf("."))));
@@ -2225,8 +2225,8 @@ namespace CityPlanning
                     //if (MessageBox.Show("开始分析?", "询问", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
                     //{
                     //read shp of mxd
-                    string strInputFeaturePath = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.PlanMap + @"\shp\GHJBNTJZQ（处理后）.shp";
-                    string strInputFeatureName = System.IO.Path.GetFileNameWithoutExtension(strInputFeaturePath); //"GHJBNTJZQ（处理后）.shp";
+                    string strInputFeaturePath = ConnectionCenter.Config.FTPCatalog + ConnectionCenter.Config.PlanMap + @"\shp\基本红线保护区.shp";
+                    string strInputFeatureName = System.IO.Path.GetFileNameWithoutExtension(strInputFeaturePath); //"基本红线保护区.shp";
                     FileInfo fileInfo = new FileInfo(strInputFeaturePath);
                     DirectoryInfo direct = fileInfo.Directory;
                     if (!fileInfo.Exists || !direct.Exists)
@@ -2271,7 +2271,7 @@ namespace CityPlanning
                     mapControl.LoadMxFile(path);
                     mapControl.AddShapeFile(DirPath, "Result.shp");
                     mapControl.Refresh();
-                    //string dbfPath = ConnectionCenter.Config.PlanMap + @"\shp\GHJBNTJZQ（处理后）.dbf";
+                    //string dbfPath = ConnectionCenter.Config.PlanMap + @"\shp\基本红线保护区.dbf";
                     string dbfPath = tempPath + @"\Result.dbf";
                     CreatResultPie(dbfPath);
                     //RichEditControl rec = new RichEditControl();

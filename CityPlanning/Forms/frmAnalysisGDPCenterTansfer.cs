@@ -72,7 +72,7 @@ namespace CityPlanning.Forms
             openFileDialog.Title = "打开输入文件（历年GDP统计表）";
             openFileDialog.CheckFileExists = true;
             openFileDialog.RestoreDirectory = true;
-            openFileDialog.Filter = "Excel文件|*.xls|*.xlsx";
+            openFileDialog.Filter = "*.xlsx|*.xlsx|Excel文件|*.xls";
             string curDir = this.tbCityCenterDistributionMapPath.Text.ToString();
             if (curDir != "")
                 openFileDialog.InitialDirectory = Path.GetDirectoryName(curDir);
