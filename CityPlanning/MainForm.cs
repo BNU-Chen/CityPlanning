@@ -562,6 +562,15 @@ namespace CityPlanning
                     this.ribbonPageCategory_doc.Visible = true;
                     this.ribbonPageCategory_map.Visible = false;
                     this.ribbonControl.SelectedPage = this.ribbonPageCategory_doc.Pages[0];
+
+                    //绑定文本搜索控件
+                    ucDocIntSearch.XtraTabPage = tabPage;
+                    int searchIndex = -1;
+                    if(tabPage.Tag is int){
+                        searchIndex = (int)tabPage.Tag;
+                    }
+                    ucDocIntSearch.SearchRangeSelectedIndex = searchIndex;
+
                     break;
                 }
                 else if (control is AxMapControl)
@@ -936,6 +945,7 @@ namespace CityPlanning
             {
                 this.panelControl_Navigation.Controls.Clear();
                 ucDocIntSearch.setInitializationSearchResult();
+                ucDocIntSearch.SearchRangeSelectedIndex = -1;
                 this.panelControl_Navigation.Controls.Add(ucDocIntSearch);
                 ucDocIntSearch.XtraTabPage = this.xtraTabControl_Main.SelectedTabPage;
             }

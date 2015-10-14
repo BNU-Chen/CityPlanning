@@ -38,6 +38,19 @@ namespace CityPlanning.Modules
             get { return documentPathCollection; }
         }
 
+        public int SearchRangeSelectedIndex
+        {
+            set
+            {
+                this.cbe_SearchRange.SelectedIndex = value;
+                XtraTabPage.Tag = value;
+            }
+            get
+            {
+                return this.cbe_SearchRange.SelectedIndex;
+            }
+        }
+
         #region //构造函数
         public ucDocumentInternalSearch()
         {
@@ -136,9 +149,14 @@ namespace CityPlanning.Modules
             {
                 setInitializationSearchResult();
                 int selectedIndex = this.cbe_SearchRange.SelectedIndex;
+                this.XtraTabPage.Tag = selectedIndex;   //记录搜索范围
                 List<string> documentPaths = new List<string>();
                 switch (selectedIndex)
                 {
+                    case -1:
+                        this.multiDocumentSearch = false;
+                        this.KeyWordSearch();
+                        break;
                     case 0:
                         this.multiDocumentSearch = false;
                         this.SearchFromDocument(this.te_KeyWord.Text.Trim(), this.documentPathCollection[0], this.xtraTabPage);
@@ -185,6 +203,7 @@ namespace CityPlanning.Modules
                     this.DocumentKeyWordHighlightSet();
                 }
                 this.SearchResultInfoChange();
+                this.flowLayoutPanel.Refresh();
                 return true;
             }
             catch
@@ -251,10 +270,12 @@ namespace CityPlanning.Modules
                     roRTB.MouseClick += new MouseEventHandler(this.flowLayoutPanel_MouseClick);
                     roRTB.MouseWheel += new MouseEventHandler(flowLayoutPanel1_MouseWheel);
                     roRTB.Width = this.flowLayoutPanel.Width - 25;
+                    roRTB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
                     Paragraph paragraph = paragraphCollection[i];
                     roRTB.Paragraph = paragraph;
                     string par_Text = searchDocument.GetText(paragraph.Range);
                     int startPosition = 0;
+                    roRTB.Text = par_Text;
                     while (par_Text.IndexOf(keyWord, startPosition) >= 0)
                     {
                         int curPosition = par_Text.IndexOf(keyWord, startPosition);
@@ -262,7 +283,9 @@ namespace CityPlanning.Modules
                         roRTB.SelectionColor = Color.Red;
                         startPosition = curPosition + keyWord.Length;
                     }
-                    roRTB.Text = par_Text + "\n\n" + this.xtraTabPage.Text;
+                    roRTB.Select(0, par_Text.Length - 1);
+                    roRTB.SelectionColor = Color.Red;
+                    roRTB.Refresh();
                     readOnlyRichTextBoxCollection.Add(roRTB);
                 }
             }
