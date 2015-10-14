@@ -563,6 +563,10 @@ namespace CityPlanning
                     this.ribbonPageCategory_map.Visible = false;
                     this.ribbonControl.SelectedPage = this.ribbonPageCategory_doc.Pages[0];
 
+                    //添加左侧搜索panel
+                    this.panelControl_Navigation.Controls.Clear();
+                    this.panelControl_Navigation.Controls.Add(ucDocIntSearch);
+
                     //绑定文本搜索控件
                     ucDocIntSearch.XtraTabPage = tabPage;
                     int searchIndex = -1;
@@ -1195,6 +1199,7 @@ namespace CityPlanning
                 xtp.Image = this.imageCollectionIcons.Images[iconIndex];
             this.xtraTabControl_Main.TabPages.Add(xtp);
             this.xtraTabControl_Main.SelectedTabPage = xtp;
+            ucDocIntSearch.ResetSearchPanel();
             ucDocIntSearch.SearchFromDocument(keyword, path, this.xtraTabControl_Main.SelectedTabPage);
         }
         #endregion
@@ -1279,6 +1284,9 @@ namespace CityPlanning
                     rec.Dock = DockStyle.Fill;
                     this.xtraTabControl_Main.TabPages.Add(xtp);
                     this.xtraTabControl_Main.SelectedTabPage = xtp;
+
+                    //充值搜索框
+                    ucDocIntSearch.ResetSearchPanel();
                 }
             }
         }

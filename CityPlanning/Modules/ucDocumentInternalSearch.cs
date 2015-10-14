@@ -51,6 +51,14 @@ namespace CityPlanning.Modules
             }
         }
 
+        public void ResetSearchPanel()
+        {
+            this.flowLayoutPanel.Controls.Clear();
+            this.cbe_SearchRange.SelectedIndex = -1;
+            this.lblSearchResultInfo.Text = "搜索结果：";
+            this.te_KeyWord.Text = "";
+        }
+
         #region //构造函数
         public ucDocumentInternalSearch()
         {
