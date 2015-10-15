@@ -23,32 +23,56 @@ namespace CityPlanning.Forms
 
         public string FilePathOfEarthquakeDistributionMap
         {
-            set { filePathOfEarthquakeDistributionMap = value; }
+            set 
+            { 
+                filePathOfEarthquakeDistributionMap = value;
+                //this.tbEarthquakeDistributionMapPath.Text = value;
+            }
             get { return filePathOfEarthquakeDistributionMap; }
         }
         public string FilePathOfFloodDistributionMap
         {
-            set { filePathOfFloodDistributionMap = value; }
+            set 
+            { 
+                filePathOfFloodDistributionMap = value;
+                //this.tbFloodDistributionMapPath.Text = value;
+            }
             get { return filePathOfFloodDistributionMap; }
         }
         public string FilePathOfSandyDistributionMap
         {
-            set { filePathOfSandyDistributionMap = value; }
+            set 
+            { 
+                filePathOfSandyDistributionMap = value;
+                //this.tbSandyDistributionMapPath.Text = value;
+            }
             get { return filePathOfSandyDistributionMap; }
         }
         public string FilePathOfOtherDistributionMap
         {
-            set { filePathOfOtherDistributionMap = value; }
+            set 
+            { 
+                filePathOfOtherDistributionMap = value;
+                //this.tbOtherDistributionMapPath.Text = value;
+            }
             get { return filePathOfOtherDistributionMap; }
         }
         public string FilePathOfPolygonBoundaryMap
         {
-            set { filePathOfPolygonBoundaryMap = value; }
+            set 
+            { 
+                filePathOfPolygonBoundaryMap = value;
+                //this.tbPolygonBoundaryMapPath.Text = value;
+            }
             get { return filePathOfPolygonBoundaryMap; }
         }
         public string FilePathOfEvaluationResultMap
         {
-            set { filePathOfEvaluationResultMap = value; }
+            set 
+            { 
+                filePathOfEvaluationResultMap = value;
+                //this.tbEvaluationResultMapPath.Text = value;
+            }
             get { return filePathOfEvaluationResultMap; }
         }
         public bool StartAnalysis
@@ -76,7 +100,7 @@ namespace CityPlanning.Forms
             openFileDialog.CheckFileExists = true;
             openFileDialog.RestoreDirectory = true;
             openFileDialog.Filter = "shp文件|*.shp";
-            string curDir = this.tbEarthquakeDistributionMapPath.Text.ToString();
+            string curDir = this.filePathOfEarthquakeDistributionMap;
             if (curDir != "")
                 openFileDialog.InitialDirectory = Path.GetDirectoryName(curDir);
             if (openFileDialog.ShowDialog() == DialogResult.OK)
@@ -90,7 +114,7 @@ namespace CityPlanning.Forms
             openFileDialog.CheckFileExists = true;
             openFileDialog.RestoreDirectory = true;
             openFileDialog.Filter = "shp文件|*.shp";
-            string curDir = this.tbEarthquakeDistributionMapPath.Text.ToString();
+            string curDir = this.filePathOfFloodDistributionMap;
             if (curDir != "")
                 openFileDialog.InitialDirectory = Path.GetDirectoryName(curDir);
             if (openFileDialog.ShowDialog() == DialogResult.OK)
@@ -104,7 +128,7 @@ namespace CityPlanning.Forms
             //openFileDialog.CheckFileExists = true;
             openFileDialog.RestoreDirectory = true;
             openFileDialog.Filter = "shp文件|*.shp";
-            string curDir = this.tbEarthquakeDistributionMapPath.Text.ToString();
+            string curDir = this.filePathOfEvaluationResultMap;
             if (curDir != "")
                 openFileDialog.InitialDirectory = Path.GetDirectoryName(curDir);
             if (openFileDialog.ShowDialog() == DialogResult.OK)
@@ -118,7 +142,7 @@ namespace CityPlanning.Forms
             //openFileDialog.CheckFileExists = true;
             openFileDialog.RestoreDirectory = true;
             openFileDialog.Filter = "shp文件|*.shp";
-            string curDir = this.tbEarthquakeDistributionMapPath.Text.ToString();
+            string curDir = this.filePathOfSandyDistributionMap;
             if (curDir != "")
                 openFileDialog.InitialDirectory = Path.GetDirectoryName(curDir);
             if (openFileDialog.ShowDialog() == DialogResult.OK)
@@ -132,7 +156,7 @@ namespace CityPlanning.Forms
             //openFileDialog.CheckFileExists = true;
             openFileDialog.RestoreDirectory = true;
             openFileDialog.Filter = "shp文件|*.shp";
-            string curDir = this.tbEarthquakeDistributionMapPath.Text.ToString();
+            string curDir = this.filePathOfPolygonBoundaryMap;
             if (curDir != "")
                 openFileDialog.InitialDirectory = Path.GetDirectoryName(curDir);
             if (openFileDialog.ShowDialog() == DialogResult.OK)
@@ -146,7 +170,7 @@ namespace CityPlanning.Forms
             //openFileDialog.CheckFileExists = true;
             openFileDialog.RestoreDirectory = true;
             openFileDialog.Filter = "shp文件|*.shp";
-            string curDir = this.tbEarthquakeDistributionMapPath.Text.ToString();
+            string curDir = this.filePathOfPolygonBoundaryMap;
             if (curDir != "")
                 openFileDialog.InitialDirectory = Path.GetDirectoryName(curDir);
             if (openFileDialog.ShowDialog() == DialogResult.OK)
@@ -156,9 +180,9 @@ namespace CityPlanning.Forms
         //开始分析
         private void button4_Click(object sender, EventArgs e)
         {
-            if (this.filePathOfEarthquakeDistributionMap == "" || this.filePathOfFloodDistributionMap == "" ||
-                this.filePathOfSandyDistributionMap == "" || this.filePathOfOtherDistributionMap == "" ||
-                this.filePathOfPolygonBoundaryMap == "" || this.filePathOfEvaluationResultMap == "")
+            if (!System.IO.File.Exists(this.filePathOfEarthquakeDistributionMap) || !System.IO.File.Exists(this.filePathOfFloodDistributionMap) ||
+                !System.IO.File.Exists(this.filePathOfSandyDistributionMap) || !System.IO.File.Exists(this.filePathOfOtherDistributionMap) ||
+                !System.IO.File.Exists(this.filePathOfPolygonBoundaryMap) || !System.IO.File.Exists(this.filePathOfEvaluationResultMap))
             {
                 MessageBox.Show("分析设置未完成，请完成设置再开始分析！");
                 return;
@@ -177,27 +201,27 @@ namespace CityPlanning.Forms
         //文件路径文本框内容变更事件
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            this.FilePathOfEarthquakeDistributionMap = this.tbEarthquakeDistributionMapPath.Text.ToString().Trim();
+            this.filePathOfEarthquakeDistributionMap = this.tbEarthquakeDistributionMapPath.Text.ToString().Trim();
         }
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
-            this.FilePathOfFloodDistributionMap = this.tbFloodDistributionMapPath.Text.ToString().Trim();
+            this.filePathOfFloodDistributionMap = this.tbFloodDistributionMapPath.Text.ToString().Trim();
         }
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
-            this.FilePathOfEvaluationResultMap = this.tbEvaluationResultMapPath.Text.ToString().Trim();
+            this.filePathOfEvaluationResultMap = this.tbEvaluationResultMapPath.Text.ToString().Trim();
         }
         private void textBox4_TextChanged(object sender, EventArgs e)
         {
-            this.FilePathOfSandyDistributionMap = this.tbSandyDistributionMapPath.Text.ToString().Trim();
+            this.filePathOfSandyDistributionMap = this.tbSandyDistributionMapPath.Text.ToString().Trim();
         }
         private void textBox5_TextChanged(object sender, EventArgs e)
         {
-            this.FilePathOfOtherDistributionMap = this.tbOtherDistributionMapPath.Text.ToString().Trim();
+            this.filePathOfOtherDistributionMap = this.tbOtherDistributionMapPath.Text.ToString().Trim();
         }
         private void textBox6_TextChanged(object sender, EventArgs e)
         {
-            this.FilePathOfPolygonBoundaryMap = this.tbPolygonBoundaryMapPath.Text.ToString().Trim();
+            this.filePathOfPolygonBoundaryMap = this.tbPolygonBoundaryMapPath.Text.ToString().Trim();
         }
     }
 }

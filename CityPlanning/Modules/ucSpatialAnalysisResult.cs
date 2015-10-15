@@ -34,7 +34,71 @@ namespace CityPlanning.Modules
                 this.axMapControl2.LoadMxFile(resultFilePath);
             this.axMapControl1.Refresh();
             this.axMapControl2.Refresh();
+
+            this.axMapControl1.OnMouseDown += axMapControl1_OnMouseDown;
+            this.axMapControl1.OnMouseMove += axMapControl1_OnMouseMove;
+            this.axMapControl1.OnMouseUp += axMapControl1_OnMouseUp;
+
+            this.axMapControl2.OnMouseUp += axMapControl2_OnMouseUp;
+            this.axMapControl2.OnMouseMove += axMapControl2_OnMouseMove;
+            this.axMapControl2.OnMouseDown += axMapControl2_OnMouseDown;
         }
+
+        #region //鼠标中键移动地图优化
+        void axMapControl2_OnMouseDown(object sender, IMapControlEvents2_OnMouseDownEvent e)
+        {
+            if (e.button == 4)
+            {
+                axMapControl2.ActiveView.ScreenDisplay.PanStart(axMapControl2.ActiveView.ScreenDisplay.DisplayTransformation.ToMapPoint(e.x, e.y));
+                axMapControl2.MousePointer = esriControlsMousePointer.esriPointerPan;
+            }
+        }
+
+        void axMapControl2_OnMouseMove(object sender, IMapControlEvents2_OnMouseMoveEvent e)
+        {
+            if (e.button == 4 && axMapControl2.ActiveView != null)
+            {
+                axMapControl2.ActiveView.ScreenDisplay.PanMoveTo(axMapControl2.ActiveView.ScreenDisplay.DisplayTransformation.ToMapPoint(e.x, e.y));
+            }
+        }
+
+        void axMapControl2_OnMouseUp(object sender, IMapControlEvents2_OnMouseUpEvent e)
+        {
+            if (e.button == 4 && axMapControl2.ActiveView != null)   //中键
+            {
+                axMapControl2.MousePointer = esriControlsMousePointer.esriPointerArrow;
+                axMapControl2.ActiveView.ScreenDisplay.PanStop();
+                axMapControl2.ActiveView.Refresh();
+            }
+        }
+
+        void axMapControl1_OnMouseUp(object sender, IMapControlEvents2_OnMouseUpEvent e)
+        {
+            if (e.button == 4 && axMapControl1.ActiveView != null)   //中键
+            {
+                axMapControl1.MousePointer = esriControlsMousePointer.esriPointerArrow;
+                axMapControl1.ActiveView.ScreenDisplay.PanStop();
+                axMapControl1.ActiveView.Refresh();
+            }
+        }
+
+        void axMapControl1_OnMouseMove(object sender, IMapControlEvents2_OnMouseMoveEvent e)
+        {
+            if (e.button == 4 && axMapControl1.ActiveView != null)
+            {
+                axMapControl1.ActiveView.ScreenDisplay.PanMoveTo(axMapControl1.ActiveView.ScreenDisplay.DisplayTransformation.ToMapPoint(e.x, e.y));
+            }
+        }
+
+        void axMapControl1_OnMouseDown(object sender, IMapControlEvents2_OnMouseDownEvent e)
+        {            
+            if (e.button == 4)
+            {
+                axMapControl1.ActiveView.ScreenDisplay.PanStart(axMapControl1.ActiveView.ScreenDisplay.DisplayTransformation.ToMapPoint(e.x, e.y));
+                axMapControl1.MousePointer = esriControlsMousePointer.esriPointerPan;
+            }
+        }
+        #endregion
 
         //控件大小变更事件
         private void ucSpatialAnalysisResult_SizeChanged(object sender, EventArgs e)

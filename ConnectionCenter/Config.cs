@@ -313,6 +313,13 @@ namespace ConnectionCenter
                 return getAnalystedXls(ThematicGDPTrans);
             }
         }
+        //三维地图位置
+        private static string keyThematic3DMap = "Thematic3DMap";
+        public static string Thematic3DMap
+        {
+            get { return FTPCatalog + INIFile.IniReadValue(sectionThematic, keyThematic3DMap); }
+            set { INIFile.IniWriteValue(sectionThematic, keyThematic3DMap, value); }
+        }
 
         //获取分析后的地图路径
         private static string getAnalystedPath(string preMxd){

@@ -20,17 +20,29 @@ namespace CityPlanning.Forms
 
         public string FilePathOfElectricnetDistributionMap
         {
-            set { filePathOfElectricnetDistributionMap = value; }
+            set 
+            { 
+                filePathOfElectricnetDistributionMap = value;
+                //this.tbElectricnetDistributionMapPath.Text = value;
+            }
             get { return filePathOfElectricnetDistributionMap; }
         }
         public string FilePathOfPolygonBoundaryMap
         {
-            set { filePathOfPolygonBoundaryMap = value; }
+            set 
+            { 
+                filePathOfPolygonBoundaryMap = value;
+                //this.tbPolygonBoundaryMapPath.Text = value;
+            }
             get { return filePathOfPolygonBoundaryMap; }
         }
         public string FilePathOfElectricnetDensityMap
         {
-            set { filePathOfElectricnetDensityMap = value; }
+            set 
+            { 
+                filePathOfElectricnetDensityMap = value;
+                //this.tbElectricnetDensityMapPath.Text = value;
+            }
             get { return filePathOfElectricnetDensityMap; }
         }
         public bool StartAnalysis
@@ -55,7 +67,7 @@ namespace CityPlanning.Forms
             openFileDialog.CheckFileExists = true;
             openFileDialog.RestoreDirectory = true;
             openFileDialog.Filter = "shp文件|*.shp";
-            string curDir = this.tbElectricnetDistributionMapPath.Text.ToString();
+            string curDir = this.filePathOfElectricnetDistributionMap;
             if (curDir != "")
                 openFileDialog.InitialDirectory = Path.GetDirectoryName(curDir);
             if (openFileDialog.ShowDialog() == DialogResult.OK)
@@ -70,7 +82,7 @@ namespace CityPlanning.Forms
             openFileDialog.CheckFileExists = true;
             openFileDialog.RestoreDirectory = true;
             openFileDialog.Filter = "shp文件|*.shp";
-            string curDir = this.tbElectricnetDistributionMapPath.Text.ToString();
+            string curDir = this.filePathOfPolygonBoundaryMap;
             if (curDir != "")
                 openFileDialog.InitialDirectory = Path.GetDirectoryName(curDir);
             if (openFileDialog.ShowDialog() == DialogResult.OK)
@@ -85,7 +97,7 @@ namespace CityPlanning.Forms
             //openFileDialog.CheckFileExists = true;
             openFileDialog.RestoreDirectory = true;
             openFileDialog.Filter = "shp文件|*.shp";
-            string curDir = this.tbElectricnetDistributionMapPath.Text.ToString();
+            string curDir = this.filePathOfElectricnetDensityMap;
             if (curDir != "")
                 openFileDialog.InitialDirectory = Path.GetDirectoryName(curDir);
             if (openFileDialog.ShowDialog() == DialogResult.OK)
@@ -95,8 +107,8 @@ namespace CityPlanning.Forms
         //开始分析
         private void button4_Click(object sender, EventArgs e)
         {
-            if (this.filePathOfElectricnetDistributionMap == "" || this.filePathOfPolygonBoundaryMap == "" ||
-                this.filePathOfElectricnetDensityMap == "")
+            if (!System.IO.File.Exists(this.filePathOfElectricnetDistributionMap) || !System.IO.File.Exists(this.filePathOfPolygonBoundaryMap) ||
+                !System.IO.File.Exists(this.filePathOfElectricnetDensityMap))
             {
                 MessageBox.Show("分析设置未完成，请完成设置再开始分析！");
                 return;
@@ -115,15 +127,15 @@ namespace CityPlanning.Forms
         //文件路径文本框内容变更事件
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            this.FilePathOfElectricnetDistributionMap = this.tbElectricnetDistributionMapPath.Text.ToString().Trim();
+            this.filePathOfElectricnetDistributionMap = this.tbElectricnetDistributionMapPath.Text.ToString().Trim();
         }
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
-            this.FilePathOfPolygonBoundaryMap = this.tbPolygonBoundaryMapPath.Text.ToString().Trim();
+            this.filePathOfPolygonBoundaryMap = this.tbPolygonBoundaryMapPath.Text.ToString().Trim();
         }
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
-            this.FilePathOfElectricnetDensityMap = this.tbElectricnetDensityMapPath.Text.ToString().Trim();
+            this.filePathOfElectricnetDensityMap = this.tbElectricnetDensityMapPath.Text.ToString().Trim();
         }
     }
 }
