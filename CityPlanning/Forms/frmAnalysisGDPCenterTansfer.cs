@@ -20,19 +20,31 @@ namespace CityPlanning.Forms
 
         public string FilePathOfCityCenterDistributionMap
         {
-            set { filePathOfCityCenterDistributionMap = value; }
+            set 
+            { 
+                filePathOfCityCenterDistributionMap = value;
+                //this.tbCityCenterDistributionMapPath.Text = value;
+            }
             get { return filePathOfCityCenterDistributionMap; }
         }
 
         public string FilePathOfGDPStatisticalTable
         {
-            set { filePathOfGDPStatisticalTable = value; }
+            set 
+            { 
+                filePathOfGDPStatisticalTable = value;
+                //this.tbGDPStatisticalTablePath.Text = value;
+            }
             get { return filePathOfGDPStatisticalTable; }
         }
 
         public string FilePathOfEconomicCenterTransferMap
         {
-            set { filePathOfEconomicCenterTransferMap = value; }
+            set 
+            { 
+                filePathOfEconomicCenterTransferMap = value;
+                //this.tbEconomicCenterTransferMapPath.Text = value;
+            }
             get { return filePathOfEconomicCenterTransferMap; }
         }
 
@@ -58,7 +70,7 @@ namespace CityPlanning.Forms
             openFileDialog.CheckFileExists = true;
             openFileDialog.RestoreDirectory = true;
             openFileDialog.Filter = "shp文件|*.shp";
-            string curDir = this.tbCityCenterDistributionMapPath.Text.ToString();
+            string curDir = this.filePathOfCityCenterDistributionMap;
             if (curDir != "")
                 openFileDialog.InitialDirectory = Path.GetDirectoryName(curDir);
             if (openFileDialog.ShowDialog() == DialogResult.OK)
@@ -72,8 +84,8 @@ namespace CityPlanning.Forms
             openFileDialog.Title = "打开输入文件（历年GDP统计表）";
             openFileDialog.CheckFileExists = true;
             openFileDialog.RestoreDirectory = true;
-            openFileDialog.Filter = "Excel文件|*.xls|*.xlsx";
-            string curDir = this.tbCityCenterDistributionMapPath.Text.ToString();
+            openFileDialog.Filter = "*.xlsx|*.xlsx|Excel文件|*.xls";
+            string curDir = this.filePathOfGDPStatisticalTable;
             if (curDir != "")
                 openFileDialog.InitialDirectory = Path.GetDirectoryName(curDir);
             if (openFileDialog.ShowDialog() == DialogResult.OK)
@@ -88,7 +100,7 @@ namespace CityPlanning.Forms
             //openFileDialog.CheckFileExists = true;
             openFileDialog.RestoreDirectory = true;
             openFileDialog.Filter = "shp文件|*.shp";
-            string curDir = this.tbCityCenterDistributionMapPath.Text.ToString();
+            string curDir = this.filePathOfEconomicCenterTransferMap;
             if (curDir != "")
                 openFileDialog.InitialDirectory = Path.GetDirectoryName(curDir);
             if (openFileDialog.ShowDialog() == DialogResult.OK)
@@ -98,8 +110,8 @@ namespace CityPlanning.Forms
         //开始分析
         private void button4_Click(object sender, EventArgs e)
         {
-            if (this.filePathOfCityCenterDistributionMap == "" || this.filePathOfGDPStatisticalTable == "" ||
-                this.filePathOfEconomicCenterTransferMap == "")
+            if (!System.IO.File.Exists(this.filePathOfCityCenterDistributionMap) || !System.IO.File.Exists(this.filePathOfGDPStatisticalTable) ||
+                !System.IO.File.Exists(this.filePathOfEconomicCenterTransferMap))
             {
                 MessageBox.Show("分析设置未完成，请完成设置再开始分析！");
                 return;
@@ -118,15 +130,15 @@ namespace CityPlanning.Forms
         //文件路径文本框内容变更事件
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            this.FilePathOfCityCenterDistributionMap = this.tbCityCenterDistributionMapPath.Text.ToString().Trim();
+            this.filePathOfCityCenterDistributionMap = this.tbCityCenterDistributionMapPath.Text.ToString().Trim();
         }
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
-            this.FilePathOfGDPStatisticalTable = this.tbGDPStatisticalTablePath.Text.ToString().Trim();
+            this.filePathOfGDPStatisticalTable = this.tbGDPStatisticalTablePath.Text.ToString().Trim();
         }
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
-            this.FilePathOfEconomicCenterTransferMap = this.tbEconomicCenterTransferMapPath.Text.ToString().Trim();
+            this.filePathOfEconomicCenterTransferMap = this.tbEconomicCenterTransferMapPath.Text.ToString().Trim();
         }
     }
 }

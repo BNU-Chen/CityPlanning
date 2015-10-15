@@ -50,7 +50,7 @@ namespace CityPlanning.Forms
             {
                 Form frm = new Form();
                 ucChartShow ucChartSh = new ucChartShow();
-                frm.Size = this.Size;
+                frm.Size = new System.Drawing.Size(640, 400);
                 frm.StartPosition = FormStartPosition.CenterScreen;
                 frm.Text = dt.TableName;
                 frm.Controls.Add(ucChartSh);
