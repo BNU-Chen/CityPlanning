@@ -624,8 +624,8 @@ namespace CityPlanning
                     this.ribbonControl.SelectedPage = this.ribbonPageCategory_map.Pages[0];
                     break;
                 }
-                else
-                {
+                else if(tabPage.Text == "主页")
+                {                    
                     //先隐藏所有ribbonPageCategory
                     this.ribbonControl.SelectedPage = this.homeRibbonPage;
                     this.ribbonPageCategory_xls.Visible = false;
@@ -2378,9 +2378,11 @@ namespace CityPlanning
         private void TranspNetDensity()
         {
             frmAnalysisTrafficNetworkDensity frmTrafficAnalysis = new frmAnalysisTrafficNetworkDensity();
-            frmTrafficAnalysis.FilePathOfRoadDistributionMap = "";
-            frmTrafficAnalysis.FilePathOfPolygonBoundaryMap = "";
-            frmTrafficAnalysis.FilePathOfTrafficDensityMap = "";
+            string inoutputFloderPath = System.IO.Path.GetFullPath(ConnectionCenter.Config.ThematicTraffic);
+            inoutputFloderPath = inoutputFloderPath.Replace(System.IO.Path.GetExtension(ConnectionCenter.Config.ThematicTraffic), "");
+            frmTrafficAnalysis.FilePathOfRoadDistributionMap = inoutputFloderPath + @"\道路分布图.shp";
+            frmTrafficAnalysis.FilePathOfPolygonBoundaryMap = inoutputFloderPath + @"\面状边界图.shp";
+            frmTrafficAnalysis.FilePathOfTrafficDensityMap = inoutputFloderPath + @"\交通网络密度输出.shp";
             frmTrafficAnalysis.ShowDialog();
             bool whetherAnalysis = frmTrafficAnalysis.StartAnalysis;
             if (!whetherAnalysis) return;
@@ -2427,9 +2429,11 @@ namespace CityPlanning
         private void ElecNetDensity()
         {
             frmAnalysisElectricnetDensityAnalysis frmElectricnetAnalysis = new frmAnalysisElectricnetDensityAnalysis();
-            frmElectricnetAnalysis.FilePathOfElectricnetDistributionMap = "";
-            frmElectricnetAnalysis.FilePathOfPolygonBoundaryMap = "";
-            frmElectricnetAnalysis.FilePathOfElectricnetDensityMap = "";
+            string inoutputFloderPath = System.IO.Path.GetFullPath(ConnectionCenter.Config.ThematicElectricity);
+            inoutputFloderPath = inoutputFloderPath.Replace(System.IO.Path.GetExtension(ConnectionCenter.Config.ThematicElectricity), "");
+            frmElectricnetAnalysis.FilePathOfElectricnetDistributionMap = inoutputFloderPath + @"\电网分布图.shp";
+            frmElectricnetAnalysis.FilePathOfPolygonBoundaryMap = inoutputFloderPath + @"\面状边界图.shp";
+            frmElectricnetAnalysis.FilePathOfElectricnetDensityMap = inoutputFloderPath + @"\电力网络密度输出.shp";
             frmElectricnetAnalysis.ShowDialog();
             bool whetherAnalysis = frmElectricnetAnalysis.StartAnalysis;
             if (!whetherAnalysis) return;
@@ -2476,12 +2480,14 @@ namespace CityPlanning
         private void IntDisasterRisk()
         {
             frmAnalysisComprehensiveRiskEvaluation frmComprehensiveRiskAnalysis = new frmAnalysisComprehensiveRiskEvaluation();
-            frmComprehensiveRiskAnalysis.FilePathOfEarthquakeDistributionMap = "";
-            frmComprehensiveRiskAnalysis.FilePathOfFloodDistributionMap = "";
-            frmComprehensiveRiskAnalysis.FilePathOfSandyDistributionMap = "";
-            frmComprehensiveRiskAnalysis.FilePathOfOtherDistributionMap = "";
-            frmComprehensiveRiskAnalysis.FilePathOfPolygonBoundaryMap = "";
-            frmComprehensiveRiskAnalysis.FilePathOfEvaluationResultMap = "";
+            string inoutputFloderPath = System.IO.Path.GetFullPath(ConnectionCenter.Config.ThematicDisaster);
+            inoutputFloderPath = inoutputFloderPath.Replace(System.IO.Path.GetExtension(ConnectionCenter.Config.ThematicDisaster), "");
+            frmComprehensiveRiskAnalysis.FilePathOfEarthquakeDistributionMap = inoutputFloderPath + @"\地震分布图.shp";
+            frmComprehensiveRiskAnalysis.FilePathOfFloodDistributionMap = inoutputFloderPath + @"\洪涝分布图.shp";
+            frmComprehensiveRiskAnalysis.FilePathOfSandyDistributionMap = inoutputFloderPath + @"\沙化分布图.shp";
+            frmComprehensiveRiskAnalysis.FilePathOfOtherDistributionMap = inoutputFloderPath + @"\其他灾害图.shp";
+            frmComprehensiveRiskAnalysis.FilePathOfPolygonBoundaryMap = inoutputFloderPath + @"\面状边界图.shp";
+            frmComprehensiveRiskAnalysis.FilePathOfEvaluationResultMap = inoutputFloderPath + @"\综合灾害风险评估输出.shp";
             frmComprehensiveRiskAnalysis.ShowDialog();
             bool whetherAnalysis = frmComprehensiveRiskAnalysis.StartAnalysis;
             if (!whetherAnalysis) return;
@@ -2528,9 +2534,11 @@ namespace CityPlanning
         private void EcoServiceValue()
         {
             frmAnalysisEcologicalPriceEvaluation frmEcologicalPriceAnalysis = new frmAnalysisEcologicalPriceEvaluation();
-            frmEcologicalPriceAnalysis.FilePathOfLandtypeDistributionMap = "";
-            frmEcologicalPriceAnalysis.FilePathOfPolygonBoundaryMap = "";
-            frmEcologicalPriceAnalysis.FilePathOfEcologicalPriceDistributionMap = "";
+            string inoutputFloderPath = System.IO.Path.GetFullPath(ConnectionCenter.Config.ThematicZoology);
+            inoutputFloderPath = inoutputFloderPath.Replace(System.IO.Path.GetExtension(ConnectionCenter.Config.ThematicZoology), "");
+            frmEcologicalPriceAnalysis.FilePathOfLandtypeDistributionMap = inoutputFloderPath + @"\地类分布图.shp";
+            frmEcologicalPriceAnalysis.FilePathOfPolygonBoundaryMap = inoutputFloderPath + @"\面状边界图.shp";
+            frmEcologicalPriceAnalysis.FilePathOfEcologicalPriceDistributionMap = inoutputFloderPath + @"\生态服务价值_Output.shp";
             frmEcologicalPriceAnalysis.ShowDialog();
             bool whetherAnalysis = frmEcologicalPriceAnalysis.StartAnalysis;
             if (!whetherAnalysis) return;
@@ -2577,9 +2585,11 @@ namespace CityPlanning
         private void GDPCenterTransfer()
         {
             frmAnalysisGDPCenterTansfer frmGDPCenterTansferAnalysis = new frmAnalysisGDPCenterTansfer();
-            frmGDPCenterTansferAnalysis.FilePathOfCityCenterDistributionMap = "";
-            frmGDPCenterTansferAnalysis.FilePathOfGDPStatisticalTable = "";
-            frmGDPCenterTansferAnalysis.FilePathOfEconomicCenterTransferMap = "";
+            string inoutputFloderPath = System.IO.Path.GetFullPath(ConnectionCenter.Config.ThematicGDPTrans);
+            inoutputFloderPath = inoutputFloderPath.Replace(System.IO.Path.GetExtension(ConnectionCenter.Config.ThematicGDPTrans), "");
+            frmGDPCenterTansferAnalysis.FilePathOfCityCenterDistributionMap = inoutputFloderPath + @"\城市中心分布图.shp";
+            frmGDPCenterTansferAnalysis.FilePathOfGDPStatisticalTable = inoutputFloderPath + @"\GDP重心转移输入表—沈阳经济区地区GDP（亿元）.shp";
+            frmGDPCenterTansferAnalysis.FilePathOfEconomicCenterTransferMap = inoutputFloderPath + @"\GDP重心转移_Output.shp";
             frmGDPCenterTansferAnalysis.ShowDialog();
             bool whetherAnalysis = frmGDPCenterTansferAnalysis.StartAnalysis;
             if (!whetherAnalysis) return;

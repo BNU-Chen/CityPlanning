@@ -25,17 +25,29 @@ namespace CityPlanning.Forms
 
         public string FilePathOfLandtypeDistributionMap
         {
-            set { filePathOfLandtypeDistributionMap = value; }
+            set 
+            { 
+                filePathOfLandtypeDistributionMap = value;
+                //this.tbLandtypeDistributionMapPath.Text = value;
+            }
             get { return filePathOfLandtypeDistributionMap; }
         }
         public string FilePathOfPolygonBoundaryMap
         {
-            set { filePathOfPolygonBoundaryMap = value; }
+            set 
+            { 
+                filePathOfPolygonBoundaryMap = value;
+                //this.tbPolygonBoundaryMapPath.Text = value;
+            }
             get { return filePathOfPolygonBoundaryMap; }
         }
         public string FilePathOfEcologicalPriceDistributionMap
         {
-            set { filePathOfEcologicalPriceDistributionMap = value; }
+            set 
+            { 
+                filePathOfEcologicalPriceDistributionMap = value;
+                //this.tbEcologicalPriceDistributionMapPath.Text = value;
+            }
             get { return filePathOfEcologicalPriceDistributionMap; }
         }
 
@@ -96,7 +108,7 @@ namespace CityPlanning.Forms
             openFileDialog.CheckFileExists = true;
             openFileDialog.RestoreDirectory = true;
             openFileDialog.Filter = "shp文件|*.shp";
-            string curDir = this.tbLandtypeDistributionMapPath.Text.ToString();
+            string curDir = this.filePathOfLandtypeDistributionMap;
             if (curDir != "")
                 openFileDialog.InitialDirectory = Path.GetDirectoryName(curDir);
             if (openFileDialog.ShowDialog() == DialogResult.OK)
@@ -111,7 +123,7 @@ namespace CityPlanning.Forms
             openFileDialog.CheckFileExists = true;
             openFileDialog.RestoreDirectory = true;
             openFileDialog.Filter = "shp文件|*.shp";
-            string curDir = this.tbLandtypeDistributionMapPath.Text.ToString();
+            string curDir = this.filePathOfPolygonBoundaryMap;
             if (curDir != "")
                 openFileDialog.InitialDirectory = Path.GetDirectoryName(curDir);
             if (openFileDialog.ShowDialog() == DialogResult.OK)
@@ -126,7 +138,7 @@ namespace CityPlanning.Forms
             //openFileDialog.CheckFileExists = true;
             openFileDialog.RestoreDirectory = true;
             openFileDialog.Filter = "shp文件|*.shp";
-            string curDir = this.tbLandtypeDistributionMapPath.Text.ToString();
+            string curDir = this.filePathOfEcologicalPriceDistributionMap;
             if (curDir != "")
                 openFileDialog.InitialDirectory = Path.GetDirectoryName(curDir);
             if (openFileDialog.ShowDialog() == DialogResult.OK)
@@ -136,8 +148,8 @@ namespace CityPlanning.Forms
         //开始分析
         private void button4_Click(object sender, EventArgs e)
         {
-            if (this.filePathOfLandtypeDistributionMap == "" || this.filePathOfPolygonBoundaryMap == "" ||
-                this.filePathOfEcologicalPriceDistributionMap == "" || this.lindiPrice == 0.0 || this.caodiPrice == 0.0 || 
+            if (!System.IO.File.Exists(this.filePathOfLandtypeDistributionMap) || !System.IO.File.Exists(this.filePathOfPolygonBoundaryMap) ||
+                !System.IO.File.Exists(this.filePathOfEcologicalPriceDistributionMap) || this.lindiPrice == 0.0 || this.caodiPrice == 0.0 || 
                 this.nongtianPrice == 0.0 || this.shidiPrice == 0.0 || this.heliuOrHupoPrice == 0.0)
             {
                 MessageBox.Show("分析设置未完成，请完成设置再开始分析！");
@@ -157,15 +169,15 @@ namespace CityPlanning.Forms
         //文件路径文本框内容变更事件
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            this.FilePathOfLandtypeDistributionMap = this.tbLandtypeDistributionMapPath.Text.ToString().Trim();
+            this.filePathOfLandtypeDistributionMap = this.tbLandtypeDistributionMapPath.Text.ToString().Trim();
         }
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
-            this.FilePathOfPolygonBoundaryMap = this.tbPolygonBoundaryMapPath.Text.ToString().Trim();
+            this.filePathOfPolygonBoundaryMap = this.tbPolygonBoundaryMapPath.Text.ToString().Trim();
         }
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
-            this.FilePathOfEcologicalPriceDistributionMap = this.tbEcologicalPriceDistributionMapPath.Text.ToString().Trim();
+            this.filePathOfEcologicalPriceDistributionMap = this.tbEcologicalPriceDistributionMapPath.Text.ToString().Trim();
         }
         private void textBox4_TextChanged(object sender, EventArgs e)
         {

@@ -23,19 +23,31 @@ namespace CityPlanning.Forms
 
         public string FilePathOfRoadDistributionMap
         {
-            set { filePathOfRoadDistributionMap = value; }
+            set 
+            { 
+                filePathOfRoadDistributionMap = value;
+                //this.tbRoadDistributionMapPath.Text = value;
+            }
             get { return filePathOfRoadDistributionMap; }
         }
 
         public string FilePathOfPolygonBoundaryMap
         {
-            set { filePathOfPolygonBoundaryMap = value; }
+            set 
+            { 
+                filePathOfPolygonBoundaryMap = value;
+                //this.tbPolygonBoundaryMapPath.Text = value;
+            }
             get { return filePathOfPolygonBoundaryMap; }
         }
 
         public string FilePathOfTrafficDensityMap
         {
-            set { filePathOfTrafficDensityMap = value; }
+            set 
+            { 
+                filePathOfTrafficDensityMap = value;
+                //this.tbTrafficDensityMapPath.Text = value;
+            }
             get { return filePathOfTrafficDensityMap; }
         }
 
@@ -61,7 +73,7 @@ namespace CityPlanning.Forms
             openFileDialog.CheckFileExists = true;
             openFileDialog.RestoreDirectory = true;
             openFileDialog.Filter = "shp文件|*.shp";
-            string curDir = this.tbRoadDistributionMapPath.Text.ToString();
+            string curDir = this.filePathOfRoadDistributionMap;
             if (curDir != "")
                 openFileDialog.InitialDirectory = Path.GetDirectoryName(curDir);
             if (openFileDialog.ShowDialog() == DialogResult.OK)
@@ -81,7 +93,7 @@ namespace CityPlanning.Forms
             openFileDialog.CheckFileExists = true;
             openFileDialog.RestoreDirectory = true;
             openFileDialog.Filter = "shp文件|*.shp";
-            string curDir = this.tbRoadDistributionMapPath.Text.ToString();
+            string curDir = this.filePathOfPolygonBoundaryMap;
             if (curDir != "")
                 openFileDialog.InitialDirectory = Path.GetDirectoryName(curDir);
             if (openFileDialog.ShowDialog() == DialogResult.OK)
@@ -96,7 +108,7 @@ namespace CityPlanning.Forms
             //openFileDialog.CheckFileExists = true;
             openFileDialog.RestoreDirectory = true;
             openFileDialog.Filter = "shp文件|*.shp";
-            string curDir = this.tbRoadDistributionMapPath.Text.ToString();
+            string curDir = this.filePathOfTrafficDensityMap;
             if (curDir != "")
                 openFileDialog.InitialDirectory = Path.GetDirectoryName(curDir);
             if (openFileDialog.ShowDialog() == DialogResult.OK)
@@ -106,8 +118,8 @@ namespace CityPlanning.Forms
         //开始分析
         private void button4_Click(object sender, EventArgs e)
         {
-            if (this.filePathOfRoadDistributionMap == "" || this.filePathOfPolygonBoundaryMap == "" ||
-                this.filePathOfTrafficDensityMap == "")
+            if (!System.IO.File.Exists(this.filePathOfRoadDistributionMap) || !System.IO.File.Exists(this.filePathOfPolygonBoundaryMap) ||
+                !System.IO.File.Exists(this.filePathOfTrafficDensityMap))
             {
                 MessageBox.Show("分析设置未完成，请完成设置再开始分析！");
                 return;
@@ -126,15 +138,15 @@ namespace CityPlanning.Forms
         //文件路径文本框内容变更事件
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            this.FilePathOfRoadDistributionMap = this.tbRoadDistributionMapPath.Text.ToString().Trim();
+            this.filePathOfRoadDistributionMap = this.tbRoadDistributionMapPath.Text.ToString().Trim();
         }
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
-            this.FilePathOfPolygonBoundaryMap = this.tbPolygonBoundaryMapPath.Text.ToString().Trim();
+            this.filePathOfPolygonBoundaryMap = this.tbPolygonBoundaryMapPath.Text.ToString().Trim();
         }
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
-            this.FilePathOfTrafficDensityMap = this.tbTrafficDensityMapPath.Text.ToString().Trim();
+            this.filePathOfTrafficDensityMap = this.tbTrafficDensityMapPath.Text.ToString().Trim();
         }
     }
 }
