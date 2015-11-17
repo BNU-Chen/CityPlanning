@@ -124,7 +124,7 @@ namespace CityPlanning.Forms
 
         private void btn_OpenRedLineMap_Click(object sender, EventArgs e)
         {
-            OpenPath(this.txt_RedLineMap.Text.Trim());
+            OpenFullPath(this.txt_RedLineMap.Text.Trim());
         }
         //交通网络
         private void btn_SetThematicTrafficNet_Click(object sender, EventArgs e)
@@ -134,7 +134,7 @@ namespace CityPlanning.Forms
 
         private void btn_OpenThematicTrafficNet_Click(object sender, EventArgs e)
         {
-            OpenPath(this.txt_ThematicTrafficNet.Text);
+            OpenFullPath(this.txt_ThematicTrafficNet.Text);
         }
         //电力网络
         private void btn_SetThematicElectricityNet_Click(object sender, EventArgs e)
@@ -144,7 +144,7 @@ namespace CityPlanning.Forms
 
         private void btn_OpenThematicElectricityNet_Click(object sender, EventArgs e)
         {
-            OpenPath(this.txt_ThematicElectricityNet.Text);
+            OpenFullPath(this.txt_ThematicElectricityNet.Text);
         }
         //灾害风险
         private void btn_SetThematicDisaster_Click(object sender, EventArgs e)
@@ -154,7 +154,7 @@ namespace CityPlanning.Forms
 
         private void btn_OpenThematicDisaster_Click(object sender, EventArgs e)
         {
-            OpenPath(this.txt_ThematicDisaster.Text);
+            OpenFullPath(this.txt_ThematicDisaster.Text);
         }
         //生态服务
         private void btn_SetThematicZoology_Click(object sender, EventArgs e)
@@ -164,7 +164,7 @@ namespace CityPlanning.Forms
 
         private void btn_OpenThematicZoology_Click(object sender, EventArgs e)
         {
-            OpenPath(this.txt_ThematicZoology.Text);
+            OpenFullPath(this.txt_ThematicZoology.Text);
         }
         //GDP重心转移
         private void btn_SetThematicGDPTrans_Click(object sender, EventArgs e)
@@ -174,7 +174,7 @@ namespace CityPlanning.Forms
 
         private void btn_OpenThematicGDPTrans_Click(object sender, EventArgs e)
         {
-            OpenPath(this.txt_ThematicGDPTrans.Text);
+            OpenFullPath(this.txt_ThematicGDPTrans.Text);
         }
         #endregion
 
@@ -242,6 +242,26 @@ namespace CityPlanning.Forms
         private void OpenPath(string path)
         {
             string fullPath = DataPath + path.Trim();
+            bool flag = false;
+            if (File.Exists(fullPath))
+            {
+                flag = true;
+            }
+            else if (Directory.Exists(fullPath))
+            {
+                flag = true;
+            }
+            if (!flag)
+            {
+                MessageBox.Show("路径不存在，请重新设置。");
+                return;
+            }
+            System.Diagnostics.Process.Start("Explorer", "/select," + fullPath);
+        }
+
+        private void OpenFullPath(string path)
+        {
+            string fullPath = path.Trim();
             bool flag = false;
             if (File.Exists(fullPath))
             {

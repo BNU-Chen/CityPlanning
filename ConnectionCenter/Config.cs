@@ -205,14 +205,14 @@ namespace ConnectionCenter
         private static string keyRedLineMap = "RedLineMap";
         public static string RedLineMap
         {
-            get { return FTPCatalog + INIFile.IniReadValue(sectionThematic, keyRedLineMap); }
+            get { return INIFile.IniReadValue(sectionThematic, keyRedLineMap); }
             set { INIFile.IniWriteValue(sectionThematic, keyRedLineMap, value); }
         }
         //交通网络
         private static string keyThematicTraffic = "ThematicTraffic";
         public static string ThematicTraffic
         {
-            get { return FTPCatalog + INIFile.IniReadValue(sectionThematic, keyThematicTraffic); }
+            get { return INIFile.IniReadValue(sectionThematic, keyThematicTraffic); }
             set { INIFile.IniWriteValue(sectionThematic, keyThematicTraffic, value); }
         }
         public static string ThematicTrafficAnalystedMap
@@ -233,7 +233,7 @@ namespace ConnectionCenter
         private static string keyThematicElectricity = "ThematicElectricity";
         public static string ThematicElectricity
         {
-            get { return FTPCatalog + INIFile.IniReadValue(sectionThematic, keyThematicElectricity); }
+            get { return INIFile.IniReadValue(sectionThematic, keyThematicElectricity); }
             set { INIFile.IniWriteValue(sectionThematic, keyThematicElectricity, value); }
         }
         public static string ThematicElectricityAnalystedMap
@@ -254,7 +254,7 @@ namespace ConnectionCenter
         private static string keyThematicDisaster = "ThematicDisaster";
         public static string ThematicDisaster
         {
-            get { return FTPCatalog + INIFile.IniReadValue(sectionThematic, keyThematicDisaster); }
+            get { return  INIFile.IniReadValue(sectionThematic, keyThematicDisaster); }
             set { INIFile.IniWriteValue(sectionThematic, keyThematicDisaster, value); }
         }
         public static string ThematicDisasterAnalystedMap
@@ -275,7 +275,7 @@ namespace ConnectionCenter
         private static string keyThematicZoology = "ThematicZoology";
         public static string ThematicZoology
         {
-            get { return FTPCatalog + INIFile.IniReadValue(sectionThematic, keyThematicZoology); }
+            get { return INIFile.IniReadValue(sectionThematic, keyThematicZoology); }
             set { INIFile.IniWriteValue(sectionThematic, keyThematicZoology, value); }
         }
         public static string ThematicZoologyAnalystedMap
@@ -296,7 +296,7 @@ namespace ConnectionCenter
         private static string keyThematicGDPTrans = "ThematicGDPTrans";
         public static string ThematicGDPTrans
         {
-            get { return FTPCatalog + INIFile.IniReadValue(sectionThematic, keyThematicGDPTrans); }
+            get { return INIFile.IniReadValue(sectionThematic, keyThematicGDPTrans); }
             set { INIFile.IniWriteValue(sectionThematic, keyThematicGDPTrans, value); }
         }
         public static string ThematicGDPTransAnalystedMap

@@ -1075,8 +1075,6 @@ namespace CityPlanning
                             pFrmMapFeatureAttr.BringToFront();
                             pFrmMapFeatureAttr.Visible = true;
                         }
-
-
                     }
                 }
             }
