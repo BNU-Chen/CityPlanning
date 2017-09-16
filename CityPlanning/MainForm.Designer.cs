@@ -296,11 +296,6 @@
             this.PieChartButton = new DevExpress.XtraBars.BarButtonItem();
             this.LineChartButton = new DevExpress.XtraBars.BarButtonItem();
             this.PointChartButton = new DevExpress.XtraBars.BarButtonItem();
-            this.repositoryItemComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
-            this.repositoryItemCheckedComboBoxEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit();
-            this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
-            this.repositoryItemTextEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
-            this.repositoryItemTextEdit3 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.bDoc_Search = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
             this.bGalleryImage = new DevExpress.XtraBars.BarButtonItem();
@@ -386,7 +381,12 @@
             this.repositoryItemFloatingObjectOutlineWeight1 = new DevExpress.XtraRichEdit.Forms.Design.RepositoryItemFloatingObjectOutlineWeight();
             this.repositoryItemFontEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemFontEdit();
             this.repositoryItemSpreadsheetFontSizeEdit1 = new DevExpress.XtraSpreadsheet.Design.RepositoryItemSpreadsheetFontSizeEdit();
+            this.repositoryItemComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.repositoryItemComboBox2 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
+            this.repositoryItemCheckedComboBoxEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit();
+            this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+            this.repositoryItemTextEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+            this.repositoryItemTextEdit3 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.repositoryItemTextEdit4 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.navbarImageCollectionLarge = new DevExpress.Utils.ImageCollection(this.components);
@@ -459,11 +459,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemRichEditFontSizeEdit2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemFontEdit4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpreadsheetFontSizeEdit2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckedComboBoxEdit1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageCollection_MapAnalysis)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonImageCollectionLarge)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemFontEdit1)).BeginInit();
@@ -473,7 +468,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemFloatingObjectOutlineWeight1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemFontEdit2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpreadsheetFontSizeEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckedComboBoxEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.navbarImageCollectionLarge)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.navbarImageCollection)).BeginInit();
@@ -816,7 +816,7 @@
             this.barButtonGroup18});
             this.ribbonControl.LargeImages = this.ribbonImageCollectionLarge;
             this.ribbonControl.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl.MaxItemId = 717;
+            this.ribbonControl.MaxItemId = 718;
             this.ribbonControl.Name = "ribbonControl";
             this.ribbonControl.PageCategories.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageCategory[] {
             this.ribbonPageCategory_map,
@@ -923,6 +923,7 @@
             this.bGallery3DMap.Name = "bGallery3DMap";
             this.bGallery3DMap.RibbonStyle = ((DevExpress.XtraBars.Ribbon.RibbonItemStyles)(((DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large | DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithText) 
             | DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithoutText)));
+            this.bGallery3DMap.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.bGallery3DMap.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bGallery3DMap_ItemClick);
             // 
             // bGalleryOpenMap
@@ -1034,6 +1035,7 @@
             this.bHelp.Name = "bHelp";
             this.bHelp.RibbonStyle = ((DevExpress.XtraBars.Ribbon.RibbonItemStyles)(((DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large | DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithText) 
             | DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithoutText)));
+            this.bHelp.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.bHelp.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bHelp_ItemClick);
             // 
             // bAboutUs
@@ -2952,6 +2954,7 @@
             this.bUserManager.Name = "bUserManager";
             this.bUserManager.RibbonStyle = ((DevExpress.XtraBars.Ribbon.RibbonItemStyles)(((DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large | DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithText) 
             | DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithoutText)));
+            this.bUserManager.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.bUserManager.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bUserManager_ItemClick);
             // 
             // PieChartButton
@@ -2986,36 +2989,6 @@
             this.PointChartButton.RibbonStyle = ((DevExpress.XtraBars.Ribbon.RibbonItemStyles)(((DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large | DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithText) 
             | DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithoutText)));
             this.PointChartButton.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.PointChartButton_ItemClick);
-            // 
-            // repositoryItemComboBox1
-            // 
-            this.repositoryItemComboBox1.AutoHeight = false;
-            this.repositoryItemComboBox1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemComboBox1.Name = "repositoryItemComboBox1";
-            this.repositoryItemComboBox1.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            // 
-            // repositoryItemCheckedComboBoxEdit1
-            // 
-            this.repositoryItemCheckedComboBoxEdit1.AutoHeight = false;
-            this.repositoryItemCheckedComboBoxEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemCheckedComboBoxEdit1.Name = "repositoryItemCheckedComboBoxEdit1";
-            // 
-            // repositoryItemTextEdit1
-            // 
-            this.repositoryItemTextEdit1.AutoHeight = false;
-            this.repositoryItemTextEdit1.Name = "repositoryItemTextEdit1";
-            // 
-            // repositoryItemTextEdit2
-            // 
-            this.repositoryItemTextEdit2.AutoHeight = false;
-            this.repositoryItemTextEdit2.Name = "repositoryItemTextEdit2";
-            // 
-            // repositoryItemTextEdit3
-            // 
-            this.repositoryItemTextEdit3.AutoHeight = false;
-            this.repositoryItemTextEdit3.Name = "repositoryItemTextEdit3";
             // 
             // bDoc_Search
             // 
@@ -3072,6 +3045,7 @@
             this.bCurMapAttrTable.Id = 699;
             this.bCurMapAttrTable.Name = "bCurMapAttrTable";
             this.bCurMapAttrTable.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.bCurMapAttrTable.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // bMap_AddKeyword
             // 
@@ -3126,6 +3100,7 @@
             this.bOpenRedLine.Id = 707;
             this.bOpenRedLine.Name = "bOpenRedLine";
             this.bOpenRedLine.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.bOpenRedLine.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.bOpenRedLine.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bOpenRedLine_ItemClick);
             // 
             // bCoorInputButton
@@ -3344,6 +3319,7 @@
             this.OverLayRibbonPageGroup.ItemLinks.Add(this.bClearAnalysis);
             this.OverLayRibbonPageGroup.Name = "OverLayRibbonPageGroup";
             this.OverLayRibbonPageGroup.Text = "叠置分析";
+            this.OverLayRibbonPageGroup.Visible = false;
             // 
             // ribbonPageCategory_doc
             // 
@@ -3782,12 +3758,42 @@
             this.repositoryItemSpreadsheetFontSizeEdit1.Control = null;
             this.repositoryItemSpreadsheetFontSizeEdit1.Name = "repositoryItemSpreadsheetFontSizeEdit1";
             // 
+            // repositoryItemComboBox1
+            // 
+            this.repositoryItemComboBox1.AutoHeight = false;
+            this.repositoryItemComboBox1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemComboBox1.Name = "repositoryItemComboBox1";
+            this.repositoryItemComboBox1.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            // 
             // repositoryItemComboBox2
             // 
             this.repositoryItemComboBox2.AutoHeight = false;
             this.repositoryItemComboBox2.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.repositoryItemComboBox2.Name = "repositoryItemComboBox2";
+            // 
+            // repositoryItemCheckedComboBoxEdit1
+            // 
+            this.repositoryItemCheckedComboBoxEdit1.AutoHeight = false;
+            this.repositoryItemCheckedComboBoxEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemCheckedComboBoxEdit1.Name = "repositoryItemCheckedComboBoxEdit1";
+            // 
+            // repositoryItemTextEdit1
+            // 
+            this.repositoryItemTextEdit1.AutoHeight = false;
+            this.repositoryItemTextEdit1.Name = "repositoryItemTextEdit1";
+            // 
+            // repositoryItemTextEdit2
+            // 
+            this.repositoryItemTextEdit2.AutoHeight = false;
+            this.repositoryItemTextEdit2.Name = "repositoryItemTextEdit2";
+            // 
+            // repositoryItemTextEdit3
+            // 
+            this.repositoryItemTextEdit3.AutoHeight = false;
+            this.repositoryItemTextEdit3.Name = "repositoryItemTextEdit3";
             // 
             // repositoryItemTextEdit4
             // 
@@ -4499,14 +4505,14 @@
             // 
             this.pdfPreviousPageBarItem1.Enabled = false;
             this.pdfPreviousPageBarItem1.Id = 1;
-            this.pdfPreviousPageBarItem1.ItemShortcut = new DevExpress.XtraBars.BarShortcut(System.Windows.Forms.Keys.PageUp);
+            this.pdfPreviousPageBarItem1.ItemShortcut = new DevExpress.XtraBars.BarShortcut(System.Windows.Forms.Keys.Prior);
             this.pdfPreviousPageBarItem1.Name = "pdfPreviousPageBarItem1";
             // 
             // pdfNextPageBarItem1
             // 
             this.pdfNextPageBarItem1.Enabled = false;
             this.pdfNextPageBarItem1.Id = 2;
-            this.pdfNextPageBarItem1.ItemShortcut = new DevExpress.XtraBars.BarShortcut(System.Windows.Forms.Keys.PageDown);
+            this.pdfNextPageBarItem1.ItemShortcut = new DevExpress.XtraBars.BarShortcut(System.Windows.Forms.Keys.Next);
             this.pdfNextPageBarItem1.Name = "pdfNextPageBarItem1";
             // 
             // pdfZoomOutBarItem1
@@ -4678,11 +4684,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemRichEditFontSizeEdit2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemFontEdit4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpreadsheetFontSizeEdit2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckedComboBoxEdit1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageCollection_MapAnalysis)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonImageCollectionLarge)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemFontEdit1)).EndInit();
@@ -4692,7 +4693,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemFloatingObjectOutlineWeight1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemFontEdit2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpreadsheetFontSizeEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckedComboBoxEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.navbarImageCollectionLarge)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.navbarImageCollection)).EndInit();
